@@ -1,11 +1,11 @@
 <?php
-public class User
+class User
 {
-	private username;
-	private fastfogin;
-	private firstname;
-	private middlename;
-	private lastname;
+	private $username;
+	private $fastfogin;
+	private $firstname;
+	private $middlename;
+	private $lastname;
 	
 	public static function Login($uname,$pwd)
 	{
