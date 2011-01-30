@@ -9,8 +9,10 @@ class User
 	
 	public static function Login($uname,$pwd)
 	{
-		echo "You are trying to login with username: <b>".$uname."</b>";
-		echo " and password: <b>".$pwd."</b>";
+	$dbHandler = new dbHandler;
+	$dbHandler->dbConnect();
+		$_SESSION['Username']=$_POST['Username'];
+		echo "Hello ".$_SESSION['Username']."!";
 	}
 }
 ?>
