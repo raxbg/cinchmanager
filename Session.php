@@ -22,8 +22,7 @@ session_start();
 	}
 	else if(isset($_POST['submit_button']))
 	{
-		$_SESSION['Username']=$_POST['Username'];
-		echo "Hello ".$_SESSION['Username']."!";
+		User::Login($_POST['Username'],$_POST['Pwd']);
 ?>
 	<br />
 	<form method="post">
@@ -36,6 +35,7 @@ session_start();
 ?>
 	<form method="post">
 	Username: <input type="text" name="Username">
+	Password: <input type="text" name="Pwd">
 	<input type="submit" name="submit_button" value="Enter">
 	</form>	
 <?php
