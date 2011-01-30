@@ -11,6 +11,7 @@ class User
 	{
 	$dbHandler = new dbHandler;
 	$dbHandler->dbConnect();
+	$userExists = $dbHandler->checkUser();
 		$_SESSION['Username']=$_POST['Username'];
 		echo "Hello ".$_SESSION['Username']."!";
 	}
