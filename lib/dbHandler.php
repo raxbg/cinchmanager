@@ -23,7 +23,7 @@ class dbHandler
 	{
 		$pwd = mysql_real_escape_string($pwd);
 		$query = "SELECT SHA1('{$pwd}')";
-		$result = mysql_query($query,$this->con);
+		$result = mysql_query($query);
 		$pwd = mysql_fetch_row($result);
 		return $pwd[0];
 	}
@@ -31,7 +31,9 @@ class dbHandler
 	{
 		$uname = mysql_real_escape_string($uname);
 		$pwd = $this->EncryptPwd($pwd);
-		$query = "SELECT Username,Password FROM People WHERE Username = '{$uname}' AND Password = '{$pwd}'";
+		$query = "SELECT Username,Password FROM People WHERE 
+		Username = '{$uname}' 
+		AND Password = '{$pwd}'";
 		$reply = mysql_query($query,$this->con);
 		$userIsCorrect = mysql_num_rows($reply);
 		if($userIsCorrect == 1) 
