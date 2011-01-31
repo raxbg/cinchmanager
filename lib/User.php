@@ -20,6 +20,7 @@ class User
 		{
 			echo "Incorrect username or password";
 		}
+		$dbHandler->dbDisconnect();
 	}
 }
 ?>
