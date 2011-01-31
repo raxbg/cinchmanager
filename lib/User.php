@@ -9,11 +9,17 @@ class User
 	
 	public static function Login($uname,$pwd)
 	{
-	$dbHandler = new dbHandler;
-	$dbHandler->dbConnect();
-	$userExists = $dbHandler->checkUser();
-		$_SESSION['Username']=$_POST['Username'];
-		echo "Hello ".$_SESSION['Username']."!";
+		$dbHandler = new dbHandler;
+		$dbHandler->dbConnect();
+		if($dbHandler->LoginIsCorrect($uname,$pwd))
+		{
+			$_SESSION['Username']=$uname;
+			echo "Hello ".$_SESSION['Username']."!";
+		}
+		else
+		{
+			echo "Incorrect username or password";
+		}
 	}
 }
 ?>
