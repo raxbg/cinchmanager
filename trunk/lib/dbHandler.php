@@ -14,7 +14,7 @@ class dbHandler
 		  {
 		  die('Could not connect: ' . mysql_error());
 		  }
-		  mysql_select_db($db, $this->con);
+		  mysql_select_db($this->db, $this->con);
 	}
 	public function dbDisconnect()
 	{
