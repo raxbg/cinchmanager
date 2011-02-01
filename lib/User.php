@@ -7,13 +7,13 @@ class User
 	private $middlename;
 	private $lastname;
 	
-	public static function Login($uname,$pwd)
+	public static function Login($email,$pwd)
 	{
 		$dbHandler = new dbHandler;
 		$dbHandler->dbConnect();
-		if($dbHandler->LoginIsCorrect($uname,$pwd))
+		if($dbHandler->LoginIsCorrect($email,$pwd))
 		{
-			$_SESSION['Username']=$uname;
+			$_SESSION['Username']=$email;
 			echo "Hello ".$_SESSION['Username']."!";
 		}
 		else
