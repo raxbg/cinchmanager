@@ -2,9 +2,10 @@
 class dbHandler
 {
 	private $host="localhost";
-	private $username="cinchmanager";
+	private $username="cinchman";
 	private $pwd="cinch";
 	private $con;
+	private $db=cinchman_db;
 	
 	public function dbConnect()
 	{
@@ -13,7 +14,7 @@ class dbHandler
 		  {
 		  die('Could not connect: ' . mysql_error());
 		  }
-		  mysql_select_db("BigTest", $this->con);
+		  mysql_select_db($db, $this->con);
 	}
 	public function dbDisconnect()
 	{
@@ -31,8 +32,8 @@ class dbHandler
 	{
 		$uname = mysql_real_escape_string($uname);
 		$pwd = $this->EncryptPwd($pwd);
-		$query = "SELECT Username,Password FROM People WHERE 
-		Username = '{$uname}' 
+		$query = "SELECT Email,Password FROM Users WHERE 
+		Email = '{$email}' 
 		AND Password = '{$pwd}'";
 		$reply = mysql_query($query,$this->con);
 		$userIsCorrect = mysql_num_rows($reply);
