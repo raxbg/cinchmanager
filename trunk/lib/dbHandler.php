@@ -5,7 +5,7 @@ class dbHandler
 	private $email="cinchman";
 	private $pwd="cinch";
 	private $con;
-	private $db=cinchman_db;
+	private $db="cinchman_db";
 	
 	public function dbConnect()
 	{
