@@ -2,14 +2,14 @@
 class dbHandler
 {
 	private $host="localhost";
-	private $username="cinchman";
+	private $email="cinchman";
 	private $pwd="cinch";
 	private $con;
 	private $db=cinchman_db;
 	
 	public function dbConnect()
 	{
-		$this->con = mysql_connect($this->host,$this->username,$this->pwd);
+		$this->con = mysql_connect($this->host,$this->email,$this->pwd);
 		if (!$this->con)
 		  {
 		  die('Could not connect: ' . mysql_error());
