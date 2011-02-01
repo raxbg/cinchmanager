@@ -34,12 +34,12 @@ FirstName VARCHAR(15) NOT NULL,
 SecondName VARCHAR(15),
 LastName VARCHAR(15) NOT NULL,
 Telephone VARCHAR(20),
-Address TINYTEXT NOT NULL,
+Address TINYTEXT,
 PhotoFileName VARCHAR(50),
 BranchID int NOT NULL,
 FOREIGN KEY (BranchID) REFERENCES Branches(ID),
 RegistrationDate DATE NOT NULL,
-INDEX(Username,FirstName,LastName),
+INDEX(Email,FirstName,LastName),
 EmployeeOrClient CHAR(1)
 )ENGINE=InnoDB;
 
