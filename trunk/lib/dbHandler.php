@@ -28,9 +28,9 @@ class dbHandler
 		$pwd = mysql_fetch_row($result);
 		return $pwd[0];
 	}
-	public function LoginIsCorrect($uname,$pwd)
+	public function LoginIsCorrect($email,$pwd)
 	{
-		$uname = mysql_real_escape_string($uname);
+		$email = mysql_real_escape_string($email);
 		$pwd = $this->EncryptPwd($pwd);
 		$query = "SELECT Email,Password FROM Users WHERE 
 		Email = '{$email}' 
