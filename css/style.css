@@ -1,0 +1,22 @@
+body {
+margin:0px;
+font-family:arial, sans-serif, helvetica;
+font-size: 15px;
+color:#444;
+background: url('../img/Background.png') repeat-x;
+}
+
+#header {
+background: url("../img/HeaderBG.png") no-repeat;
+height: 125px;
+margin: 0 auto;
+width: 950px;
+}
+#page {
+-moz-border-radius-topleft: 25px;
+-moz-border-radius-topright: 25px;
+background-color: #FFFFFF;
+margin: 50px auto 0;
+min-height: 500px;
+width: 950px;
+}
