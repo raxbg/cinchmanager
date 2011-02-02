@@ -13,14 +13,9 @@ class User
 	private $photofilename;
 	private $registrationdate;
 	
-	public function __construct($email)
+	public function __construct($userInfo)
 	{
-		$dbHandler = new dbHandler;
-		$dbHandler->dbConnect();
-        $email = mysql_real_escape_string($email);
-        $query = "SELECT * FROM Users WHERE Email = {$email}";
-        $reply = mysql_query($query,$dbHandler->connection());
-        $result = mysql_fetch_array($reply);
+        $result = mysql_fetch_array($userInfo);
         
         $this->id = $result['ID'];
         $this->email = $result['Email'];
@@ -110,9 +105,11 @@ class User
 	{
 		$dbHandler = new dbHandler;
 		$dbHandler->dbConnect();
-		if($dbHandler->LoginIsCorrect($email,$pwd))
+        $login = $dbHandler->LoginIsCorrect($email,$pwd);
+		if($login)
 		{
-			$user = new User($email);
+            $result = mysql_fetch_array($login);
+			$user = new User($result['Email']);
 			echo "Hello ".$user->Title().$user->LaststName()."!";
 		}
 		else

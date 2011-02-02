@@ -37,14 +37,14 @@ class dbHandler
 	{
 		$email = mysql_real_escape_string($email);
 		$pwd = $this->EncryptPwd($pwd);
-		$query = "SELECT Email,Password FROM Users WHERE 
+		$query = "SELECT * FROM Users WHERE 
 		Email = '{$email}' 
 		AND Password = '{$pwd}'";
 		$reply = mysql_query($query,$this->con);
 		$userIsCorrect = mysql_num_rows($reply);
 		if($userIsCorrect == 1) 
 		{
-			return true;
+			return $reply;
 		}
 		else
 		{
