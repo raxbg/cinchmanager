@@ -22,6 +22,7 @@ class User
         $reply = mysql_query($query,$dbHandler->connection());
         $result = mysql_fetch_array($reply);
         
+        $this->id = $result['ID'];
         $this->email = $result['Email'];
         $this->title = $result['Title'];
         $this->firstname = $result['FirstName'];
