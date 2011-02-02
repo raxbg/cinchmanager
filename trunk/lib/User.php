@@ -13,13 +13,12 @@ class User
 	private $photofilename;
 	private $registrationdate;
 	
-	public function __construct($userInfo)
+	public function __construct($userInfo,$dbHandler)
 	{
-        $result = mysql_fetch_array($userInfo);
-        
+        $result = mysql_fetch_array($userInfo);       
         $this->id = $result['ID'];
         $this->email = $result['Email'];
-        $this->title = $result['Title'];
+        $this->title = $result['TitleID'];
         $this->firstname = $result['FirstName'];
         $this->secondname = $result['SecondName'];
         $this->lastname = $result['LastName'];
@@ -28,12 +27,7 @@ class User
         $this->branchid = $result['BranchID'];
         $this->photofilename = $result['PhotoFileName'];
         $this->registrationdate = $result['RegistrationDate'];
-        
-        $recordLogin = "INSERT INTO Logins (PersonID) 
-                        VALUES ({$this->id})";
-        mysql_query($recordLogin,$dbHandler->connection());
-        $dbHandler->dbDisconnect();
-        unset($dbHandler);
+        $dbHandler->RecordLogin();
 	}
 	
 	public function __get($property)
@@ -108,9 +102,8 @@ class User
         $login = $dbHandler->LoginIsCorrect($email,$pwd);
 		if($login)
 		{
-            $result = mysql_fetch_array($login);
-			$user = new User($result['Email']);
-			echo "Hello ".$user->Title().$user->LaststName()."!";
+			$user = new User($login,$dbHandler);
+			echo "Hello ".$user->Title().$user->LastName()."!";
 		}
 		else
 		{
