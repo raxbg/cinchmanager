@@ -12,7 +12,7 @@ class User
 	private $branchid;
 	private $photofilename;
 	private $registrationdate;
-	
+
 	public function __construct($userInfo,$dbHandler)
 	{
         $result = mysql_fetch_array($userInfo);       
@@ -27,9 +27,21 @@ class User
         $this->branchid = $result['BranchID'];
         $this->photofilename = $result['PhotoFileName'];
         $this->registrationdate = $result['RegistrationDate'];
-        $dbHandler->RecordLogin();
+        $dbHandler->RecordLogin($this->id);
 	}
 	
+    function __sleep()
+    {
+        echo "blabla";
+        return array('id','email','title','firstname','secondname','lastname',
+        'telephone','address','branchid','photofilename','registrationdate');
+    }
+    
+    function __wakeup()
+    {
+        echo "Izvikaha me!".$_SESSION['LoggedIn'];
+    }
+    
 	public function __get($property)
 	{
 		return $this->$property;
@@ -104,6 +116,7 @@ class User
 		{
 			$user = new User($login,$dbHandler);
 			echo "Hello ".$user->Title().$user->LastName()."!";
+            $_SESSION['LoggedIn']=true;
 		}
 		else
 		{

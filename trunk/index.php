@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once("lib/LoadSystem.php");
 $user;
 ?> 
@@ -15,12 +16,15 @@ $user;
 				<?php
 					if(isset($_POST['logout']))
 					{
-					echo "Goodbye ".$user->Title().$user->LaststName()."!";
-					session_destroy();
+                        $user = unserialize($_SESSION['user']);
+                        unset($_SESSION['LoggedIn']);
+                        session_destroy();
+					    echo "Goodbye ".$user->Title().$user->LastName()."!";                    
 					}
-					else if(isset($_SESSION['Email']))
-					{
-						echo "Hello ".$user->Title().$user->LaststName()."!";
+					else if(isset($_SESSION['LoggedIn']))
+					{  
+                        $user = unserialize($_SESSION['user']);
+						echo "Hello ".$user->Title().$user->LastName()."!";
 				?>
 					<form method="post">
 					<input type="submit" name="logout" value="Log out">
@@ -28,8 +32,9 @@ $user;
 				<?php
 					}
 					else if(isset($_POST['submit_button']))
-					{
+					{   
 						User::Login($_POST['Username'],$_POST['Pwd']);
+                        $_SESSION['user']=serialize($user);
 				?>
 					<form method="post">
 					<input type="submit" name="logout" value="Log out">
