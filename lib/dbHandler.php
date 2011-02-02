@@ -7,11 +7,6 @@ class dbHandler
 	private $con;
 	private $db="cinchman_db";
 	
-	public function connection()
-	{
-		return $this->con;
-	}
-	
 	public function dbConnect()
 	{
 		$this->con = mysql_connect($this->host,$this->email,$this->pwd);
@@ -21,10 +16,14 @@ class dbHandler
 		  }
 		  mysql_select_db($this->db, $this->con);
 	}
-	public function dbDisconnect()
-	{
-		mysql_close($this->con);
-	}
+    
+    public function RecordLogin()
+    {
+        $query = "INSERT INTO Logins (UserID) 
+                VALUES ('{$this->id}')";
+        mysql_query($query,$this->con);
+    }
+    
 	private function EncryptPwd($pwd)
 	{
 		$pwd = mysql_real_escape_string($pwd);
@@ -51,5 +50,15 @@ class dbHandler
 			return false;
 		}
 	}
+    
+    public function dbDisconnect()
+    {
+        mysql_close($this->con);
+    }
+    
+    public function Connection()
+    {
+        return $this->con;
+    }
 }
 ?>
