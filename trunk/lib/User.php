@@ -28,20 +28,9 @@ class User
         $this->photofilename = $result['PhotoFileName'];
         $this->registrationdate = $result['RegistrationDate'];
         $dbHandler->RecordLogin($this->id);
+        $_SESSION['userinfo']=$result;
 	}
-	
-    function __sleep()
-    {
-        echo "blabla";
-        return array('id','email','title','firstname','secondname','lastname',
-        'telephone','address','branchid','photofilename','registrationdate');
-    }
-    
-    function __wakeup()
-    {
-        echo "Izvikaha me!".$_SESSION['LoggedIn'];
-    }
-    
+	   
 	public function __get($property)
 	{
 		return $this->$property;
@@ -120,6 +109,7 @@ class User
 		}
 		else
 		{
+			$_SESSION['LoggedIn']=false;
 			echo "Incorrect username or password";
 		}
 		$dbHandler->dbDisconnect();
