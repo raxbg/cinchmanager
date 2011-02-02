@@ -17,10 +17,10 @@ class dbHandler
 		  mysql_select_db($this->db, $this->con);
 	}
     
-    public function RecordLogin()
+    public function RecordLogin($userID)
     {
         $query = "INSERT INTO Logins (UserID) 
-                VALUES ('{$this->id}')";
+                VALUES ('{$userID}')";
         mysql_query($query,$this->con);
     }
     
