@@ -1,7 +1,37 @@
 <?php
-session_start();
+if(!isset($_SESSION['started']))
+{
+    session_start();
+    $_SESSION['started']=true;
+}
+if(isset($_POST['RememberMe']) && !is_null($_POST['RememberMe']))
+    {
+        $userInfo = array
+        (
+        "Email"=>$_POST['Email'],
+        "Password"=>$_POST['Pwd']
+        );
+        $userInfo = serialize($userInfo);
+        $expire=time()+3600;
+        $path='';
+        $domain='';
+        $secure=false;
+        $httponly=true;
+        setcookie("Info",$userInfo,$expire,$path,$domain,$secure,$httponly);
+    }
+if(isset($_COOKIE['Info']))
+{
+    if(get_magic_quotes_gpc())
+    {
+        $userInfo = unserialize(stripslashes($_COOKIE['Info']));
+    }
+    else
+    {
+        $userInfo = unserialize($_COOKIE['Info']);
+    }
+    echo $userInfo['Email'];
+}
 require_once("lib/LoadSystem.php");
-$user;
 ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -29,7 +59,7 @@ $user;
 					}
 					else if(isset($_POST['submit_button']))
 					{   
-						User::Login($_POST['Username'],$_POST['Pwd']);
+						User::Login($_POST['Email'],$_POST['Pwd']);
 				        echo "\n</form>";
 					}
 					else
@@ -43,7 +73,7 @@ $user;
 							</tr>
 							<tr>
 								<td>
-									<input type="text" name="Username" value="" style="width:120px;"/>
+									<input type="text" name="Email" value="" style="width:120px;"/>
 								</td>
 								<td>
 									<input type="password" name="Pwd" value="" style="width:100px;"/>
