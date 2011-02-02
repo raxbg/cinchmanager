@@ -50,6 +50,61 @@ class User
 	{
 		$this->$property = $value;
 	}
+    
+    public function ID()
+    {
+        return $this->id;
+    }
+    
+    public function Email()
+    {
+        return $this->email;
+    }
+    
+    public function Title()
+    {
+        return $this->title;
+    }
+    
+    public function FirstName()
+    {
+        return $this->firstname;
+    }
+    
+    public function SecondName()
+    {
+        return $this->secondname;
+    }
+    
+    public function LastName()
+    {
+        return $this->lastname;
+    }
+    
+    public function Telephone()
+    {
+        return $this->telephone;
+    }
+    
+    public function Address()
+    {
+        return $this->address;
+    }
+    
+    public function BranchID()
+    {
+        return $this->branchid;
+    }
+    
+    public function PhotoFileName()
+    {
+        return $this->photofilename;
+    }
+    
+    public function RegistrationDate()
+    {
+        return $this->registrationdate;
+    }
 	
 	public static function Login($email,$pwd)
 	{
@@ -57,8 +112,8 @@ class User
 		$dbHandler->dbConnect();
 		if($dbHandler->LoginIsCorrect($email,$pwd))
 		{
-			$_SESSION['Username']=$email;
-			echo "Hello ".$_SESSION['Username']."!";
+			$user = new User($email);
+			echo "Hello ".$user->Title().$user->LaststName()."!";
 		}
 		else
 		{

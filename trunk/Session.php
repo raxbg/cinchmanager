@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("lib/LoadSystem.php");
+$user;
 ?> 
 
 <html>
@@ -8,12 +9,12 @@ require_once("lib/LoadSystem.php");
 <?php
 	if(isset($_POST['goodbye']))
 	{
-	echo "Goodbye ".$_SESSION['Username']."!";
+	echo "Goodbye ".$user->Title().$user->LaststName()."!";
 	session_destroy();
 	}
-	else if(isset($_SESSION['Username']))
+	else if(isset($_SESSION['User']))
 	{
-		echo "Hello ".$_SESSION['Username']."!";
+		echo "Hello ".$user->Title().$user->LaststName()."!";
 ?>
 	<br />
 	<form method="post">
