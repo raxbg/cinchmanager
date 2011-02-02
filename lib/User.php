@@ -106,10 +106,13 @@ class User
 			$user = new User($login,$dbHandler);
 			echo "Hello ".$user->Title().$user->LastName()."!";
             $_SESSION['LoggedIn']=true;
+        ?>
+            <form method="post">
+            <input type="submit" name="logout" value="Log out">
+        <?php
 		}
 		else
 		{
-			$_SESSION['LoggedIn']=false;
 			echo "Incorrect username or password";
 		}
 		$dbHandler->dbDisconnect();

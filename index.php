@@ -16,7 +16,7 @@ $user;
 					if(isset($_POST['logout']))
 					{
 						echo "Hello ".$_SESSION['userinfo']['FirstName']."!";
-            session_destroy();             
+                        session_destroy();             
 					}
 					else if(isset($_SESSION['LoggedIn']))
 					{
@@ -30,11 +30,7 @@ $user;
 					else if(isset($_POST['submit_button']))
 					{   
 						User::Login($_POST['Username'],$_POST['Pwd']);
-				?>
-					<form method="post">
-					<input type="submit" name="logout" value="Log out">
-					</form>	
-				<?php
+				        echo "\n</form>";
 					}
 					else
 					{
