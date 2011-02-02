@@ -7,6 +7,11 @@ class dbHandler
 	private $con;
 	private $db="cinchman_db";
 	
+	public function connection()
+	{
+		return $this->con;
+	}
+	
 	public function dbConnect()
 	{
 		$this->con = mysql_connect($this->host,$this->email,$this->pwd);
