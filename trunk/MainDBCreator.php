@@ -234,3 +234,9 @@ FOREIGN KEY (TaskID) REFERENCES Tasks(ID),
 Cost DECIMAL(15,2) NOT NULL,
 Payed BOOL
 )ENGINE=InnoDB;
+
+INSERT INTO Branches (Address, Name)
+VALUES ("Велико Търново","Велико Търново");
+
+INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient)
+VALUES ("ivaylo@gsvision.eu","00d57a9d948fc4cce6abd85cd2a7ef56f32b9280","Ивайло","Христов","Велико Търново",1,15-02-2001,'е');
