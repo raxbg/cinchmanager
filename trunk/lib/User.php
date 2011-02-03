@@ -84,8 +84,7 @@ class User
         unset($_SESSION['LoggedIn']);
         session_destroy();
         setcookie("Email","",time()-3600);
-        setcookie("Password","",time()-3600);
-        setcookie("Language","",time()-3600); 
+        setcookie("Password","",time()-3600); 
     }
     
     public static function SetLanguage($language)
