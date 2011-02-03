@@ -14,10 +14,6 @@ if(isset($_POST['logout']))
 {
     User::Logout();             
 }
-if(isset($text))
-{
-    echo "askjfhaf";
-}
 ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -37,17 +33,17 @@ if(isset($text))
         <?php
             if(isset($_POST['logout']))
             {
-                echo "Goodbye! {$text['logout']}";             
+                echo $_TEXT['Goodbye'];             
             }
             else if(isset($_POST['submit_button']))
             {   
                if(isset($_SESSION['LoggedIn']))
                {
-                   echo "Hi!";
+                   echo $_TEXT['Hello'];
                }
                else
                {
-                   echo "Incorrect username or password";
+                   echo $_TEXT['IncorrectUsername'];
                }            
             }
         ?>
