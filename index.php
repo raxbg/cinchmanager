@@ -27,7 +27,7 @@ if(isset($_POST['logout']))
 				<?php
                     if(isset($_SESSION['LoggedIn']))
 					{
-						echo "Hello ".$_SESSION['userinfo']['FirstName']."!";
+						echo "Hello {$_SESSION['userinfo']['Title']} {$_SESSION['userinfo']['FirstName']}!";
 				?>
 					<form method="post">
 					<input type="submit" name="logout" value="Log out">
