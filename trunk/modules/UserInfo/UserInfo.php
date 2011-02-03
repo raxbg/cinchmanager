@@ -4,7 +4,7 @@
 		echo "Hello {$_SESSION['userinfo']['Title']} {$_SESSION['userinfo']['FirstName']}!";
 ?>
 	<form method="post">
-	<input type="submit" name="logout" value="Log out">
+	<input type="submit" name="logout" value="<?php echo $_TEXT['ButtonLogout']; ?>">
 	</form>	
 <?php
 	}
@@ -16,7 +16,7 @@
         echo "Hello ".$_SESSION['userinfo']['FirstName']."!";
         ?>
             <form method="post">
-            <input type="submit" name="logout" value="Log out">
+            <input type="submit" name="logout" value="<?php echo $_TEXT['ButtonLogout']; ?>">
             </form>
         <?php  
      }
