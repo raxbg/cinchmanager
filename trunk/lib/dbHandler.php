@@ -35,8 +35,10 @@ class dbHandler
 	{
 		$email = mysql_real_escape_string($email);
 		$password = $this->EncryptPwd($password);
-		$query = "SELECT * FROM Users WHERE 
-		Email = '{$email}' 
+		$query = "SELECT Users.*,Titles.Title FROM Users 
+        LEFT JOIN Titles 
+        ON Users.TitleID = Titles.ID 
+        WHERE Email = '{$email}' 
 		AND Password = '{$password}'";
 		$reply = mysql_query($query,$this->con);
 		$userIsCorrect = mysql_num_rows($reply);
