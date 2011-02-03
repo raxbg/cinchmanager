@@ -62,7 +62,7 @@ if(isset($_POST['logout']))
         <?php
             if(isset($_POST['logout']))
             {
-                echo "Goodbye!";             
+                echo "Goodbye! {$text['logout']}";             
             }
             else if(isset($_POST['submit_button']))
             {   
