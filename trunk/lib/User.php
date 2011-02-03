@@ -89,9 +89,12 @@ class User
     
     public static function SetLanguage($language)
     {
-        setcookie("Language","",time()-3600);   
-        setcookie("Language",$language,time()+3600*24*365);
-        $_COOKIE['Language'] = $language;
+        if(file_exists("./languages/{$language}.php"))
+        {
+            setcookie("Language","",time()-3600);   
+            setcookie("Language",$language,time()+3600*24*365);
+            $_COOKIE['Language'] = $language;
+        }
     }
 }
 ?>
