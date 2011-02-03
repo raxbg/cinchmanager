@@ -33,6 +33,7 @@ class dbHandler
 	}
 	public function LoginIsCorrect($email,$password)
 	{
+		mysql_query("SET NAMES 'utf8'", $this->con);
 		$email = mysql_real_escape_string($email);
 		$password = $this->EncryptPwd($password);
 		$query = "SELECT Users.*,Titles.Title FROM Users 
