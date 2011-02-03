@@ -1,5 +1,4 @@
 <?php
-global $_TEXT;
 $_TEXT = array(
 "ButtonLogin" => "Вход",
 "ButtonLogout" => "Изход",
