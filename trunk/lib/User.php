@@ -85,7 +85,7 @@ class User
         session_destroy();
         setcookie("Email","",time()-3600);
         setcookie("Password","",time()-3600);
-        self::SetLanguage("en");
+        setcookie("Language","",time()-3600); 
     }
     
     public static function SetLanguage($language)
