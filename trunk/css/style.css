@@ -34,7 +34,10 @@ border: 1px solid #CCCCCC;
 color: #CCCCCC;
 margin:0 10px 3px 0;
 }
-
+#log_out_btn{
+float: right;
+margin: 10px 0 0;
+}
 #forgotten{
 float: right;
 }
