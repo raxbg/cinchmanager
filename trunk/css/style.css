@@ -5,7 +5,9 @@ font-size: 15px;
 color:#444;
 background: url('../img/Background.png') repeat-x;
 }
-
+a img{
+border:none;
+}
 #header {
 background: url("../img/HeaderBG.png") no-repeat;
 height: 125px;
@@ -49,4 +51,18 @@ text-decoration:none;
 #forgotten a:hover{
 color:#eee;
 text-decoration:none;
+}
+#languages{
+float:left;
+list-style: none outside none;
+margin: 10px 0 0 15px;
+padding: 0;
+}
+#languages li{
+display:inline;
+float:left;
+margin-right: 7px;
+}
+#languages a{
+border:0;
 }
