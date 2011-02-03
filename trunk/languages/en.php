@@ -8,7 +8,8 @@ $_TEXT = array(
 "Remember" => "Remember me",
 "ForgottenPassword" => "Forgotten password",
 "IncorrectUser" => "Incorrect email or password!",
-"Hello" => "Hello!",
+"Wellcome!" => "Welcome!",
+"Welcome" => "Welcome",
 "Goodbye" => "Goodbye!"
 );
 ?>
