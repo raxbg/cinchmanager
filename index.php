@@ -28,6 +28,9 @@ require_once("lib/SetLanguage.php");
 	</head>
 	<body>
 		<div id="header">
+        <?php
+        require_once("modules/Languages/languages.php");    
+        ?>
 			<div id="userinfo">
 				<?php
 					require_once("modules/UserInfo/UserInfo.php");
