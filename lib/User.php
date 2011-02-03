@@ -43,6 +43,7 @@ class User
 		$dbHandler->dbDisconnect();
 		unset($dbHandler);
 	}
+    
     public static function Remember()
     {
         if(isset($_POST['RememberMe']) && !is_null($_POST['RememberMe']) || isset($_COOKIE['Email']))
