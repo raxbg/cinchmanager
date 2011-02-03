@@ -1,7 +1,7 @@
 <form method="post">
 	<table>
 	    <tr>
-	        <td><?php echo $_TEXT['Email']; ?>:</td>
+	        <td><?php echo $_TEXT['Email']; ?></td>
 	        <td><?php echo $_TEXT['Password']; ?></td>
 	    </tr>
 	    <tr>

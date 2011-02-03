@@ -13,7 +13,7 @@
 		 User::Login($_POST['Email'],$_POST['Password']);
      if($_SESSION['LoggedIn'])
      {
-        echo "Hello ".$_SESSION['userinfo']['LastName']."!";
+        echo "{$_TEXT['Welcome']} {$_SESSION['userinfo']['Title']} {$_SESSION['userinfo']['LastName']}!";
         ?>
             <form method="post">
             <input type="submit" name="logout" value="<?php echo $_TEXT['ButtonLogout']; ?>">
