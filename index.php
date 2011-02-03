@@ -43,7 +43,7 @@ if(isset($_POST['logout']))
                }
                else
                {
-                   echo $_TEXT['IncorrectUsername'];
+                   echo $_TEXT['IncorrectUser'];
                }            
             }
         ?>
