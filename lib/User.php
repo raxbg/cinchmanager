@@ -16,18 +16,7 @@ class User
 	public function __construct($userInfo,$dbHandler)
 	{
         $result = mysql_fetch_array($userInfo);       
-        $this->id = $result['ID'];
-        $this->email = $result['Email'];
-        $this->title = $result['TitleID'];
-        $this->firstname = $result['FirstName'];
-        $this->secondname = $result['SecondName'];
-        $this->lastname = $result['LastName'];
-        $this->telephone = $result['Telephone'];
-        $this->address = $result['Address'];
-        $this->branchid = $result['BranchID'];
-        $this->photofilename = $result['PhotoFileName'];
-        $this->registrationdate = $result['RegistrationDate'];
-        $dbHandler->RecordLogin($this->id);
+        $dbHandler->RecordLogin($result['ID']);
         $_SESSION['userinfo']=$result;
 	}
 	   
@@ -40,83 +29,61 @@ class User
 	{
 		$this->$property = $value;
 	}
-    
-    public function ID()
-    {
-        return $this->id;
-    }
-    
-    public function Email()
-    {
-        return $this->email;
-    }
-    
-    public function Title()
-    {
-        return $this->title;
-    }
-    
-    public function FirstName()
-    {
-        return $this->firstname;
-    }
-    
-    public function SecondName()
-    {
-        return $this->secondname;
-    }
-    
-    public function LastName()
-    {
-        return $this->lastname;
-    }
-    
-    public function Telephone()
-    {
-        return $this->telephone;
-    }
-    
-    public function Address()
-    {
-        return $this->address;
-    }
-    
-    public function BranchID()
-    {
-        return $this->branchid;
-    }
-    
-    public function PhotoFileName()
-    {
-        return $this->photofilename;
-    }
-    
-    public function RegistrationDate()
-    {
-        return $this->registrationdate;
-    }
 	
-	public static function Login($email,$pwd)
+	public static function Login($email,$password)
 	{
 		$dbHandler = new dbHandler;
 		$dbHandler->dbConnect();
-        $login = $dbHandler->LoginIsCorrect($email,$pwd);
+        $login = $dbHandler->LoginIsCorrect($email,$password);
 		if($login)
 		{
 			$user = new User($login,$dbHandler);
-			echo "Hello ".$user->Title().$user->LastName()."!";
             $_SESSION['LoggedIn']=true;
-        ?>
-            <form method="post">
-            <input type="submit" name="logout" value="Log out">
-        <?php
-		}
-		else
-		{
-			echo "Incorrect username or password";
 		}
 		$dbHandler->dbDisconnect();
 		unset($dbHandler);
 	}
+    public static function Remember()
+    {
+        if(isset($_POST['RememberMe']) && !is_null($_POST['RememberMe']) || isset($_COOKIE['Email']))
+        {
+
+            $expire=time()+3600*24*365;
+            $path='';
+            $domain='';
+            $secure=false;
+            $httponly=true;
+            if(isset($_COOKIE['Email']))
+            {
+                $email = $_COOKIE['Email'];
+                $password = $_COOKIE['Password'];
+                setcookie("Email","",time()-3600);
+                setcookie("Password","",time()-3600);   
+                setcookie("Email",$email,$expire,$path,$domain,$secure,$httponly);
+                setcookie("Password",$password,$expire,$path,$domain,$secure,$httponly); 
+            }
+            else
+            {
+                setcookie("Email",$_POST['Email'],$expire,$path,$domain,$secure,$httponly);
+                setcookie("Password",$_POST['Password'],$expire,$path,$domain,$secure,$httponly); 
+            }
+        }
+    }
+    
+    public static function AutoLogin()
+    {
+        if(isset($_COOKIE['Email']))
+        {
+            self::Login( $_COOKIE['Email'],$_COOKIE['Password']);
+        }
+    }
+    
+    public static function Logout()
+    {
+        unset($_SESSION['LoggedIn']);
+        session_destroy();
+        setcookie("Email","",time()-3600);
+        setcookie("Password","",time()-3600);
+    }
 }
 ?>
