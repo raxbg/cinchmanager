@@ -39,7 +39,6 @@ class User
 		{
 			$user = new User($login,$dbHandler);
             $_SESSION['LoggedIn']=true;
-            self::SetLanguage("bg");
 		}
 		$dbHandler->dbDisconnect();
 		unset($dbHandler);
