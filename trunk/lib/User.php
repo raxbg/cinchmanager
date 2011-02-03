@@ -39,6 +39,7 @@ class User
 		{
 			$user = new User($login,$dbHandler);
             $_SESSION['LoggedIn']=true;
+            self::SetLanguage("bg");
 		}
 		$dbHandler->dbDisconnect();
 		unset($dbHandler);
@@ -85,6 +86,12 @@ class User
         session_destroy();
         setcookie("Email","",time()-3600);
         setcookie("Password","",time()-3600);
+    }
+    
+    public static function SetLanguage($language)
+    {
+        setcookie("Language","",time()-3600);   
+        setcookie("Language",$language,time()+3600*24*365);
     }
 }
 ?>
