@@ -8,4 +8,35 @@ function SetLanguage($language)
         $_COOKIE['Language'] = $language;
     }
 }
+
+function SetGetVariable($name,$value)
+{    
+    $uri=$_SERVER['REQUEST_URI'];
+    if (strpos($uri,"?")===false)
+    {
+        echo $uri."?".$name."=".$value;
+    }
+    else if ((strpos($uri,"?")!==false)&&(strpos($uri,$name."=")===false))
+    {
+        echo $uri."&".$name."=".$value;
+    }
+    else if ((strpos($uri,"?")!==false)&&(strpos($uri,$name."=")!==false))
+    {
+        $URIStart=substr ($uri ,0,strpos($uri,$name."=")+strlen($name)+1);
+        $URIPartAfterVarName=substr ($uri ,strpos($uri,$name."=")+strlen($name)+1);
+        if(strpos($URIPartAfterVarName,"&")!==false)
+        {
+            $URIEnd=substr ($URIPartAfterVarName ,strpos($URIPartAfterVarName,"&"));
+        }
+        else
+        {
+            $URIEnd="";
+        }
+        echo $URIStart.$value.$URIEnd;
+    }
+    else
+    {
+        echo "/";
+    }
+}
 ?>
