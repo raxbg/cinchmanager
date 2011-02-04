@@ -1,10 +1,10 @@
 <?php
-function AddLanguagetoURI($lang)
+function AddLanguageToURI($language)
 {	
 	$uri=$_SERVER['REQUEST_URI'];
 	if (strpos($uri,"?")===false)
 	{
-		echo $uri."?language=".$lang;
+		echo $uri."?language=".$language;
 	}
 	else if ((strpos($uri,"?")!==false)&&(strpos($uri,"language=")===false))
 	{
@@ -22,7 +22,7 @@ function AddLanguagetoURI($lang)
 		{
 			$URIend="";
 		}
-		echo $URIstart.$lang.$URIend;
+		echo $URIstart.$language.$URIend;
 	}
 	else
 	{
@@ -31,6 +31,6 @@ function AddLanguagetoURI($lang)
 }
 ?>
 <ul id="languages">
-	<li><a href="<?php AddLanguagetoURI("bg"); ?>"><img src="modules/Languages/Flags/bg.png" /></a></li>
-	<li><a href="<?php AddLanguagetoURI("en"); ?>"><img src="modules/Languages/Flags/gb.png" /></a></li>
+	<li><a href="<?php AddLanguageToURI("bg"); ?>"><img src="modules/Languages/Flags/bg.png" /></a></li>
+	<li><a href="<?php AddLanguageToURI("en"); ?>"><img src="modules/Languages/Flags/gb.png" /></a></li>
 </ul>
