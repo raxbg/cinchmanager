@@ -8,21 +8,21 @@ function AddLanguageToURI($language)
 	}
 	else if ((strpos($uri,"?")!==false)&&(strpos($uri,"language=")===false))
 	{
-		echo $uri."&language=".$URIstart;
+		echo $uri."&language=".$URIStart;
 	}
 	else if ((strpos($uri,"?")!==false)&&(strpos($uri,"language=")!==false))
 	{
-		$URIstart=substr ($uri ,0,strpos($uri,"language=")+9);
+		$URIStart=substr ($uri ,0,strpos($uri,"language=")+9);
 		$URIPartAfterLanguage=substr ($uri ,strpos($uri,"language=")+9);
 		if(strpos($URIPartAfterLanguage,"&")!==false)
 		{
-			$URIend=substr ($URIPartAfterLanguage ,strpos($URIPartAfterLanguage,"&"));
+			$URIEnd=substr ($URIPartAfterLanguage ,strpos($URIPartAfterLanguage,"&"));
 		}
 		else
 		{
-			$URIend="";
+			$URIEnd="";
 		}
-		echo $URIstart.$language.$URIend;
+		echo $URIStart.$language.$URIEnd;
 	}
 	else
 	{
