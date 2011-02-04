@@ -16,7 +16,8 @@ if(isset($_COOKIE['Email']))
 }
 if(isset($_GET['language']))
 {
-    System::SetLanguage($_GET['language']);
+		require_once("./lib/System.php");
+    SystemRequirements::SetLanguage($_GET['language']);
 }
 require_once("lib/SetLanguage.php");
 ?> 
@@ -28,9 +29,9 @@ require_once("lib/SetLanguage.php");
 	</head>
 	<body>
 		<div id="header">
-        <?php
-        require_once("modules/Languages/languages.php");    
-        ?>
+      <?php      	
+      	require_once("modules/Languages/languages.php");    
+      ?>
 			<div id="userinfo">
 				<?php
 					require_once("modules/UserInfo/UserInfo.php");

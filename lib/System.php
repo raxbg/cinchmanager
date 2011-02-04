@@ -1,16 +1,6 @@
 <?php
-class System
+class SystemRequirements
 {
-    public static function SetLanguage($language)
-    {
-        if(file_exists("./languages/{$language}.php"))
-        {
-            setcookie("Language","",time()-3600);   
-            setcookie("Language",$language,time()+3600*24*365);
-            $_COOKIE['Language'] = $language;
-        }
-    }
-
     public static function SetGetVariable($name,$value)
     {    
         $uri=$_SERVER['REQUEST_URI'];
@@ -39,6 +29,16 @@ class System
         else
         {
             echo "/";
+        }
+    }
+    
+        public static function SetLanguage($language)
+    {
+        if(file_exists("./languages/{$language}.php"))
+        {
+            setcookie("Language","",time()-3600);   
+            setcookie("Language",$language,time()+3600*24*365);
+            $_COOKIE['Language'] = $language;
         }
     }
 }
