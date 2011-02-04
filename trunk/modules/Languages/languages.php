@@ -1,28 +1,28 @@
 <?php
-function AddLanguageToURI($language)
+function SetGetVariable($name,$value)
 {	
 	$uri=$_SERVER['REQUEST_URI'];
 	if (strpos($uri,"?")===false)
 	{
-		echo $uri."?language=".$language;
+		echo $uri."?".$name."=".$value;
 	}
-	else if ((strpos($uri,"?")!==false)&&(strpos($uri,"language=")===false))
+	else if ((strpos($uri,"?")!==false)&&(strpos($uri,$name."=")===false))
 	{
-		echo $uri."&language=".$URIStart;
+		echo $uri."&".$name."=".$value;
 	}
-	else if ((strpos($uri,"?")!==false)&&(strpos($uri,"language=")!==false))
+	else if ((strpos($uri,"?")!==false)&&(strpos($uri,$name."=")!==false))
 	{
-		$URIStart=substr ($uri ,0,strpos($uri,"language=")+9);
-		$URIPartAfterLanguage=substr ($uri ,strpos($uri,"language=")+9);
-		if(strpos($URIPartAfterLanguage,"&")!==false)
+		$URIStart=substr ($uri ,0,strpos($uri,$name."=")+strlen($name)+1);
+		$URIPartAfterVarName=substr ($uri ,strpos($uri,$name."=")+strlen($name)+1);
+		if(strpos($URIPartAfterVarName,"&")!==false)
 		{
-			$URIEnd=substr ($URIPartAfterLanguage ,strpos($URIPartAfterLanguage,"&"));
+			$URIEnd=substr ($URIPartAfterVarName ,strpos($URIPartAfterVarName,"&"));
 		}
 		else
 		{
 			$URIEnd="";
 		}
-		echo $URIStart.$language.$URIEnd;
+		echo $URIStart.$value.$URIEnd;
 	}
 	else
 	{
@@ -31,6 +31,6 @@ function AddLanguageToURI($language)
 }
 ?>
 <ul id="languages">
-	<li><a href="<?php AddLanguageToURI("bg"); ?>"><img src="modules/Languages/Flags/bg.png" /></a></li>
-	<li><a href="<?php AddLanguageToURI("en"); ?>"><img src="modules/Languages/Flags/gb.png" /></a></li>
+	<li><a href="<?php SetGetVariable("language","bg"); ?>"><img src="modules/Languages/Flags/bg.png" /></a></li>
+	<li><a href="<?php SetGetVariable("language","en"); ?>"><img src="modules/Languages/Flags/gb.png" /></a></li>
 </ul>
