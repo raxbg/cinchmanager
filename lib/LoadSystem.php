@@ -1,7 +1,7 @@
 <?php
 $systemFiles = array(
 "User.php",
-"System.php",
+"Environment.php",
 "dbHandler.php",
 "Globals.php"
 );

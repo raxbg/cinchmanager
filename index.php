@@ -16,10 +16,9 @@ if(isset($_COOKIE['Email']))
 }
 if(isset($_GET['language']))
 {
-		require_once("./lib/System.php");
-    Environment::SetLanguage($_GET['language']);
+    Environment::SetLanguageCookie($_GET['language']);
 }
-require_once("lib/SetLanguage.php");
+Environment::SetLanguage();
 ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
