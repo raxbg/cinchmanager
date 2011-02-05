@@ -1,5 +1,5 @@
 <?php
-class SystemRequirements
+class Environment
 {
     public static function SetGetVariable($name,$value)
     {    
