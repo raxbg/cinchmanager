@@ -17,7 +17,7 @@ if(isset($_COOKIE['Email']))
 if(isset($_GET['language']))
 {
 		require_once("./lib/System.php");
-    SystemRequirements::SetLanguage($_GET['language']);
+    Environment::SetLanguage($_GET['language']);
 }
 require_once("lib/SetLanguage.php");
 ?> 
