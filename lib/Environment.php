@@ -32,7 +32,7 @@ class Environment
         }
     }
     
-        public static function SetLanguage($language)
+    public static function SetLanguageCookie($language)
     {
         if(file_exists("./languages/{$language}.php"))
         {
@@ -40,6 +40,22 @@ class Environment
             setcookie("Language",$language,time()+3600*24*365);
             $_COOKIE['Language'] = $language;
         }
+    }
+    
+    public static function SetLanguage()
+    {
+        if(isset($_COOKIE['Language']))
+        {
+            if(file_exists("./languages/{$_COOKIE['Language']}.php"))
+            {
+                $Language = $_COOKIE['Language'];
+            }
+        }
+        else
+        {
+            $Language = $_DEFAULT_LANGUAGE;
+        }
+        require_once("./languages/{$Language}.php");
     }
 }
 ?>
