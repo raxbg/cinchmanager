@@ -1,9 +1,9 @@
 <?php
 $systemFiles = array(
-"User.php",
+"Globals.php",
 "Environment.php",
 "dbHandler.php",
-"Globals.php"
+"User.php"
 );
 foreach($systemFiles as $file)
 {
