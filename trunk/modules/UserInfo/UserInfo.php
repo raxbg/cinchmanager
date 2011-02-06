@@ -1,4 +1,5 @@
 <?php
+    $_TEXT = $GLOBALS['TEXT'];
   if(isset($_SESSION['LoggedIn']))
 	{
 		echo "{$_TEXT['Welcome']} {$_SESSION['userinfo']['Title']} {$_SESSION['userinfo']['FirstName']} {$_SESSION['userinfo']['LastName']}!";

@@ -1,6 +1,5 @@
 <?php
-global $_TEXT;
-$_TEXT = array(
+$GLOBALS['TEXT'] = array(
 "ButtonLogin" => "Log in",
 "ButtonLogout" => "Log out",
 "Email" => "Email:",

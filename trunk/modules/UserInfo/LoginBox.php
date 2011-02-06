@@ -1,4 +1,6 @@
-<form method="post">
+<?php
+    $_TEXT = $GLOBALS['TEXT'];
+?><form method="post">
 	<table>
 	    <tr>
 	        <td><?php echo $_TEXT['Email']; ?></td>

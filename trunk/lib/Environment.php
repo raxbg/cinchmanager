@@ -53,7 +53,7 @@ class Environment
         }
         else
         {
-            $Language = $_DEFAULT_LANGUAGE;
+            $Language = $GLOBALS['DEFAULT_LANGUAGE'];;
         }
         require_once("./languages/{$Language}.php");
     }
