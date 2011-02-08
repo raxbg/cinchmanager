@@ -85,6 +85,22 @@ class User
         session_destroy();
         setcookie("Email","",time()-3600);
         setcookie("Password","",time()-3600); 
-    }
+    }   
+    
+    public static function GeneratePassword ()
+  	{
+  		$length = 6;
+	    $password = "";
+	    $characters = "123456789qwertyuioplkjhgfdsazxcvbnm";
+	    $charactersNumber = strlen($characters);
+	    $i = 0;
+	    while ($i < $length) 
+	    { 
+	      $char = substr($characters, mt_rand(0, $charactersNumber-1), 1);
+	      $password .= $char;
+	      $i++;
+	     }
+	    return $password;
+  }
 }
 ?>
