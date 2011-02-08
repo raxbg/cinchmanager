@@ -29,8 +29,8 @@
     $file = fopen("../lib/dbHandler.php","w") or exit("Unable to open file!");
     fwrite($file,$connectionInfo);
     fwrite($file,$content);
-    
     fclose($file);
-    
+    require_once("../lib/dbHandler.php");
+    require_once("../lib/User.php");
     require_once(mainDBCreator.php);
 ?>
