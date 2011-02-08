@@ -1,10 +1,10 @@
 <?php
-    $_TEXT = $GLOBALS['TEXT'];
+    global $TEXT;
 ?><form method="post">
 	<table>
 	    <tr>
-	        <td><?php echo $_TEXT['Email']; ?></td>
-	        <td><?php echo $_TEXT['Password']; ?></td>
+	        <td><?php echo $TEXT['Email']; ?></td>
+	        <td><?php echo $TEXT['Password']; ?></td>
 	    </tr>
 	    <tr>
 	        <td>
@@ -14,13 +14,13 @@
 	            <input type="password" name="Password" value="" style="width:100px;"/>
 	        </td>
 	        <td>
-	            <input type="submit" name="submit_button" value="<?php echo $_TEXT['ButtonLogin']; ?>">
+	            <input type="submit" name="submit_button" value="<?php echo $TEXT['ButtonLogin']; ?>">
 	        </td>
 	    </tr>
 	    <tr>
 	        <td colspan=3>
-	            <input type="checkbox" name="RememberMe" value="0" style="margin:0;border:0"/> <?php echo $_TEXT['Remember']; ?>
-	            <span id="forgotten"><a href=#><?php echo $_TEXT['ForgottenPassword']; ?></a></span>
+	            <input type="checkbox" name="RememberMe" value="0" style="margin:0;border:0"/> <?php echo $TEXT['Remember']; ?>
+	            <span id="forgotten"><a href=#><?php echo $TEXT['ForgottenPassword']; ?></a></span>
 	        </td>
 	    </tr>
 	</table>
