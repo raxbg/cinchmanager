@@ -31,8 +31,14 @@
                 Main bracnh address:<br />
                 <textarea name="BranchAddress"></textarea><br />
                 <h2>Create an admin account</h2>
-                Admin's Email:<br />
+                Email:<br />
                 <input type="text" name="Email" /><br />
+                First name:<br />
+                <input type="text" name="FirstEmail" /><br />
+                Last name:<br />
+                Address:
+                <textarea name="AdminAddress"></textarea><br />
+                <input type="text" name="LastName" /><br />
                 <input type="submit" value="Install"/><br />
             </form>
         </div>        

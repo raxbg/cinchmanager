@@ -31,4 +31,6 @@
     fwrite($file,$content);
     
     fclose($file);
+    
+    require_once(mainDBCreator.php);
 ?>
