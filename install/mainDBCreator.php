@@ -1,5 +1,8 @@
 <?php
-$createBranches = "CREATE  TABLE Branches 
+require_once("../lib/dbHandler.php");
+$dbHandler = new dbHandler;
+
+$Queries['createBranches'] = "CREATE  TABLE Branches 
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -7,21 +10,21 @@ Address TINYTEXT NOT NULL,
 Name VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB";
 
-$createTitles = "CREATE TABLE Titles
+$Queries['createTitles'] = "CREATE TABLE Titles
 (
 ID INT NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
 Title VARCHAR(50) NOT NULL
 )ENGINE=InnoDB";
 
-$createPositions = "CREATE TABLE Positions
+$Queries['createPositions'] = "CREATE TABLE Positions
 (
 ID INT NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
 Position VARCHAR(20)
 ) ENGINE=InnoDB";
 
-$createUsers = "CREATE TABLE Users
+$Queries['createUsers'] = "CREATE TABLE Users
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -44,7 +47,7 @@ INDEX(Email,FirstName,LastName),
 EmployeeOrClient CHAR(1)
 )ENGINE=InnoDB";
 
-$createEmployees = "CREATE TABLE Employees
+$Queries['createEmployees'] = "CREATE TABLE Employees
 (
 UserID int NOT NULL,
 PRIMARY KEY(UserID),
@@ -57,7 +60,7 @@ AssignmentDay DATE NOT NULL,
 EndDate DATE
 ) ENGINE=InnoDB";
 
-$createLogins = "CREATE TABLE Logins
+$Queries['createLogins'] = "CREATE TABLE Logins
 (
 ID INT NOT NULL AUTO_INCREMENT,
 UserID int NOT NULL,
@@ -66,7 +69,7 @@ FOREIGN KEY (UserID) REFERENCES Users(ID),
 Time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = InnoDB";
 
-$createProjects = "CREATE TABLE Projects
+$Queries['createProjects'] = "CREATE TABLE Projects
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -79,7 +82,7 @@ Description MEDIUMTEXT,
 INDEX(Name)
 ) ENGINE=InnoDB";
 
-$createTasks = "CREATE TABLE Tasks
+$Queries['createTasks'] = "CREATE TABLE Tasks
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -95,7 +98,7 @@ Status int NOT NULL,
 Visibility int NOT NULL
 ) ENGINE = InnoDB";
 
-$createTasksAndEmployees = "CREATE TABLE TasksAndEmployees
+$Queries['createTasksAndEmployees'] = "CREATE TABLE TasksAndEmployees
 (
 TaskID int NOT NULL,
 FOREIGN KEY (TaskID) REFERENCES Tasks(ID),
@@ -106,7 +109,7 @@ FOREIGN KEY (FromUserID) REFERENCES Users(ID),
 PRIMARY KEY(TaskID,ToUserID)
 )ENGINE = InnoDB";
 
-$cerateProjectsAndmembers = "CREATE TABLE ProjectsAndMembers
+$Queries['cerateProjectsAndmembers'] = "CREATE TABLE ProjectsAndMembers
 (
 ProjectID int NOT NULL,
 FOREIGN KEY (ProjectID) REFERENCES Projects(ID),
@@ -115,7 +118,7 @@ FOREIGN KEY (UserID) REFERENCES Users(ID),
 PRIMARY KEY(ProjectID,UserID)
 )ENGINE = InnoDB";
 
-$createExpenses = "CREATE TABLE Expenses
+$Queries['createExpenses'] = "CREATE TABLE Expenses
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -125,7 +128,7 @@ Date Date NOT NULL,
 Amount DECIMAL(15,2) NOT NULL
 )ENGINE=InnoDB";
 
-$createIncomes = "CREATE TABLE Incomes
+$Queries['createIncomes'] = "CREATE TABLE Incomes
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -135,7 +138,7 @@ Date Date NOT NULL,
 Amount DECIMAL(15,2) NOT NULL
 )ENGINE=InnoDB";
 
-$createSalaries = "CREATE TABLE Salaries
+$Queries['createSalaries'] = "CREATE TABLE Salaries
 (
 UserID int NOT NULL,
 FOREIGN KEY (UserID) REFERENCES Users(ID),
@@ -145,7 +148,7 @@ ToDate DATE,
 Amount DECIMAL(15,2) NOT NULL
 )ENGINE=InnoDB";
 
-$createPayments = "CREATE TABLE Payments
+$Queries['createPayments'] = "CREATE TABLE Payments
 (
 TaskID int NOT NULL,
 UserID int NOT NULL,
@@ -155,7 +158,7 @@ PRIMARY KEY(TaskID,UserID),
 Date DATE NOT NULL
 )ENGINE=InnoDB";
 
-$createBonuses = "CREATE TABLE Bonuses
+$Queries['createBonuses'] = "CREATE TABLE Bonuses
 (
 ID INT NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -166,7 +169,7 @@ Amount DECIMAL(15,2) NOT NULL,
 Description VARCHAR(200)
 )ENGINE=InnoDB";
 
-$createProjectsMaitenance ="CREATE TABLE ProjectsMaintenance
+$Queries['createProjectsMaitenance'] ="CREATE TABLE ProjectsMaintenance
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -178,7 +181,7 @@ Cost DECIMAL(15,2) NOT NULL,
 Type VARCHAR(20) NOT NULL
 )ENGINE=InnoDB";
 
-$createPeriodicalPayments ="CREATE TABLE PeriodicalPayments
+$Queries['createPeriodicalPayments'] ="CREATE TABLE PeriodicalPayments
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -190,7 +193,7 @@ Cost DECIMAL(15,2) NOT NULL,
 Type VARCHAR(20) NOT NULL
 )ENGINE=InnoDB";
 
-$createComments ="CREATE TABLE Comments
+$Queries['createComments'] ="CREATE TABLE Comments
 (
 ID INT NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -202,7 +205,7 @@ Comment MEDIUMTEXT  NOT NULL,
 Time TIMESTAMP DEFAULT NOW()
 )ENGINE=InnoDB";
 
-$createAttachments = "CREATE TABLE Attachments
+$Queries['createAttachments'] = "CREATE TABLE Attachments
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -214,7 +217,7 @@ Date TIMESTAMP DEFAULT NOW(),
 Filename VARCHAR(50) NOT NULL
 )ENGINE=InnoDB";
 
-$createProjectHistory = "CREATE TABLE ProjectHistory
+$Queries['createProjectHistory'] = "CREATE TABLE ProjectHistory
 (
 ID INT NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -226,7 +229,7 @@ Timestamp TIMESTAMP DEFAULT NOW(),
 Event VARCHAR(150) NOT NULL
 )ENGINE=InnoDB";
 
-$createCostOfTasks = "CREATE TABLE CostOfTasks
+$Queries['createCostOfTasks'] = "CREATE TABLE CostOfTasks
 (
 ID INT NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
@@ -236,9 +239,15 @@ Cost DECIMAL(15,2) NOT NULL,
 Payed BOOL
 )ENGINE=InnoDB";
 
-$insertBranch = "INSERT INTO Branches (Address, Name) 
-VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}');
+$Queries['insertBranch'] = "INSERT INTO Branches (Address, Name) 
+VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
 
-INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient)
-VALUES ("ivaylo@gsvision.eu","00d57a9d948fc4cce6abd85cd2a7ef56f32b9280","Ивайло","Христов","Велико Търново",1,15-02-2001,'е');
+$password = dbHandler->EncryptPwd("cinch"); //тук трябва да слагаме парола по подразбиране
+$Queries['insertAdmin'] = "INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient)
+VALUES ('{$_POST['Email']}','{$password},'{$_POST['FirstName']}','{$_POST['LastName']}','{$_POST['AdminAddress']}',1,15-02-2001,'е')";  //да оправим датата
+
+foreach ($Queries as $query)
+{
+	mysql_query($query,dbHandler->con);
+}
 ?>
