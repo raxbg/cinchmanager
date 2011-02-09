@@ -3,7 +3,7 @@ $connectionInfo =
     "<?php\n".
     "class dbHandler\n".
     "{\n".
-    "\tprivate \$host=\"{$_POST['Database']}\";\n".
+    "\tprivate \$host=\"{$_POST['Host']}\";\n".
     "\tprivate \$username=\"{$_POST['DBUsername']}\";\n".
     "\tprivate \$password=\"{$_POST['DBPassword']}\";\n".
     "\tprivate \$con;\n".
