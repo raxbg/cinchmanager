@@ -244,7 +244,7 @@ VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
 
 $password = User::GeneratePassword();
 echo $password;
-$dbHandler = new dbHandler;
+$dbHandler = new dbHandler();
 $dbHandler->dbConnect();
 $encriptedPassword = $dbHandler->EncryptPwd($password);
 $Queries['insertAdmin'] = "INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient)
