@@ -90,19 +90,18 @@ class User
   public static function GeneratePassword ()
 	{
 		$length = 6;
-    $password = "";
-    $vowels = "eyioau";
-    $consonants ="qwrtplkjhgfdszxcvbnm";
-    $vowelsNumber = strlen($vowels);
-    $consonantsNumber = strlen($consonants);
-    for($i=0; $i<=$length;$i+=2)
-    {
-      $consonant = substr($consonants, mt_rand(0, $consonantsNumber-1), 1);
-      $vowel = substr($vowels, mt_rand(0, $vowelsNumber-1), 1);
-      $password .= $consonant.$vowel;
-     }
-     $password .=mt_rand(0, 999)
-     return $password;
+        $password = "";
+        $vowels = "eyioau";
+        $consonants ="wrtplkjhgfdszxcvbnm";
+        $vowelsNumber = strlen($vowels);
+        $consonantsNumber = strlen($consonants);
+        for($i=0; $i<$length;$i+=2)
+        {
+            $consonant = substr($consonants, mt_rand(0, $consonantsNumber-1), 1);
+            $vowel = substr($vowels, mt_rand(0, $vowelsNumber-1), 1);
+            $password .= $consonant.$vowel;
+        }
+        return $password;
    }
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-echo $_POST['Host'];
+echo $_POST['Host']."\n";
     require_once("CreateDBHandler.php");
     require_once("../lib/dbHandler.php");
     require_once("../lib/User.php");
