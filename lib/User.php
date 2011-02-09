@@ -1,7 +1,7 @@
 <?php
 class User
 {
-    private $id;
+  private $id;
 	private $email;
 	private $title;
 	private $firstname;
@@ -44,63 +44,65 @@ class User
 		unset($dbHandler);
 	}
     
-    public static function Remember()
-    {
-        if(isset($_POST['RememberMe']) && !is_null($_POST['RememberMe']) || isset($_COOKIE['Email']))
-        {
+  public static function Remember()
+  {
+      if(isset($_POST['RememberMe']) && !is_null($_POST['RememberMe']) || isset($_COOKIE['Email']))
+      {
 
-            $expire=time()+3600*24*365;
-            $path='';
-            $domain='';
-            $secure=false;
-            $httponly=true;
-            if(isset($_COOKIE['Email']))
-            {
-                $email = $_COOKIE['Email'];
-                $password = $_COOKIE['Password'];
-                setcookie("Email","",time()-3600);
-                setcookie("Password","",time()-3600);   
-                setcookie("Email",$email,$expire,$path,$domain,$secure,$httponly);
-                setcookie("Password",$password,$expire,$path,$domain,$secure,$httponly); 
-            }
-            else
-            {
-                setcookie("Email",$_POST['Email'],$expire,$path,$domain,$secure,$httponly);
-                setcookie("Password",$_POST['Password'],$expire,$path,$domain,$secure,$httponly); 
-            }
-        }
-    }
-    
-    public static function AutoLogin()
-    {
-        if(isset($_COOKIE['Email']))
-        {
-            self::Login( $_COOKIE['Email'],$_COOKIE['Password']);
-        }
-    }
-    
-    public static function Logout()
-    {
-        unset($_SESSION['LoggedIn']);
-        session_destroy();
-        setcookie("Email","",time()-3600);
-        setcookie("Password","",time()-3600); 
-    }   
-    
-    public static function GeneratePassword ()
-  	{
-  		$length = 6;
-	    $password = "";
-	    $characters = "123456789qwertyuioplkjhgfdsazxcvbnm";
-	    $charactersNumber = strlen($characters);
-	    $i = 0;
-	    while ($i < $length) 
-	    { 
-	      $char = substr($characters, mt_rand(0, $charactersNumber-1), 1);
-	      $password .= $char;
-	      $i++;
-	     }
-	    return $password;
+          $expire=time()+3600*24*365;
+          $path='';
+          $domain='';
+          $secure=false;
+          $httponly=true;
+          if(isset($_COOKIE['Email']))
+          {
+              $email = $_COOKIE['Email'];
+              $password = $_COOKIE['Password'];
+              setcookie("Email","",time()-3600);
+              setcookie("Password","",time()-3600);   
+              setcookie("Email",$email,$expire,$path,$domain,$secure,$httponly);
+              setcookie("Password",$password,$expire,$path,$domain,$secure,$httponly); 
+          }
+          else
+          {
+              setcookie("Email",$_POST['Email'],$expire,$path,$domain,$secure,$httponly);
+              setcookie("Password",$_POST['Password'],$expire,$path,$domain,$secure,$httponly); 
+          }
+      }
   }
+  
+  public static function AutoLogin()
+  {
+      if(isset($_COOKIE['Email']))
+      {
+          self::Login( $_COOKIE['Email'],$_COOKIE['Password']);
+      }
+  }
+  
+  public static function Logout()
+  {
+      unset($_SESSION['LoggedIn']);
+      session_destroy();
+      setcookie("Email","",time()-3600);
+      setcookie("Password","",time()-3600); 
+  }   
+  
+  public static function GeneratePassword ()
+	{
+		$length = 6;
+    $password = "";
+    $vowels = "eyioau";
+    $consonants ="qwrtplkjhgfdszxcvbnm";
+    $vowelsNumber = strlen($vowels);
+    $consonantsNumber = strlen($consonants);
+    for($i=0; $i<=$length;$i+=2)
+    {
+      $consonant = substr($consonants, mt_rand(0, $consonantsNumber-1), 1);
+      $vowel = substr($vowels, mt_rand(0, $vowelsNumber-1), 1);
+      $password .= $consonant.$vowel;
+     }
+     $password .=mt_rand(0, 999)
+     return $password;
+   }
 }
 ?>
