@@ -1,6 +1,21 @@
 <?php
+require_once("Globals.php");
 class dbHandler
 {
+    private $host;
+    private $username;
+    private $password;
+    private $con;
+    private $db;
+    
+    public function dbHandler()
+    {
+        $host = $GLOBALS['HOST'];
+        $username = $GLOBALS['USERNAME'];
+        $password = $GLOBALS['PASSWORD'];
+        $con;
+        $db = $GLOBALS['DATABASE'];
+    }
     public function dbConnect()
     {
         $this->con = mysql_connect($this->host,$this->username,$this->password);
