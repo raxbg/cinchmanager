@@ -36,9 +36,9 @@
                 First name:<br />
                 <input type="text" name="FirstEmail" /><br />
                 Last name:<br />
-                Address:
-                <textarea name="AdminAddress"></textarea><br />
                 <input type="text" name="LastName" /><br />
+              Address:<br />
+                <textarea name="AdminAddress"></textarea><br />
                 <input type="submit" value="Install"/><br />
             </form>
         </div>        
