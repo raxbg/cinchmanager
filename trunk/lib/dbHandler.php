@@ -14,6 +14,7 @@ class dbHandler
         $this->username = $GLOBALS['USERNAME'];
         $this->password = $GLOBALS['PASSWORD'];
         $this->db = $GLOBALS['DATABASE'];
+        echo $this->host;
     }
     
     public function dbConnect()
