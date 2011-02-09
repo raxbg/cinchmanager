@@ -56,5 +56,10 @@ class dbHandler
     {
         return $this->con;
     }
+    
+    public function ExecuteQuery($query)
+    {
+        mysql_query($query,$this->con);
+    }
 }
 ?>
