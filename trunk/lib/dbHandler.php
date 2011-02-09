@@ -25,6 +25,7 @@ class dbHandler
         $password = mysql_fetch_row($result);
         return $password[0];
     }
+    
     public function LoginIsCorrect($email,$password)
     {
         mysql_query("SET NAMES 'utf8'", $this->con);

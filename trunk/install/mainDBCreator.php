@@ -243,11 +243,11 @@ VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
 
 $password = User::GeneratePassword();
 echo $password;
+$dbHandler->dbConnect();
 $encriptedPassword = $dbHandler->EncryptPwd($password);
 $Queries['insertAdmin'] = "INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient)
 VALUES ('{$_POST['Email']}','{$encriptedPassword}','{$_POST['FirstName']}','{$_POST['LastName']}','{$_POST['AdminAddress']}',1,15-02-2001,'е')";  //да оправим датата
 
-$dbHandler->dbConnect();
 foreach ($Queries as $query)
 {
 	$dbHandler->ExecuteQuery($query);
