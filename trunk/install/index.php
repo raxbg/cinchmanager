@@ -11,6 +11,8 @@
         <div id="page">
             <form method="post" action="install.php">
                 <h2>Installation information</h2>
+                Host:<br />
+                <input type="text" name="Host" value="localhost" /><br />
                 Database:<br />
                 <input type="text" name="Database" /><br />
                 DB username:<br />
