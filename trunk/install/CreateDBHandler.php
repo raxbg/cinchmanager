@@ -1,33 +1,16 @@
 <?php
-$connectionInfo = 
+$content = 
     "<?php\n".
-    "class dbHandler\n".
-    "{\n".
-    "\tprivate \$host=\"{$_POST['Host']}\";\n".
-    "\tprivate \$username=\"{$_POST['DBUsername']}\";\n".
-    "\tprivate \$password=\"{$_POST['DBPassword']}\";\n".
-    "\tprivate \$con;\n".
-    "\tprivate \$db=\"{$_POST['Database']}\";\n\n";    
+    "\$HOST=\"{$_POST['Host']}\";\n".
+    "\$USERNAME=\"{$_POST['DBUsername']}\";\n".
+    "\$PASSWORD=\"{$_POST['DBPassword']}\";\n".
+    "\$DATABASE=\"{$_POST['Database']}\";\n".
+    "\$DEFAULT_LANGUAGE = \"{$_POST['DefaultLanguage']\";\n".
+		"\$COMPANY_NAME=\"{$_POST['CompanyName']\";\n".
+		"?>";
 
-$file = fopen("../lib/dbHandler.php","r") or exit("Unable to open file!");
-$line = 0;
-$content="";
-while(!feof($file))
-{
-    if($line >=3)
-    {
-        $content.=fgets($file);
-        $line++;
-    }
-    else
-    {
-        fgets($file);
-        $line++;
-    }
-}
-fclose($file);
-$file = fopen("../lib/dbHandler.php","w") or exit("Unable to open file!");
-fwrite($file,$connectionInfo);
+
+$file = fopen("../lib/Globals.php","w") or exit("Unable to open file!");
 fwrite($file,$content);
 fclose($file);  
 ?>
