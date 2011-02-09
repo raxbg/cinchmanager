@@ -1,5 +1,6 @@
 <?php
-$dbHandler = new dbHandler;
+$Queries['SetCollation'] = "ALTER DATABASE `{$_POST['Database']}` 
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci";
 
 $Queries['createBranches'] = "CREATE  TABLE Branches 
 (
@@ -243,6 +244,7 @@ VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
 
 $password = User::GeneratePassword();
 echo $password;
+$dbHandler = new dbHandler;
 $dbHandler->dbConnect();
 $encriptedPassword = $dbHandler->EncryptPwd($password);
 $Queries['insertAdmin'] = "INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient)

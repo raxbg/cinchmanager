@@ -36,7 +36,7 @@
                 Email:<br />
                 <input type="text" name="Email" /><br />
                 First name:<br />
-                <input type="text" name="FirstEmail" /><br />
+                <input type="text" name="FirstName" /><br />
                 Last name:<br />
                 <input type="text" name="LastName" /><br />
               Address:<br />
