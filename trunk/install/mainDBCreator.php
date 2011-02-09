@@ -241,14 +241,14 @@ Payed BOOL
 $Queries['insertBranch'] = "INSERT INTO Branches (Address, Name) 
 VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
 
-$password = User:GeneratePassword();
+$password = User::GeneratePassword();
 echo $password;
-$encriptedPassword = dbHandler->EncryptPwd(User:GeneratePassword());
+$encriptedPassword = $dbHandler->EncryptPwd(User::GeneratePassword());
 $Queries['insertAdmin'] = "INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient)
-VALUES ('{$_POST['Email']}','{$encriptedPassword},'{$_POST['FirstName']}','{$_POST['LastName']}','{$_POST['AdminAddress']}',1,15-02-2001,'е')";  //да оправим датата
+VALUES ('{$_POST['Email']}','{$encriptedPassword}','{$_POST['FirstName']}','{$_POST['LastName']}','{$_POST['AdminAddress']}',1,15-02-2001,'е')";  //да оправим датата
 
 foreach ($Queries as $query)
 {
-	mysql_query($query,dbHandler->con);
+	mysql_query($query,$dbHandler->con);
 }
 ?>
