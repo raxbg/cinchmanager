@@ -32,5 +32,5 @@
     fclose($file);
     require_once("../lib/dbHandler.php");
     require_once("../lib/User.php");
-    require_once(mainDBCreator.php);
+    require_once("mainDBCreator.php");
 ?>
