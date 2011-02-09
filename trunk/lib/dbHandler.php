@@ -7,15 +7,15 @@ class dbHandler
     private $password;
     private $con;
     private $db;
-    
-    public function dbHandler()
+       
+    public function _construct()
     {
-        $host = $GLOBALS['HOST'];
-        $username = $GLOBALS['USERNAME'];
-        $password = $GLOBALS['PASSWORD'];
-        $con;
-        $db = $GLOBALS['DATABASE'];
+        $this->host = $GLOBALS['HOST'];
+        $this->username = $GLOBALS['USERNAME'];
+        $this->password = $GLOBALS['PASSWORD'];
+        $this->db = $GLOBALS['DATABASE'];
     }
+    
     public function dbConnect()
     {
         $this->con = mysql_connect($this->host,$this->username,$this->password);
