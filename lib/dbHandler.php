@@ -17,7 +17,7 @@ class dbHandler
         mysql_query($query,$this->con);
     }
     
-    private function EncryptPwd($password)
+    public function EncryptPwd($password)
     {
         $password = mysql_real_escape_string($password);
         $query = "SELECT SHA1('{$password}')";
