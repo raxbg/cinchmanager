@@ -57,5 +57,43 @@ class Environment
         }
         require_once("./languages/{$Language}.php");
     }
+    
+    public static function EmailPassword($email,$password)
+    {
+        require_once("Globals.php");
+        $subject="Welcome to {$GLOBALS['CompanyName']}";
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: <cinchmanager@system.com>' . "\r\n";
+        $message= 
+            "<html> 
+              <body>
+                <center> 
+                    <table cellspacing=\"0\" cellpadding=\"0\" border=\"1px\" style=\"width:400px;border-color:#DEDEDE;\">
+                    <tr><td style=\"width:398px;height:50px;background-color:E3E3E3;\">
+                    <h2>Cinch Manager - {$GLOBALS['CompanyName']}</h2>
+                    </td></tr>
+                    <tr><td style=\"width:398px;\">
+                    This password has been automatically generated: <b>{$password}</b><br>
+                    Use this password along with the email to login with your account.
+                    Cinch manager provides features connected with the organisation of a project.
+                    You can easily set tasks to people or make comments on their work.
+                    If you are a client then it is advisable to take a look at our 
+                    <a href=\"http://www.google.com\">client tutorial</a> to get known with the basics.
+                    </td></tr>
+                    </table>
+                </center> 
+              </body> 
+            </html>"; 
+        $mail=mail($email,$subject,$message,$headers);
+        if($mail)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
 }
 ?>

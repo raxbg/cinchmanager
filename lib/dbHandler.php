@@ -8,13 +8,12 @@ class dbHandler
     private $con;
     private $db;
        
-    public function _construct()
+    public function __construct()
     {
         $this->host = $GLOBALS['HOST'];
         $this->username = $GLOBALS['USERNAME'];
         $this->password = $GLOBALS['PASSWORD'];
         $this->db = $GLOBALS['DATABASE'];
-        echo $this->host;
     }
     
     public function dbConnect()

@@ -1,6 +1,8 @@
 <?php
-$TEXT;
+$HOST= "localhost";
+$USERNAME = "cinchman";
+$PASSWORD = "cinch";
+$DATABASE = "cinchman_test2";
 $DEFAULT_LANGUAGE = "en";
-$CompanyName = "GS Vision";
-$HOST;
+$COMPANY_NAME = "GS Vision";
 ?>

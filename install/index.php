@@ -39,7 +39,7 @@
                 <input type="text" name="FirstName" /><br />
                 Last name:<br />
                 <input type="text" name="LastName" /><br />
-              Address:<br />
+                Address:<br />
                 <textarea name="AdminAddress"></textarea><br />
                 <input type="submit" value="Install"/><br />
             </form>
