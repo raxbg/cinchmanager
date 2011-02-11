@@ -43,6 +43,9 @@ PhotoFileName VARCHAR(50),
 BranchID int NOT NULL,
 FOREIGN KEY (BranchID) REFERENCES Branches(ID),
 RegistrationDate DATE NOT NULL,
+CreatorID INT,
+FOREIGN KEY (CreatorID) REFERENCES Users(ID),
+Language VARCHAR(5),
 INDEX(Email,FirstName,LastName),
 EmployeeOrClient CHAR(1)
 )ENGINE=InnoDB";
@@ -246,6 +249,7 @@ $password = User::GeneratePassword();
 $mailSent = Environment::EmailPassword($_POST['Email'],$password);
 if($mailSent)
 {
+    echo "Your password was sent to the given email.";
     $dbHandler = new dbHandler();
     $dbHandler->dbConnect();
     $encriptedPassword = $dbHandler->EncryptPwd($password);
@@ -258,5 +262,9 @@ if($mailSent)
 	    $dbHandler->ExecuteQuery($query);
     }
     $dbHandler->dbDisconnect();
+}
+else
+{
+    echo "Email server failure. We cannot send your password, so the installation stops here.";
 }
 ?>

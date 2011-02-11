@@ -1,22 +1,26 @@
 <?php
 class User
 {
-  private $id;
-	private $email;
-	private $title;
-	private $firstname;
-	private $secondname;
-	private $lastname;
-	private $telephone;
-	private $address;
-	private $branchid;
-	private $photofilename;
-	private $registrationdate;
+    private $id;
+    private $email;
+    private $title;
+    private $firstname;
+    private $secondname;
+    private $lastname;
+    private $telephone;
+    private $address;
+    private $branchid;
+    private $photofilename;
+    private $registrationdate;
 
 	public function __construct($userInfo,$dbHandler)
 	{
         $result = mysql_fetch_array($userInfo);       
         $dbHandler->RecordLogin($result['ID']);
+        if(!is_null($result['Language']))
+        {
+            Environment::SetLanguageCookie($result['Language']);
+        }
         $_SESSION['userinfo']=$result;
 	}
 	   
@@ -44,8 +48,8 @@ class User
 		unset($dbHandler);
 	}
     
-  public static function Remember()
-  {
+    public static function Remember()
+    {
       if(isset($_POST['RememberMe']) && !is_null($_POST['RememberMe']) || isset($_COOKIE['Email']))
       {
 
@@ -69,27 +73,27 @@ class User
               setcookie("Password",$_POST['Password'],$expire,$path,$domain,$secure,$httponly); 
           }
       }
-  }
+    }
   
-  public static function AutoLogin()
-  {
+    public static function AutoLogin()
+    {
       if(isset($_COOKIE['Email']))
       {
           self::Login( $_COOKIE['Email'],$_COOKIE['Password']);
       }
-  }
-  
-  public static function Logout()
-  {
+    }
+
+    public static function Logout()
+    {
       unset($_SESSION['LoggedIn']);
       session_destroy();
       setcookie("Email","",time()-3600);
       setcookie("Password","",time()-3600); 
-  }   
+    }   
   
-  public static function GeneratePassword ()
-	{
-		$length = 6;
+    public static function GeneratePassword ()
+    {
+        $length = 6;
         $password = "";
         $vowels = "eyioau";
         $consonants ="wrtplkjhgfdszxcvbnm";
@@ -102,6 +106,32 @@ class User
             $password .= $consonant.$vowel;
         }
         return $password;
-   }
+    }
+    
+    public static function CreateAccount($email,$firstName,$lastName,$address,$branchID,$creatorID,$employeeOrClient,$language)
+    {
+        $password = self::GeneratePassword();
+        $mailSent = Environment::EmailPassword($email,$password);
+        if($mailSent)
+        {
+            $dbHandler = new dbHandler();
+            $dbHandler->dbConnect();
+            $encriptedPassword = $dbHandler->EncryptPwd($password);
+            $date  = date("Y-m-d");
+            
+            $createAccount = "INSERT INTO Users (Email, Password, FirstName, LastName, 
+            Address, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
+            VALUES ('{$email}','{$encriptedPassword}','{$firstName}','{$lastName}',
+            '{$address}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
+            
+            $dbHandler->ExecuteQuery($createAccount);
+            $dbHandler->dbDisconnect();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 ?>
