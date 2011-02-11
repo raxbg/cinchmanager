@@ -65,6 +65,19 @@
                     <option value="bg">BG</option>
                     <option value="en">EN</option>
                 </select><br />
+                <?php
+                if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
+                {
+                ?>
+                Account can create:<br />
+                <select name="CanCreateAccounts">
+                    <option value="null">none</option>
+                    <option value="a">Everything</option>
+                    <option value="c">Only clients</option>
+                </select><br />
+                <?php
+                }
+                ?>
                 <input type="submit" value="Create"/><br />
             </form>
             <?php
