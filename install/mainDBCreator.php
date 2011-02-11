@@ -46,6 +46,7 @@ RegistrationDate DATE NOT NULL,
 CreatorID INT,
 FOREIGN KEY (CreatorID) REFERENCES Users(ID),
 Language VARCHAR(5),
+CanCreateAccounts CHAR(1),
 INDEX(Email,FirstName,LastName),
 EmployeeOrClient CHAR(1)
 )ENGINE=InnoDB";
@@ -254,8 +255,8 @@ if($mailSent)
     $dbHandler->dbConnect();
     $encriptedPassword = $dbHandler->EncryptPwd($password);
     $date  = date("Y-m-d");
-    $Queries['insertAdmin'] = "INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient)
-    VALUES ('{$_POST['Email']}','{$encriptedPassword}','{$_POST['FirstName']}','{$_POST['LastName']}','{$_POST['AdminAddress']}',1,'{$date}','е')";
+    $Queries['insertAdmin'] = "INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient,CanCreateAccounts)
+    VALUES ('{$_POST['Email']}','{$encriptedPassword}','{$_POST['FirstName']}','{$_POST['LastName']}','{$_POST['AdminAddress']}',1,'{$date}','е','a')";
 
     foreach ($Queries as $query)
     {

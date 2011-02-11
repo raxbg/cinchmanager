@@ -108,7 +108,8 @@ class User
         return $password;
     }
     
-    public static function CreateAccount($email,$firstName,$lastName,$address,$branchID,$creatorID,$employeeOrClient,$language)
+    public static function CreateAccount($email,$firstName,$lastName,$address,$branchID,
+    $creatorID,$employeeOrClient,$language)
     {
         $password = self::GeneratePassword();
         $mailSent = Environment::EmailPassword($email,$password);
@@ -126,6 +127,18 @@ class User
             
             $dbHandler->ExecuteQuery($createAccount);
             $dbHandler->dbDisconnect();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public static function CanCreateAccounts($canCreateAccounts)
+    {
+        if(!is_null($canCreateAccounts))
+        {
             return true;
         }
         else
