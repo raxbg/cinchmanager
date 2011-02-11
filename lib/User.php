@@ -17,7 +17,6 @@ class User
 	{
         $result = mysql_fetch_array($userInfo);       
         $dbHandler->RecordLogin($result['ID']);
-        Environment::SetLanguageCookie($result['Language']);
         $_SESSION['userinfo']=$result;
 	}
 	   
@@ -43,6 +42,8 @@ class User
 		}
 		$dbHandler->dbDisconnect();
 		unset($dbHandler);
+        $setLanguage = Environment::SetGetVariable("language",$_SESSION['userinfo']['Language']);
+        header('Location: '.$setLanguage);
 	}
     
     public static function Remember()
