@@ -6,11 +6,11 @@ class Environment
         $uri=$_SERVER['REQUEST_URI'];
         if (strpos($uri,"?")===false)
         {
-            echo $uri."?".$name."=".$value;
+            return $uri."?".$name."=".$value;
         }
         else if ((strpos($uri,"?")!==false)&&(strpos($uri,$name."=")===false))
         {
-            echo $uri."&".$name."=".$value;
+            return $uri."&".$name."=".$value;
         }
         else if ((strpos($uri,"?")!==false)&&(strpos($uri,$name."=")!==false))
         {
@@ -24,11 +24,11 @@ class Environment
             {
                 $URIEnd="";
             }
-            echo $URIStart.$value.$URIEnd;
+            return $URIStart.$value.$URIEnd;
         }
         else
         {
-            echo "/";
+            return "/";
         }
     }
     
