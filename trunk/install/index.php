@@ -28,9 +28,9 @@
                 <h2>Company information:</h2>
                 Company name:<br />
                 <input type="text" name="CompanyName" /><br />
-                Main bracnh name:<br />
+                Main branch name:<br />
                 <input type="text" name="BranchName" /><br />
-                Main bracnh address:<br />
+                Main branch address:<br />
                 <textarea name="BranchAddress"></textarea><br />
                 <h2>Create an admin account</h2>
                 Email:<br />
