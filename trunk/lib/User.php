@@ -17,10 +17,7 @@ class User
 	{
         $result = mysql_fetch_array($userInfo);       
         $dbHandler->RecordLogin($result['ID']);
-        if(!is_null($result['Language']))
-        {
-            Environment::SetLanguageCookie($result['Language']);
-        }
+        Environment::SetLanguageCookie($result['Language']);
         $_SESSION['userinfo']=$result;
 	}
 	   
