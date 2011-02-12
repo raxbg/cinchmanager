@@ -24,7 +24,7 @@ class Email
     	return "<html> 
                  <body>
                   Hello {$firstName} {$lastName},
-                  An account has ben created for you at <a href='http://{$_SERVER['SERVER_NAME']}'>{$GLOBALS['$COMPANY_NAME']}</a><br />
+                  An account has ben created for you at <a href='http://{$_SERVER['SERVER_NAME']}'>{$GLOBALS['COMPANY_NAME']}</a><br />
                   <br />
                   <h2>Your account login details:</h2>
 									E-mail: {$email}<br/>
