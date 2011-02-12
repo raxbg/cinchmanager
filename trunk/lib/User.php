@@ -110,7 +110,8 @@ class User
     $creatorID,$employeeOrClient,$language)
     {
         $password = self::GeneratePassword();
-        $mailSent = Environment::EmailPassword($email,$password);
+        $message = SendEmail::NewUserEmail($firstNane,$lastName,$email,$password)
+        $mailSent = SendEmail::SendEmail($email,$message);
         if($mailSent)
         {
             $dbHandler = new dbHandler();

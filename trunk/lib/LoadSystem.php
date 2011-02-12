@@ -3,7 +3,8 @@ $systemFiles = array(
 "Globals.php",
 "Environment.php",
 "dbHandler.php",
-"User.php"
+"User.php",
+"SendEmail.php"
 );
 foreach($systemFiles as $file)
 {
