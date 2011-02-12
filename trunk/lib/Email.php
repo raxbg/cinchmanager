@@ -8,7 +8,8 @@ class Email
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers .= 'From: <cinchmanager@system.com>' . "\r\n";
-        if($mail)
+        $mailSent = mail($email,$subject,$message,$headers);
+        if($mailSent)
         {
             return true;
         }
@@ -20,15 +21,7 @@ class Email
     public static function NewUserEmail($firstNane,$lastName,$email,$password)
     {
     	return "<html> 
-	              <body>
-                  This password has been automatically generated: <b>{$password}</b><br>
-                  Use this password along with the email to login with your account.
-                  Cinch manager provides features connected with the organisation of a project.
-                  You can easily set tasks to people or make comments on their work.
-                  If you are a client then it is advisable to take a look at our 
-                  <a href=\"http://www.google.com\">client tutorial</a> to get known with the basics.
-                  </td></tr>
-                  </table>
+                 <body>
                   Hello {$firstName} {$lastName},
                   An account has ben created for you at <a href='{$_SERVER['SERVER_NAME']}'>{$GLOBALS['CompanyName']}</a><br />
                   <br />
