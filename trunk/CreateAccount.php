@@ -1,16 +1,26 @@
 <?php
-    require_once("lib/LoadSystem.php"); 
-?>
+require_once("lib/LoadSystem.php");
+global $TEXT; 
+?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-    <head>
-        <title>Cinch Manager installator</title>
-        <meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="../css/style.css" />
-    </head>
-    <body>
-        <div id="header">
-        </div>
+	<head>
+		<title><?php echo $GLOBALS['CompanyName'];/*." ".$TEXT['Manager']*/?></title>
+		<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+	<body>
+		<div id="header">
+      <?php      	
+      	require_once("modules/Languages/languages.php");    
+      ?>
+			<div id="userinfo">
+				<?php
+					require_once("modules/UserInfo/UserInfo.php");
+				?>
+			</div>
+		</div>
+		</div>
         <div id="page">
             <?php
             if(isset($_SESSION['userinfo']) && User::CanCreateAccounts($_SESSION['userinfo']['CanCreateAccounts']))
