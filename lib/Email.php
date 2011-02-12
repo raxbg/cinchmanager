@@ -1,5 +1,5 @@
 <?php
-class SendEmail
+class Email
 {
     public static function SendEmail($email,$message)
     {

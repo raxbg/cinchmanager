@@ -4,7 +4,7 @@ $systemFiles = array(
 "Environment.php",
 "dbHandler.php",
 "User.php",
-"SendEmail.php"
+"Email.php"
 );
 foreach($systemFiles as $file)
 {
