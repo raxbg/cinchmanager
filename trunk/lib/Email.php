@@ -18,7 +18,7 @@ class Email
             return false;
         }
     }
-    public static function NewUserEmail($firstNane,$lastName,$email,$password)
+    public static function NewUserEmail($firstName,$lastName,$email,$password)
     {
     	require_once("Globals.php");
     	return "<html> 
