@@ -110,7 +110,7 @@ class User
     $creatorID,$employeeOrClient,$language)
     {
         $password = self::GeneratePassword();
-        $message = Email::NewUserEmail($firstNane,$lastName,$email,$password);
+        $message = Email::NewUserEmail($firstName,$lastName,$email,$password);
         $mailSent = Email::SendEmail($email,$message);
         if($mailSent)
         {
