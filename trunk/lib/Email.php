@@ -20,6 +20,7 @@ class Email
     }
     public static function NewUserEmail($firstNane,$lastName,$email,$password)
     {
+    	require_once("Globals.php");
     	return "<html> 
                  <body>
                   Hello {$firstName} {$lastName},
@@ -35,8 +36,8 @@ class Email
                   You can easily set tasks, follow the progress and make comments.
                   If you are a client then it is advisable to take a look at our 
                   <a href='http://www.google.com'>client tutorial</a> to get known with the basics.
-																				
-                  {$_SERVER['SERVER_NAME']}<br />
+                  <br />
+                  <a href='{$_SERVER['SERVER_NAME']}'>{$_SERVER['SERVER_NAME']}</a><br />
                   Powered by CinchManager
 	              </body> 
 	            </html>";
