@@ -20,7 +20,6 @@ class Email
     }
     public static function NewUserEmail($firstName,$lastName,$email,$password)
     {
-    	require_once("Globals.php");
     	return "<html> 
                  <body>
                   Hello {$firstName} {$lastName},
