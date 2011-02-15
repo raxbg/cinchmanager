@@ -46,7 +46,6 @@ RegistrationDate DATE NOT NULL,
 CreatorID INT,
 FOREIGN KEY (CreatorID) REFERENCES Users(ID),
 Language VARCHAR(5),
-CanCreateAccounts CHAR(1),
 INDEX(Email,FirstName,LastName),
 EmployeeOrClient CHAR(1)
 )ENGINE=InnoDB";
@@ -60,6 +59,7 @@ PositionID int NOT NULL,
 FOREIGN KEY (PositionID) REFERENCES Positions(ID),
 ManagerID int,
 FOREIGN KEY (ManagerID) REFERENCES Users(ID),
+CanCreateAccounts CHAR(1),
 AssignmentDay DATE NOT NULL,
 EndDate DATE
 ) ENGINE=InnoDB";

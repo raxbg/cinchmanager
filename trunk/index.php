@@ -6,7 +6,7 @@ global $TEXT;
 <html>
 	<head>
 		<title><?php echo $GLOBALS['COMPANY_NAME'];/*." ".$TEXT['Manager']*/?></title>
-		<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 	</head>
 	<body>

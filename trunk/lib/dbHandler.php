@@ -75,7 +75,7 @@ class dbHandler
     
     public function ExecuteQuery($query)
     {
-        mysql_query($query,$this->con);
+        return mysql_query($query,$this->con);
     }
 }
 ?>

@@ -106,7 +106,7 @@ class User
         return $password;
     }
     
-    public static function CreateAccount($email,$firstName,$lastName,$address,$branchID,
+    public static function CreateAccount($email,$title,$firstName,$secondName,$lastName,$gender,$address,$branchID,
     $creatorID,$employeeOrClient,$language)
     {
         $password = self::GeneratePassword();
@@ -119,14 +119,23 @@ class User
             $encriptedPassword = $dbHandler->EncryptPwd($password);
             $date  = date("Y-m-d");
             
-            $createAccount = "INSERT INTO Users (Email, Password, FirstName, LastName, 
+            $createAccount = "INSERT INTO Users (Email, Password,TitleID, FirstName, SecondName, LastName, Gender,
             Address, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
-            VALUES ('{$email}','{$encriptedPassword}','{$firstName}','{$lastName}',
+            VALUES ('{$email}','{$encriptedPassword}','{$title}','{$firstName}','{$secondName}','{$lastName}','{$gender}',
             '{$address}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
             
-            $dbHandler->ExecuteQuery($createAccount);
+            $IsQuerySuccessful = $dbHandler->ExecuteQuery($createAccount);
+            $mysqError = mysql_error();
             $dbHandler->dbDisconnect();
-            return true;
+            if ($IsQuerySuccessful)
+            {
+                return true;
+            }
+            else
+            {
+                echo "User registration failed due to problems with mysql. Here is the error: ".$mysqError;
+                return false;
+            }
         }
         else
         {

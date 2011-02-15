@@ -6,7 +6,7 @@ global $TEXT;
 <html>
 	<head>
 		<title><?php echo $GLOBALS['CompanyName'];/*." ".$TEXT['Manager']*/?></title>
-		<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 	</head>
 	<body>
@@ -27,8 +27,9 @@ global $TEXT;
             { 
                 if(isset($_POST['CreatorID']))
                 {
-                    $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['FirstName'],$_POST['LastName'],$_POST['Address'],
-                    $_POST['BranchID'],$_POST['CreatorID'],$_POST['EmployeeOrClient'],$_POST['DefaultLanguage']);
+                    $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['Title'],$_POST['FirstName'],$_POST['SecondName'],
+                            $_POST['LastName'],$_POST['Gender'],$_POST['Address'],$_POST['BranchID'],$_POST['CreatorID'],
+                            $_POST['EmployeeOrClient'],$_POST['DefaultLanguage']);
                     if($UserIsCreated)
                     {
                         echo "User successfully created. The password was send to the given email.";
@@ -47,12 +48,26 @@ global $TEXT;
                 <h2>Account information</h2>
                 Email:<br />
                 <input type="text" name="Email" /><br />
+                Title:<br />
+                <select name="Title">
+                    <option value="1">Mr.</option>
+                    <option value="2">Mrs.</option>
+                </select><br />
                 First name:<br />
                 <input type="text" name="FirstName" /><br />
+                Second name:<br />
+                <input type="text" name="SecondName" /><br />
                 Last name:<br />
                 <input type="text" name="LastName" /><br />
+                Gender:<br />
+                <select name="Gender">
+                    <option value="m">Male</option>
+                    <option value="f">Female</option>
+                </select><br />
                 Address:<br />
                 <textarea name="Address"></textarea><br />
+                Telephone:<br />
+                <input type="text" name="Telephone" /><br />
                 Type:<br />
                 <?php
                     if(!is_null($_SESSION['userinfo']['CanCreateAccounts']))
