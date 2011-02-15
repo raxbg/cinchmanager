@@ -1,4 +1,8 @@
 <?php
+echo phpinfo();
+use \Environment\Environment as Environment;
+use \Environment\User\User as User;
+
 $systemFiles = array(
 "Globals.php",
 "Environment.php",

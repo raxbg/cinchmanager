@@ -1,6 +1,5 @@
 <?php
-namespace System\Database;
-use System\DatabaseConfig;
+namespace Environment\Database;
 
 require_once("Globals.php");
 class dbHandler
@@ -13,10 +12,10 @@ class dbHandler
        
     public function __construct()
     {
-        $this->host = DatabaseConfig\HOST;
-        $this->username = DatabaseConfig\USERNAME;
-        $this->password = DatabaseConfig\PASSWORD;
-        $this->db = DatabaseConfig\DATABASE;
+        $this->host = \Environment\Config\HOST;
+        $this->username = \Environment\Config\USERNAME;
+        $this->password = \Environment\Config\PASSWORD;
+        $this->db = \Environment\Config\DATABASE;
     }
     
     public function dbConnect()

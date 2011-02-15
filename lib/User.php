@@ -1,7 +1,8 @@
 <?php
-namespace System\User;
-use System\Database\dbHandler;
-use System\Environment\Environment;
+namespace Environment\User;
+use Environment\Database\dbHandler as dbHandler;
+use Environment\Environment as Environment;
+use Environment\Email\Email as Email;
 
 class User
 {

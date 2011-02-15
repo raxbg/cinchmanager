@@ -1,5 +1,5 @@
 <?php
-namespace System\Environment;
+namespace Environment;
 
 class Environment
 {
