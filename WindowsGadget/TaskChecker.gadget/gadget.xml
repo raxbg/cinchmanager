@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>Tasks Checker</name>
+  <version>1.0.0.0</version>
+  <description>Checks if u have new tasks assigned</description>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="Core.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+    </host>
+  </hosts>
+</gadget>
