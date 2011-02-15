@@ -1,5 +1,7 @@
 <?php
 namespace System\User;
+use System\Database\dbHandler;
+use System\Environment\Environment;
 
 class User
 {
@@ -22,18 +24,18 @@ class User
 	
 	public static function Login($email,$password)
 	{
-		$dbHandler = new dbHandler;
-		$dbHandler->dbConnect();
-        $login = $dbHandler->LoginIsCorrect($email,$password);
+            $dbHandler = new dbHandler;
+            $dbHandler->dbConnect();
+            $login = $dbHandler->LoginIsCorrect($email,$password);
 		if($login)
 		{
-			$user = new User($login,$dbHandler);
-            $_SESSION['LoggedIn']=true;
+                    $user = new User($login,$dbHandler);
+                    $_SESSION['LoggedIn']=true;
 		}
-		$dbHandler->dbDisconnect();
-		unset($dbHandler);
-        $setLanguage = Environment::SetGetVariable("language",$_SESSION['userinfo']['Language']);
-        header('Location: '.$setLanguage);
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            $setLanguage = Environment::SetGetVariable("language",$_SESSION['userinfo']['Language']);
+            header('Location: '.$setLanguage);
 	}
     
     public static function Remember()

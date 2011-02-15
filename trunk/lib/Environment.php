@@ -1,4 +1,6 @@
 <?php
+namespace System\Environment;
+
 class Environment
 {
     public static function SetGetVariable($name,$value)
