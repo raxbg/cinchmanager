@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<title><?php echo $GLOBALS['COMPANY_NAME'];/*." ".$TEXT['Manager']*/?></title>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" language="javascript" src="js/menu.js"></script>
+
+	</head>
+	<body>
+		<div id="header">
+			<div id="userinfo">
+			</div>
+		</div>
+		
+		<ul id="menu">
+			<li class="level_1">
+				<a href=# onmouseover="openLevel_2('users_submenu')" onmouseout="closeLevel_2AfterTime()">Users</a>
+				<ul class="level_2" id="users_submenu" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()">
+					<li class="level_2">
+						<a href=# onmouseover="openLevel_3('all_users')" onmouseout="closeLevel_3AfterTime()">View all users</a>
+						<ul class="level_3" id="all_users" onmouseover="cancelLevel_3Timeout()" onmouseout="closeLevel_3AfterTime()">
+							<li class="level_3">Employees</li>
+							<li class="level_3 last">Clients</li>
+						</ul>
+					</li>
+					<li class="level_2 last">
+						<a href="/CreateAccount.php">Create new account</a>
+					</li>
+				</ul>
+			</li>
+			<li class="level_1">
+				<a href=#>Settings</a>
+			</li>
+		</ul>
+		
+		<div id="page">
+	    </div>		
+	</body>
+</html>
