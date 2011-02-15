@@ -1,4 +1,7 @@
 <?php
+namespace System\Database;
+use System\DatabaseConfig;
+
 require_once("Globals.php");
 class dbHandler
 {
@@ -10,10 +13,10 @@ class dbHandler
        
     public function __construct()
     {
-        $this->host = $GLOBALS['HOST'];
-        $this->username = $GLOBALS['USERNAME'];
-        $this->password = $GLOBALS['PASSWORD'];
-        $this->db = $GLOBALS['DATABASE'];
+        $this->host = DatabaseConfig\HOST;
+        $this->username = DatabaseConfig\USERNAME;
+        $this->password = DatabaseConfig\PASSWORD;
+        $this->db = DatabaseConfig\DATABASE;
     }
     
     public function dbConnect()
@@ -21,7 +24,7 @@ class dbHandler
         $this->con = mysql_connect($this->host,$this->username,$this->password);
         if (!$this->con)
           {
-          die('Could not connect: ' . mysql_error());
+            die('Could not connect: ' . \mysql_error());
           }
         mysql_select_db($this->db, $this->con);
         mysql_query("SET NAMES 'utf8'", $this->con);
