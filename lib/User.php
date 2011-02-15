@@ -1,18 +1,8 @@
 <?php
+namespace System\User;
+
 class User
 {
-    private $id;
-    private $email;
-    private $title;
-    private $firstname;
-    private $secondname;
-    private $lastname;
-    private $telephone;
-    private $address;
-    private $branchid;
-    private $photofilename;
-    private $registrationdate;
-
 	public function __construct($userInfo,$dbHandler)
 	{
         $result = mysql_fetch_array($userInfo);       
