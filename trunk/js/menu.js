@@ -17,6 +17,7 @@ function closeLevel_2()
 	if(level_2)
 	{
 		level_2.style.visibility = 'hidden';
+		level_2 = null;
 		closeLevel_3();
 	}
 }
@@ -48,6 +49,7 @@ function closeLevel_3()
 	if(level_3)
 	{
 		level_3.style.visibility = 'hidden';
+		level_3 = null;
 	}
 }
 
