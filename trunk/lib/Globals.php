@@ -1,5 +1,5 @@
 <?php
-namespace System\DatabaseConfig;
+namespace Environment\Config;
 
 const HOST= "localhost";
 const USERNAME = "cinchman";

@@ -1,4 +1,6 @@
 <?php
+namespace Environment\Email;
+
 class Email
 {
     public static function SendEmail($email,$message)
