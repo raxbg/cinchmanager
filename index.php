@@ -26,10 +26,10 @@ global $TEXT;
 		<ul id="menu">
 			<li class="level_1">
 				<a href=#>Users</a>
-				<ul id="users_submenu">
+				<ul class="level_2" id="users_submenu">
 					<li class="level_2">
 						<a href="">View all users</a>
-						<ul id="all_users">
+						<ul class="level_3" id="all_users">
 							<li class="level_3">Employees</li>
 							<li class="level_3">Clients</li>
 						</ul>
