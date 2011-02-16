@@ -1,14 +1,12 @@
 <?php
-$GLOBALS['TEXT'] = array(
-"ButtonLogin" => "Вход",
-"ButtonLogout" => "Изход",
-"Email" => "Е-поща:",
-"Password" => "Парола:",
-"Remember" => "Запомни ме",
-"ForgottenPassword" => "Забравена парола",
-"IncorrectUser" => "Грешна Е-поща или парола!",
-"Wellcome!" => "Здравейте!",
-"Welcome" => "Здравейте,",
-"Goodbye" => "Довиждане!"
-);
+define("ButtonLogin", "Вход");
+define("ButtonLogout", "Изход");
+define("Email", "Е-поща:");
+define("Password", "Парола:");
+define("Remember", "Запомни ме");
+define("ForgottenPassword", "Забравена парола");
+define("IncorrectUser", "Грешна Е-поща или парола!");
+define("Wellcome!", "Здравейте!");
+define("Welcome", "Здравейте,");
+define("Goodbye", "Довиждане!");
 ?>

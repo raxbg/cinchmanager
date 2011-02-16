@@ -1,7 +1,6 @@
 <?php
-namespace Environment\Database;
-
 require_once("Globals.php");
+require_once("Autoload.php");
 class dbHandler
 {
     private $host;
@@ -12,10 +11,10 @@ class dbHandler
        
     public function __construct()
     {
-        $this->host = \Environment\Config\HOST;
-        $this->username = \Environment\Config\USERNAME;
-        $this->password = \Environment\Config\PASSWORD;
-        $this->db = \Environment\Config\DATABASE;
+        $this->host = HOST;
+        $this->username = USERNAME;
+        $this->password = PASSWORD;
+        $this->db = DATABASE;
     }
     
     public function dbConnect()
@@ -23,7 +22,7 @@ class dbHandler
         $this->con = mysql_connect($this->host,$this->username,$this->password);
         if (!$this->con)
           {
-            die('Could not connect: ' . \mysql_error());
+            die('Could not connect: ' . mysql_error());
           }
         mysql_select_db($this->db, $this->con);
         mysql_query("SET NAMES 'utf8'", $this->con);

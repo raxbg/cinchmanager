@@ -1,8 +1,5 @@
 <?php
-namespace Environment\User;
-use Environment\Database\dbHandler as dbHandler;
-use Environment\Environment as Environment;
-use Environment\Email\Email as Email;
+require_once("Autoload.php");
 
 class User
 {

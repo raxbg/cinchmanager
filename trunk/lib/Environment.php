@@ -1,5 +1,5 @@
 <?php
-namespace Environment;
+require_once("Autoload.php");
 
 class Environment
 {
@@ -55,7 +55,7 @@ class Environment
         }
         else
         {
-            $Language = $GLOBALS['DEFAULT_LANGUAGE'];;
+            $Language = DEFAULT_LANGUAGE;
         }
         require_once("./languages/{$Language}.php");
     }
