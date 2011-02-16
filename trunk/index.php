@@ -22,28 +22,8 @@ global $TEXT;
 				?>
 			</div>
 		</div>
-		
-		<ul id="menu">
-			<li class="level_1">
-				<a href=#>Users</a>
-				<ul class="level_2" id="users_submenu">
-					<li class="level_2">
-						<a href="">View all users</a>
-						<ul class="level_3" id="all_users">
-							<li class="level_3">Employees</li>
-							<li class="level_3">Clients</li>
-						</ul>
-					</li>
-					<li class="level_2">
-						<a href="/CreateAccount.php">Create new account</a>
-					</li>
-				</ul>
-			</li>
-			<li class="level_1">
-				<a href=#>Settings</a>
-			</li>
-		</ul>
-		
+		<?php 
+			require_once("modules/Menu/menu.php");
 		<div id="page">
         <?php
             if(isset($_POST['logout']))
