@@ -1,11 +1,9 @@
 <?php
-namespace Environment\Config;
-
-const HOST= "localhost";
-const USERNAME = "cinchman";
-const PASSWORD = "cinch";
-const DATABASE = "cinchman_test2";
-const DEFAULT_LANGUAGE = "en";
-const COMPANY_NAME = "GS Vision";
-const SYSTEM_EMAIL = "noreply@gsvision.eu"
+define("HOST","localhost");
+define("USERNAME","cinchman");
+define("PASSWORD","cinch");
+define("DATABASE","cinchman_test2");
+define("DEFAULT_LANGUAGE","en");
+define("COMPANY_NAME","GS Vision");
+define("SYSTEM_EMAIL","noreply@gsvision.eu");
 ?>

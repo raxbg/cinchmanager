@@ -1,19 +1,6 @@
 <?php
-echo phpinfo();
-use \Environment\Environment as Environment;
-use \Environment\User\User as User;
-
-$systemFiles = array(
-"Globals.php",
-"Environment.php",
-"dbHandler.php",
-"User.php",
-"Email.php"
-);
-foreach($systemFiles as $file)
-{
-    require_once($file);
-}
+require_once("Globals.php");
+require_once("Autoload.php");
 
 if(!isset($_SESSION['started']))
 {
