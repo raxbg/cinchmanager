@@ -10,7 +10,7 @@
 				</ul>
 			</li>
 			<li class="level_2 last">
-				<a href="/CreateAccount.php">Create new account</a>
+				<a href="<?php echo Environment::SetGetVariable("page","CreateAccount"); ?>">Create new account</a>
 			</li>
 		</ul>
 	</li>
