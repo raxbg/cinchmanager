@@ -59,5 +59,17 @@ class Environment
         }
         require_once("./languages/{$Language}.php");
     }
+    
+    public static function LoadContent()
+    {
+    	switch ($_GET['page'])
+			{
+				case CreateAccount:
+				  require_once("CreateAccount.php");
+				  break;
+				default:
+				  echo "Home page!";
+			}    	
+    }
 }
 ?>

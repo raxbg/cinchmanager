@@ -26,21 +26,23 @@ require_once("lib/LoadSystem.php");
                 ?>
 		<div id="page">
         <?php
-            if(isset($_POST['logout']))
-            {
-                echo Goodbye;             
-            }
-            else if(isset($_POST['submit_button']))
-            {   
-               if(isset($_SESSION['LoggedIn']))
-               {
-                   echo Hello;
-               }
-               else
-               {
-                   echo IncorrectUser;
-               }            
-            }
+          if(isset($_POST['logout']))
+          {
+              echo Goodbye;             
+          }
+          else if(isset($_POST['submit_button']))
+          {   
+             if(isset($_SESSION['LoggedIn']))
+             {
+                 echo Hello;
+             }
+             else
+             {
+                 echo IncorrectUser;
+             }            
+          }
+          
+          Enviroment::LoadContent();
         ?>
 	    </div>		
 	</body>
