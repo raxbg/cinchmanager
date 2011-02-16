@@ -16,7 +16,7 @@ if(isset($_POST['logout']))
 {
     User::Logout();             
 }
-if(isset($_COOKIE['Email']))
+if(isset($_COOKIE['Email']) && !isset($_SESSION['LoggedIn']))
 {
     User::AutoLogin();
 }

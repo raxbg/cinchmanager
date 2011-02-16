@@ -115,7 +115,7 @@ class User
             '{$address}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
             
             $IsQuerySuccessful = $dbHandler->ExecuteQuery($createAccount);
-            $mysqError = mysql_error();
+            $mysqlError = mysql_error();
             $dbHandler->dbDisconnect();
             if ($IsQuerySuccessful)
             {
@@ -123,7 +123,7 @@ class User
             }
             else
             {
-                echo "User registration failed due to problems with mysql. Here is the error: ".$mysqError;
+                echo "User registration failed due to problems with mysql. Here is the error: ".$mysqlError;
                 return false;
             }
         }
