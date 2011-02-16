@@ -24,6 +24,7 @@ global $TEXT;
 		</div>
 		<?php 
 			require_once("modules/Menu/menu.php");
+		?>
 		<div id="page">
         <?php
             if(isset($_POST['logout']))
