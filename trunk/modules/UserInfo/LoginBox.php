@@ -1,8 +1,8 @@
 <form method="post">
 	<table>
 	    <tr>
-	        <td><?php echo Email; ?></td>
-	        <td><?php echo Password; ?></td>
+                <td><?php echo EMAIL_TEXT; ?></td>
+                <td><?php echo PASSWORD_TEXT; ?></td>
 	    </tr>
 	    <tr>
 	        <td>
@@ -12,13 +12,13 @@
 	            <input type="password" name="Password" value="" style="width:100px;"/>
 	        </td>
 	        <td>
-	            <input type="submit" name="submit_button" value="<?php echo ButtonLogin; ?>">
+                    <input type="submit" name="submit_button" value="<?php echo BUTTON_LOGIN_TEXT; ?>">
 	        </td>
 	    </tr>
 	    <tr>
 	        <td colspan=3>
-	            <input type="checkbox" name="RememberMe" value="0" style="margin:0;border:0"/> <?php echo Remember; ?>
-	            <span id="forgotten"><a href=#><?php echo ForgottenPassword; ?></a></span>
+                    <input type="checkbox" name="RememberMe" value="0" style="margin:0;border:0"/> <?php echo REMEMBER_TEXT; ?>
+                    <span id="forgotten"><a href=#><?php echo FORGOTTEN_PASSWORD_TEXT; ?></a></span>
 	        </td>
 	    </tr>
 	</table>

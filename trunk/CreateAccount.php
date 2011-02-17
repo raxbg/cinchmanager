@@ -8,11 +8,11 @@ if(isset($_SESSION['userinfo']) && User::CanCreateAccounts($_SESSION['userinfo']
                 $_POST['EmployeeOrClient'],$_POST['DefaultLanguage']);
         if($UserIsCreated)
         {
-            echo "User successfully created. The password was send to the given email.";
+            echo USER_SUCCESSFULLY_CREATED_TEXT;
         }
         else
         {
-            echo "Failed to create user. Unknown reason...";
+            echo FAILED_TO_CREATE_USER_TEXT;
         }
     }
     else
@@ -21,47 +21,40 @@ if(isset($_SESSION['userinfo']) && User::CanCreateAccounts($_SESSION['userinfo']
 <form method="post">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
     <input type="hidden" name="BranchID" value="<?php echo $_SESSION['userinfo']['BranchID'];?>">
-    <h2>Account information</h2>
-    Email:<br />
+    <h2><?php echo ACCOUNT_INFORMATION_TEXT; ?></h2>
+    <?php echo Email; ?><br />
     <input type="text" name="Email" /><br />
-    Title:<br />
+    <?php echo TITLE_TEXT;?><br />
     <select name="Title">
         <option value="1">Mr.</option>
         <option value="2">Mrs.</option>
     </select><br />
-    First name:<br />
+    <?php echo FIRST_NAME_TEXT;?><br />
     <input type="text" name="FirstName" /><br />
-    Second name:<br />
+    <?php echo SECOND_NAME_TEXT;?><br />
     <input type="text" name="SecondName" /><br />
-    Last name:<br />
+    <?php echo LAST_NAME_TEXT;?><br />
     <input type="text" name="LastName" /><br />
-    Gender:<br />
+    <?php echo GENDER_TEXT;?><br />
     <select name="Gender">
-        <option value="m">Male</option>
-        <option value="f">Female</option>
+        <option value="m"><?php echo MALE_TEXT;?></option>
+        <option value="f"><?php echo FEMALE_TEXT;?></option>
     </select><br />
-    Address:<br />
+    <?php echo ADDRESS_TEXT;?><br />
     <textarea name="Address"></textarea><br />
-    Telephone:<br />
+    <?php echo TELEPHONE_TEXT;?><br />
     <input type="text" name="Telephone" /><br />
-    Type:<br />
-    <?php
-        if(!is_null($_SESSION['userinfo']['CanCreateAccounts']))
-        {
-    ?>
+    <?php echo TYPE_TEXT;?><br />
     <select name="EmployeeOrClient">
         <?php
             if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
             {
-                echo "<option value=\"e\">Employee</option>";
+                echo "<option value=\"e\">".EMPLOYEE_TEXT."</option>";
             }
         ?>
-        <option value="c">Client</option>
+        <option value="c"><?php echo CLIENT_TEXT;?></option>
     </select><br />
-    <?php
-        }
-    ?>
-    Default language:<br />
+    <?php echo DEFAULT_LANGUAGE_TEXT;?><br />
     <select name="DefaultLanguage">
         <option value="bg">BG</option>
         <option value="en">EN</option>
@@ -70,27 +63,27 @@ if(isset($_SESSION['userinfo']) && User::CanCreateAccounts($_SESSION['userinfo']
     if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
     {
     ?>
-    Account can create:<br />
+    <?php echo ACC_CAN_CREATE_TEXT;?><br />
     <select name="CanCreateAccounts">
-        <option value="null">none</option>
-        <option value="a">Everything</option>
-        <option value="c">Only clients</option>
+        <option value="null"><?php echo NONE_TEXT;?></option>
+        <option value="a"><?php echo EVERYTHING_TEXT;?></option>
+        <option value="c"><?php echo ONLY_CLIENTS_TEXT;?></option>
     </select><br />
     <?php
     }
     ?>
-    <input type="submit" value="Create"/><br />
+    <input type="submit" value="<?php echo CREATE_TEXT;?>"/><br />
 </form>
 <?php
         }
     }
 elseif(isset($_SESSION['userinfo']) && !User::CanCreateAccounts($_SESSION['userinfo']['CanCreateAccounts']))
 {
-    echo "You are not allowed to create new user accounts!";
+    echo NOT_ALLOWED_TO_CREATE_ACCOUNTS_TEXT;
 }
 else
 {
-    echo "Please login first!";
+    echo PLEASE_LOGIN_TEXT;
 }
 ?>
 </div>
