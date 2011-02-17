@@ -7,7 +7,7 @@ function __autoload($className)
     }
     else
     {
-        require_once ("./lib/{$className}.php");
+        require_once ("../lib/{$className}.php");
     }
 }
 ?>
