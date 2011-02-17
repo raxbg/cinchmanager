@@ -28,17 +28,17 @@ require_once("lib/LoadSystem.php");
         <?php
           if(isset($_POST['logout']))
           {
-              echo Goodbye;             
+              echo GOODBYE_TEXT;
           }
           else if(isset($_POST['submit_button']))
           {   
              if(isset($_SESSION['LoggedIn']))
              {
-                 echo Hello;
+                 echo WELCOME1_TEXT;
              }
              else
              {
-                 echo IncorrectUser;
+                 echo INCORRECT_USER_TEXT;
              }            
           }
           
