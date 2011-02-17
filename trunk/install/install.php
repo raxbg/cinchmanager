@@ -11,11 +11,11 @@
                 "e",$_POST['DefaultLanguage']);
         if($UserIsCreated)
         {
-            echo Administrator account was successfuly created;
+            echo "Administrator account was successfuly created";
         }
         else
         {
-            echo failed to create administrator account;
+            echo "Failed to create administrator account";
         }
     }
 ?>
