@@ -20,7 +20,6 @@ if(isset($_SESSION['userinfo']) && User::CanCreateAccounts($_SESSION['userinfo']
 ?>
 <form method="post">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
-    <input type="hidden" name="BranchID" value="<?php echo $_SESSION['userinfo']['BranchID'];?>">
     <h2><?php echo ACCOUNT_INFORMATION_TEXT; ?></h2>
     <?php echo Email; ?><br />
     <input type="text" name="Email" /><br />
@@ -43,6 +42,10 @@ if(isset($_SESSION['userinfo']) && User::CanCreateAccounts($_SESSION['userinfo']
     <?php echo ADDRESS_TEXT;?><br />
     <textarea name="Address"></textarea><br />
     <?php echo TELEPHONE_TEXT;?><br />
+    <?php echo BRANCH_TEXT;?><br />
+    <select name="BranchID">
+        <option value="1">Main</option>
+    </select><br />
     <input type="text" name="Telephone" /><br />
     <?php echo TYPE_TEXT;?><br />
     <select name="EmployeeOrClient">
