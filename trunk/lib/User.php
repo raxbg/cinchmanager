@@ -101,7 +101,7 @@ class User
     {
         $password = self::GeneratePassword();
         $message = Email::NewUserEmail($firstName,$lastName,$email,$password);
-        $mailSent = Email::SendEmail($email,$message);
+        
         if($mailSent)
         {
             $dbHandler = new dbHandler();
@@ -119,17 +119,18 @@ class User
             $dbHandler->dbDisconnect();
             if ($IsQuerySuccessful)
             {
-                return true;
+            	$mailSent = Email::SendEmail($email,$message);
+            	return true;
             }
             else
             {
-                echo "User registration failed due to problems with mysql. Here is the error: ".$mysqlError;
-                return false;
+              echo "User registration failed due to problems with mysql. Here is the error: ".$mysqlError;
+              return false;
             }
         }
         else
         {
-            return false;
+        	return false;
         }
     }
     
