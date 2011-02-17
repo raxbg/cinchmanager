@@ -246,26 +246,9 @@ Payed BOOL
 $Queries['insertBranch'] = "INSERT INTO Branches (Address, Name) 
 VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
 
-$password = User::GeneratePassword();
-$mailSent = Environment::EmailPassword($_POST['Email'],$password);
-if($mailSent)
+foreach ($Queries as $query)
 {
-    echo "Your password was sent to the given email.";
-    $dbHandler = new dbHandler();
-    $dbHandler->dbConnect();
-    $encriptedPassword = $dbHandler->EncryptPwd($password);
-    $date  = date("Y-m-d");
-    $Queries['insertAdmin'] = "INSERT INTO Users (Email, Password, FirstName, LastName, Address, BranchID, RegistrationDate, EmployeeOrClient,CanCreateAccounts)
-    VALUES ('{$_POST['Email']}','{$encriptedPassword}','{$_POST['FirstName']}','{$_POST['LastName']}','{$_POST['AdminAddress']}',1,'{$date}','е','a')";
-
-    foreach ($Queries as $query)
-    {
-	    $dbHandler->ExecuteQuery($query);
-    }
-    $dbHandler->dbDisconnect();
+  $dbHandler->ExecuteQuery($query);
 }
-else
-{
-    echo "Email server failure. We cannot send your password, so the installation stops here.";
-}
+$dbHandler->dbDisconnect();
 ?>
