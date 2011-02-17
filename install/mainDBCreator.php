@@ -248,6 +248,21 @@ Payed BOOL
 $Queries['insertBranch'] = "INSERT INTO Branches (Address, Name) 
 VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
 
+$Queries['insertTitle1'] = "INSERT INTO Titles (Title) 
+VALUES ('Mr.')";
+
+$Queries['insertTitle2'] = "INSERT INTO Titles (Title) 
+VALUES ('Mrs.')";
+
+$Queries['insertTitle3'] = "INSERT INTO Titles (Title) 
+VALUES ('Ms.')";
+
+$Queries['insertTitle4'] = "INSERT INTO Titles (Title) 
+VALUES ('Dr.')";
+
+$Queries['insertTitle5'] = "INSERT INTO Titles (Title) 
+VALUES ('Pr.')";
+
 $Queries['COMMIT'] = "COMMIT";
 
 $dbHandler = new dbHandler();
