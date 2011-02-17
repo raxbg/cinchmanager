@@ -48,7 +48,7 @@ class Environment
     {
         if(isset($_COOKIE['Language']))
         {
-            if(file_exists("./languages/{$_COOKIE['Language']}.php"))
+            if(file_exists("../languages/{$_COOKIE['Language']}.php"))
             {
                 $Language = $_COOKIE['Language'];
             }
@@ -57,7 +57,7 @@ class Environment
         {
             $Language = DEFAULT_LANGUAGE;
         }
-        require_once("./languages/{$Language}.php");
+        require_once("../languages/{$Language}.php");
     }
 }
 ?>
