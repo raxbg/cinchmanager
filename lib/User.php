@@ -102,35 +102,31 @@ class User
         $password = self::GeneratePassword();
         $message = Email::NewUserEmail($firstName,$lastName,$email,$password);
         
-        if($mailSent)
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+        $encriptedPassword = $dbHandler->EncryptPwd($password);
+        $date  = date("Y-m-d");
+
+        $createAccount = "INSERT INTO Users (Email, Password,TitleID, FirstName, SecondName, LastName, Gender,
+        Address, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
+        VALUES ('{$email}','{$encriptedPassword}','{$title}','{$firstName}','{$secondName}','{$lastName}','{$gender}',
+        '{$address}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
+
+        $IsQuerySuccessful = $dbHandler->ExecuteQuery($createAccount);
+        $mysqlError = mysql_error();
+        $dbHandler->dbDisconnect();
+        if ($IsQuerySuccessful)
         {
-            $dbHandler = new dbHandler();
-            $dbHandler->dbConnect();
-            $encriptedPassword = $dbHandler->EncryptPwd($password);
-            $date  = date("Y-m-d");
-            
-            $createAccount = "INSERT INTO Users (Email, Password,TitleID, FirstName, SecondName, LastName, Gender,
-            Address, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
-            VALUES ('{$email}','{$encriptedPassword}','{$title}','{$firstName}','{$secondName}','{$lastName}','{$gender}',
-            '{$address}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
-            
-            $IsQuerySuccessful = $dbHandler->ExecuteQuery($createAccount);
-            $mysqlError = mysql_error();
-            $dbHandler->dbDisconnect();
-            if ($IsQuerySuccessful)
+            $mailSent = Email::SendEmail($email,$message);
+            if($mailSent)
             {
-            	$mailSent = Email::SendEmail($email,$message);
-            	return true;
-            }
-            else
-            {
-              echo "User registration failed due to problems with mysql. Here is the error: ".$mysqlError;
-              return false;
+                return true;
             }
         }
         else
         {
-        	return false;
+          echo "User registration failed due to problems with mysql. Here is the error: ".$mysqlError;
+          return false;
         }
     }
     
