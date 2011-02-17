@@ -9,7 +9,7 @@ class Email
         $subject="Welcome to ".COMPANY_NAME;
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= "From: <".SYSTEM_EMAIL.">" . "\r\n";
+        $headers .= "From: <".SYSTEM_EMAIL_ADDRESS.">" . "\r\n";
         $mailSent = mail($email,$subject,$message,$headers);
         if($mailSent)
         {
