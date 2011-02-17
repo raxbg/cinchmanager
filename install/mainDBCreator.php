@@ -1,4 +1,6 @@
 <?php
+$Queries['BEGIN_TRAN'] = "BEGIN";
+
 $Queries['SetCollation'] = "ALTER DATABASE `{$_POST['Database']}` 
 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci";
 
@@ -245,6 +247,8 @@ Payed BOOL
 
 $Queries['insertBranch'] = "INSERT INTO Branches (Address, Name) 
 VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
+
+$Queries['COMMIT'] = "COMMIT";
 
 foreach ($Queries as $query)
 {
