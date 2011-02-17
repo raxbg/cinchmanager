@@ -250,6 +250,8 @@ VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
 
 $Queries['COMMIT'] = "COMMIT";
 
+$dbHandler = new dbHandler();
+$dbHandler->dbConnect();
 foreach ($Queries as $query)
 {
   $dbHandler->ExecuteQuery($query);

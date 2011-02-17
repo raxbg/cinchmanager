@@ -10,8 +10,8 @@
         </div>
         <div id="page">
             <form method="post" action="install.php">
-                <h2>Installation information</h2>
-                Host:<br />
+                <h2>System information</h2>
+                Database host:<br />
                 <input type="text" name="Host" value="localhost" /><br />
                 Database:<br />
                 <input type="text" name="Database" /><br />
@@ -24,7 +24,9 @@
                 <select name="DefaultLanguage">
                     <option value="bg">BG</option>
                     <option value="en">EN</option>
-                </select>
+                </select><br />
+                System email address:<br/>
+                <input type="text" name="SystemEmail" /><br />
                 <h2>Company information:</h2>
                 Company name:<br />
                 <input type="text" name="CompanyName" /><br />
@@ -39,8 +41,6 @@
                 <input type="text" name="FirstName" /><br />
                 Last name:<br />
                 <input type="text" name="LastName" /><br />
-                Address:<br />
-                <textarea name="AdminAddress"></textarea><br />
                 <input type="submit" value="Install"/><br />
             </form>
         </div>        
