@@ -37,6 +37,14 @@
                 <h2>Create an admin account</h2>
                 Email:<br />
                 <input type="text" name="Email" /><br />
+                Title:<br />
+                <select name="Title">
+                    <option value="1">Mr.</option>
+                    <option value="2">Mrs.</option>
+                    <option value="3">Ms.</option>
+                    <option value="4">Dr.</option>
+                    <option value="5">Pr.</option>
+                </select><br />
                 First name:<br />
                 <input type="text" name="FirstName" /><br />
                 Last name:<br />
