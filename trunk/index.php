@@ -42,7 +42,7 @@ require_once("lib/LoadSystem.php");
              }            
           }
           
-          Environment::LoadContent();
+          Page::LoadContent();
         ?>
 	    </div>		
 	</body>
