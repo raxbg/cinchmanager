@@ -1,6 +1,7 @@
 <?php
 require_once("Globals.php");
 require_once("Autoload.php");
+
 class dbHandler
 {
     private $host;
