@@ -32,4 +32,5 @@ define("ONLY_CLIENTS_TEXT","only clients");
 define("CREATE_TEXT","Create");
 define("NOT_ALLOWED_TO_CREATE_ACCOUNTS_TEXT","You are not allowed to create new user accounts!");
 define("PLEASE_LOGIN_TEXT","Please login first!");
+define("PAGE_NOT_FOUND_TEXT","Page not found!");
 ?>

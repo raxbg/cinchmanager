@@ -33,4 +33,5 @@ define("ONLY_CLIENTS_TEXT","само клиенти");
 define("CREATE_TEXT","Регистрация");
 define("NOT_ALLOWED_TO_CREATE_ACCOUNTS_TEXT","Нямате необходимите права да регистрирате нови потребители!");
 define("PLEASE_LOGIN_TEXT","Моля впишете се в системата!");
+define("PAGE_NOT_FOUND_TEXT","Страницата не е намерена!");
 ?>
