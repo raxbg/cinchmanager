@@ -6,8 +6,9 @@
     require_once("mainDBCreator.php");
     if(isset($_POST['Email']))
     {
-        $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['Title'],$_POST['FirstName'],$_POST['SecondName'],
-                $_POST['LastName'],$_POST['Gender'],$_POST['Address'],1,1,
+        $null = "NULL";
+        $UserIsCreated = User::CreateAccount($_POST['Email'],$null,$_POST['FirstName'],$null,
+                $_POST['LastName'],$null,$null,1,1,
                 "e",$_POST['DefaultLanguage']);
         if($UserIsCreated)
         {
