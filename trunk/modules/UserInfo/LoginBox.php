@@ -12,7 +12,7 @@
 	            <input type="password" name="Password" value="" style="width:100px;"/>
 	        </td>
 	        <td>
-                    <input type="submit" name="submit_button" value="<?php echo BUTTON_LOGIN_TEXT; ?>">
+                    <input type="submit" name="submit" value="<?php echo BUTTON_LOGIN_TEXT; ?>">
 	        </td>
 	    </tr>
 	    <tr>

@@ -7,7 +7,7 @@ if(!isset($_SESSION['started']))
     session_start();
     $_SESSION['started']=true;
 }
-if(isset($_POST['submit_button']))
+if(isset($_POST['submit']))
 {   
      User::Login($_POST['Email'],$_POST['Password']);
 }
