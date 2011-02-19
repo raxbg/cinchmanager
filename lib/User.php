@@ -32,8 +32,11 @@ class User
 		}
             $dbHandler->dbDisconnect();
             unset($dbHandler);
-            $setLanguage = Environment::SetGetVariable("language",$_SESSION['userinfo']['Language']);
-            header('Location: '.$setLanguage);
+            if(isset($_SESSION['LoggedIn']))
+            {
+                $setLanguage = Environment::SetGetVariable("language",$_SESSION['userinfo']['Language']);
+                header('Location: '.$setLanguage);
+            }
 	}
     
     public static function Remember()

@@ -26,20 +26,13 @@ require_once("lib/LoadSystem.php");
      ?>
 		<div id="page">
         <?php
-          if(isset($_POST['logout']))
+          if(isset($_POST['submit']) && !isset($_SESSION['LoggedIn']))
+          {
+            echo INCORRECT_USER_TEXT."<br />";
+          }
+          elseif(isset($_POST['logout']))
           {
               echo GOODBYE_TEXT;
-          }
-          else if(isset($_POST['submit_button']))
-          {   
-             if(isset($_SESSION['LoggedIn']))
-             {
-                 echo WELCOME1_TEXT;
-             }
-             else
-             {
-                 echo INCORRECT_USER_TEXT;
-             }            
           }
           
           Page::LoadContent();
