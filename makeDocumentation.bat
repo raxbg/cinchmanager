@@ -1,1 +1,0 @@
-"C:\Program Files\NuSphere\PhpED\php53\php.exe" "C:\Program Files\PhpDocumentor\phpdoc.bat" -t "D:\CinchManager" -o HTML:default:default -d "D:\CinchManager\Documentation"
