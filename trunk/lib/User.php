@@ -99,8 +99,8 @@ class User
         return $password;
     }
     
-    public static function CreateAccount($email,$title,$firstName,$secondName,$lastName,$gender,$address,$branchID,
-    $creatorID,$employeeOrClient,$language)
+    public static function CreateAccount($email,$title,$firstName,$secondName,$lastName,$gender,$address,$telephone,
+            $branchID,$creatorID,$employeeOrClient,$language)
     {
         $password = self::GeneratePassword();
         $message = Email::NewUserEmail($firstName,$lastName,$email,$password);
@@ -111,9 +111,9 @@ class User
         $date  = date("Y-m-d");
 
         $createAccount = "INSERT INTO Users (Email, Password,TitleID, FirstName, SecondName, LastName, Gender,
-        Address, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
+        Address, Telephone, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
         VALUES ('{$email}','{$encriptedPassword}','{$title}','{$firstName}','{$secondName}','{$lastName}','{$gender}',
-        '{$address}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
+        '{$address}','{$telephone}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
 
         $IsQuerySuccessful = $dbHandler->ExecuteQuery($createAccount);
         $mysqlError = mysql_error();
