@@ -48,14 +48,26 @@ class Environment
     {
         if(isset($_COOKIE['Language']))
         {
-            if(file_exists("../languages/{$_COOKIE['Language']}.php"))
+            if(file_exists("languages/{$_COOKIE['Language']}.php"))
+            {
+                $Language = $_COOKIE['Language'];
+            }
+            elseif(file_exists("../languages/{$_COOKIE['Language']}.php"))
             {
                 $Language = $_COOKIE['Language'];
             }
         }
         else
         {
-            $Language = DEFAULT_LANGUAGE;
+            if(file_exists("languages/".DEFAULT_LANGUAGE.".php"))
+            {
+                $Language = DEFAULT_LANGUAGE;
+            }
+            elseif(file_exists("../languages/".DEFAULT_LANGUAGE.".php"))
+            {
+                $Language = DEFAULT_LANGUAGE;
+            }
+            return;
         }
         require_once("../languages/{$Language}.php");
     }
