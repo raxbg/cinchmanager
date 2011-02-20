@@ -16,9 +16,3 @@ $titles=  substr($titles, 0, -2);
     <input type="text" name="NewTitleName" /><br />
     <input type="submit" value="<?php echo CREATE_TEXT;?>" />
 </form>
-
-<form method="post">
-    <h2>Edit title</h2>
-    <input type="text" name="EditTitleName" value="<?php echo $title;?>"/><br />
-    <input type="submit" value="<?php echo CREATE_TEXT;?>" />
-</form>
