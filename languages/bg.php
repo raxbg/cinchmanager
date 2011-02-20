@@ -22,6 +22,7 @@ define("MALE_TEXT","Мъж");
 define("FEMALE_TEXT","Жена");
 define("ADDRESS_TEXT","Адрес:");
 define("TELEPHONE_TEXT","Телефон:");
+define("BRANCH_TEXT","Клон:");
 define("TYPE_TEXT","Вид:");
 define("EMPLOYEE_TEXT","Служител");
 define("CLIENT_TEXT","Клиент");

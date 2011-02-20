@@ -35,18 +35,17 @@ if(isset($_SESSION['userinfo']) && User::CanCreateAccounts($_SESSION['userinfo']
     <?php echo LAST_NAME_TEXT;?><br />
     <input type="text" name="LastName" /><br />
     <?php echo GENDER_TEXT;?><br />
-    <select name="Gender">
-        <option value="m"><?php echo MALE_TEXT;?></option>
-        <option value="f"><?php echo FEMALE_TEXT;?></option>
-    </select><br />
-    <?php echo ADDRESS_TEXT;?><br />
+    <input type="radio" name="Gender" value="m"><?php echo MALE_TEXT;?>
+    <input type="radio" name="Gender" value="f"><?php echo FEMALE_TEXT;?>
+    <br />
+    <?php echo BRANCH_TEXT;?><br />
     <textarea name="Address"></textarea><br />
     <?php echo TELEPHONE_TEXT;?><br />
+    <input type="text" name="Telephone" /><br />
     <?php echo BRANCH_TEXT;?><br />
     <select name="BranchID">
         <option value="1">Main</option>
     </select><br />
-    <input type="text" name="Telephone" /><br />
     <?php echo TYPE_TEXT;?><br />
     <select name="EmployeeOrClient">
         <?php
@@ -89,4 +88,3 @@ else
     echo PLEASE_LOGIN_TEXT;
 }
 ?>
-</div>

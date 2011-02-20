@@ -21,6 +21,7 @@ define("MALE_TEXT","Male");
 define("FEMALE_TEXT","Female");
 define("ADDRESS_TEXT","Address:");
 define("TELEPHONE_TEXT","Telephone:");
+define("BRANCH_TEXT","Branch:");
 define("TYPE_TEXT","Type:");
 define("EMPLOYEE_TEXT","Employee");
 define("CLIENT_TEXT","Client");
