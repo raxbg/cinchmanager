@@ -50,26 +50,26 @@ class Environment
         {
             if(file_exists("languages/{$_COOKIE['Language']}.php"))
             {
-                $Language = $_COOKIE['Language'];
+                $LanguageFile = "languages/{$_COOKIE['Language']}.php";
             }
             elseif(file_exists("../languages/{$_COOKIE['Language']}.php"))
             {
-                $Language = $_COOKIE['Language'];
+                $LanguageFile = "../languages/{$_COOKIE['Language']}.php";
             }
         }
         else
         {
             if(file_exists("languages/".DEFAULT_LANGUAGE.".php"))
             {
-                $Language = DEFAULT_LANGUAGE;
+                $LanguageFile = "languages/".DEFAULT_LANGUAGE.".php";
             }
             elseif(file_exists("../languages/".DEFAULT_LANGUAGE.".php"))
             {
-                $Language = DEFAULT_LANGUAGE;
+                $LanguageFile = "../languages/".DEFAULT_LANGUAGE.".php";
             }
             return;
         }
-        require_once("../languages/{$Language}.php");
+        require_once($LanguageFile);
     }
 }
 ?>
