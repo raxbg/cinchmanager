@@ -2,10 +2,10 @@
 $dbHandler=new dbHandler();
 $dbHandler->dbConnect();
 $query="SELECT Title FROM Titles";
-$result = mysql_fetch_array($dbHandler->ExecuteQuery($query));
-foreach ($result as $title)
+$result = $dbHandler->ExecuteQuery($query);
+while($TitleName = mysql_fetch_row($result))
 {
-    $titles.=$title.", ";
+    $titles.=$TitleName[0].", ";
 }
 $titles=  substr($titles, 0, -2);
 ?>
