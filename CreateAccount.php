@@ -34,7 +34,7 @@ if(isset($_SESSION['userinfo']) && User::CanCreateAccounts($_SESSION['userinfo']
     <input type="text" name="SecondName" /><br />
     <?php echo LAST_NAME_TEXT;?><br />
     <input type="text" name="LastName" /><br />
-    <?php echo GENDER_TEXT;?><br />
+    <?php echo GENDER_TEXT;?> 
     <input type="radio" name="Gender" value="m"><?php echo MALE_TEXT;?>
     <input type="radio" name="Gender" value="f"><?php echo FEMALE_TEXT;?>
     <br />
