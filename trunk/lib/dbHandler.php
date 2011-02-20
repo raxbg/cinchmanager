@@ -48,9 +48,13 @@ class dbHandler
     {
         $email = mysql_real_escape_string($email);
         $password = $this->EncryptPwd($password);
-        $query = "SELECT Users.*,Titles.Title FROM Users 
+        $query = "SELECT Users.*,
+        Titles.Title,
+        Employees.CanCreateAccounts
+        FROM Users
         LEFT JOIN Titles 
-        ON Users.TitleID = Titles.ID 
+        ON Users.TitleID = Titles.ID
+        LEFT JOIN Employees ON Users.ID = Employees.UserID
         WHERE Email = '{$email}' 
         AND Password = '{$password}'";
         $reply = mysql_query($query,$this->con);
