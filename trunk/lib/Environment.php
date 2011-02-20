@@ -67,7 +67,6 @@ class Environment
             {
                 $LanguageFile = "../languages/".DEFAULT_LANGUAGE.".php";
             }
-            return;
         }
         require_once($LanguageFile);
     }
