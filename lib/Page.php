@@ -5,9 +5,9 @@ class Page
     {
     	if (isset($_GET['page']))
         {
-            if(file_exists("{$_GET['page']}.php"))
+            if(file_exists(HOME_FOLDER.$_GET['page'].".php"))
             {
-                require_once ("{$_GET['page']}.php");
+                require_once (HOME_FOLDER.$_GET['page'].".php");
             }
             else
             {

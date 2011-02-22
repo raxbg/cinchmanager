@@ -36,15 +36,9 @@ class Environment
     
     public static function SetLanguageCookie($language)
     {
-        if(file_exists("languages/{$language}.php"))
+        if(file_exists(HOME_FOLDER."languages/{$language}.php"))
         {
             setcookie("Language","",time()-3600);   
-            setcookie("Language",$language,time()+3600*24*365);
-            $_COOKIE['Language'] = $language;
-        }
-        elseif(file_exists("../languages/{$language}.php"))
-        {
-            setcookie("Language","",time()-3600);
             setcookie("Language",$language,time()+3600*24*365);
             $_COOKIE['Language'] = $language;
         }
@@ -54,24 +48,16 @@ class Environment
     {
         if(isset($_COOKIE['Language']))
         {
-            if(file_exists("languages/{$_COOKIE['Language']}.php"))
+            if(file_exists(HOME_FOLDER."languages/{$_COOKIE['Language']}.php"))
             {
-                $LanguageFile = "languages/{$_COOKIE['Language']}.php";
-            }
-            elseif(file_exists("../languages/{$_COOKIE['Language']}.php"))
-            {
-                $LanguageFile = "../languages/{$_COOKIE['Language']}.php";
+                $LanguageFile = HOME_FOLDER."languages/{$_COOKIE['Language']}.php";
             }
         }
         else
         {
-            if(file_exists("languages/".DEFAULT_LANGUAGE.".php"))
+            if(file_exists(HOME_FOLDER."languages/".DEFAULT_LANGUAGE.".php"))
             {
-                $LanguageFile = "languages/".DEFAULT_LANGUAGE.".php";
-            }
-            elseif(file_exists("../languages/".DEFAULT_LANGUAGE.".php"))
-            {
-                $LanguageFile = "../languages/".DEFAULT_LANGUAGE.".php";
+                $LanguageFile = HOME_FOLDER."languages/".DEFAULT_LANGUAGE.".php";
             }
         }
         require_once($LanguageFile);

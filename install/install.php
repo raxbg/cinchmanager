@@ -8,7 +8,7 @@
     {
         $null = "NULL";
         $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['Title'],$_POST['FirstName'],$null,
-                $_POST['LastName'],$null,$null,1,1,
+                $_POST['LastName'],$null,$null,$null,1,1,
                 "e",$_POST['DefaultLanguage']);
         if($UserIsCreated)
         {
