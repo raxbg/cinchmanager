@@ -33,12 +33,7 @@ require_once("lib/LoadSystem.php");
           elseif(isset($_POST['logout']))
           {
               echo GOODBYE_TEXT;
-          }
-          foreach ($_SERVER as $entry)
-          {
-              echo $entry;
-          }
-          
+          }          
           Page::LoadContent();
         ?>
 	    </div>		

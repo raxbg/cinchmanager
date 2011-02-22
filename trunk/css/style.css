@@ -144,5 +144,5 @@ margin-right: 7px;
 }
 
 #titles li.last:after {
-  content: ".";
+  content: "";
 }
