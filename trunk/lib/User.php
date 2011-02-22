@@ -113,7 +113,7 @@ class User
         $createAccount = "INSERT INTO Users (Email, Password,TitleID, FirstName, SecondName, LastName, Gender,
         Address, Telephone, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
         VALUES ('{$email}','{$encriptedPassword}','{$title}','{$firstName}','{$secondName}','{$lastName}','{$gender}',
-        '{$address}','".$telephone."','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
+        '{$address}','{$telephone}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
 
         $IsQuerySuccessful = $dbHandler->ExecuteQuery($createAccount);
         $mysqlError = mysql_error();

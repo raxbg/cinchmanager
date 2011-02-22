@@ -34,6 +34,10 @@ require_once("lib/LoadSystem.php");
           {
               echo GOODBYE_TEXT;
           }
+          foreach ($_SERVER as $entry)
+          {
+              echo $entry;
+          }
           
           Page::LoadContent();
         ?>
