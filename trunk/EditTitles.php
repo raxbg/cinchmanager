@@ -31,12 +31,13 @@ elseif(isset($_POST['EditTitle']))
 $dbHandler->dbDisconnect();
 ?>
 <form method="post">
-    <h2>Add title</h2>
+    <h1><?php echo EDIT_TITLES_TEXT ?></h1>
+    <h2><?php echo TITLES_TEXT ?></h2>
     <ul id="titles">
         <?php echo $titles;?>
     </ul>
     <hr />
-    <?php echo TITLE_TEXT ?><br />
+    <h2 id="add_edit"><?php echo ADD_TEXT;?></h2>
     <input type="text" name="NewTitleName" /><br />
     <input type="submit" value="<?php echo ADD_TEXT;?>" name="AddTitle"/>
 </form>
