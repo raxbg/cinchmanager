@@ -7,18 +7,17 @@ $titlesCount = mysql_num_rows($result);
 $i = 1;
 while($TitleName = mysql_fetch_row($result))
 {
-    if($i == $titlesCount)
+    if($i != $titlesCount)
     {
-        $last = " class=\"last\"";
+        $comma = ", ";
     }
     else
     {
-        $last = "";
+        $comma = "";
     }
-    $titles.="<li{$classLast}>{$TitleName[0]}</li>\n";
+    $titles.="<li>{$TitleName[0]}{$comma}</li>\n";
     $i++;
 }
-$titles=  substr($titles, 0, -2);
 if(isset($_POST['AddTitle']))
 {
     $query = "INSERT INTO Titles (Title) VALUES ({$_POST['NewTitleName']})";
@@ -39,5 +38,5 @@ $dbHandler->dbDisconnect();
     <hr />
     <?php echo TITLE_TEXT ?><br />
     <input type="text" name="NewTitleName" /><br />
-    <input type="submit" value="<?php echo CREATE_TEXT;?>" name="AddTitle"/>
+    <input type="submit" value="<?php echo ADD_TEXT;?>" name="AddTitle"/>
 </form>

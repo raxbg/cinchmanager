@@ -138,11 +138,3 @@ padding: 0;
 display:inline;
 margin-right: 7px;
 }
-
-#titles li:after {
-  content: ", ";
-}
-
-#titles li.last:after {
-  content: "";
-}
