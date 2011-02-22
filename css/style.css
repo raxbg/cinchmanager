@@ -127,4 +127,22 @@ list-style: none;
 border-bottom:1px solid #ccc;
 }
 
+/* !Menu */
 
+#titles{
+list-style: none outside none;
+margin: 0;
+padding: 0;
+}
+#titles li{
+display:inline;
+margin-right: 7px;
+}
+
+#titles li:after {
+  content: ", ";
+}
+
+#titles li.last:after {
+  content: ".";
+}
