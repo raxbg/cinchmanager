@@ -126,8 +126,8 @@ padding:3px 0;
 list-style: none;
 border-bottom:1px solid #ccc;
 }
-
 /* !Menu */
+
 .PositiveMessage{
 background-color: #CCFFCC;
 border: 1px solid #66FF66;
@@ -157,4 +157,14 @@ margin-right: 7px;
 color: #6A8F03;
 cursor: pointer;
 text-decoration: none;
+}
+#CancelBtn{
+    display:none;
+    width:15px;
+    height:15px;
+}
+#CancelBtn:hover{
+    width:15px;
+    height:15px;
+    cursor:pointer;
 }

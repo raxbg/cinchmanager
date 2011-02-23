@@ -40,4 +40,5 @@ define("EDIT_TEXT","Edit");
 define("EDIT_TITLES_TEXT","Edit Titles");
 define("TITLE_UPDATED_TEXT","Title updated");
 define("TITLE_ADDED_TEXT","Title added");
+define("INVALID_VALUE_TEXT","Invalid value!");
 ?>
