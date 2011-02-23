@@ -128,7 +128,22 @@ border-bottom:1px solid #ccc;
 }
 
 /* !Menu */
-
+.PositiveMessage{
+background-color: #CCFFCC;
+border: 1px solid #66FF66;
+color: #006600;
+display: block;
+margin: 10px 0;
+padding: 2px 20px;
+}
+.NegativeMessage{
+background-color: #FFCCCC;
+border: 1px solid #FF6666;
+color: #660000;
+display: block;
+margin: 10px 0;
+padding: 2px 20px;
+}
 #titles{
 list-style: none outside none;
 margin: 0;
@@ -137,4 +152,9 @@ padding: 0;
 #titles li{
 display:inline;
 margin-right: 7px;
+}
+#titles li:hover{
+color: #6A8F03;
+cursor: pointer;
+text-decoration: none;
 }

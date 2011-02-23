@@ -12,6 +12,7 @@ define("GOODBYE_TEXT", "Goodbye!");
 define("USER_SUCCESSFULLY_CREATED_TEXT","User successfully created. The password was send to the given email.");
 define("FAILED_TO_CREATE_USER_TEXT","Failed to create user.");
 define("ACCOUNT_INFORMATION_TEXT","Account information");
+define("TITLE_TEXT","Title:");
 define("TITLES_TEXT","Titles:");
 define("FIRST_NAME_TEXT","First name:");
 define("SECOND_NAME_TEXT","Second name:");
@@ -37,4 +38,6 @@ define("PAGE_NOT_FOUND_TEXT","Page not found!");
 define("ADD_TEXT","Add");
 define("EDIT_TEXT","Edit");
 define("EDIT_TITLES_TEXT","Edit Titles");
+define("TITLE_UPDATED_TEXT","Title updated");
+define("TITLE_ADDED_TEXT","Title added");
 ?>
