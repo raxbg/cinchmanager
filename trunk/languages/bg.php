@@ -41,4 +41,5 @@ define("EDIT_TEXT","Редактиране");
 define("EDIT_TITLES_TEXT","Редактиране на титли");
 define("TITLE_UPDATED_TEXT","Титлата е променена");
 define("TITLE_ADDED_TEXT","Титлата е добавена");
+define("INVALID_VALUE_TEXT","Невалидна стойност!");
 ?>
