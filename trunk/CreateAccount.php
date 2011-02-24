@@ -6,7 +6,15 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['Title'],$_POST['FirstName'],$_POST['SecondName'],
                 $_POST['LastName'],$_POST['Gender'],$_POST['Address'],$_POST['Telephone'],$_POST['BranchID'],$_POST['CreatorID'],
                 $_POST['EmployeeOrClient'],$_POST['DefaultLanguage']);
-        if($UserIsCreated)
+        if($_POST['EmployeeOrClient'] == "e" && $UserIsCreated != false)
+        {
+            $EmployeeIsCreated = User::CreateEmployee($UserIsCreated, $_POST['PositionID'], $_POST['ManagerID'], $_POST['CanCreateAccounts'], $_POST['AssignmentDay']);
+            if($EmployeeIsCreated)
+            {
+                echo USER_SUCCESSFULLY_CREATED_TEXT;
+            }
+        }
+        elseif($UserIsCreated)
         {
             echo USER_SUCCESSFULLY_CREATED_TEXT;
         }
@@ -32,9 +40,9 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $managers = $dbHandler->MakeSelectOptions($managersQuery, "ID", array("FirstName","LastName"));
         $dbHandler->dbDisconnect();
         unset($dbHandler);
-        $currentDate = date("Y-m-d");
+        $today = date("Y-m-d");
 ?>
-<script type="text/javascript" src="/js/toggleEmployeesInfo.js"></script>
+<script type="text/javascript" src="js/toggleEmployeesInfo.js"></script>
 <form method="post">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
     <h2><?php echo ACCOUNT_INFORMATION_TEXT; ?></h2>
@@ -72,11 +80,11 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     </select><br />
     <div id="EmployeeInfo">
         Position:<br />
-        <select name="Position">
+        <select name="PositionID">
             <?php echo $positions; ?>
         </select><br />
         Manager:<br />
-        <select name="Manager">
+        <select name="ManagerID">
             <?php echo $managers; ?>
         </select><br />
         Employee can create accounts for:<br />
@@ -86,31 +94,19 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
             <option value="a">All</option>
         </select><br />
         Employee can create/edit titles,positions and branches:<br />
-        <select name="CanCreateAccounts">
+        <select name="CanCreateTitles">
             <option value="n">No</option>
             <option value="y">Yes</option>
         </select><br />
         Assignment date:<br />
-        <input type="text" name="AssignmentDate" value="<?php echo $currentDate;?>"/><br />
+        <input type="text" name="AssignmentDay" value="<?php echo $today;?>"/><br />
     </div>
+    <script type="text/javascript">CheckAccount();</script>
     <?php echo DEFAULT_LANGUAGE_TEXT;?><br />
     <select name="DefaultLanguage">
         <option value="bg">BG</option>
         <option value="en">EN</option>
     </select><br />
-    <?php
-    if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
-    {
-    ?>
-    <?php echo ACC_CAN_CREATE_TEXT;?><br />
-    <select name="CanCreateAccounts">
-        <option value="null"><?php echo NONE_TEXT;?></option>
-        <option value="a"><?php echo EVERYTHING_TEXT;?></option>
-        <option value="c"><?php echo ONLY_CLIENTS_TEXT;?></option>
-    </select><br />
-    <?php
-    }
-    ?>
     <input type="submit" value="<?php echo CREATE_TEXT;?>"/><br />
 </form>
 <?php
