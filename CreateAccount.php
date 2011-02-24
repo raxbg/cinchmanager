@@ -32,6 +32,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $managers = $dbHandler->MakeSelectOptions($managersQuery, "ID", array("FirstName","LastName"));
         $dbHandler->dbDisconnect();
         unset($dbHandler);
+        $currentDate = date("Y-m-d");
 ?>
 <form method="post">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
@@ -91,7 +92,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
             <option value="y">Yes</option>
         </select><br />
         Assignment date:<br />
-        <input type="text" name="AssignmentDate" /><br />
+        <input type="text" name="AssignmentDate" value="<?php echo $currentDate;?>"/><br />
     </div>
     <?php echo DEFAULT_LANGUAGE_TEXT;?><br />
     <select name="DefaultLanguage">
