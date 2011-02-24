@@ -109,6 +109,7 @@ class User
         $dbHandler->dbConnect();
         $encriptedPassword = $dbHandler->EncryptPwd($password);
         $date  = date("Y-m-d");
+        $dbHandler->ExecuteQuery("BEGIN");
 
         $createAccount = "INSERT INTO Users (Email, Password,TitleID, FirstName, SecondName, LastName, Gender,
         Address, Telephone, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
@@ -116,19 +117,71 @@ class User
         '{$address}','{$telephone}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
 
         $IsQuerySuccessful = $dbHandler->ExecuteQuery($createAccount);
-        $mysqlError = mysql_error();
-        $dbHandler->dbDisconnect();
         if ($IsQuerySuccessful)
         {
             $mailSent = Email::SendEmail($email,$message);
             if($mailSent)
             {
-                return true;
+                if($employeeOrClient == "e")
+                {
+                    $query = "SELECT ID FROM Users WHERE Email='{$email}'";
+                    $result = $dbHandler->ExecuteQuery($query);
+                    if($result)
+                    {
+                        $userID = mysql_fetch_row($result);
+                        $dbHandler->ExecuteQuery("COMMIT");
+                        $dbHandler->dbDisconnect();
+                        return $userID[0];
+                    }
+                    else
+                    {
+                        echo "Due to problems with mysql we couldn't completely create the employee account.";
+                        echo "Please try the procedure again.";
+                        echo mysql_error();
+                        $dbHandler->ExecuteQuery("ROLLBACK");
+                        $dbHandler->dbDisconnect();
+                        return false;
+                    }
+                }
+                else
+                {
+                    $dbHandler->ExecuteQuery("COMMIT");
+                    $dbHandler->dbDisconnect();
+                    return true;
+                }
             }
         }
         else
         {
-          echo "User registration failed due to problems with mysql. Here is the error: ".$mysqlError;
+          echo "User registration failed due to problems with mysql. Here is the error: ".mysql_error();
+          $dbHandler->ExecuteQuery("ROLLBACK");
+          $dbHandler->dbDisconnect();
+          return false;
+        }
+    }
+
+    public static function CreateEmployee($userID,$positionID,$managerID,$canCreateAccounts,$assignmentDay)
+    {
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+        $date  = date("Y-m-d");
+        $dbHandler->ExecuteQuery("BEGIN");
+
+        $createEmployee = "INSERT INTO Employees (UserID,PositionID,ManagerID,CanCreateAccounts,AssignmentDay)
+        VALUES ('{$userID}','{$positionID}','{$managerID}','{$canCreateAccounts}','{$assignmentDay}')";
+
+        $IsQuerySuccessful = $dbHandler->ExecuteQuery($createEmployee);
+        if ($IsQuerySuccessful)
+        {
+            $dbHandler->ExecuteQuery("COMMIT");
+            $dbHandler->dbDisconnect();
+            return true;
+        }
+        else
+        {
+          echo "Employee registration failed due to problems with mysql. Here is the error: ".$mysqlError;
+          $dbHandler->ExecuteQuery("ROLLBACK");
+          $dbHandler->dbDisconnect();
           return false;
         }
     }
