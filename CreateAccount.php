@@ -23,10 +23,15 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $managersQuery = "SELECT Users.ID,Users.FirstName,Users.LastName
                         FROM Employees
                         LEFT JOIN Users
-                        ON Employeed.UserID = Users.ID";
+                        ON Employees.UserID = Users.ID";
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
+        $titles = $dbHandler->MakeSelectOptions($titlesQuery, "ID", array("Title"));
+        $branches = $dbHandler->MakeSelectOptions($branchesQuery, "ID", array("Name"));
         $positions = $dbHandler->MakeSelectOptions($positionsQuery, "ID", array("Position"));
+        $managers = $dbHandler->MakeSelectOptions($managersQuery, "ID", array("FirstName","LastName"));
+        $dbHandler->dbDisconnect();
+        unset($dbHandler);
 ?>
 <form method="post">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
