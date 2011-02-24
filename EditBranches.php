@@ -32,8 +32,9 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
             $message = "<span class=\"NegativeMessage\">".INVALID_VALUE_TEXT."</span>";
         }
     }
-    elseif (isset($_SESSION['BranchID']))
+    elseif (isset($_SESSION["BranchID"]))
     {
+        echo $_SESSION["BranchID"];
 echo EDIT_BRANCH;
 ?>
 <form method="post">

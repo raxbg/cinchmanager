@@ -22,7 +22,7 @@
         $i++;
     }
     $dbHandler->dbDisconnect();
-    $_SESSION['BranchID']=3;
+    //$_SESSION['BranchID']=3;
 ?>
 <script type="text/javascript" src="js/ajax.js"></script>
 <h1><?php echo BRANCHES_TEXT ?></h1>
