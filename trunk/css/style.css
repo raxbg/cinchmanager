@@ -144,16 +144,16 @@ display: block;
 margin: 10px 0;
 padding: 2px 20px;
 }
-#titles{
+#entries{
 list-style: none outside none;
 margin: 0;
 padding: 0;
 }
-#titles li{
+#entries li{
 display:inline;
 margin-right: 7px;
 }
-#titles li:hover{
+#entries li:hover{
 color: #6A8F03;
 cursor: pointer;
 text-decoration: none;

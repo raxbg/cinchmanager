@@ -4,7 +4,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     $message="";
     $dbHandler=new dbHandler();
     $dbHandler->dbConnect();
-    if(isset($_POST['AddTitle']))
+    if(isset($_POST['Add']))
     {
         if($_POST['NewTitleName'] != NULL && $_POST['NewTitleName'] != "")
         {
@@ -17,7 +17,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
             $message = "<span class=\"NegativeMessage\">".INVALID_VALUE_TEXT."</span>";
         }
     }
-    elseif(isset($_POST['EditTitle']))
+    elseif(isset($_POST['Edit']))
     {
         if($_POST['NewTitleName'] != NULL && $_POST['NewTitleName'] != "")
         {
@@ -53,12 +53,12 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         var editText = "<?php echo EDIT_TEXT;?>";
         var addText = "<?php echo ADD_TEXT;?>";
     </script>
-    <script type="text/javascript" src="/js/EditTitles.js"></script>
+    <script type="text/javascript" src="/js/EditTitlesAndPositions.js"></script>
     <form method="post">
         <h1><?php echo EDIT_TITLES_TEXT ?></h1>
         <?php echo $message ?>
         <h2><?php echo TITLES_TEXT ?></h2>
-        <ul id="titles">
+        <ul id="entries">
             <?php echo $titles;?>
         </ul>
         <hr />
@@ -66,8 +66,8 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         <h2 id="EditHeading" style="display:none;"><?php echo EDIT_TEXT;?></h2>
         <input type="hidden" name="OldTitle" id="Old"/>
         <input type="text" name="NewTitleName" id="NewName" onfocus="checkField()" onblur="stopCheck()"/><br />
-        <input type="submit" value="<?php echo ADD_TEXT;?>" name="AddTitle" id="AddBtn" disabled="true"/>
-        <button onClick="CancelEdit()" id="cancelBtn">CANCEL_TEXT</button>
+        <input type="submit" value="<?php echo ADD_TEXT;?>" name="Add" id="AddBtn" disabled="true"/>
+        <button onClick="CancelEdit()" id="cancelBtn"><?php echo CANCEL_TEXT?></button>
     </form>
 <?php
 }
