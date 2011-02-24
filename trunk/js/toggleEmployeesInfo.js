@@ -10,4 +10,5 @@ function CheckAccount()
         document.getElementById("EmployeeInfo").style.display="none";
     }
 }
+window.onload = CheckAccount();
 

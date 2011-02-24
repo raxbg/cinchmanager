@@ -35,7 +35,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $currentDate = date("Y-m-d");
 ?>
 <script type="text/javascript" src="/js/toggleEmployeesInfo.js"></script>
-<form method="post" onload="CheckAccount()">
+<form method="post">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
     <h2><?php echo ACCOUNT_INFORMATION_TEXT; ?></h2>
     <?php echo Email; ?><br />
@@ -54,8 +54,6 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     <input type="radio" name="Gender" value="m"><?php echo MALE_TEXT;?>
     <input type="radio" name="Gender" value="f"><?php echo FEMALE_TEXT;?>
     <br />
-    <?php echo BRANCH_TEXT;?><br />
-    <textarea name="Address"></textarea><br />
     <?php echo TELEPHONE_TEXT;?><br />
     <input type="text" name="Telephone" /><br />
     <?php echo BRANCH_TEXT;?><br />
@@ -70,7 +68,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
                 echo "<option value=\"e\">".EMPLOYEE_TEXT."</option>";
             }
         ?>
-        <option value="c"><?php echo CLIENT_TEXT;?></option>
+        <option value="c" selected="selected"><?php echo CLIENT_TEXT;?></option>
     </select><br />
     <div id="EmployeeInfo">
         Position:<br />
