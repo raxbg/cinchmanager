@@ -7,7 +7,6 @@ function Edit(oldValue)
     document.getElementById("AddBtn").value = editText;
     document.getElementById("EditHeading").style.display="block";
     document.getElementById("AddHeading").style.display="none";
-    document.getElementById("CancelBtn").style.display="inline";
     document.getElementById("AddBtn").removeAttribute("disabled");
 }
 function CancelEdit()
@@ -18,7 +17,6 @@ function CancelEdit()
     document.getElementById("AddBtn").value = addText;
     document.getElementById("EditHeading").style.display="none";
     document.getElementById("AddHeading").style.display="block";
-    document.getElementById("CancelBtn").style.display="none";
     document.getElementById("AddBtn").setAttribute("disabled","true");
 }
 function checkBtn()
