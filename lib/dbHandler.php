@@ -87,7 +87,7 @@ class dbHandler
             $options.="<option value=\"{$option[$key]}\">";
             foreach ($fields as $field)
             {
-                $options.=$option[$field];
+                $options.=$option[$field]." ";
             }
             $options.="</option>\n";
         }
