@@ -34,6 +34,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         unset($dbHandler);
         $currentDate = date("Y-m-d");
 ?>
+<script type="text/javascript" src="/js/toggleEmployeesInfo.js"></script>
 <form method="post">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
     <h2><?php echo ACCOUNT_INFORMATION_TEXT; ?></h2>
@@ -62,7 +63,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         <?php echo $branches;?>
     </select><br />
     <?php echo TYPE_TEXT;?><br />
-    <select name="EmployeeOrClient">
+    <select name="EmployeeOrClient" onload="CheckAccount()" onchange="CheckAccount()" id="EmployeeOrClient">
         <?php
             if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
             {
