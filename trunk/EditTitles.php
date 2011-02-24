@@ -58,12 +58,12 @@ $dbHandler->dbDisconnect();
     <h2><?php echo TITLES_TEXT ?></h2>
     <ul id="titles">
         <?php echo $titles;?>
-        <li id="add" onClick="CancelEdit()"><?php echo ADD_TEXT ?></li>
     </ul>
     <hr />
     <h2 id="AddHeading"><?php echo ADD_TEXT;?></h2>
     <h2 id="EditHeading" style="display:none;"><?php echo EDIT_TEXT;?></h2>
     <input type="hidden" name="OldTitle" id="Old"/>
-    <input type="text" name="NewTitleName" id="NewName" onfocus="checkBtn()" onblur="stopCheck()"/><br />
+    <input type="text" name="NewTitleName" id="NewName" onfocus="checkBtn()" onblur="stopCheck()"/>
+    <img src="http://www.eastrenfrewshire.gov.uk/cancel.gif" id="CancelBtn" onClick="CancelEdit()" alt="Cancel" title="Cancel"><br />
     <input type="submit" value="<?php echo ADD_TEXT;?>" name="AddTitle" id="AddBtn" disabled="true"/>
 </form>
