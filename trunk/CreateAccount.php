@@ -8,7 +8,8 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
                 $_POST['EmployeeOrClient'],$_POST['DefaultLanguage']);
         if($_POST['EmployeeOrClient'] == "e" && $UserIsCreated != false)
         {
-            $EmployeeIsCreated = User::CreateEmployee($UserIsCreated, $_POST['PositionID'], $_POST['ManagerID'], $_POST['CanCreateAccounts'], $_POST['AssignmentDay']);
+            $userID = $UserIsCreated;
+            $EmployeeIsCreated = User::CreateEmployee($userID, $_POST['PositionID'], $_POST['ManagerID'], $_POST['CanCreateAccounts'], $_POST['AssignmentDay']);
             if($EmployeeIsCreated)
             {
                 echo USER_SUCCESSFULLY_CREATED_TEXT;
