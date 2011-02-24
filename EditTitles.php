@@ -67,7 +67,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         <input type="hidden" name="OldTitle" id="Old"/>
         <input type="text" name="NewTitleName" id="NewName" onfocus="checkField()" onblur="stopCheck()"/><br />
         <input type="submit" value="<?php echo ADD_TEXT;?>" name="AddTitle" id="AddBtn" disabled="true"/>
-        <button onClick="CancelEdit()" id="cancelBtn">Cancel</button>
+        <button onClick="CancelEdit()" id="cancelBtn">CANCEL_TEXT</button>
     </form>
 <?php
 }
