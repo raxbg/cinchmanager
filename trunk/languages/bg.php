@@ -42,4 +42,5 @@ define("EDIT_TITLES_TEXT","Редактиране на обръщенията");
 define("TITLE_UPDATED_TEXT","Обръщението е променено");
 define("TITLE_ADDED_TEXT","Обръщението е добавено");
 define("INVALID_VALUE_TEXT","Невалидна стойност!");
+define("CANCEL_TEXT","Отказ");
 ?>
