@@ -1,3 +1,4 @@
+var t;
 function Edit(oldValue)
 {
     document.getElementById("Old").value=oldValue;
@@ -31,5 +32,9 @@ function checkBtn()
     {
         document.getElementById("AddBtn").setAttribute("disabled","true");
     }
-    setTimeout("checkBtn()",500);
+    t = setTimeout("checkBtn()",500);
+}
+function stopCheck()
+{
+    setTimeout("clearTimeout(t)",600);
 }
