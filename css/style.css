@@ -158,7 +158,13 @@ color: #6A8F03;
 cursor: pointer;
 text-decoration: none;
 }
-#add{
-margin-left:5px;
-font-weight:bold;
+#CancelBtn{
+    display:none;
+    width:15px;
+    height:15px;
+}
+#CancelBtn:hover{
+    width:15px;
+    height:15px;
+    cursor:pointer;
 }
