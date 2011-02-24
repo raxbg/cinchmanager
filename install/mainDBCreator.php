@@ -5,9 +5,10 @@ $Queries['createBranches'] = "CREATE  TABLE Branches
 (
 ID int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
-Address TINYTEXT NOT NULL,
 Name VARCHAR(100) NOT NULL,
-UNIQUE (Name)
+UNIQUE (Name),
+Address TINYTEXT NOT NULL,
+Telephone VARCHAR(20)
 ) ENGINE=InnoDB";
 
 $Queries['createTitles'] = "CREATE TABLE Titles

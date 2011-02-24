@@ -15,6 +15,7 @@ define("FAILED_TO_CREATE_USER_TEXT","Възникна грешка поврем�
 define("ACCOUNT_INFORMATION_TEXT","Данни за акаунта");
 define("TITLE_TEXT","Обръщение:");
 define("TITLES_TEXT","Обръщения:");
+define("NAME_TEXT","Име");
 define("FIRST_NAME_TEXT","Първо име:");
 define("SECOND_NAME_TEXT","Бащино име:");
 define("LAST_NAME_TEXT","Фамилно име:");
@@ -23,6 +24,8 @@ define("MALE_TEXT","Мъж");
 define("FEMALE_TEXT","Жена");
 define("ADDRESS_TEXT","Адрес:");
 define("TELEPHONE_TEXT","Телефон:");
+define("ADDRESS1_TEXT","Адрес");
+define("TELEPHONE1_TEXT","Телефон");
 define("BRANCH_TEXT","Клон:");
 define("TYPE_TEXT","Вид:");
 define("EMPLOYEE_TEXT","Служител");
@@ -43,4 +46,6 @@ define("TITLE_UPDATED_TEXT","Обръщението е променено");
 define("TITLE_ADDED_TEXT","Обръщението е добавено");
 define("INVALID_VALUE_TEXT","Невалидна стойност!");
 define("CANCEL_TEXT","Отказ");
+define("BRANCHES_TEXT","Клонове");
+define("ADD_NEW_BRANCH_TEXT","Добави клон");
 ?>

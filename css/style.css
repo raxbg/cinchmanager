@@ -8,6 +8,10 @@ background: url('../img/Background.png') repeat-x;
 a img{
 border:none;
 }
+a{
+color:#444;
+text-decoration: none;
+}
 #header {
 background: url("../img/HeaderBG.png") no-repeat;
 height: 125px;
@@ -65,7 +69,27 @@ margin-right: 7px;
 #languages a{
 border:0;
 }
-
+table.cooltable{
+background-color: #F9F9F9;
+border: 1px solid #CCCCCC;
+width: 100%;
+border-spacing: 0;
+}
+table.cooltable thead{
+background-color: #E0E0E0;
+font-weight: bold;
+text-align: center;
+}
+table.cooltable tr.even{
+background-color:#F0F0F0;
+}
+table.cooltable td{
+margin:0;
+}
+td.editBtn{
+width:100px;
+text-align:center;
+}
 /* Menu */
 #menu{
 margin-top:0;
