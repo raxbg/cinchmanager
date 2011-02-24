@@ -158,13 +158,6 @@ color: #6A8F03;
 cursor: pointer;
 text-decoration: none;
 }
-#CancelBtn{
+#cancelBtn{
     display:none;
-    width:15px;
-    height:15px;
-}
-#CancelBtn:hover{
-    width:15px;
-    height:15px;
-    cursor:pointer;
 }
