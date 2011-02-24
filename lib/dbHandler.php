@@ -78,6 +78,21 @@ class dbHandler
     {
         return $this->con;
     }
+
+    public function MakeSelectOptions($query, $key, $fields)
+    {
+        $result = $this->ExecuteQuery($query);
+        while($option = mysql_fetch_array($result))
+        {
+            $options.="<option value=\"{$option[$key]}\">";
+            foreach ($fields as $field)
+            {
+                $options.=$option[$field];
+            }
+            $options.="</option>\n";
+        }
+        return $options;
+    }
     
     public function ExecuteQuery($query)
     {

@@ -17,6 +17,16 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     }
     else
     {
+        $titlesQuery = "SELECT * FROM Titles";
+        $branchesQuery = "SELECT ID,Name FROM Branches";
+        $positionsQuery = "SELECT * FROM Positions";
+        $managersQuery = "SELECT Users.ID,Users.FirstName,Users.LastName
+                        FROM Employees
+                        LEFT JOIN Users
+                        ON Employeed.UserID = Users.ID";
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+        $positions = $dbHandler->MakeSelectOptions($positionsQuery, "ID", array("Position"));
 ?>
 <form method="post">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
@@ -25,8 +35,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     <input type="text" name="Email" /><br />
     <?php echo TITLE_TEXT;?><br />
     <select name="Title">
-        <option value="1">Mr.</option>
-        <option value="2">Mrs.</option>
+        <?php echo $titles; ?>
     </select><br />
     <?php echo FIRST_NAME_TEXT;?><br />
     <input type="text" name="FirstName" /><br />
@@ -44,7 +53,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     <input type="text" name="Telephone" /><br />
     <?php echo BRANCH_TEXT;?><br />
     <select name="BranchID">
-        <option value="1">Main</option>
+        <?php echo $branches;?>
     </select><br />
     <?php echo TYPE_TEXT;?><br />
     <select name="EmployeeOrClient">
@@ -56,6 +65,29 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         ?>
         <option value="c"><?php echo CLIENT_TEXT;?></option>
     </select><br />
+    <div id="EmployeeInfo">
+        Position:<br />
+        <select name="Position">
+            <?php echo $positions; ?>
+        </select><br />
+        Manager:<br />
+        <select name="Manager">
+            <?php echo $managers; ?>
+        </select><br />
+        Employee can create accounts for:<br />
+        <select name="CanCreateAccounts">
+            <option value="no">Nobody</option>
+            <option value="c">Clients</option>
+            <option value="a">All</option>
+        </select><br />
+        Employee can create/edit titles,positions and branches:<br />
+        <select name="CanCreateAccounts">
+            <option value="n">No</option>
+            <option value="y">Yes</option>
+        </select><br />
+        Assignment date:<br />
+        <input type="text" name="AssignmentDate" /><br />
+    </div>
     <?php echo DEFAULT_LANGUAGE_TEXT;?><br />
     <select name="DefaultLanguage">
         <option value="bg">BG</option>
