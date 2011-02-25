@@ -15,16 +15,15 @@
         {
             $class="class=\"even\"";
         }
+        $i++;
+
         $Branches.="<tr {$class}><td>{$branch['Name']}</td>\n".
         "<td>{$branch['Address']}</td>\n".
         "<td>{$branch['Telephone']}</td>\n".
-        "<td class=\"editBtn\"><a onclick=\"setSessionVar('BranchID','{$branch['ID']}');\"><img src='img/edit.gif'></a></td></tr>";
-        $i++;
+        "<td class=\"editBtn\"><a href=\"index.php?page=EditBranches&id={$branch['ID']}\"><img src=\"img/edit.gif\"></a></td></tr>";
     }
     $dbHandler->dbDisconnect();
-    //$_SESSION['BranchID']=3;
 ?>
-<script type="text/javascript" src="js/ajax.js"></script>
 <h1><?php echo BRANCHES_TEXT ?></h1>
 <table class="cooltable">
     <thead>

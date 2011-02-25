@@ -32,38 +32,30 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
             $message = "<span class=\"NegativeMessage\">".INVALID_VALUE_TEXT."</span>";
         }
     }
-    elseif (isset($_SESSION["BranchID"]))
+    
+    if (isset($_GET['id']))
     {
-        echo $_SESSION["BranchID"];
-echo EDIT_BRANCH;
-?>
-<form method="post">
-    <?php echo BRANCH_TEXT ?><br />
-    <input type="text" name="NewBranchName" /><br />
-    <?php echo ADDRESS_TEXT ?><br />
-    <textarea name="NewBranchAddress"></textarea><br />
-    <?php echo TELEPHONE_TEXT ?><br />
-    <input type="text" name="BranchTelephone" /><br />
-    <input type="submit" name="Edit" value="<?php echo EDIT_TEXT ?>">
-</form>
-<?php
+        echo EDIT_BRANCH;
     }
     else
     {
-echo ADD_NEW_BRANCH_TEXT
-?>
-<form method="post">
-    <?php echo BRANCH_TEXT ?><br />
-    <input type="text" name="NewBranchName" /><br />
-    <?php echo ADDRESS_TEXT ?><br />
-    <textarea name="NewBranchAddress"></textarea><br />
-    <?php echo TELEPHONE_TEXT ?><br />
-    <input type="text" name="BranchTelephone" /><br />
-    <input type="submit" name="Add" value="<?php echo ADD_TEXT ?>">
-</form>
-<?php
+        echo ADD_NEW_BRANCH_TEXT;
     }
+    
     echo $message;
+?>
+    <form method="post" action="index.php?page=EditBranches">
+        <?php echo BRANCH_TEXT ?><br />
+        <input type="text" name="NewBranchName" /><br />
+        <?php echo ADDRESS_TEXT ?><br />
+        <textarea name="NewBranchAddress"></textarea><br />
+        <?php echo TELEPHONE_TEXT ?><br />
+        <input type="text" name="BranchTelephone" /><br />
+        <input type="submit" name="Add" value="<?php echo ADD_TEXT ?>">
+        <input type="submit" name="Edit" value="<?php echo EDIT_TEXT ?>">
+    </form>
+
+<?php
 }
 elseif(isset($_SESSION['LoggedIn']) && !User::CanCreateAccounts($_SESSION['userinfo']['CanCreateAccounts']))
 {
