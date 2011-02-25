@@ -38,4 +38,4 @@
         <?php echo $Branches ?>
     </tbody>
 </table>
-<a href="<?php echo Environment::SetGetVariable("page","EditBranches")?>&AddNew=true"><?php echo ADD_NEW_BRANCH_TEXT ?></a>
+<a href="index.php?page=EditBranches"><?php echo ADD_NEW_BRANCH_TEXT ?></a>
