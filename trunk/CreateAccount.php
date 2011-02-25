@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']['CanCreateAccounts']))
 { 
-    if(isset($_POST['CreatorID']))
+    if(isset($_POST['CreatorID']) && $_POST['Email'] != "" && $_POST['Email'] != NULL)
     {
         $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['Title'],$_POST['FirstName'],$_POST['SecondName'],
                 $_POST['LastName'],$_POST['Gender'],$_POST['Address'],$_POST['Telephone'],$_POST['BranchID'],$_POST['CreatorID'],
@@ -43,12 +43,15 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         unset($dbHandler);
         $today = date("Y-m-d");
 ?>
-<script type="text/javascript" src="js/toggleEmployeesInfo.js"></script>
+<script type="text/javascript" src="js/AddEmployees.js"></script>
 <form method="post">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
     <h2><?php echo ACCOUNT_INFORMATION_TEXT; ?></h2>
-    <?php echo Email; ?><br />
-    <input type="text" name="Email" /><br />
+    <?php echo EMAIL_TEXT; ?><br />
+    <input type="text" name="Email" id="Email" onfocus="checkEmail()" onblur="stopCheck()"/>
+    <span class="PositiveMessage" id="ValidMail"><?php echo VALID_MAIL_TEXT; ?></span>
+    <span class="NegativeMessage" id="InvalidMail"><?php echo INVALID_MAIL_TEXT; ?></span>
+    <br />
     <?php echo TITLE_TEXT;?><br />
     <select name="Title">
         <?php echo $titles; ?>
@@ -80,35 +83,36 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         <option value="c" selected="selected"><?php echo CLIENT_TEXT;?></option>
     </select><br />
     <div id="EmployeeInfo">
-        Position:<br />
+        <?php echo POSITION_TEXT;?> <br />
         <select name="PositionID">
             <?php echo $positions; ?>
         </select><br />
-        Manager:<br />
+        <?php echo MANAGER_TEXT;?><br />
         <select name="ManagerID">
+            <option value="none" selected="selected"><?php echo NOBODY_TEXT;?></option>
             <?php echo $managers; ?>
         </select><br />
-        Employee can create accounts for:<br />
+        <?php echo ACC_CAN_CREATE_TEXT; ?><br />
         <select name="CanCreateAccounts">
             <option value="no">Nobody</option>
             <option value="c">Clients</option>
             <option value="a">All</option>
         </select><br />
-        Employee can create/edit titles,positions and branches:<br />
+        <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
         <select name="CanCreateTitles">
             <option value="n">No</option>
             <option value="y">Yes</option>
         </select><br />
-        Assignment date:<br />
+        <?php echo ASSIGNMENT_DAY_TEXT;?><br />
         <input type="text" name="AssignmentDay" value="<?php echo $today;?>"/><br />
     </div>
-    <script type="text/javascript">CheckAccount();</script>
     <?php echo DEFAULT_LANGUAGE_TEXT;?><br />
     <select name="DefaultLanguage">
         <option value="bg">BG</option>
         <option value="en">EN</option>
     </select><br />
-    <input type="submit" value="<?php echo CREATE_TEXT;?>"/><br />
+    <input type="submit" value="<?php echo CREATE_TEXT;?>" id="AddBtn" disabled="true"/><br />
+    <script type="text/javascript">Init();</script>
 </form>
 <?php
         }
