@@ -5,13 +5,16 @@ if(isset($_POST['NewSalary']))
     $dbHandler->dbConnect();
     $date=mysql_real_escape_string($_POST['date']);
     $oldDate=mysql_real_escape_string($_POST['oldDate']);
+    $id=mysql_real_escape_string($_POST['id']);
     $query="UPDATE Salaries
             SET ToDate={$date};
             WHERE UserID={$id} AND FromDate={$oldDate}";
     $dbHandler->ExecuteQuery($query);
+    echo mysql_error();
     $query="INSERT INTO Salaries (UserID, FromDate)
             Values ({$id},{$date})";
     $dbHandler->ExecuteQuery($query);
+    echo mysql_error();
     $dbHandler->dbDisconnect();
     echo "Done";
 }
@@ -38,7 +41,7 @@ elseif(isset($_GET['id']))
 ?>
     <form method="post">
         <h1>Edit salary</h1>
-        <input type="hidden" name="id" value="<?php echo $Employee['FirstName']; ?>">
+        <input type="hidden" name="id" value="<?php echo $Employee['ID']; ?>">
         <input type="hidden" name="oldDate" value="<?php echo $Employee['FromDate']; ?>">
         Emplye name:<br />
         <input type="text" readonly="readonly" name="name" value="<?php echo $Employee['FirstName']." ".$Employee['LastName']; ?>"><br />
