@@ -70,10 +70,9 @@ margin-right: 7px;
 border:0;
 }
 table.cooltable{
-background-color: #F9F9F9;
 border: 1px solid #CCCCCC;
 width: 100%;
-border-spacing: 0;
+border-spacing: 1px;
 margin:5px 0;
 }
 table.cooltable thead{
@@ -83,6 +82,9 @@ text-align: center;
 }
 table.cooltable tr.even{
 background-color:#F0F0F0;
+}
+table.cooltable tr.odd{
+background-color:#F9F9F9;
 }
 table.cooltable td{
 margin:0;
