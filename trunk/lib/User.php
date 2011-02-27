@@ -111,6 +111,20 @@ class User
         $date  = date("Y-m-d");
         $dbHandler->ExecuteQuery("BEGIN");
 
+        $email = mysql_real_escape_string($email);
+        $title = mysql_real_escape_string($title);
+        $firstName = mysql_real_escape_string($firstName);
+        $secondName = mysql_real_escape_string($secondName);
+        $lastName = mysql_real_escape_string($lastName);
+        $gender = mysql_real_escape_string($gender);
+        $address = mysql_real_escape_string($address);
+        $telephone = mysql_real_escape_string($telephone);
+        $branchID = mysql_real_escape_string($branchID);
+        $date = mysql_real_escape_string($date);
+        $creatorID = mysql_real_escape_string($creatorID);
+        $employeeOrClient = mysql_real_escape_string($employeeOrClient);
+        $language = mysql_real_escape_string($language);
+
         $createAccount = "INSERT INTO Users (Email, Password,TitleID, FirstName, SecondName, LastName, Gender,
         Address, Telephone, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
         VALUES ('{$email}','{$encriptedPassword}','{$title}','{$firstName}','{$secondName}','{$lastName}','{$gender}',
@@ -160,21 +174,28 @@ class User
         }
     }
 
-    public static function CreateEmployee($userID,$positionID,$managerID,$canCreateAccounts,$canCreateTB,$assignmentDay)
+    public static function CreateEmployee($userID,$positionID,$managerID,$canCreateAccounts,$canCreateTPB,$assignmentDay)
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
         $date  = date("Y-m-d");
         $dbHandler->ExecuteQuery("BEGIN");
+
+        $positionID = mysql_real_escape_string($positionID);
+        $canCreateAccounts = mysql_real_escape_string($canCreateAccounts);
+        $canCreateTPB = mysql_real_escape_string($canCreateTPB);
+        $assignmentDay = mysql_real_escape_string($assignmentDay);
+
         if ($managerID == "none")
         {
             $createEmployee = "INSERT INTO Employees (UserID,PositionID,CanCreateAccounts,CanCreateTPB,AssignmentDay)
-        VALUES ('{$userID}','{$positionID}','{$canCreateAccounts}','{$canCreateTB}','{$assignmentDay}')";
+        VALUES ('{$userID}','{$positionID}','{$canCreateAccounts}','{$canCreateTPB}','{$assignmentDay}')";
         }
         else
         {
+            $managerID = mysql_real_escape_string($managerID);
             $createEmployee = "INSERT INTO Employees (UserID,PositionID,ManagerID,CanCreateAccounts,CanCreateTPB,AssignmentDay)
-        VALUES ('{$userID}','{$positionID}','{$managerID}','{$canCreateAccounts}','{$canCreateTB}','{$assignmentDay}')";
+        VALUES ('{$userID}','{$positionID}','{$managerID}','{$canCreateAccounts}','{$canCreateTPB}','{$assignmentDay}')";
         }
 
         $IsQuerySuccessful = $dbHandler->ExecuteQuery($createEmployee);
@@ -186,7 +207,7 @@ class User
         }
         else
         {
-          echo "Employee registration failed due to problems with mysql. Here is the error: ".$mysqlError;
+          echo "Employee registration failed due to problems with mysql.\n\n ".$mysqlError;
           $dbHandler->ExecuteQuery("ROLLBACK");
           $dbHandler->dbDisconnect();
           return false;

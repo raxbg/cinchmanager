@@ -8,6 +8,8 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     {
         if($_POST['NewTitleName'] != NULL && $_POST['NewTitleName'] != "")
         {
+            $_POST['NewTitleName'] = mysql_real_escape_string($_POST['NewTitleName']);
+
             $query = "INSERT INTO Titles (Title) VALUES (\"{$_POST['NewTitleName']}\")";
             $dbHandler->ExecuteQuery($query);
             $message = "<span class=\"PositiveMessage\">".TITLE_ADDED_TEXT."</span>";
@@ -21,6 +23,9 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     {
         if($_POST['NewTitleName'] != NULL && $_POST['NewTitleName'] != "")
         {
+            $_POST['NewTitleName'] = mysql_real_escape_string($_POST['NewTitleName']);
+            $_POST['OldTitle'] = mysql_real_escape_string($_POST['OldTitle']);
+
             $query = "UPDATE Titles SET Title=\"{$_POST['NewTitleName']}\" WHERE Title=\"{$_POST['OldTitle']}\"";
             $dbHandler->ExecuteQuery($query);
             $message = "<span class=\"PositiveMessage\">".TITLE_UPDATED_TEXT."</span>";
