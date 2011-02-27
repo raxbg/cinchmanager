@@ -72,8 +72,9 @@ border:0;
 table.cooltable{
 border: 1px solid #CCCCCC;
 width: 100%;
-border-spacing: 1px;
+border-spacing: 2px;
 margin:5px 0;
+background: #fff;
 }
 table.cooltable thead{
 background-color: #E0E0E0;
