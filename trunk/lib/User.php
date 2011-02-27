@@ -153,7 +153,7 @@ class User
         }
         else
         {
-          echo "User registration failed due to problems with mysql. Here is the error: ".mysql_error();
+          echo "User registration failed due to problems with mysql.\n\n".mysql_error();
           $dbHandler->ExecuteQuery("ROLLBACK");
           $dbHandler->dbDisconnect();
           return false;
