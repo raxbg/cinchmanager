@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION['LoggedIn']))
 {
-    if(User::CanCreateAccounts($_SESSION['userinfo']['CanCreateAccounts']))
+    if($_SESSION['userinfo']['CanCreateAccounts'] != "n")
     {
         $CanCreateAndEditAccounts=true;
     }
