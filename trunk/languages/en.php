@@ -59,4 +59,8 @@ define("ASSIGNMENT_DAY_TEXT","Assignment date:");
 define("NOBODY_TEXT","nobody");
 define("VALID_MAIL_TEXT","Email is valid!");
 define("INVALID_MAIL_TEXT","Email is invalid!");
+define("SALARY_UPDATED_TEXT","Salary is updated");
+define("FROM_DATE_TEXT","From date:");
+define("EMPLOYEE_NAME_TEXT","Name:");
+define("EDIT_SALARY","Edit salary");
 ?>

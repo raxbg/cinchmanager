@@ -42,7 +42,7 @@ define("NOT_ALLOWED_TO_CREATE_BRANCHES_TEXT","Нямате необходими�
 define("PLEASE_LOGIN_TEXT","Моля впишете се в системата!");
 define("PAGE_NOT_FOUND_TEXT","Страницата не е намерена!");
 define("ADD_TEXT","Добавяне");
-define("EDIT_TEXT","Редактиране");
+define("EDIT_TEXT","Промяна");
 define("EDIT_TITLES_TEXT","Редактиране на обръщенията");
 define("TITLE_UPDATED_TEXT","Обръщението е променено");
 define("TITLE_ADDED_TEXT","Обръщението е добавено");
@@ -55,9 +55,13 @@ define("BRANCH_UPDATED_TEXT","Редакцията на клона е завър
 define("BRANCH_ADDED_TEXT","Клонът е добавен");
 define("POSITION_TEXT","Позиция:");
 define("MANAGER_TEXT","Ръководител:");
-define("ACC_CAN_CREATE_TITLES_TEXT","Employee can create/edit titles,positions and branches?");
+define("ACC_CAN_CREATE_TITLES_TEXT","Администраторско права:");
 define("ASSIGNMENT_DAY_TEXT","Дата на назначаване:");
 define("NOBODY_TEXT","никой");
 define("VALID_MAIL_TEXT","Адресът е валиден!");
 define("INVALID_MAIL_TEXT","Адресът е невалиден!");
+define("SALARY_UPDATED_TEXT","Заплатата е променена");
+define("FROM_DATE_TEXT","От дата:");
+define("EMPLOYEE_NAME_TEXT","Име на служителя:");
+define("EDIT_SALARY","Промяна на заплатата");
 ?>

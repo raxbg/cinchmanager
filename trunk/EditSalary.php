@@ -5,6 +5,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     {
         $dbHandler= new dbHandler();
         $dbHandler->dbConnect();
+        $dbHandler->ExecuteQuery("BEGIN");
         $date=mysql_real_escape_string($_POST['date']);
         $oldDate=mysql_real_escape_string($_POST['oldDate']);
         $id=mysql_real_escape_string($_POST['id']);
@@ -12,15 +13,23 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $query="UPDATE Salaries
                 SET ToDate='{$date}'
                 WHERE UserID={$id} AND FromDate='{$oldDate}'";
-        $dbHandler->ExecuteQuery($query);
+        $OldRecordIsUpdated = $dbHandler->ExecuteQuery($query);
         echo mysql_error()."<br />";
 
         $query="INSERT INTO Salaries (UserID, FromDate, Amount)
                 Values ('{$id}','{$date}','{$Salary}')";
-        $dbHandler->ExecuteQuery($query);
+        $NewRecordIsCreated = $dbHandler->ExecuteQuery($query);
         echo mysql_error();
+        if($OldRecordIsUpdated&&$NewRecordIsCreated)
+        {
+            $dbHandler->ExecuteQuery("COMMIT");
+            echo SALARY_UPDATED_TEXT;
+        }
+        else
+        {
+            $dbHandler->ExecuteQuery("ROLLBACK");
+        }
         $dbHandler->dbDisconnect();
-        echo "Done";
     }
     elseif(isset($_GET['id']))
     {
@@ -44,20 +53,20 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $NextMonth = date("Y-m-d", $nextMonth)
 ?>
         <form method="post">
-            <h1>Edit salary</h1>
+            <h1><?php echo EDIT_SALARY; ?></h1>
             <input type="hidden" name="id" value="<?php echo $Employee['ID']; ?>">
             <input type="hidden" name="oldDate" value="<?php echo $Employee['FromDate']; ?>">
-            Emplye name:<br />
+            <?php echo EMPLOYEE_NAME_TEXT; ?><br />
             <input type="text" readonly="readonly" name="name" value="<?php echo $Employee['FirstName']." ".$Employee['LastName']; ?>"><br />
-            Branch:<br />
+            <?php echo BRANCH_TEXT; ?><br />
             <input type="text" readonly="readonly" name="branch" value="<?php echo $Employee['Branch']; ?>"><br />
-            Position:<br />
+            <?php echo POSITION_TEXT; ?><br />
             <input type="text" readonly="readonly" name="position" value="<?php echo $Employee['Position']; ?>"><br />
             New salary:<br />
             <input type="text" name="NewSalary" value="<?php echo $Employee['Salary']; ?>"/><br />
-            Date of change:<br />
+            <?php echo FROM_DATE_TEXT; ?><br />
             <input type="text" name="date" value="<?php echo $NextMonth;?>"/><br />
-            <input type="submit" value="Edit" />
+            <input type="submit" value="<?php echo EDIT_TEXT; ?>" />
         </form>
 <?php
     }
