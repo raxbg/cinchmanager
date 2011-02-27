@@ -10,13 +10,13 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $id=mysql_real_escape_string($_POST['id']);
         $Salary=mysql_real_escape_string($_POST['NewSalary']);
         $query="UPDATE Salaries
-                SET ToDate='{$date}';
+                SET ToDate='{$date}'
                 WHERE UserID={$id} AND FromDate='{$oldDate}'";
         $dbHandler->ExecuteQuery($query);
         echo mysql_error()."<br />";
 
         $query="INSERT INTO Salaries (UserID, FromDate, Amount)
-                Values ({$id},{$date},{$Salary}";
+                Values ('{$id}','{$date}','{$Salary}')";
         $dbHandler->ExecuteQuery($query);
         echo mysql_error();
         $dbHandler->dbDisconnect();
