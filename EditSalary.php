@@ -8,14 +8,15 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $date=mysql_real_escape_string($_POST['date']);
         $oldDate=mysql_real_escape_string($_POST['oldDate']);
         $id=mysql_real_escape_string($_POST['id']);
+        $Salary=mysql_real_escape_string($_POST['NewSalary']);
         $query="UPDATE Salaries
                 SET ToDate='{$date}';
                 WHERE UserID={$id} AND FromDate='{$oldDate}'";
         $dbHandler->ExecuteQuery($query);
         echo mysql_error()."<br />";
 
-        $query="INSERT INTO Salaries (UserID, FromDate)
-                Values ({$id},'{$date})'";
+        $query="INSERT INTO Salaries (UserID, FromDate, Amount)
+                Values ({$id},{$date},{$Salary}";
         $dbHandler->ExecuteQuery($query);
         echo mysql_error();
         $dbHandler->dbDisconnect();
@@ -40,7 +41,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         $dbHandler->dbDisconnect();
         $Employee=mysql_fetch_array($result);
         $nextMonth = mktime(0,0,0,date("m")+1,1,date("Y"));
-        $NextMonth = date("d-m-Y", $nextMonth)
+        $NextMonth = date("Y-m-d", $nextMonth)
 ?>
         <form method="post">
             <h1>Edit salary</h1>
