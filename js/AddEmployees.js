@@ -14,7 +14,7 @@ function CheckAccount()
 function checkEmail()
 {
     var textField = document.getElementById("Email");
-    var pattern = new RegExp("^[A-Za-z0-9_]+@[a-z]+(\.[a-z]{2,4})$");
+    var pattern = new RegExp("^[A-Za-z0-9_]+@[a-z]+\.[a-z]{2,4})$");
     if(textField.value != "" && pattern.test(textField.value))
     {
         document.getElementById("AddBtn").removeAttribute("disabled");
