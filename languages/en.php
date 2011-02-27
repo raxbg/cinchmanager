@@ -36,6 +36,7 @@ define("EVERYTHING_TEXT","everything");
 define("ONLY_CLIENTS_TEXT","only clients");
 define("CREATE_TEXT","Create");
 define("NOT_ALLOWED_TO_CREATE_ACCOUNTS_TEXT","You are not allowed to create new user accounts!");
+define("NOT_ALLOWED_TO_EDIT_ACCOUNTS_TEXT","You are not allowed to edit user accounts!");
 define("NOT_ALLOWED_TO_CREATE_BRANCHES_TEXT","You are not allowed to create new branches!");
 define("PLEASE_LOGIN_TEXT","Please login first!");
 define("PAGE_NOT_FOUND_TEXT","Page not found!");

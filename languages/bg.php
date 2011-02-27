@@ -37,6 +37,7 @@ define("EVERYTHING_TEXT","всички");
 define("ONLY_CLIENTS_TEXT","само клиенти");
 define("CREATE_TEXT","Регистриране");
 define("NOT_ALLOWED_TO_CREATE_ACCOUNTS_TEXT","Нямате необходимите права да регистрирате нови потребители!");
+define("NOT_ALLOWED_TO_EDIT_ACCOUNTS_TEXT","Нямате необходимите права да редактирате профилите на потебителите!");
 define("NOT_ALLOWED_TO_CREATE_BRANCHES_TEXT","Нямате необходимите права да регистрирате нови клонове на компанията!");
 define("PLEASE_LOGIN_TEXT","Моля впишете се в системата!");
 define("PAGE_NOT_FOUND_TEXT","Страницата не е намерена!");
