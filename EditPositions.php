@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']['CanCreateAccounts']))
+if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] != "n")
 {
     $message="";
     $dbHandler=new dbHandler();
@@ -76,7 +76,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     </form>
 <?php
 }
-elseif(isset($_SESSION['LoggedIn']) && !User::CanCreateAccounts($_SESSION['userinfo']['CanCreateAccounts']))
+elseif(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] == "n")
 {
     echo NOT_ALLOWED_TO_CREATE_ACCOUNTS_TEXT;
 }

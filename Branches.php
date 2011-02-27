@@ -1,4 +1,6 @@
 <?php
+if(isset($_SESSION['LoggedIn']))
+{
     $dbHandler=new dbHandler();
     $dbHandler->dbConnect();
     $query="SELECT * FROM Branches";
@@ -39,3 +41,10 @@
     </tbody>
 </table>
 <a href="index.php?page=EditBranches"><?php echo ADD_NEW_BRANCH_TEXT ?></a>
+<?php
+}
+else
+{
+    echo PLEASE_LOGIN_TEXT;
+}
+?>
