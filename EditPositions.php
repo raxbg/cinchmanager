@@ -8,6 +8,8 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     {
         if($_POST['NewPositionName'] != NULL && $_POST['NewPositionName'] != "")
         {
+            $_POST['NewPositionName'] = mysql_real_escape_string($_POST['NewPositionName']);
+
             $query = "INSERT INTO Positions (Position) VALUES (\"{$_POST['NewPositionName']}\")";
             $dbHandler->ExecuteQuery($query);
             $message = "<span class=\"PositiveMessage\">".POSITION_ADDED_TEXT."</span>";
@@ -21,6 +23,9 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     {
         if($_POST['NewPositionName'] != NULL && $_POST['NewPositionName'] != "")
         {
+            $_POST['NewPositionName'] = mysql_real_escape_string($_POST['NewPositionName']);
+            $_POST['OldPosition'] = mysql_real_escape_string($_POST['OldPosition']);
+
             $query = "UPDATE Positions SET Position=\"{$_POST['NewPositionName']}\" WHERE Position=\"{$_POST['OldPosition']}\"";
             $dbHandler->ExecuteQuery($query);
             $message = "<span class=\"PositiveMessage\">".POSITION_UPDATED_TEXT."</span>";

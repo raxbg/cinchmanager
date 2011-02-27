@@ -9,6 +9,10 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         if($_POST['NewBranchName'] != NULL && $_POST['NewBranchName'] != ""&&
                 $_POST['NewBranchAddress'] != NULL && $_POST['NewBranchAddress'] != "")
         {
+            $_POST['NewBranchName'] = mysql_real_escape_string($_POST['NewBranchName']);
+            $_POST['NewBranchAddress'] = mysql_real_escape_string($_POST['NewBranchAddress']);
+            $_POST['BranchTelephone'] = mysql_real_escape_string($_POST['BranchTelephone']);
+
             $query = "INSERT INTO Branches (Name, Address, Telephone) VALUES (\"{$_POST['NewBranchName']}\",\"{$_POST['NewBranchAddress']}\",\"{$_POST['BranchTelephone']}\")";
             $dbHandler->ExecuteQuery($query);
             $message = "<span class=\"PositiveMessage\">".BRANCH_ADDED_TEXT."</span>";
@@ -23,6 +27,10 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         if($_POST['NewBranchName'] != NULL && $_POST['NewBranchName'] != ""&&
                 $_POST['NewBranchAddress'] != NULL && $_POST['NewBranchAddress'] != "")
         {
+            $_POST['NewBranchName'] = mysql_real_escape_string($_POST['NewBranchName']);
+            $_POST['NewBranchAddress'] = mysql_real_escape_string($_POST['NewBranchAddress']);
+            $_POST['BranchTelephone'] = mysql_real_escape_string($_POST['BranchTelephone']);
+
             $query = "UPDATE Branches SET Name=\"{$_POST['NewBranchName']}\", Address=\"{$_POST['NewBranchAddress']}\", Telephone=\"{$_POST['BranchTelephone']}\" WHERE ID=\"{$_POST['id']}\"";
             $dbHandler->ExecuteQuery($query);
             $message = "<span class=\"PositiveMessage\">".BRANCH_UPDATED_TEXT."</span>";
