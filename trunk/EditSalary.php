@@ -1,10 +1,26 @@
 <?php
-if(isset($_GET['id']))
+if(isset($_POST['NewSalary']))
+{
+    $dbHandler= new dbHandler();
+    $dbHandler->dbConnect();
+    $date=mysql_real_escape_string($_POST['date']);
+    $oldDate=mysql_real_escape_string($_POST['oldDate']);
+    $query="UPDATE Salaries
+            SET ToDate={$date};
+            WHERE UserID={$id} AND FromDate={$oldDate}";
+    $dbHandler->ExecuteQuery($query);
+    $query="INSERT INTO Salaries (UserID, FromDate)
+            Values ({$id},{$date})";
+    $dbHandler->ExecuteQuery($query);
+    $dbHandler->dbDisconnect();
+    echo "Done";
+}
+elseif(isset($_GET['id']))
 {
     $dbHandler= new dbHandler();
     $dbHandler->dbConnect();
     $id=mysql_real_escape_string($_GET['id']);
-    $query="SELECT Users.FirstName, Users.LastName,Branches.Name AS Branch, Positions.Position, Salaries.Amount AS Salary, Salaries.FromDate
+    $query="SELECT Users.ID, Users.FirstName, Users.LastName,Branches.Name AS Branch, Positions.Position, Salaries.Amount AS Salary, Salaries.FromDate
             FROM Salaries
             LEFT JOIN Users
             ON Users.ID = Salaries.UserID
@@ -20,16 +36,18 @@ if(isset($_GET['id']))
     $nextMonth = mktime(0,0,0,date("m")+1,1,date("Y"));
     $NextMonth = date("d-m-Y", $nextMonth)
 ?>
-    <form action="post">
+    <form method="post">
         <h1>Edit salary</h1>
+        <input type="hidden" name="id" value="<?php echo $Employee['FirstName']; ?>">
+        <input type="hidden" name="oldDate" value="<?php echo $Employee['FromDate']; ?>">
         Emplye name:<br />
-        <input type="text" readonly="readonly" value="<?php echo $Employee['FirstName']." ".$Employee['LastName']; ?>" name="name"><br />
+        <input type="text" readonly="readonly" name="name" value="<?php echo $Employee['FirstName']." ".$Employee['LastName']; ?>"><br />
         Branch:<br />
-        <input type="text" readonly="readonly" value="<?php echo $Employee['Branch'] ?>" name="branch"><br />
+        <input type="text" readonly="readonly" name="branch" value="<?php echo $Employee['Branch']; ?>"><br />
         Position:<br />
-        <input type="text" readonly="readonly" value="<?php echo $Employee['Position'] ?>" name="position"><br />
+        <input type="text" readonly="readonly" name="position" value="<?php echo $Employee['Position']; ?>"><br />
         New salary:<br />
-        <input type="text" name="NewSalary" value="<?php echo $Employee['Salary'] ?>"/><br />
+        <input type="text" name="NewSalary" value="<?php echo $Employee['Salary']; ?>"/><br />
         Date of change:<br />
         <input type="text" name="date" value="<?php echo $NextMonth;?>"/><br />
         <input type="submit" value="Edit" />
