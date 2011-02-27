@@ -61,6 +61,7 @@ FOREIGN KEY (PositionID) REFERENCES Positions(ID),
 ManagerID int,
 FOREIGN KEY (ManagerID) REFERENCES Users(ID),
 CanCreateAccounts CHAR(1),
+CanCreateTPB CHAR(1),
 AssignmentDay DATE NOT NULL,
 EndDate DATE
 ) ENGINE=InnoDB";
