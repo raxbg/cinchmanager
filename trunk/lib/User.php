@@ -160,15 +160,22 @@ class User
         }
     }
 
-    public static function CreateEmployee($userID,$positionID,$managerID,$canCreateAccounts,$assignmentDay)
+    public static function CreateEmployee($userID,$positionID,$managerID,$canCreateAccounts,$canCreateTB,$assignmentDay)
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
         $date  = date("Y-m-d");
         $dbHandler->ExecuteQuery("BEGIN");
-
-        $createEmployee = "INSERT INTO Employees (UserID,PositionID,ManagerID,CanCreateAccounts,AssignmentDay)
-        VALUES ('{$userID}','{$positionID}','{$managerID}','{$canCreateAccounts}','{$assignmentDay}')";
+        if ($managerID == "none")
+        {
+            $createEmployee = "INSERT INTO Employees (UserID,PositionID,CanCreateAccounts,CanCreateTPB,AssignmentDay)
+        VALUES ('{$userID}','{$positionID}','{$canCreateAccounts}','{$canCreateTB}','{$assignmentDay}')";
+        }
+        else
+        {
+            $createEmployee = "INSERT INTO Employees (UserID,PositionID,ManagerID,CanCreateAccounts,CanCreateTPB,AssignmentDay)
+        VALUES ('{$userID}','{$positionID}','{$managerID}','{$canCreateAccounts}','{$canCreateTB}','{$assignmentDay}')";
+        }
 
         $IsQuerySuccessful = $dbHandler->ExecuteQuery($createEmployee);
         if ($IsQuerySuccessful)

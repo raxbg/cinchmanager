@@ -1,3 +1,4 @@
+var t;
 function CheckAccount()
 {
     var acc = document.getElementById("EmployeeOrClient");
@@ -28,9 +29,12 @@ function checkEmail()
     }
     t = setTimeout("checkEmail()",500);
 }
+
 function stopCheck()
 {
-    setTimeout("clearTimeout(t)",600);
+    clearTimeout(t);
+    document.getElementById("ValidMail").style.display="none";
+    document.getElementById("InvalidMail").style.display="none";
 }
 
 function Init()
@@ -39,5 +43,5 @@ function Init()
     document.getElementById("ValidMail").style.width="100%";
     document.getElementById("InvalidMail").style.width="100%";
     document.getElementById("ValidMail").style.display="none";
-    document.getElementById("InvalidMail").style.display="inline";
+    document.getElementById("InvalidMail").style.display="none";
 }

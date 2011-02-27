@@ -9,7 +9,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
         if($_POST['EmployeeOrClient'] == "e" && $UserIsCreated != false)
         {
             $userID = $UserIsCreated;
-            $EmployeeIsCreated = User::CreateEmployee($userID, $_POST['PositionID'], $_POST['ManagerID'], $_POST['CanCreateAccounts'], $_POST['AssignmentDay']);
+            $EmployeeIsCreated = User::CreateEmployee($userID, $_POST['PositionID'], $_POST['ManagerID'], $_POST['CanCreateAccounts'], $_POST['CanCreateTB'], $_POST['AssignmentDay']);
             if($EmployeeIsCreated)
             {
                 echo USER_SUCCESSFULLY_CREATED_TEXT;
@@ -48,7 +48,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
     <h2><?php echo ACCOUNT_INFORMATION_TEXT; ?></h2>
     <?php echo EMAIL_TEXT; ?><br />
-    <input type="text" name="Email" id="Email" onfocus="checkEmail()" onblur="stopCheck()"/>
+    <input type="text" name="Email" id="Email" onfocus="checkEmail()" onblur="setTimeout('stopCheck()',600)"/>
     <span class="PositiveMessage" id="ValidMail"><?php echo VALID_MAIL_TEXT; ?></span>
     <span class="NegativeMessage" id="InvalidMail"><?php echo INVALID_MAIL_TEXT; ?></span>
     <br />
@@ -99,7 +99,7 @@ if(isset($_SESSION['LoggedIn']) && User::CanCreateAccounts($_SESSION['userinfo']
             <option value="a">All</option>
         </select><br />
         <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
-        <select name="CanCreateTitles">
+        <select name="CanCreateTB">
             <option value="n">No</option>
             <option value="y">Yes</option>
         </select><br />
