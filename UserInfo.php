@@ -14,21 +14,53 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
                 WHERE Users.ID ={$id}";
     $result = $dbHandler->ExecuteQuery($query);
     $User=mysql_fetch_array($result);
+    $Salaries="";
+    $query="SELECT * FROM Salaries WHERE UserID ={$id}";
+    $result = $dbHandler->ExecuteQuery($query);
+    while($salary = mysql_fetch_array($result))
+    {
+        if ($i%2==0)
+        {
+            $class="class=\"odd\"";
+        }
+        else
+        {
+            $class="class=\"even\"";
+        }
+        $i++;
+
+        $Salaries.="<tr {$class}><td>{$salary['Amount']}</td>\n".
+                    "<td>{$salary['FromDate']}</td>\n".
+                    "<td>{$salary['ToDate']}</td>\n".
+                    "</tr>";
+    }
     $dbHandler->dbDisconnect();
 ?>
     <div class="UserInfo">
-        <img alt="Georgi Antonov" src="avatars/user_1.jpg" />
-        <h2 id="name"><?php echo $User['Title']." ".$User['FirstName']." ".$User['SecondName']." ".$User['LastName']; ?></h2>
-        <span><b><?php echo $User['Position'];?></b><?php echo " at ".COMPANY_NAME." ".$User['Branch'];?></span><br /><br />
-        <div>
-            <b>Telephone:</b>0883417986<br />
-            <b>Email:</b>antonov_g@gsvision.eu
+        <!-- TRqbva da ima proverka dali faila sy6testvuva -->
+        <img alt="<?php echo $User['FirstName']." ".$User['LastName']; ?>" src="avatars/user_<?php echo $User['ID']; ?>.jpg" />
+        <h2 id="name">
+            <?php echo $User['Title']." ".$User['FirstName']." ".$User['SecondName']." ".$User['LastName']; ?>
+        </h2>
+        <span><b><?php echo $User['Position'];?></b> <?php echo AT_TEXT." ".COMPANY_NAME." ".$User['Branch'];?></span>
+        <div id="contacts">
+            <?php 
+            if($User['Telephone']!=null)
+            {
+                echo "<b>".TELEPHONE_TEXT."</b> {$User['Telephone']}<br />";
+            }
+            if($User['Email']!=null)
+            {
+                echo "<b>".EMAIL_TEXT."</b> {$User['Email']}<br />";
+            }
+         ?>
         </div>
+        <?php if($User['Address']!=null){ ?>
         <div id="address">
-            <h4>Address</h4>
-            Veliko turnovo<br />
-            ul. Stoyancho Ahtar 10
+            <h4><?php echo ADDRESS_TEXT; ?></h4>
+            <?php echo $User['Address']; ?>
         </div>
+        <?php } ?>
         <h3>Projects</h3>
         <table class="cooltable">
             <thead>
@@ -51,28 +83,21 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
                 </tr>
             </tbody>
         </table>
-        <h3>Salary</h3>
-        <table class="cooltable">
-            <thead>
-                <tr>
-                    <td>Salary</td>
-                    <td>From</td>
-                    <td>To</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="odd">
-                    <td>1000</td>
-                    <td>01.01.2011</td>
-                    <td>01.02.2011</td>
-                </tr>
-                <tr class="even">
-                    <td>2000</td>
-                    <td>01.02.2011</td>
-                    <td> - </td>
-                </tr>
-            </tbody>
-        </table>
+        <?php if($Salaries!=""){ //trqbva da ima o6te usloviq za pravata?>
+            <h3><?php echo SALARY_TEXT; ?></h3>
+            <table class="cooltable">
+                <thead>
+                    <tr>
+                        <td><?php echo SALARY_TEXT; ?></td>
+                        <td><?php echo FROM_DATE1_TEXT; ?></td>
+                        <td><?php echo TO_DATE_TEXT; ?></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php echo $Salaries; ?>
+                </tbody>
+            </table>
+        <?php } ?>
         <h3>Payments</h3>
         <table class="cooltable">
             <thead>

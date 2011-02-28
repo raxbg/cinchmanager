@@ -221,6 +221,9 @@ clear:left;
 div.UserInfo #address{
 margin:10px 0;
 }
+div.UserInfo #contacts{
+margin:10px 0;
+}
 h3{
 clear:both;
 }
