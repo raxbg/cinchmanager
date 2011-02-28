@@ -9,7 +9,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         if($_POST['EmployeeOrClient'] == "e" && $UserIsCreated != false)
         {
             $userID = $UserIsCreated;
-            $EmployeeIsCreated = User::CreateEmployee($userID, $_POST['PositionID'], $_POST['ManagerID'], $_POST['CanCreateAccounts'], $_POST['CanCreateTB'], $_POST['AssignmentDay']);
+            $EmployeeIsCreated = User::CreateEmployee($userID, $_POST['PositionID'], 
+                    $_POST['ManagerID'], $_POST['CanCreateAccounts'], $_POST['IsAdmin'], $_POST['AssignmentDay']);
             if($EmployeeIsCreated)
             {
                 if (Environment::SaveAvatar($userID))
@@ -117,7 +118,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             <option value="a">All</option>
         </select><br />
         <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
-        <select name="CanCreateTB">
+        <select name="IsAdmin">
             <option value="n">No</option>
             <option value="y">Yes</option>
         </select><br />
