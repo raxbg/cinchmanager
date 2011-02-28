@@ -7,7 +7,7 @@ define("ADDRESS_TEXT","Address:");
 define("ADD_NEW_BRANCH_TEXT","Add new branch");
 define("ADD_TEXT","Add");
 define("ASSIGNMENT_DAY_TEXT","Assignment date:");
-define("AVATAR_TEXT","Avatar:");
+define("AVATAR_TEXT","Photo:");
 define("BRANCH1_TEXT","Branch");
 define("BRANCHES_TEXT","Branches");
 define("BRANCH_ADDED_TEXT","New branch is added");

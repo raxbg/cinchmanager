@@ -7,7 +7,7 @@ define("ADDRESS_TEXT","Адрес:");
 define("ADD_NEW_BRANCH_TEXT","Добавяне на клон");
 define("ADD_TEXT","Добавяне");
 define("ASSIGNMENT_DAY_TEXT","Дата на назначаване:");
-define("AVATAR_TEXT","Аватар:");
+define("AVATAR_TEXT","Снимка:");
 define("BRANCH1_TEXT","Клон");
 define("BRANCHES_TEXT","Клонове");
 define("BRANCH_ADDED_TEXT","Клонът е добавен");
