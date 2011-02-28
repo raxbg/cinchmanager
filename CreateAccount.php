@@ -12,12 +12,28 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             $EmployeeIsCreated = User::CreateEmployee($userID, $_POST['PositionID'], $_POST['ManagerID'], $_POST['CanCreateAccounts'], $_POST['CanCreateTB'], $_POST['AssignmentDay']);
             if($EmployeeIsCreated)
             {
+                if (Environment::SaveAvatar($userID))
+                {
+                    echo USER_SUCCESSFULLY_CREATED_TEXT;
+                }
+                else
+                {
+                    echo FAILED_TO_SAVE_AVATAR_TEXT;
+                }
                 echo USER_SUCCESSFULLY_CREATED_TEXT;
             }
         }
         elseif($UserIsCreated)
         {
-            echo USER_SUCCESSFULLY_CREATED_TEXT;
+            $userID = $UserIsCreated;
+            if (Environment::SaveAvatar($userID))
+            {
+                echo USER_SUCCESSFULLY_CREATED_TEXT;
+            }
+            else
+            {
+                echo FAILED_TO_SAVE_AVATAR_TEXT;
+            }
         }
         else
         {
@@ -44,7 +60,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         $today = date("Y-m-d");
 ?>
 <script type="text/javascript" src="js/AddEmployees.js"></script>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <input type="hidden" name="CreatorID" value="<?php echo $_SESSION['userinfo']['ID'];?>">
     <h2><?php echo ACCOUNT_INFORMATION_TEXT; ?></h2>
     <?php echo EMAIL_TEXT; ?><br />
@@ -66,6 +82,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
     <input type="radio" name="Gender" value="m"><?php echo MALE_TEXT;?>
     <input type="radio" name="Gender" value="f"><?php echo FEMALE_TEXT;?>
     <br />
+    <?php echo AVATAR_TEXT;?><br />
+    <input type="file" name="Avatar"><br />
     <?php echo TELEPHONE_TEXT;?><br />
     <input type="text" name="Telephone" /><br />
     <?php echo BRANCH_TEXT;?><br />
