@@ -67,4 +67,6 @@ define("SALARY_UPDATED_TEXT","Salary is updated");
 define("FROM_DATE_TEXT","From date:");
 define("EMPLOYEE_NAME_TEXT","Name:");
 define("CREATE_ACCOUNT_TEXT","Create new account");
+define("FAILED_TO_SAVE_AVATAR_TEXT","Failed to save user avatar.");
+define("AVATAR_TEXT","Avatar:");
 ?>

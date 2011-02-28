@@ -136,33 +136,33 @@ class User
             $mailSent = Email::SendEmail($email,$message);
             if($mailSent)
             {
-                if($employeeOrClient == "e")
+                $query = "SELECT ID FROM Users WHERE Email='{$email}'";
+                $result = $dbHandler->ExecuteQuery($query);
+                if($result)
                 {
-                    $query = "SELECT ID FROM Users WHERE Email='{$email}'";
-                    $result = $dbHandler->ExecuteQuery($query);
-                    if($result)
-                    {
-                        $userID = mysql_fetch_row($result);
-                        $dbHandler->ExecuteQuery("COMMIT");
-                        $dbHandler->dbDisconnect();
-                        return $userID[0];
-                    }
-                    else
-                    {
-                        echo "Due to problems with mysql we couldn't completely create the employee account.";
-                        echo "Please try the procedure again.";
-                        echo mysql_error();
-                        $dbHandler->ExecuteQuery("ROLLBACK");
-                        $dbHandler->dbDisconnect();
-                        return false;
-                    }
+                    $userID = mysql_fetch_row($result);
+                    $dbHandler->ExecuteQuery("COMMIT");
+                    $dbHandler->dbDisconnect();
+                    return $userID[0];
                 }
                 else
                 {
-                    $dbHandler->ExecuteQuery("COMMIT");
+                    echo "Due to problems with mysql we couldn't create the account completely.";
+                    echo "Please try the procedure again.";
+                    echo mysql_error();
+                    $dbHandler->ExecuteQuery("ROLLBACK");
                     $dbHandler->dbDisconnect();
-                    return true;
+                    return false;
                 }
+            }
+            else
+            {
+                echo "Failed to send user's password to the given email.";
+                echo "Registration was canceled.";
+                echo mysql_error();
+                $dbHandler->ExecuteQuery("ROLLBACK");
+                $dbHandler->dbDisconnect();
+                return false;
             }
         }
         else

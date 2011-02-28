@@ -69,4 +69,6 @@ define("FROM_DATE_TEXT","От дата:");
 define("EMPLOYEE_NAME_TEXT","Име на служителя:");
 define("EDIT_SALARY","Промяна на заплатата");
 define("CREATE_ACCOUNT_TEXT","Регистрация на нов акаунт");
+define("FAILED_TO_SAVE_AVATAR_TEXT","Потребителският аватар ен може да бъде записан.");
+define("AVATAR_TEXT","Аватар:");
 ?>
