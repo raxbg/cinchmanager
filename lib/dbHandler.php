@@ -79,19 +79,19 @@ class dbHandler
         return $this->con;
     }
 
-    public function MakeSelectOptions($query, $key, $fields,$mustSelect)
+    public function MakeSelectOptions($query, $key, $fields,$mustSelect = NULL)
     {
         $result = $this->ExecuteQuery($query);
         while($option = mysql_fetch_array($result))
         {
             if($mustSelect != NULL)
             {
-                $options.="<option value=\"{$option[$key]}";
+                $options.="<option value=\"{$option[$key]}\"";
                 if ($option[$key] == $mustSelect)
                 {
-                    $options .= " selected=\"true\"";
+                    $options .= " selected=\"selected\"";
                 }
-                $options .= "\">";
+                $options .= ">";
             }
             else
             {
