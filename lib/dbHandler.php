@@ -50,7 +50,7 @@ class dbHandler
         $password = $this->EncryptPwd($password);
         $query = "SELECT Users.*,
         Titles.Title,
-        Employees.CanCreateAccounts
+        Employees.*
         FROM Users
         LEFT JOIN Titles 
         ON Users.TitleID = Titles.ID
