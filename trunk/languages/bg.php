@@ -1,7 +1,7 @@
 <?php
 define("ACCOUNT_INFORMATION_TEXT","Данни за акаунта");
 define("ACC_CAN_CREATE_TEXT","Чиновникът може да регистрира:");
-define("ACC_CAN_CREATE_TITLES_TEXT","Администраторско права:");
+define("ACC_CAN_CREATE_TITLES_TEXT","Администраторски права:");
 define("ADDRESS1_TEXT","Адрес");
 define("ADDRESS_TEXT","Адрес:");
 define("ADD_NEW_BRANCH_TEXT","Добавяне на клон");

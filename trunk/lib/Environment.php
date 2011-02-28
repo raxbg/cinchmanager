@@ -65,44 +65,51 @@ class Environment
 
     public static function SaveAvatar($userID)
     {
-        $filename = $_FILES['Avatar']['tmp_name'];
-        $fileExtension = substr(strrchr($_FILES['Avatar']['name'],"."),1);
-
-        list($width, $height) = getimagesize($filename);
-        if ($width>240)
+        if(is_null($_FILES['Avatar']['name']) || $_FILES['Avatar']['name'] == "")
         {
-                $percent = $width/240;
+            return false;
         }
         else
         {
-                $percent = 1;
-        }
-        $new_width = $width / $percent;
-        $new_height = $height / $percent;
+            $filename = $_FILES['Avatar']['tmp_name'];
+            $fileExtension = substr(strrchr($_FILES['Avatar']['name'],"."),1);
 
-        $image_p = imagecreatetruecolor($new_width, $new_height);
-        switch ($fileExtension)
-        {
-            case "jpg":
-                $image = imagecreatefromjpeg($filename);
-                break;
-            case "jpeg":
-                $image = imagecreatefromjpeg($filename);
-                break;
-            case "png":
-                $image = imagecreatefrompng($filename);
-                break;
-            case "gif":
-                $image = imagecreatefromgif($filename);
-                break;
-            default:
-                return false;
-        }
-        imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+            list($width, $height) = getimagesize($filename);
+            if ($width>120)
+            {
+                    $percent = $width/120;
+            }
+            else
+            {
+                    $percent = 1;
+            }
+            $new_width = $width / $percent;
+            $new_height = $height / $percent;
 
-        $filename = HOME_FOLDER."avatars/user_{$userID}.jpg";
-        imagejpeg($image_p,$filename,100);
-        return true;
+            $image_p = imagecreatetruecolor($new_width, $new_height);
+            switch ($fileExtension)
+            {
+                case "jpg":
+                    $image = imagecreatefromjpeg($filename);
+                    break;
+                case "jpeg":
+                    $image = imagecreatefromjpeg($filename);
+                    break;
+                case "png":
+                    $image = imagecreatefrompng($filename);
+                    break;
+                case "gif":
+                    $image = imagecreatefromgif($filename);
+                    break;
+                default:
+                    return false;
+            }
+            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+
+            $filename = HOME_FOLDER."avatars/user_{$userID}.jpg";
+            imagejpeg($image_p,$filename,100);
+            return true;
+        }
     }
 }
 ?>
