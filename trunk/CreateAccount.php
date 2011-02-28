@@ -119,8 +119,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         </select><br />
         <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
         <select name="IsAdmin">
-            <option value="n">No</option>
-            <option value="y">Yes</option>
+            <option value="false">No</option>
+            <option value="true">Yes</option>
         </select><br />
         <?php echo ASSIGNMENT_DAY_TEXT;?><br />
         <input type="text" name="AssignmentDay" value="<?php echo $today;?>"/><br />

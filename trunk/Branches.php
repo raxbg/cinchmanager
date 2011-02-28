@@ -21,8 +21,12 @@ if(isset($_SESSION['LoggedIn']))
 
         $Branches.="<tr {$class}><td>{$branch['Name']}</td>\n".
         "<td>{$branch['Address']}</td>\n".
-        "<td>{$branch['Telephone']}</td>\n".
-        "<td class=\"editBtn\"><a href=\"index.php?page=EditBranches&id={$branch['ID']}\"><img src=\"img/edit.gif\"></a></td></tr>";
+        "<td>{$branch['Telephone']}</td>\n";
+        if($_SESSION['userinfo']['IsAdmin'])
+        {
+            $Branches .= "<td class=\"editBtn\"><a href=\"index.php?page=EditBranches&id={$branch['ID']}\"><img src=\"img/edit.gif\"></a></td>\n";
+        }
+        $Branches .= "</tr>";
     }
     $dbHandler->dbDisconnect();
 ?>
@@ -33,7 +37,12 @@ if(isset($_SESSION['LoggedIn']))
             <td><?php echo NAME_TEXT ?></td>
             <td><?php echo ADDRESS1_TEXT ?></td>
             <td><?php echo TELEPHONE1_TEXT ?></td>
-            <td><?php echo EDIT_TEXT ?></td>
+            <?php
+            if($_SESSION['userinfo']['IsAdmin'])
+            {
+                echo "<td>".EDIT_TEXT."</td>";
+            }
+            ?>
         </tr>
     </thead>
     <tbody>
