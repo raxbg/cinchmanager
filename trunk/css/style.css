@@ -12,6 +12,12 @@ a{
 color:#444;
 text-decoration: none;
 }
+h3{
+margin:0;
+}
+h4{
+margin:0;
+}
 #header {
 background: url("../img/HeaderBG.png") no-repeat;
 height: 125px;
@@ -190,3 +196,32 @@ text-decoration: none;
 #cancelBtn{
     display:none;
 }
+/* UserInfo */
+div.UserInfo{
+width:500px;
+padding:10px;
+border:1px solid #ccc;
+background:#fff;
+position:absolute;
+top:200px;
+margin:0 auto;
+}
+#name{
+margin:0;
+}
+div.UserInfo img{
+width:120px;
+height:160px;
+padding:5px;
+margin:0 10px 0 0;
+border:1px solid #ccc;
+float:left;
+clear:left;
+}
+div.UserInfo #address{
+margin:10px 0;
+}
+h3{
+clear:both;
+}
+/* !UserInfo */
