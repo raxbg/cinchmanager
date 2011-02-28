@@ -100,7 +100,7 @@ class Environment
         }
         imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
-        $filename = HOME_FOLDER."avatars/{$userID}.jpg";
+        $filename = HOME_FOLDER."avatars/user_{$userID}.jpg";
         imagejpeg($image_p,$filename,100);
         return true;
     }
