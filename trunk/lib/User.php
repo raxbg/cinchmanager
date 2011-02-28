@@ -174,7 +174,7 @@ class User
         }
     }
 
-    public static function CreateEmployee($userID,$positionID,$managerID,$canCreateAccounts,$canCreateTPB,$assignmentDay)
+    public static function CreateEmployee($userID,$positionID,$managerID,$canCreateAccounts,$isAdmin,$assignmentDay)
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
@@ -188,8 +188,8 @@ class User
 
         if ($managerID == "none")
         {
-            $createEmployee = "INSERT INTO Employees (UserID,PositionID,CanCreateAccounts,CanCreateTPB,AssignmentDay)
-        VALUES ('{$userID}','{$positionID}','{$canCreateAccounts}','{$canCreateTPB}','{$assignmentDay}')";
+            $createEmployee = "INSERT INTO Employees (UserID,PositionID,CanCreateAccounts,IsAdmin,AssignmentDay)
+        VALUES ('{$userID}','{$positionID}','{$canCreateAccounts}','{$isAdmin}','{$assignmentDay}')";
         }
         else
         {
