@@ -43,6 +43,9 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
     }
     else
     {
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+        $id=mysql_real_escape_string($_GET['id']);
         $titlesQuery = "SELECT * FROM Titles";
         $branchesQuery = "SELECT ID,Name FROM Branches";
         $positionsQuery = "SELECT * FROM Positions";
@@ -51,16 +54,14 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
                         LEFT JOIN Users
                         ON Employees.UserID = Users.ID";
         $userinfoQuery = "SELECT Users.*,
-        Titles.Title,
-        Employees.*
-        FROM Users
-        LEFT JOIN Titles
-        ON Users.TitleID = Titles.ID
-        LEFT JOIN Employees ON Users.ID = Employees.UserID
-        WHERE Users.ID = '{$_GET['id']}'";
+                        Titles.Title,
+                        Employees.*
+                        FROM Users
+                        LEFT JOIN Titles
+                        ON Users.TitleID = Titles.ID
+                        LEFT JOIN Employees ON Users.ID = Employees.UserID
+                        WHERE Users.ID = '{$id}'";
 
-        $dbHandler = new dbHandler();
-        $dbHandler->dbConnect();
         $userinfo = $dbHandler->ExecuteQuery($userinfoQuery);
         $titles = $dbHandler->MakeSelectOptions($titlesQuery, "ID", array("Title"),$userinfo['TitleID']);
         $branches = $dbHandler->MakeSelectOptions($branchesQuery, "ID", array("Name"),$userinfo['BranchID']);

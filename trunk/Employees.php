@@ -39,7 +39,7 @@ if(isset($_SESSION['LoggedIn']))
         "<td>{$employee['Telephone']}</td>\n";
         if($CanCreateAndEditAccounts)
         {
-            $Employees.="<td class=\"editBtn\"><a href=\"index.php?page=EditEmployees&id={$employee['ID']}\"><img src=\"img/edit.gif\"></a></td>\n";
+            $Employees.="<td class=\"editBtn\"><a href=\"index.php?page=EditAccount&id={$employee['ID']}\"><img src=\"img/edit.gif\"></a></td>\n";
         }
         $Employees.="</tr>\n";
     }
