@@ -95,10 +95,22 @@ class Environment
                 case "jpeg":
                     $image = imagecreatefromjpeg($filename);
                     break;
+               case "JPG":
+                    $image = imagecreatefromjpeg($filename);
+                    break;
+                case "JPEG":
+                    $image = imagecreatefromjpeg($filename);
+                    break;
                 case "png":
                     $image = imagecreatefrompng($filename);
                     break;
+                case "PNG":
+                    $image = imagecreatefrompng($filename);
+                    break;
                 case "gif":
+                    $image = imagecreatefromgif($filename);
+                    break;
+                case "GIF":
                     $image = imagecreatefromgif($filename);
                     break;
                 default:

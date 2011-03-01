@@ -57,12 +57,12 @@ PRIMARY KEY(UserID),
 FOREIGN KEY (UserID) REFERENCES Users(ID),
 PositionID int NOT NULL,
 FOREIGN KEY (PositionID) REFERENCES Positions(ID),
-ManagerID int,
-FOREIGN KEY (ManagerID) REFERENCES Users(ID),
 CanCreateAccounts CHAR(1),
 IsAdmin BOOLEAN,
 AssignmentDay DATE NOT NULL,
-EndDate DATE
+EndDate DATE,
+lft int NOT NULL,
+rgt int NOT NULL
 ) ENGINE=InnoDB";
 
 $Queries['createLogins'] = "CREATE TABLE Logins
