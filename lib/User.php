@@ -226,7 +226,7 @@ class User
         }
     }
 
-    public function AddToHierarchy($managerID,$userID,$position,$canCreateAccounts,$isAdmin,$assignmentDay)
+    public function AddToHierarchy($managerID,$userID,$position,$canCreateAccounts,$isAdmin,$assignmentDay,$salary)
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
@@ -237,9 +237,13 @@ class User
         $canCreateAccounts=mysql_real_escape_string($canCreateAccounts);
         $isAdmin=mysql_real_escape_string($isAdmin);
         $assignmentDay=mysql_real_escape_string($assignmentDay);
+        $salary=mysql_real_escape_string($salary);
         $myLeftResult = $dbHandler->ExecuteQuery("SELECT lft FROM Employees WHERE UserID = {$managerID}");
         $myLeft=mysql_fetch_row($myLeftResult);
         $myLeft = $myLeft[0];
+        $query="INSERT INTO Salaries (UserID, FromDate, Amount)
+                Values ('{$userID}','{$assignmentDay}','{$salary}')";
+        $dbHandler->ExecuteQuery($query);
         $dbHandler->ExecuteQuery("UPDATE Employees SET rgt = rgt + 2 WHERE rgt > {$myLeft}");
         $dbHandler->ExecuteQuery("UPDATE Employees SET lft = lft + 2 WHERE lft > {$myLeft}");
         $query="INSERT INTO Employees(UserID, PositionID, CanCreateAccounts,IsAdmin, AssignmentDay, lft, rgt)
@@ -288,16 +292,17 @@ class User
             AND node.UserID='{$employee}'
             ORDER BY parent.lft";
 
-        $dbHandler->ExecuteQuery($query);
-        $dbHandler->dbDisconnect();
+        $result=$dbHandler->ExecuteQuery($query);
         while($manager=mysql_fetch_row($result))
         {
             if($manager[0]==$Manager)
             {
+                $dbHandler->dbDisconnect();
                 return true;
-            }
-            return false;
+            }    
         }
+        $dbHandler->dbDisconnect();
+        return false;
     }
 }
 ?>

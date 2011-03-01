@@ -59,7 +59,8 @@ define("PLEASE_LOGIN_TEXT","Моля впишете се в системата!"
 define("POSITION1_TEXT","Позиция");
 define("POSITION_TEXT","Позиция:");
 define("REMEMBER_TEXT", "Запомни ме");
-define("SALARY_TEXT","Заплата");
+define("SALARY_TEXT","Заплата:");
+define("SALARY1_TEXT","Заплата");
 define("SALARY_UPDATED_TEXT","Заплатата е променена");
 define("SECOND_NAME_TEXT","Бащино име:");
 define("TELEPHONE1_TEXT","Телефон");
