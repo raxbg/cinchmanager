@@ -83,12 +83,13 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
                 </tr>
             </tbody>
         </table>
-        <?php if($Salaries!=""){ //trqbva da ima o6te usloviq za pravata?>
+
+        <?php if((User::IsXManagerOfY($_GET['id'],$_SESSION['userinfo']['ID'])||$_GET['id']==$_SESSION['userinfo']['ID'])&&($Salaries!="")){?>
             <h3><?php echo SALARY_TEXT; ?></h3>
             <table class="cooltable">
                 <thead>
                     <tr>
-                        <td><?php echo SALARY_TEXT; ?></td>
+                        <td><?php echo SALARY1_TEXT; ?></td>
                         <td><?php echo FROM_DATE1_TEXT; ?></td>
                         <td><?php echo TO_DATE_TEXT; ?></td>
                     </tr>
@@ -98,6 +99,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
                 </tbody>
             </table>
         <?php } ?>
+
         <h3>Payments</h3>
         <table class="cooltable">
             <thead>

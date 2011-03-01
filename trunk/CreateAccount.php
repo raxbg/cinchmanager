@@ -9,7 +9,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         if($_POST['EmployeeOrClient'] == "e" && $UserIsCreated != false)
         {
             $userID = $UserIsCreated;
-            $EmployeeIsCreated = User::AddToHierarchy($_POST['ManagerID'],$userID,$_POST['PositionID'],$_POST['CanCreateAccounts'],$_POST['IsAdmin'],$_POST['AssignmentDay']);
+            $EmployeeIsCreated = User::AddToHierarchy($_POST['ManagerID'],$userID,$_POST['PositionID'],$_POST['CanCreateAccounts'],$_POST['IsAdmin'],$_POST['AssignmentDay'],$_POST['Salary']);
             if($EmployeeIsCreated)
             {
                 if (Environment::SaveAvatar($userID))
@@ -123,6 +123,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         </select><br />
         <?php echo ASSIGNMENT_DAY_TEXT;?><br />
         <input type="text" name="AssignmentDay" value="<?php echo $today;?>"/><br />
+        <?php echo SALARY_TEXT;?><br />
+        <input type="text" name="Salary" value="00.00"/><br />
     </div>
     <?php echo DEFAULT_LANGUAGE_TEXT;?><br />
     <select name="DefaultLanguage">

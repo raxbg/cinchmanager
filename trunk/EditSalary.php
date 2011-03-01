@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] != "n")
+if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] != "n" && User::IsXManagerOfY($_GET['id'],$_SESSION['userinfo']['ID']))
 {
     if(isset($_POST['NewSalary']))
     {
@@ -75,7 +75,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         echo EMPLOYEE_NOT_FOUND;
     }
 }
-elseif(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] == "n")
+elseif(isset($_SESSION['LoggedIn']))
 {
     echo NOT_ALLOWED_TO_EDIT_ACCOUNTS_TEXT;
 }
