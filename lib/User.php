@@ -173,7 +173,7 @@ class User
           return false;
         }
     }
-
+    //ve4e ne se izpolzva
     public static function CreateEmployee($userID,$positionID,$managerID,$canCreateAccounts,$isAdmin,$assignmentDay)
     {
         $dbHandler = new dbHandler();
@@ -222,6 +222,80 @@ class User
         }
         else
         {
+            return false;
+        }
+    }
+
+    public function AddToHierarchy($managerID,$userID,$position,$canCreateAccounts,$isAdmin,$assignmentDay)
+    {
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+
+        $managerID=mysql_real_escape_string($managerID);
+        $userID=mysql_real_escape_string($userID);
+        $position=mysql_real_escape_string($position);
+        $canCreateAccounts=mysql_real_escape_string($canCreateAccounts);
+        $isAdmin=mysql_real_escape_string($isAdmin);
+        $assignmentDay=mysql_real_escape_string($assignmentDay);
+        $myLeftResult = $dbHandler->ExecuteQuery("SELECT lft FROM Employees WHERE UserID = {$managerID}");
+        $myLeft=mysql_fetch_row($myLeftResult);
+        $myLeft = $myLeft[0];
+        $dbHandler->ExecuteQuery("UPDATE Employees SET rgt = rgt + 2 WHERE rgt > {$myLeft}");
+        $dbHandler->ExecuteQuery("UPDATE Employees SET lft = lft + 2 WHERE lft > {$myLeft}");
+        $query="INSERT INTO Employees(UserID, PositionID, CanCreateAccounts,IsAdmin, AssignmentDay, lft, rgt)
+            VALUES('{$userID}', '{$position}','{$canCreateAccounts}', '{$isAdmin}','{$assignmentDay}', {$myLeft} + 1, {$myLeft} + 2)";
+        $dbHandler->ExecuteQuery($query);
+        if ($IsQuerySuccessful)
+        {
+            return true;
+        }
+        else
+        {
+            return true;
+        }
+        $dbHandler->dbDisconnect();
+    }
+
+    public function MoveInHierarchy()
+    {
+        //ne6to gyrmi
+        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft +1 FROM Employees
+            WHERE UserID=20;
+
+            SELECT @myNewLeft := lft FROM Employees
+            WHERE UserID = 14;
+            SELECT @Step=@myNewLeft-@myLeft+2;
+
+            UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt > @myNewLeft;
+            UPDATE Employees SET lft = lft + @myWidth WHERE lft > @myNewLeft;
+
+            UPDATE Employees SET rgt = rgt + @Step WHERE rgt BETWEEN @myLeft AND @myRight;
+            UPDATE Employees SET lft = lft + @Step WHERE lft BETWEEN @myLeft AND @myRight;
+
+            UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myRight;
+            UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myRight;";
+    }
+
+    public function IsXManagerOfY($Employee,$Manager)
+    {
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+        $employee=mysql_real_escape_string($Employee);
+        $query="SELECT parent.UserID
+            FROM Employees AS node,
+            Employees AS parent
+            WHERE node.lft BETWEEN parent.lft AND parent.rgt
+            AND node.UserID='{$employee}'
+            ORDER BY parent.lft";
+
+        $dbHandler->ExecuteQuery($query);
+        $dbHandler->dbDisconnect();
+        while($manager=mysql_fetch_row($result))
+        {
+            if($manager[0]==$Manager)
+            {
+                return true;
+            }
             return false;
         }
     }

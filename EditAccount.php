@@ -31,13 +31,12 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         {
             echo "zdrasti";
             $positionID = mysql_real_escape_string($_POST['PositionID']);
-            $managerID = mysql_real_escape_string($_POST['ManagerID']);
             $canCreateAccounts = mysql_real_escape_string($_POST['CanCreateAccounts']);
             $isAdmin = mysql_real_escape_string($_POST['IsAdmin']);
             $assignmentDay = mysql_real_escape_string($_POST['AssignmentDay']);
 
             $updateEmployee = "UPDATE Employees
-                SET PositionID='{$positionID}', ManagerID='{$managerID}', CanCreateAccounts='{$canCreateAccounts}',
+                SET PositionID='{$positionID}', CanCreateAccounts='{$canCreateAccounts}',
                 IsAdmin='{$isAdmin}', AssignmentDay='{$assignmentDay}' 
                 WHERE UserID='{$userID}'";
             $EmployeeIsUpdated = $dbHandler->ExecuteQuery($updateEmployee);
@@ -84,10 +83,10 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         $titlesQuery = "SELECT * FROM Titles";
         $branchesQuery = "SELECT ID,Name FROM Branches";
         $positionsQuery = "SELECT * FROM Positions";
-        $managersQuery = "SELECT Users.ID,Users.FirstName,Users.LastName
+        /*$managersQuery = "SELECT Users.ID,Users.FirstName,Users.LastName
                         FROM Employees
                         LEFT JOIN Users
-                        ON Employees.UserID = Users.ID";
+                        ON Employees.UserID = Users.ID";*/
         $userinfoQuery = "SELECT Users.*,
                         Titles.Title,
                         Employees.*
@@ -102,7 +101,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         $titles = $dbHandler->MakeSelectOptions($titlesQuery, "ID", array("Title"),$userinfo['TitleID']);
         $branches = $dbHandler->MakeSelectOptions($branchesQuery, "ID", array("Name"),$userinfo['BranchID']);
         $positions = $dbHandler->MakeSelectOptions($positionsQuery, "ID", array("Position"),$userinfo['PositionID']);
-        $managers = $dbHandler->MakeSelectOptions($managersQuery, "ID", array("FirstName","LastName"),$userinfo['ManagerID']);
+        //$managers = $dbHandler->MakeSelectOptions($managersQuery, "ID", array("FirstName","LastName"),$userinfo['ManagerID']);
         $dbHandler->dbDisconnect();
         unset($dbHandler);
         $today = date("Y-m-d");
@@ -158,11 +157,11 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         <select name="PositionID">
             <?php echo $positions; ?>
         </select><br />
-        <?php echo MANAGER_TEXT;?><br />
+        <!--<?php// echo MANAGER_TEXT;?><br />
         <select name="ManagerID">
-            <option value="none" selected="selected"><?php echo NOBODY_TEXT;?></option>
-            <?php echo $managers; ?>
-        </select><br />
+            <option value="none" selected="selected"><?php// echo NOBODY_TEXT;?></option>
+            <?php// echo $managers; ?>
+        </select><br /> -->
         <?php echo ACC_CAN_CREATE_TEXT; ?><br />
         <select name="CanCreateAccounts">
             <option value="no" <?php if($userinfo['CanCreateAccounts'] == "no") echo "selected=\"selected\""?>>Nobody</option>

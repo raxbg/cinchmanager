@@ -9,8 +9,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         if($_POST['EmployeeOrClient'] == "e" && $UserIsCreated != false)
         {
             $userID = $UserIsCreated;
-            $EmployeeIsCreated = User::CreateEmployee($userID, $_POST['PositionID'], 
-                    $_POST['ManagerID'], $_POST['CanCreateAccounts'], $_POST['IsAdmin'], $_POST['AssignmentDay']);
+            $EmployeeIsCreated = User::AddToHierarchy($_POST['ManagerID'],$userID,$_POST['PositionID'],$_POST['CanCreateAccounts'],$_POST['IsAdmin'],$_POST['AssignmentDay']);
             if($EmployeeIsCreated)
             {
                 if (Environment::SaveAvatar($userID))
