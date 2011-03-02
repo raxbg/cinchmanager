@@ -13,9 +13,15 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
             VALUES('{$branch}','{$name}','{$date}','1','{$description}')";
         $dbHandler->ExecuteQuery($query);
         echo mysql_error();
+        $query = "SELECT ID FROM Projects WHERE Name = '{$name}'";
+        $result = $dbHandler->ExecuteQuery($query);
+        $id=mysql_fetch_row($result);
         $dbHandler->dbDisconnect();
         unset($dbHandler);
-        }
+        echo "<span class=\"PositiveMessage\">".PROJECT_ADDED_TEXT."</span>";
+        echo "<a href=\"index.php?page=MembersOfProject&id={$id[0]}\">".ADD_MEMBERS_TEXT."</a>";
+
+    }
     else
     {
 
