@@ -260,24 +260,34 @@ class User
         $dbHandler->dbDisconnect();
     }
 
-    public function MoveInHierarchy()
+    public function MoveInHierarchy($user,$manager)
     {
-        //ne6to gyrmi
-        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft +1 FROM Employees
-            WHERE UserID=19;
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+        $user = mysql_real_escape_string($user);
+        $manager = mysql_real_escape_string($manager);
+        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID={$user};
 
-            SELECT @myNewLeft := lft FROM Employees
-            WHERE UserID = 14;
-            SELECT @Step:=@myNewLeft-@myLeft+1;
+            SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees
+            WHERE UserID = {$manager};
 
-            UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt > @myNewLeft;
-            UPDATE Employees SET lft = lft + @myWidth WHERE lft > @myNewLeft;
+            SELECT @myNewStartRight := IF(@myRight>@myNewRight,@myNewRight,@myNewRight-@myWidth);
+            SELECT @Step := @myNewStartRight-@myLeft;
 
-            UPDATE Employees SET rgt = rgt + @Step WHERE rgt BETWEEN @myLeft AND @myRight;
-            UPDATE Employees SET lft = lft + @Step WHERE lft BETWEEN @myLeft AND @myRight;
+            UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight;
+            UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight;
 
-            UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myRight;
-            UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myRight;";
+            UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft;
+            UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft;
+
+            UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight;
+            UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight;
+
+            UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0;
+            UPDATE Employees SET lft = -lft + @Step WHERE lft <0;";
+        mysqli_multi_query($dbHandler->Connection(),$query);
+        $dbHandler->dbDisconnect();
+        unset($dbHandler);
     }
 
     public function IsXManagerOfY($Employee,$Manager)
