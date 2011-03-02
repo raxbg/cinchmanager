@@ -29,7 +29,6 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
 
         if($_POST['EmployeeOrClient'] == "e" && $accountIsUpdated != false)
         {
-            echo "zdrasti";
             $positionID = mysql_real_escape_string($_POST['PositionID']);
             $canCreateAccounts = mysql_real_escape_string($_POST['CanCreateAccounts']);
             $isAdmin = mysql_real_escape_string($_POST['IsAdmin']);
