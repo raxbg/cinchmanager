@@ -114,13 +114,15 @@ FOREIGN KEY (FromUserID) REFERENCES Users(ID),
 PRIMARY KEY(TaskID,ToUserID)
 )ENGINE = InnoDB";
 
-$Queries['cerateProjectsAndmembers'] = "CREATE TABLE ProjectsAndMembers
+$Queries['cerateProjectsAndMembers'] = "CREATE TABLE ProjectsAndMembers
 (
 ProjectID int NOT NULL,
 FOREIGN KEY (ProjectID) REFERENCES Projects(ID),
 UserID int NOT NULL,
 FOREIGN KEY (UserID) REFERENCES Users(ID),
 PRIMARY KEY(ProjectID,UserID)
+IsLeader BOOLEAN,
+IsOwner BOOLEAN
 )ENGINE = InnoDB";
 
 $Queries['createExpenses'] = "CREATE TABLE Expenses
