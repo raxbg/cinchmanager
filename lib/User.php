@@ -264,11 +264,11 @@ class User
     {
         //ne6to gyrmi
         $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft +1 FROM Employees
-            WHERE UserID=20;
+            WHERE UserID=19;
 
             SELECT @myNewLeft := lft FROM Employees
             WHERE UserID = 14;
-            SELECT @Step=@myNewLeft-@myLeft+2;
+            SELECT @Step:=@myNewLeft-@myLeft+1;
 
             UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt > @myNewLeft;
             UPDATE Employees SET lft = lft + @myWidth WHERE lft > @myNewLeft;
