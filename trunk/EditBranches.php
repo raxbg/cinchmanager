@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] != "n")
+if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
 {
     $message="";
     $dbHandler=new dbHandler();
@@ -89,7 +89,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
 
 <?php
 }
-elseif(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] == "n")
+elseif(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == false)
 {
     echo NOT_ALLOWED_TO_CREATE_BRANCHES_TEXT;
 }

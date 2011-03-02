@@ -48,7 +48,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         $managersQuery = "SELECT Users.ID,Users.FirstName,Users.LastName
                         FROM Employees
                         LEFT JOIN Users
-                        ON Employees.UserID = Users.ID";
+                        ON Employees.UserID = Users.ID
+                        ORDER BY FirstName, LastName";
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
         $titles = $dbHandler->MakeSelectOptions($titlesQuery, "ID", array("Title"));

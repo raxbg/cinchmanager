@@ -49,8 +49,13 @@ if(isset($_SESSION['LoggedIn']))
         <?php echo $Branches ?>
     </tbody>
 </table>
-<a href="index.php?page=EditBranches"><?php echo ADD_NEW_BRANCH_TEXT ?></a>
 <?php
+            if($_SESSION['userinfo']['IsAdmin'])
+            {
+?>
+                <a href="index.php?page=EditBranches"><?php echo ADD_NEW_BRANCH_TEXT ?></a>
+<?php
+            }
 }
 else
 {
