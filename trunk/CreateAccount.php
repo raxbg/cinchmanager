@@ -12,15 +12,21 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             $EmployeeIsCreated = User::AddToHierarchy($_POST['ManagerID'],$userID,$_POST['PositionID'],$_POST['CanCreateAccounts'],$_POST['IsAdmin'],$_POST['AssignmentDay'],$_POST['Salary']);
             if($EmployeeIsCreated)
             {
-                if (Environment::SaveAvatar($userID))
+                if (!Environment::SaveAvatar($userID))
                 {
-                    echo USER_SUCCESSFULLY_CREATED_TEXT;
+                    $message = "<span class=\"PositiveMessage\">";
+                    $message.= USER_SUCCESSFULLY_CREATED_TEXT;
+                    $message.= "</span>";
+                    $message.= "<span class=\"NegativeMessage\">";
+                    $message.= FAILED_TO_SAVE_AVATAR_TEXT;
+                    $message.= "</span>";
                 }
                 else
                 {
-                    echo FAILED_TO_SAVE_AVATAR_TEXT;
+                    $message = "<span class=\"PositiveMessage\">";
+                    $message.= USER_SUCCESSFULLY_CREATED_TEXT;
+                    $message.= "</span>";
                 }
-                echo USER_SUCCESSFULLY_CREATED_TEXT;
             }
         }
         elseif($UserIsCreated)
