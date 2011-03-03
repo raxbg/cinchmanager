@@ -134,11 +134,11 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             <?php echo $managers; ?>
         </select><br />
         <?php echo ACC_CAN_CREATE_TEXT; ?><br />
-        <input type="radio" name="CanCreateAccounts" value="n" checked="checked"><?php echo NOBODY_TEXT;?><br />
-        <input type="radio" name="CanCreateAccounts" value="c"><?php echo CLIENTS_TEXT;?><br />
+        <input type="radio" name="CanCreateAccounts" value="n" checked="checked"><?php echo NOBODY_TEXT;?>
+        <input type="radio" name="CanCreateAccounts" value="c"><?php echo CLIENTS_TEXT;?>
         <input type="radio" name="CanCreateAccounts" value="a"><?php echo ALL_TEXT;?><br />
         <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
-        <input type="radio" name="IsAdmin" value="0"><?php echo YES_TEXT;?><br />
+        <input type="radio" name="IsAdmin" value="0"><?php echo YES_TEXT;?>
         <input type="radio" name="IsAdmin" value="1" checked="checked"><?php echo NO_TEXT;?><br />
         <?php echo ASSIGNMENT_DAY_TEXT;?><br />
         <input type="text" name="AssignmentDay" value="<?php echo $today;?>"/><br />

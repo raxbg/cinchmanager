@@ -45,7 +45,9 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             $currentManagerID = $currentManagerID[0];
             if($managerID != $currentManagerID && $EmployeeIsUpdated)
             {
+                $dbHandler->dbDisconnect();
                 Hierarchy::MoveInHierarchy($userID, $managerID);
+                $dbHandler->dbConnect();
             }
 
             if($EmployeeIsUpdated)
@@ -170,11 +172,11 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             <?php echo $managers; ?>
         </select><br />
         <?php echo ACC_CAN_CREATE_TEXT; ?><br />
-        <input type="radio" name="CanCreateAccounts" value="n" <?php if($userinfo['CanCreateAccounts'] == "n") echo "checked=\"checked\""?>><?php echo NOBODY_TEXT;?><br />
-        <input type="radio" name="CanCreateAccounts" value="c" <?php if($userinfo['CanCreateAccounts'] == "c") echo "checked=\"checked\""?>><?php echo CLIENTS_TEXT;?><br />
+        <input type="radio" name="CanCreateAccounts" value="n" <?php if($userinfo['CanCreateAccounts'] == "n") echo "checked=\"checked\""?>><?php echo NOBODY_TEXT;?>
+        <input type="radio" name="CanCreateAccounts" value="c" <?php if($userinfo['CanCreateAccounts'] == "c") echo "checked=\"checked\""?>><?php echo CLIENTS_TEXT;?>
         <input type="radio" name="CanCreateAccounts" value="a" <?php if($userinfo['CanCreateAccounts'] == "a") echo "checked=\"checked\""?>><?php echo ALL_TEXT;?><br />
         <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
-        <input type="radio" name="IsAdmin" value="1" <?php if($userinfo['IsAdmin'] == "1") echo "checked=\"checked\""?>><?php echo YES_TEXT;?><br />
+        <input type="radio" name="IsAdmin" value="1" <?php if($userinfo['IsAdmin'] == "1") echo "checked=\"checked\""?>><?php echo YES_TEXT;?>
         <input type="radio" name="IsAdmin" value="0" <?php if($userinfo['IsAdmin'] == "0") echo "checked=\"checked\""?>><?php echo NO_TEXT;?><br />
         <?php echo ASSIGNMENT_DAY_TEXT;?><br />
         <input type="text" value="<?php echo $userinfo['AssignmentDay'];?>" name="AssignmentDay" /><br />
