@@ -260,16 +260,17 @@ class User
         $dbHandler->dbDisconnect();
     }
 
-    public function MoveInHierarchy($user,$manager)
+    public function MoveInHierarchy($user,$toManager)
     {
-        $dbHandler = new dbHandler();
-        $dbHandler->dbConnect();
-        $user = mysql_real_escape_string($user);
-        $manager = mysql_real_escape_string($manager);
+        //stavat anomalii, raboti si kakto trqbva no ne prorabotva vinagi,
+        //sqkash trqbva da mine opredeleno vreme sled poslednoto polzvane
+        $link = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+        $user = mysqli_real_escape_string($link,$user);
+        $toManager = mysqli_real_escape_string($link,$toManager);
         $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID={$user};
 
             SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees
-            WHERE UserID = {$manager};
+            WHERE UserID = {$toManager};
 
             SELECT @myNewStartRight := IF(@myRight>@myNewRight,@myNewRight,@myNewRight-@myWidth);
             SELECT @Step := @myNewStartRight-@myLeft;
@@ -285,9 +286,8 @@ class User
 
             UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0;
             UPDATE Employees SET lft = -lft + @Step WHERE lft <0;";
-        mysqli_multi_query($dbHandler->Connection(),$query);
-        $dbHandler->dbDisconnect();
-        unset($dbHandler);
+       mysqli_multi_query($link,$query);
+       mysqli_close($link);
     }
 
     public function IsXManagerOfY($Employee,$Manager)
