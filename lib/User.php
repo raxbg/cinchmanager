@@ -255,7 +255,7 @@ class User
         }
         else
         {
-            return true;
+            return false;
         }
         $dbHandler->dbDisconnect();
     }

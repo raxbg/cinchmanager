@@ -130,7 +130,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         <?php echo ACC_CAN_CREATE_TEXT; ?><br />
         <input type="radio" name="CanCreateAccounts" value="n" checked="checked"><?php echo NOBODY_TEXT;?><br />
         <input type="radio" name="CanCreateAccounts" value="c"><?php echo CLIENTS_TEXT;?><br />
-        <input type="radio" name="CanCreateAccounts" value="a"><?php echo All_TEXT;?><br />
+        <input type="radio" name="CanCreateAccounts" value="a"><?php echo ALL_TEXT;?><br />
         <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
         <input type="radio" name="IsAdmin" value="false" checked="checked"><?php echo YES_TEXT;?><br />
         <input type="radio" name="IsAdmin" value="true"><?php echo NO_TEXT;?><br />
