@@ -1,4 +1,5 @@
 <?php
+require_once("lib/LoadSystem.php");
 if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == "e")
 {
     $dbHandler = new dbHandler();
