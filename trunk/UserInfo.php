@@ -45,6 +45,24 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
     $result = $dbHandler->ExecuteQuery($query);
     while($project = mysql_fetch_array($result))
     {
+        switch($project['Status'])
+        {
+            case 1:
+                $status=IN_PROGRESS_TEXT;
+                break;
+            case 2:
+                $status=HALT_TEXT;
+                break;
+            case 3:
+                $status=FINISHED_TEXT;
+                break;
+            case 4:
+                $status=CANCELED_TEXT;
+                break;
+            default:
+                $status="";
+                break;
+        }
         if ($i%2==0)
         {
             $class="class=\"odd\"";
@@ -58,7 +76,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
         $Projects.="<tr {$class}><td>".
                     "<a href=\"index.php?page=MembersOfProject&id={$project['ID']}\">{$project['Name']}</a></td>\n".
                     "<td>{$project['StartDate']}</td>\n".
-                    "<td>{$project['Status']}</td>\n".
+                    "<td>{$status}</td>\n".
                     "</tr>";
     }
     $dbHandler->dbDisconnect();
