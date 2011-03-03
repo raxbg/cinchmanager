@@ -66,7 +66,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
             $MembersList="";
             while($member = mysql_fetch_array($members))
             {
-                $MembersList.="<input type=\"image\" src=\"img/remove.gif\" name=\"Remove\" value=\"{$member['ID']}\"><b>{$member['FirstName']} {$member['LastName']}</b>";
+                $MembersList.="<input type=\"image\" src=\"img/remove.gif\" name=\"Remove\" value=\"{$member['ID']}\" />".
+                "<a href=\"index.php?page=UserInfo&&id={$member['ID']}\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
                 if($member['IsOwner'])
                 {
                     $MembersList.=" (".PROJECT_OWNER_TEXT.")";
@@ -75,7 +76,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
                 {
                     $MembersList.=" (".PROJECT_LEADER_TEXT.")";
                 }
-                $MembersList.="<br />";
+                $MembersList.="</a><br />";
             }
 
             $dbHandler->dbDisconnect();
