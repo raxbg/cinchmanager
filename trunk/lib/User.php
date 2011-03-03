@@ -260,32 +260,35 @@ class User
         $dbHandler->dbDisconnect();
     }
 
-    public function MoveInHierarchy($user,$toManager)
+    public static function MoveInHierarchy($user,$toManager)
     {
         //stavat anomalii, raboti si kakto trqbva no ne prorabotva vinagi,
         //sqkash trqbva da mine opredeleno vreme sled poslednoto polzvane
         $mysqli = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
         $user = $mysqli->real_escape_string($user);
         $toManager = $mysqli->real_escape_string($toManager);
-        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}';";
+        echo $user."->".$toManager;
+        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}'; ";
 
-        $query.="SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees WHERE UserID = '{$toManager}';";
+        $query.="SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees WHERE UserID = '{$toManager}'; ";
 
-        $query.="SELECT @myNewStartRight := IF(@myRight>@myNewRight,@myNewRight,@myNewRight-@myWidth);";
+        $query.="SELECT @myNewStartRight := IF(@myRight>@myNewRight,@myNewRight,@myNewRight-@myWidth); ";
         $query.="SELECT @Step := @myNewStartRight-@myLeft;";
 
-        $query.="UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight;";
-        $query.="UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight;";
+        $query.="UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight; ";
+        $query.="UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight; ";
 
-        $query.="UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft;";
-        $query.="UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft;";
+        $query.="UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft; ";
+        $query.="UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft; ";
 
-        $query.="UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight;";
-        $query.="UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight;";
+        $query.="UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight; ";
+        $query.="UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight; ";
 
-        $query.="UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0;";
+        $query.="UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0; ";
         $query.="UPDATE Employees SET lft = -lft + @Step WHERE lft <0;";
+        echo $query;
        $mysqli->multi_query($query);
+       echo "    minaaaaaahh";
        $mysqli->close();
     }
 
