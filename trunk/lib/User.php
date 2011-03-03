@@ -264,30 +264,29 @@ class User
     {
         //stavat anomalii, raboti si kakto trqbva no ne prorabotva vinagi,
         //sqkash trqbva da mine opredeleno vreme sled poslednoto polzvane
-        $link = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-        $user = mysqli_real_escape_string($link,$user);
-        $toManager = mysqli_real_escape_string($link,$toManager);
-        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID={$user};
+        $mysqli = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
+        $user = $mysqli->real_escape_string($user);
+        $toManager = $mysqli->real_escape_string($toManager);
+        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}';";
 
-            SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees
-            WHERE UserID = {$toManager};
+        $query.="SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees WHERE UserID = '{$toManager}';";
 
-            SELECT @myNewStartRight := IF(@myRight>@myNewRight,@myNewRight,@myNewRight-@myWidth);
-            SELECT @Step := @myNewStartRight-@myLeft;
+        $query.="SELECT @myNewStartRight := IF(@myRight>@myNewRight,@myNewRight,@myNewRight-@myWidth);";
+        $query.="SELECT @Step := @myNewStartRight-@myLeft;";
 
-            UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight;
-            UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight;
+        $query.="UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight;";
+        $query.="UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight;";
 
-            UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft;
-            UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft;
+        $query.="UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft;";
+        $query.="UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft;";
 
-            UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight;
-            UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight;
+        $query.="UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight;";
+        $query.="UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight;";
 
-            UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0;
-            UPDATE Employees SET lft = -lft + @Step WHERE lft <0;";
-       mysqli_multi_query($link,$query);
-       mysqli_close($link);
+        $query.="UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0;";
+        $query.="UPDATE Employees SET lft = -lft + @Step WHERE lft <0";
+       $mysqli->multi_query($query);
+       $mysqli->close();
     }
 
     public function IsXManagerOfY($Employee,$Manager)
