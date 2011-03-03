@@ -1,9 +1,13 @@
 function PopUpBox(url)
 {
+    var popUpBoxBg = document.createElement("div");
+    popUpBoxBg.id = "PopUpBoxBg";
+    popUpBoxBg.setAttribute("class","PopUpBoxBg");
     var popUpBox = document.createElement("div");
     popUpBox.id = "DialogBox";
     popUpBox.setAttribute("class","PopUpBox");
-    popUpBox.innerHTML = "<button onClick=\"ClosePopUp(\'"+popUpBox.id+"\')\">Close</button></br>";
+    popUpBox.innerHTML = "<img src=\"./images/close.png\" onClick=\"ClosePopUp()\" title=\"close\" alt=\"close\" /></br>";
+    popUpBoxBg.setAttribute("onClick","ClosePopUp()");
     var xmlhttp;
     if (window.XMLHttpRequest)
       {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -23,9 +27,12 @@ function PopUpBox(url)
     xmlhttp.open("GET",url,true);
     xmlhttp.send();
     document.getElementById("page").appendChild(popUpBox);
+    document.body.appendChild(popUpBoxBg);
 }
-function ClosePopUp(id)
+function ClosePopUp()
 {
-    var popUp = document.getElementById(id);
+    var popUp = document.getElementById("DialogBox");
     document.getElementById("page").removeChild(popUp);
+    var popUpBg = document.getElementById("PopUpBoxBg");
+    document.body.removeChild(popUpBg);
 }
