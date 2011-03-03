@@ -84,6 +84,8 @@ define("SALARY_TEXT","Salary:");
 define("SALARY1_TEXT","Salary");
 define("SALARY_UPDATED_TEXT","Salary is updated");
 define("SECOND_NAME_TEXT","Second name:");
+define("START_DATE_TEXT","Start date");
+define("STATUS_TEXT","Status");
 define("TELEPHONE1_TEXT","Telephone");
 define("TELEPHONE_TEXT","Telephone:");
 define("TITLES_TEXT","Titles:");
