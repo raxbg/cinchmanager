@@ -196,35 +196,34 @@ text-decoration: none;
 #cancelBtn{
     display:none;
 }
-/* UserInfo */
 div.PopUpBox{
 width:500px;
 padding:10px;
 border:1px solid #ccc;
 background:#fff;
 position:absolute;
-top:200px;
-margin:0 auto;
+top:250px;
+margin:0 175px 0 175px;
 }
-div.PopUpBox #name{
+/* UserInfo */
+div.UserInfo #name{
 margin:0;
 }
-div.PopUpBox img{
+div.UserInfo img{
 width:120px;
-height:160px;
 padding:5px;
 margin:0 10px 0 0;
 border:1px solid #ccc;
 float:left;
 clear:left;
 }
-div.PopUpBox #address{
+div.UserInfo #address{
 margin:10px 0;
 }
-div.PopUpBox #contacts{
+div.UserInfo #contacts{
 margin:10px 0;
 }
-div.PopUpBox h3{
+div.UserInfo h3{
 clear:both;
 }
 /* !UserInfo */
