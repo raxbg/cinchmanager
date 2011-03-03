@@ -20,35 +20,31 @@ function MoveInHierarchy($user,$toManager)
         $myNewLeft = $result['lft'];
         $myNewRight = $result['rgt'];
 
-        if($myRight>$myNewRight)
-        {
-            $myNewStartRight = $myNewRight;
-        }
-        else
-        {
-            $myNewStartRight = $myNewRight-$myWidth;
-        }
-
-        $Step = $myNewStartRight-$myLeft;
-
         $query="UPDATE Employees SET rgt = -rgt WHERE rgt > '{$myLeft}' AND rgt <= '{$myRight}'";
         $dbHandler->ExecuteQuery($query);
         $query="UPDATE Employees SET lft = -lft WHERE lft >= '{$myLeft}' AND lft < '{$myRight}'";
         $dbHandler->ExecuteQuery($query);
 
-        $query="UPDATE Employees SET rgt = rgt - '{$myWidth}' WHERE rgt > '{$yLeft}'";
+        $query="UPDATE Employees SET rgt = rgt - {$myWidth} WHERE rgt > '{$yLeft}'";
         $dbHandler->ExecuteQuery($query);
-        $query="UPDATE Employees SET lft = lft - '{$myWidth}' WHERE lft > '{$myLeft}'";
-        $dbHandler->ExecuteQuery($query);
-
-        $query="UPDATE Employees SET rgt = rgt + '{$myWidth}' WHERE rgt >= '{$myNewStartRight}'";
-        $dbHandler->ExecuteQuery($query);
-        $query="UPDATE Employees SET lft = lft + '{$myWidth}' WHERE lft >= '{$myNewStartRight}'";
+        $query="UPDATE Employees SET lft = lft - {$myWidth} WHERE lft > '{$myLeft}'";
         $dbHandler->ExecuteQuery($query);
 
-        $query="UPDATE Employees SET rgt = -rgt + '{$Step}' WHERE rgt <0";
+        $query="SELECT rgt FROM Employees WHERE UserID = '{$toManager}'";
+        $result = $dbHandler->ExecuteQuery($query);
+        $result = mysql_fetch_array($result);
+        $myNewStartRight = $result['rgt'];
+
+        $Step = $myNewStartRight-$myLeft;
+
+        $query="UPDATE Employees SET rgt = rgt + {$myWidth} WHERE rgt >= '{$myNewStartRight}'";
         $dbHandler->ExecuteQuery($query);
-        $query="UPDATE Employees SET lft = -lft + '{$Step}' WHERE lft <0";
+        $query="UPDATE Employees SET lft = lft + {$myWidth} WHERE lft >= '{$myNewStartRight}'";
+        $dbHandler->ExecuteQuery($query);
+
+        $query="UPDATE Employees SET rgt = -rgt + {$Step} WHERE rgt <0";
+        $dbHandler->ExecuteQuery($query);
+        $query="UPDATE Employees SET lft = -lft + {$Step} WHERE lft <0";
         $dbHandler->ExecuteQuery($query);
         $dbHandler->dbDisconnect();
         unset($dbHandler);
@@ -60,7 +56,7 @@ function MoveInHierarchy($user,$toManager)
 if(isset($_POST['manager']))
 {
     echo $_POST['user']."->".$_POST['manager'];
-    MoveInHierarchy($_POST['user'], $_POST['manager']);
+    User::MoveInHierarchy($_POST['user'], $_POST['manager']);
 }
 else
 {
