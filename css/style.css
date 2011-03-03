@@ -204,6 +204,10 @@ background:#fff;
 position:absolute;
 top:250px;
 margin:0 175px 0 175px;
+z-index:50;
+}
+div.PopUpBox img.close{
+float:right;
 }
 /* UserInfo */
 div.UserInfo #name{
