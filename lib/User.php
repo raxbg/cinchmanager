@@ -265,11 +265,6 @@ class User
         //stavat anomalii, raboti si kakto trqbva no ne prorabotva vinagi,
         //sqkash trqbva da mine opredeleno vreme sled poslednoto polzvane
         $mysqli = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
-        if (mysqli_connect_errno())
-        {
-            printf("Connect failed: %s\n", mysqli_connect_error());
-            exit();
-        }
         $user = $mysqli->real_escape_string($user);
         $toManager = $mysqli->real_escape_string($toManager);
         $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}';";
