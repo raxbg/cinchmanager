@@ -287,7 +287,7 @@ class User
 
             UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0;
             UPDATE Employees SET lft = -lft + @Step WHERE lft <0;";
-       $mysqli->multi_query($query);
+       if(!$mysqli->multi_query($query)) die("Error: ".$mysqli->error);
        $mysqli->close();
     }
 
