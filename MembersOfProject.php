@@ -52,7 +52,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
         $id=mysql_real_escape_string($_GET['id']);
         $query = "SELECT Name FROM Projects WHERE ID={$id}";
         $project = $dbHandler->ExecuteQuery($query);
-        if($Project)
+        if($project)
         {
             $ProjectName=mysql_fetch_row($project);
             $ProjectName = $ProjectName[0];
