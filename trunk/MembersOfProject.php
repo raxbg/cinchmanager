@@ -67,7 +67,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             $MembersList="";
             while($member = mysql_fetch_array($members))
             {
-                $MembersList.="<input type=\"image\" src=\"img/remove.gif\" name=\"Remove\" value=\"{$member['ID']}\" />".
+                $MembersList.="<input type=\"submit\" src=\"img/remove.gif\" name=\"Remove\" value=\"{$member['ID']}\" />".
                 "<a href=\"index.php?page=UserInfo&&id={$member['ID']}\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
                 if($member['IsOwner'])
                 {
