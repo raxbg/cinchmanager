@@ -38,6 +38,7 @@ define("EMPLOYEE_TEXT","Employee");
 define("EVERYTHING_TEXT","everything");
 define("FAILED_TO_CREATE_USER_TEXT","Failed to create user.");
 define("FAILED_TO_SAVE_AVATAR_TEXT","Failed to save user avatar.");
+define("FAILED_TO_REMOVE_MEMBER_TEXT","Failed to remove user.");
 define("FEMALE_TEXT","Female");
 define("FIRST_NAME_TEXT","First name:");
 define("FORGOTTEN_PASSWORD_TEXT", "Forgotten password");
