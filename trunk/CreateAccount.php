@@ -15,7 +15,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
                 if (!Environment::SaveAvatar($userID))
                 {
                     $message = "<span class=\"PositiveMessage\">";
-                    $message.= USER_SUCCESSFULLY_CREATED_TEXT;
+                    $message.= EMPLOYEE_SUCCESSFULLY_CREATED_TEXT;
                     $message.= "</span>";
                     $message.= "<span class=\"NegativeMessage\">";
                     $message.= FAILED_TO_SAVE_AVATAR_TEXT;
@@ -24,9 +24,15 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
                 else
                 {
                     $message = "<span class=\"PositiveMessage\">";
-                    $message.= USER_SUCCESSFULLY_CREATED_TEXT;
+                    $message.= EMPLOYEE_SUCCESSFULLY_CREATED_TEXT;
                     $message.= "</span>";
                 }
+            }
+            else
+            {
+                $message = "<span class=\"NegativeMessage\">";
+                $message.= FAILED_TO_CREATE_EMPLOYEE_TEXT;
+                $message.= "</span>";
             }
         }
         elseif($UserIsCreated)
