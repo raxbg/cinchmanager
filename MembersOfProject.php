@@ -31,6 +31,19 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
         unset($dbHandler);
         $message="<span class=\"PositiveMessage\">".MEMBER_ADDED_TEXT."</span>";
     }
+    elseif(isset($_POST['Remove']))
+    {
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+        $UserID=mysql_real_escape_string($_POST['Remove']);
+        $ProjectID = mysql_real_escape_string($_POST['ProjectID']);
+        $query="DELETE FROM ProjectsAndMembers WHERE ProjectID={$ProjectID} AND UserID={$UserID}";
+        $dbHandler->ExecuteQuery($query);
+        $dbHandler->dbDisconnect();
+        unset($dbHandler);
+        $message="<span class=\"PositiveMessage\">".MEMBER_REMOVED_TEXT."</span>";
+
+    }
 
     if(isset($_GET['id']))
     {
@@ -53,7 +66,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
             $MembersList="";
             while($member = mysql_fetch_array($members))
             {
-                $MembersList.="<li><b>{$member['FirstName']} {$member['LastName']}</b>";
+                $MembersList.="<input type=\"image\" src=\"img/remove.gif\" name=\"Remove\" value=\"{$member['ID']}\"><b>{$member['FirstName']} {$member['LastName']}</b>";
                 if($member['IsOwner'])
                 {
                     $MembersList.=" (".PROJECT_OWNER_TEXT.")";
@@ -62,7 +75,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
                 {
                     $MembersList.=" (".PROJECT_LEADER_TEXT.")";
                 }
-                $MembersList.="</li>\n";
+                $MembersList.="<br />";
             }
 
             $dbHandler->dbDisconnect();
@@ -76,11 +89,12 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
             }
             else
             {
-                echo
-                "<ul class=\"MembersOfProject\">\n".
-                $MembersList.
-                "</ul>";
-
+?>
+                <form method="post">
+                    <input type="hidden" name="ProjectID" value="<?php echo $_GET['id']; ?>">
+                    <?php echo $MembersList; ?>
+                </form>
+<?php
             }
 ?>
             <form method="post">
