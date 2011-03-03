@@ -1,12 +1,13 @@
 function PopUpBox(url)
 {
+    ClosePopUp();
     var popUpBoxBg = document.createElement("div");
     popUpBoxBg.id = "PopUpBoxBg";
     popUpBoxBg.setAttribute("class","PopUpBoxBg");
     var popUpBox = document.createElement("div");
     popUpBox.id = "DialogBox";
     popUpBox.setAttribute("class","PopUpBox");
-    popUpBox.innerHTML = "<img src=\"./images/close.png\" onClick=\"ClosePopUp()\" title=\"close\" alt=\"close\" /></br>";
+    popUpBox.innerHTML = "<img src=\"./img/close.png\" onClick=\"ClosePopUp()\" title=\"close\" alt=\"close\" /></br>";
     popUpBoxBg.setAttribute("onClick","ClosePopUp()");
     var xmlhttp;
     if (window.XMLHttpRequest)
