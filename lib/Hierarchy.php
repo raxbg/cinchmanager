@@ -44,37 +44,6 @@ class Hierarchy
         $dbHandler->dbDisconnect();
     }
 
-    public static function MoveInHierarchy($user,$toManager)
-    {
-        //stavat anomalii, raboti si kakto trqbva no ne prorabotva vinagi,
-        //sqkash trqbva da mine opredeleno vreme sled poslednoto polzvane
-        $mysqli = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
-        $user = $mysqli->real_escape_string($user);
-        $toManager = $mysqli->real_escape_string($toManager);
-        echo $user."->".$toManager;
-        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}';
-
-            SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees
-            WHERE UserID='{$toManager}';
-
-            UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight;
-            UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight;
-
-            UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft;
-            UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft;
-
-            SELECT @myNewStartRight := rgt FROM Employees WHERE UserID='{$toManager}';
-            SELECT @Step := @myNewStartRight-@myLeft;
-
-            UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight;
-            UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight;
-
-            UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0;
-            UPDATE Employees SET lft = -lft + @Step WHERE lft <0;";
-       if(!$mysqli->multi_query($query)) die("Error: ".$mysqli->error);
-       $mysqli->close();
-    }
-
     public function IsXManagerOfY($Employee,$Manager)
     {
         $dbHandler = new dbHandler();
@@ -98,6 +67,122 @@ class Hierarchy
         }
         $dbHandler->dbDisconnect();
         return false;
+    }
+
+    public static function MoveInHierarchy($user,$toManager)
+    {
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+        $user = mysql_real_escape_string($user);
+        $toManager = mysql_real_escape_string($toManager);
+        $dbHandler->ExecuteQuery("BEGIN");
+
+        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}'";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+
+        $query="SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees WHERE UserID='{$toManager}'";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+
+        $query="UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+        $query="UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+
+        $query="UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+        $query="UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+
+        $query="SELECT @myNewStartRight := rgt FROM Employees WHERE UserID='{$toManager}'";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+        $query="SELECT @Step := @myNewStartRight-@myLeft;";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+
+        $query="UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        };
+        $query="UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+
+        $query="UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+        $query="UPDATE Employees SET lft = -lft + @Step WHERE lft <0";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+        $dbHandler->ExecuteQuery("COMMIT");
+        $dbHandler->dbDisconnect();
+        unset($dbHandler);
+        return true;
     }
 }
 ?>

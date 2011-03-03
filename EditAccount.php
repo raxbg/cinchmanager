@@ -5,7 +5,6 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
-        //$dbHandler->ExecuteQuery("BEGIN");
 
         $email = mysql_real_escape_string($_POST['Email']);
         $title = mysql_real_escape_string($_POST['Title']);
@@ -33,12 +32,21 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             $canCreateAccounts = mysql_real_escape_string($_POST['CanCreateAccounts']);
             $isAdmin = mysql_real_escape_string($_POST['IsAdmin']);
             $assignmentDay = mysql_real_escape_string($_POST['AssignmentDay']);
+            $managerID = mysql_real_escape_string($_POST['ManagerID']);
 
             $updateEmployee = "UPDATE Employees
                 SET PositionID='{$positionID}', CanCreateAccounts='{$canCreateAccounts}',
                 IsAdmin='{$isAdmin}', AssignmentDay='{$assignmentDay}' 
                 WHERE UserID='{$userID}'";
             $EmployeeIsUpdated = $dbHandler->ExecuteQuery($updateEmployee);
+            $query = "SELECT ManagerID FROM Employees WHERE UserID='{$userID}'";
+            $result = $dbHandler->ExecuteQuery($query);
+            $currentManagerID = mysql_fetch_row($result);
+            $currentManagerID = $currentManagerID[0];
+            if($managerID != $currentManagerID && $EmployeeIsUpdated)
+            {
+                Hierarchy::MoveInHierarchy($userID, $managerID);
+            }
 
             if($EmployeeIsUpdated)
             {
@@ -82,10 +90,10 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         $titlesQuery = "SELECT * FROM Titles";
         $branchesQuery = "SELECT ID,Name FROM Branches";
         $positionsQuery = "SELECT * FROM Positions";
-        /*$managersQuery = "SELECT Users.ID,Users.FirstName,Users.LastName
+        $managersQuery = "SELECT Users.ID,Users.FirstName,Users.LastName
                         FROM Employees
                         LEFT JOIN Users
-                        ON Employees.UserID = Users.ID";*/
+                        ON Employees.UserID = Users.ID";
         $userinfoQuery = "SELECT Users.*,
                         Titles.Title,
                         Employees.*
@@ -100,7 +108,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         $titles = $dbHandler->MakeSelectOptions($titlesQuery, "ID", array("Title"),$userinfo['TitleID']);
         $branches = $dbHandler->MakeSelectOptions($branchesQuery, "ID", array("Name"),$userinfo['BranchID']);
         $positions = $dbHandler->MakeSelectOptions($positionsQuery, "ID", array("Position"),$userinfo['PositionID']);
-        //$managers = $dbHandler->MakeSelectOptions($managersQuery, "ID", array("FirstName","LastName"),$userinfo['ManagerID']);
+        $managers = $dbHandler->MakeSelectOptions($managersQuery, "ID", array("FirstName","LastName"),$userinfo['ManagerID']);
         $dbHandler->dbDisconnect();
         unset($dbHandler);
         $today = date("Y-m-d");
@@ -156,22 +164,18 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         <select name="PositionID">
             <?php echo $positions; ?>
         </select><br />
-        <!--<?php// echo MANAGER_TEXT;?><br />
+        <?php echo MANAGER_TEXT;?><br />
         <select name="ManagerID">
-            <option value="none" selected="selected"><?php// echo NOBODY_TEXT;?></option>
-            <?php// echo $managers; ?>
-        </select><br /> -->
+            <option value="none" selected="selected"><?php echo NOBODY_TEXT;?></option>
+            <?php echo $managers; ?>
+        </select><br />
         <?php echo ACC_CAN_CREATE_TEXT; ?><br />
-        <select name="CanCreateAccounts">
-            <option value="n" <?php if($userinfo['CanCreateAccounts'] == "n") echo "selected=\"selected\""?>>Nobody</option>
-            <option value="c" <?php if($userinfo['CanCreateAccounts'] == "c") echo "selected=\"selected\""?>>Clients</option>
-            <option value="a" <?php if($userinfo['CanCreateAccounts'] == "a") echo "selected=\"selected\""?>>All</option>
-        </select><br />
+        <input type="radio" name="CanCreateAccounts" value="n" <?php if($userinfo['CanCreateAccounts'] == "n") echo "checked=\"checked\""?>><?php echo NOBODY_TEXT;?><br />
+        <input type="radio" name="CanCreateAccounts" value="c" <?php if($userinfo['CanCreateAccounts'] == "c") echo "checked=\"checked\""?>><?php echo CLIENTS_TEXT;?><br />
+        <input type="radio" name="CanCreateAccounts" value="a" <?php if($userinfo['CanCreateAccounts'] == "a") echo "checked=\"checked\""?>><?php echo ALL_TEXT;?><br />
         <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
-        <select name="IsAdmin">
-            <option value="0" <?php if($userinfo['IsAdmin'] == "0") echo "selected=\"selected\""?>>No</option>
-            <option value="1" <?php if($userinfo['IsAdmin'] == "1") echo "selected=\"selected\""?>>Yes</option>
-        </select><br />
+        <input type="radio" name="IsAdmin" value="1" <?php if($userinfo['IsAdmin'] == "1") echo "checked=\"checked\""?>><?php echo YES_TEXT;?><br />
+        <input type="radio" name="IsAdmin" value="0" <?php if($userinfo['IsAdmin'] == "0") echo "checked=\"checked\""?>><?php echo NO_TEXT;?><br />
         <?php echo ASSIGNMENT_DAY_TEXT;?><br />
         <input type="text" value="<?php echo $userinfo['AssignmentDay'];?>" name="AssignmentDay" /><br />
     </div>
