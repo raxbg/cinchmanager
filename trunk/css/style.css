@@ -197,7 +197,7 @@ text-decoration: none;
     display:none;
 }
 /* UserInfo */
-div.UserInfo{
+div.PopUpBox{
 width:500px;
 padding:10px;
 border:1px solid #ccc;
@@ -206,10 +206,10 @@ position:absolute;
 top:200px;
 margin:0 auto;
 }
-#name{
+div.PopUpBox #name{
 margin:0;
 }
-div.UserInfo img{
+div.PopUpBox img{
 width:120px;
 height:160px;
 padding:5px;
@@ -218,13 +218,13 @@ border:1px solid #ccc;
 float:left;
 clear:left;
 }
-div.UserInfo #address{
+div.PopUpBox #address{
 margin:10px 0;
 }
-div.UserInfo #contacts{
+div.PopUpBox #contacts{
 margin:10px 0;
 }
-h3{
+div.PopUpBox h3{
 clear:both;
 }
 /* !UserInfo */
