@@ -52,10 +52,11 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
         $id=mysql_real_escape_string($_GET['id']);
         $query = "SELECT Name FROM Projects WHERE ID={$id}";
         $project = $dbHandler->ExecuteQuery($query);
-        $ProjectName=mysql_fetch_row($project);
-        $ProjectName = $ProjectName[0];
-        if($ProjectName!=null&&$ProjectName!="") //taq proverka ne mi haresva, iskam da proverqvam dali querito vry6ta rezultat
+        if($Project)
         {
+            $ProjectName=mysql_fetch_row($project);
+            $ProjectName = $ProjectName[0];
+        
             $usersQuery = "SELECT ID, FirstName, LastName From Users ORDER BY FirstName, LastName";
             $users = $dbHandler->MakeSelectOptions($usersQuery, "ID", array("FirstName","LastName"));
 
