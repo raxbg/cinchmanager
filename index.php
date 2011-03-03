@@ -8,6 +8,7 @@ require_once("lib/LoadSystem.php");
         <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" language="javascript" src="js/menu.js"></script>
+        <script type="text/javascript" language="javascript" src="js/Ajax.js"></script>
     </head>
     <body>
         <div id="header">

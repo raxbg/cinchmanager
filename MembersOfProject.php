@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tuk dali ne trqbva da ima o6te ne6to 
+if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tuk dali ne trqbva da ima o6te ne6to--dobyr vypros
 {
     $message="";
     if(isset($_POST['Add']))
@@ -73,7 +73,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             while($member = mysql_fetch_array($members))
             {
                 $MembersList.="<img src=\"img/remove.gif\"  onClick=\"Remove({$member['ID']})\" />".
-                "<a href=\"index.php?page=UserInfo&&id={$member['ID']}\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
+                "<span onClick=\"PopUpBox({$member['ID']})\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
                 if($member['IsOwner'])
                 {
                     $MembersList.=" (".PROJECT_OWNER_TEXT.")";
@@ -82,7 +82,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
                 {
                     $MembersList.=" (".PROJECT_LEADER_TEXT.")";
                 }
-                $MembersList.="</a><br />";
+                $MembersList.="</span><br />";
             }
 
             $dbHandler->dbDisconnect();
@@ -97,13 +97,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             else
             {
 ?>
-                <script type="text/javascript">
-                    function Remove(id)
-                    {
-                        document.getElementById("RemoveUserID").value = id;
-                        document.remove.submit();
-                    }
-                </script>
+                <script type="text/javascript" src="js/RemoveFromProject.js" />
                 <form method="post" name="remove">
                     <input type="hidden" name="ProjectID" value="<?php echo $_GET['id']; ?>">
                     <input type="hidden" name="RemoveUserID" value="" id="RemoveUserID">
