@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] != "n" && User::IsXManagerOfY($_GET['id'],$_SESSION['userinfo']['ID']))
+if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] != "n" && Hierarchy::IsXManagerOfY($_GET['id'],$_SESSION['userinfo']['ID']))
 {
     if(isset($_POST['NewSalary']))
     {
