@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
+if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tuk dali ne trqbva da ima o6te ne6to 
 {
     $message="";
     if(isset($_POST['Add']))
