@@ -4,7 +4,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
     $dbHandler = new dbHandler();
     $dbHandler->dbConnect();
     $id=mysql_real_escape_string($_GET['id']);
-    $query="SELECT Users.ID, Titles.Title, Users.FirstName,Users.SecondName, Users.LastName,Users.Telephone, Users.Email, Users.Address, Branches.Name AS Branch, Positions.Position
+    $query="SELECT Users.ID, Titles.Title, Users.FirstName,Users.SecondName, Users.LastName,Users.Telephone,
+                Users.Email, Users.Address, Branches.Name AS Branch, Positions.Position
                 FROM Users
                 LEFT JOIN Employees
                 ON Users.ID = Employees.UserID
@@ -34,7 +35,33 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
                     "<td>{$salary['ToDate']}</td>\n".
                     "</tr>";
     }
+
+    $Projects="";
+    $query="SELECT Projects.ID, Projects.Name, ProjectsAndMembers.IsOwner, ProjectsAndMembers.IsLeader,
+            Projects.StartDate, Projects.Status FROM ProjectsAndMembers 
+            LEFT JOIN Projects ON Projects.ID = ProjectsAndMembers.ProjectID
+            Where UserID={$id}";
+    $result = $dbHandler->ExecuteQuery($query);
+    while($project = mysql_fetch_array($result))
+    {
+        if ($i%2==0)
+        {
+            $class="class=\"odd\"";
+        }
+        else
+        {
+            $class="class=\"even\"";
+        }
+        $i++;
+
+        $Projects.="<tr {$class}><td>".
+                    "<a href=\"index.php?page=MembersOfProject&id={$project['ID']}\">{$project['Name']}</a></td>\n".
+                    "<td>{$project['StartDate']}</td>\n".
+                    "<td>{$project['Status']}</td>\n".
+                    "</tr>";
+    }
     $dbHandler->dbDisconnect();
+    unset($dbHandler);
 ?>
     <div class="UserInfo">
         <!-- TRqbva da ima proverka dali faila sy6testvuva -->
@@ -61,6 +88,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
             <?php echo $User['Address']; ?>
         </div>
         <?php } ?>
+        <?php if((($_SESSION['userinfo']['EmployeeOrClient']=='e')||($_GET['id']==$_SESSION['userinfo']['ID']))&&($Projects!="")){?>
         <h3>Projects</h3>
         <table class="cooltable">
             <thead>
@@ -71,19 +99,10 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
                 </tr>
             </thead>
             <tbody>
-                <tr class="odd">
-                    <td>CinchManager</td>
-                    <td>01.02.2011</td>
-                    <td>Active</td>
-                </tr>
-                <tr class="even">
-                    <td>Laptopia</td>
-                    <td>02.09.209</td>
-                    <td>Active</td>
-                </tr>
+                <?php echo $Projects; ?>
             </tbody>
         </table>
-
+        <?php } ?>
         <?php if((User::IsXManagerOfY($_GET['id'],$_SESSION['userinfo']['ID'])||$_GET['id']==$_SESSION['userinfo']['ID'])&&($Salaries!="")){?>
             <h3><?php echo SALARY_TEXT; ?></h3>
             <table class="cooltable">
