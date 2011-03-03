@@ -98,13 +98,13 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
         </div>
         <?php } ?>
         <?php if((($_SESSION['userinfo']['EmployeeOrClient']=='e')||($_GET['id']==$_SESSION['userinfo']['ID']))&&($Projects!="")){?>
-        <h3>Projects</h3>
+        <h3><?php echo PROJECTS_TEXT; ?></h3>
         <table class="cooltable">
             <thead>
                 <tr>
-                    <td>Project name</td>
-                    <td>Start date</td>
-                    <td>Status</td>
+                    <td><?php echo PROJECT_NAME1_TEXT; ?></td>
+                    <td><?php echo START_DATE_TEXT; ?></td>
+                    <td><?php echo STATUS_TEXT; ?></td>
                 </tr>
             </thead>
             <tbody>
