@@ -268,27 +268,26 @@ class User
         $user = $mysqli->real_escape_string($user);
         $toManager = $mysqli->real_escape_string($toManager);
         echo $user."->".$toManager;
-        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}'; ";
+        $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}';
 
-        $query.="SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees WHERE UserID = '{$toManager}'; ";
+            SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees
+            WHERE UserID='{$toManager}';
 
-        $query.="SELECT @myNewStartRight := IF(@myRight>@myNewRight,@myNewRight,@myNewRight-@myWidth); ";
-        $query.="SELECT @Step := @myNewStartRight-@myLeft;";
+            UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight;
+            UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight;
 
-        $query.="UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight; ";
-        $query.="UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight; ";
+            UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft;
+            UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft;
 
-        $query.="UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft; ";
-        $query.="UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft; ";
+            SELECT @myNewStartRight := rgt FROM Employees WHERE UserID='{$toManager}';
+            SELECT @Step := @myNewStartRight-@myLeft;
 
-        $query.="UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight; ";
-        $query.="UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight; ";
+            UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight;
+            UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight;
 
-        $query.="UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0; ";
-        $query.="UPDATE Employees SET lft = -lft + @Step WHERE lft <0;";
-        echo $query;
+            UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0;
+            UPDATE Employees SET lft = -lft + @Step WHERE lft <0;";
        $mysqli->multi_query($query);
-       echo "    minaaaaaahh";
        $mysqli->close();
     }
 
