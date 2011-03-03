@@ -130,7 +130,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
             </tbody>
         </table>
         <?php } ?>
-        <?php if((User::IsXManagerOfY($_GET['id'],$_SESSION['userinfo']['ID'])||$_GET['id']==$_SESSION['userinfo']['ID'])&&($Salaries!="")){?>
+        <?php if((Hierarchy::IsXManagerOfY($_GET['id'],$_SESSION['userinfo']['ID'])||$_GET['id']==$_SESSION['userinfo']['ID'])&&($Salaries!="")){?>
             <h3><?php echo SALARY_TEXT; ?></h3>
             <table class="cooltable">
                 <thead>
