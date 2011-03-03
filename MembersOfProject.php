@@ -73,7 +73,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             while($member = mysql_fetch_array($members))
             {
                 $MembersList.="<img src=\"img/remove.gif\"  onClick=\"Remove({$member['ID']})\" />".
-                "<span onClick=\"PopUpBox({$member['ID']})\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
+                "<span onClick=\"PopUpBox('./UserInfo.php?id={$member['ID']}')\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
                 if($member['IsOwner'])
                 {
                     $MembersList.=" (".PROJECT_OWNER_TEXT.")";
@@ -97,7 +97,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             else
             {
 ?>
-                <script type="text/javascript" src="js/RemoveFromProject.js" />
+                <script type="text/javascript" src="js/RemoveFromProject.js"></script>
                 <form method="post" name="remove">
                     <input type="hidden" name="ProjectID" value="<?php echo $_GET['id']; ?>">
                     <input type="hidden" name="RemoveUserID" value="" id="RemoveUserID">
