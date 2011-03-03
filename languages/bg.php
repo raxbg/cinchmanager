@@ -38,6 +38,7 @@ define("EMPLOYEE_TEXT","Служител");
 define("EVERYTHING_TEXT","всички");
 define("FAILED_TO_CREATE_USER_TEXT","Възникна грешка повреме на създаването на новия потребител.");
 define("FAILED_TO_SAVE_AVATAR_TEXT","Потребителският аватар ен може да бъде записан.");
+define("FAILED_TO_REMOVE_MEMBER_TEXT","Членът не може да бъде изключен от проекта.");
 define("FEMALE_TEXT","Жена");
 define("FIRST_NAME_TEXT","Първо име:");
 define("FORGOTTEN_PASSWORD_TEXT", "Забравена парола");

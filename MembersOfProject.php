@@ -31,18 +31,23 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
         unset($dbHandler);
         $message="<span class=\"PositiveMessage\">".MEMBER_ADDED_TEXT."</span>";
     }
-    elseif(isset($_POST['Remove']))
+    elseif(isset($_POST['RemoveUserID']))
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
-        $UserID=mysql_real_escape_string($_POST['Remove']);
+        $UserID=mysql_real_escape_string($_POST['RemoveUserID']);
         $ProjectID = mysql_real_escape_string($_POST['ProjectID']);
         $query="DELETE FROM ProjectsAndMembers WHERE ProjectID={$ProjectID} AND UserID={$UserID}";
-        $dbHandler->ExecuteQuery($query);
+        if($dbHandler->ExecuteQuery($query))
+        {
+            $message="<span class=\"PositiveMessage\">".MEMBER_REMOVED_TEXT."</span>";
+        }
+        else
+        {
+            $message="<span class=\"NegativeMessage\">".FAILED_TO_REMOVE_MEMBER_TEXT."</span>";
+        }
         $dbHandler->dbDisconnect();
         unset($dbHandler);
-        $message="<span class=\"PositiveMessage\">".MEMBER_REMOVED_TEXT."</span>";
-
     }
 
     if(isset($_GET['id']))
@@ -67,7 +72,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             $MembersList="";
             while($member = mysql_fetch_array($members))
             {
-                $MembersList.="<input type=\"submit\" src=\"img/remove.gif\" name=\"Remove\" value=\"{$member['ID']}\" />".
+                $MembersList.="<img src=\"img/remove.gif\"  onClick=\"Remove({$member['ID']})\" />".
                 "<a href=\"index.php?page=UserInfo&&id={$member['ID']}\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
                 if($member['IsOwner'])
                 {
@@ -92,8 +97,16 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             else
             {
 ?>
-                <form method="post">
+                <script type="text/javascript">
+                    function Remove(id)
+                    {
+                        document.getElementById("RemoveUserID").value = id;
+                        document.remove.submit();
+                    }
+                </script>
+                <form method="post" name="remove">
                     <input type="hidden" name="ProjectID" value="<?php echo $_GET['id']; ?>">
+                    <input type="hidden" name="RemoveUserID" value="" id="RemoveUserID">
                     <?php echo $MembersList; ?>
                 </form>
 <?php
