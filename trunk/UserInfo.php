@@ -65,8 +65,16 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
     unset($dbHandler);
 ?>
     <div class="UserInfo">
-        <!-- TRqbva da ima proverka dali faila sy6testvuva -->
-        <img alt="<?php echo $User['FirstName']." ".$User['LastName']; ?>" src="avatars/user_<?php echo $User['ID']; ?>.jpg" />
+        <?php if(file_exists("avatars/user_{$User['ID']}.jpg"))
+               {
+                   $avatarFile = "avatars/user_{$User['ID']}.jpg";
+               }
+               else
+               {
+                   $avatarFile = "avatars/UserDefault.jpg";
+               }
+        ?>
+        <img alt="<?php echo $User['FirstName']." ".$User['LastName']; ?>" src="<?php echo $avatarFile; ?>" />
         <h2 id="name">
             <?php echo $User['Title']." ".$User['FirstName']." ".$User['SecondName']." ".$User['LastName']; ?>
         </h2>
