@@ -163,14 +163,14 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         </select><br /> -->
         <?php echo ACC_CAN_CREATE_TEXT; ?><br />
         <select name="CanCreateAccounts">
-            <option value="no" <?php if($userinfo['CanCreateAccounts'] == "no") echo "selected=\"selected\""?>>Nobody</option>
+            <option value="n" <?php if($userinfo['CanCreateAccounts'] == "n") echo "selected=\"selected\""?>>Nobody</option>
             <option value="c" <?php if($userinfo['CanCreateAccounts'] == "c") echo "selected=\"selected\""?>>Clients</option>
             <option value="a" <?php if($userinfo['CanCreateAccounts'] == "a") echo "selected=\"selected\""?>>All</option>
         </select><br />
         <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
         <select name="IsAdmin">
-            <option value="false" <?php if($userinfo['IsAdmin'] == "0") echo "selected=\"selected\""?>>No</option>
-            <option value="true" <?php if($userinfo['IsAdmin'] == "1") echo "selected=\"selected\""?>>Yes</option>
+            <option value="0" <?php if($userinfo['IsAdmin'] == "0") echo "selected=\"selected\""?>>No</option>
+            <option value="1" <?php if($userinfo['IsAdmin'] == "1") echo "selected=\"selected\""?>>Yes</option>
         </select><br />
         <?php echo ASSIGNMENT_DAY_TEXT;?><br />
         <input type="text" value="<?php echo $userinfo['AssignmentDay'];?>" name="AssignmentDay" /><br />

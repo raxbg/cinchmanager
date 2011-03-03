@@ -67,7 +67,7 @@ class Environment
     {
         if(is_null($_FILES['Avatar']['name']) || $_FILES['Avatar']['name'] == "")
         {
-            return false;
+            return true;
         }
         else
         {

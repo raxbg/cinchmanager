@@ -238,9 +238,18 @@ class User
         $isAdmin=mysql_real_escape_string($isAdmin);
         $assignmentDay=mysql_real_escape_string($assignmentDay);
         $salary=mysql_real_escape_string($salary);
-        $myLeftResult = $dbHandler->ExecuteQuery("SELECT lft FROM Employees WHERE UserID = {$managerID}");
-        $myLeft=mysql_fetch_row($myLeftResult);
-        $myLeft = $myLeft[0];
+        if($managerID != "none")
+        {
+            $myLeftResult = $dbHandler->ExecuteQuery("SELECT lft FROM Employees WHERE UserID = {$managerID}");
+            $myLeft=mysql_fetch_row($myLeftResult);
+            $myLeft = $myLeft[0];
+        }
+        else
+        {
+            $myLeftResult = $dbHandler->ExecuteQuery("SELECT MAX(rgt) FROM Employees");
+            $myLeft=mysql_fetch_row($myLeftResult);
+            $myLeft = $myLeft[0];
+        }
         $query="INSERT INTO Salaries (UserID, FromDate, Amount)
                 Values ('{$userID}','{$assignmentDay}','{$salary}')";
         $dbHandler->ExecuteQuery($query);
@@ -248,8 +257,7 @@ class User
         $dbHandler->ExecuteQuery("UPDATE Employees SET lft = lft + 2 WHERE lft > {$myLeft}");
         $query="INSERT INTO Employees(UserID, PositionID, CanCreateAccounts,IsAdmin, AssignmentDay, lft, rgt)
             VALUES('{$userID}', '{$position}','{$canCreateAccounts}', '{$isAdmin}','{$assignmentDay}', {$myLeft} + 1, {$myLeft} + 2)";
-        $dbHandler->ExecuteQuery($query);
-        if ($IsQuerySuccessful)
+        if ($dbHandler->ExecuteQuery($query))
         {
             return true;
         }
