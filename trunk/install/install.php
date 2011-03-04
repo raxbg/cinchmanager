@@ -8,16 +8,26 @@
     {
         $null = "NULL";
         $today = date("Y-m-d");
+        $DbHandler = new dbHandler();
+        $DbHandler->dbConnect();
+        $DbHandler->ExecuteQuery("BEGIN");
+
         $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['Title'],$_POST['FirstName'],$null,
                 $_POST['LastName'],$null,$null,$null,1,1,
                 "e",$_POST['DefaultLanguage']);
         $EmployeeIsCreated = Hierarchy::AddToHierarchy("none",1,1,"a",1,$today,"0");
         if($UserIsCreated && $EmployeeIsCreated)
         {
+            $DbHandler->ExecuteQuery("COMMIT");
+            $DbHandler->dbDisconnect();
+            unset($DbHandler);
             echo ADMINISTRATOR_SUCCESSFULLY_CREATED_TEXT;
         }
         else
         {
+            $DbHandler->ExecuteQuery("ROLLBACK");
+            $DbHandler->dbDisconnect();
+            unset($DbHandler);
             echo FAILED_TO_CREATE_ADMINISTRATOR;
         }
     }
