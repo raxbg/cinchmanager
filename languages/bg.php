@@ -124,4 +124,17 @@ define("POSITIONS_TEXT","Длъжности:");
 define("POSITION_ADDED_TEXT","Новата длъжност е добавена.");
 define("POSITION_UPDATED_TEXT","Името на длъжността е променео.");
 define("ACCOUNT_NOT_FOUND_TEXT","Потребителят не е намерен.");
+define("PRIORITY_TEXT","Приоритет:");
+define("PROJECT_TEXT","Проект:");
+define("SHORT_DESCRIPTION_TEXT","Кратко описание:");
+define("VISIBILITY_TEXT","Видима за:");
+define("DEADLINE_TEXT","Краен срок:");
+define("PRIVATE_TEXT","лична");
+define("INTERNAL_TEXT","вътрешна");
+define("EVERYONE_TEXT","всеки");
+define("URGENT_TEXT","спешна");
+define("HIGH_PRIORITY_TEXT","много важна");
+define("NORMAL_PRIORITY_TEXT","нормална");
+define("LOW_PRIORITY_TEXT","маловажна");
+define("LOWEST_PRIORITY_TEXT","най-маловажна");
 ?>
