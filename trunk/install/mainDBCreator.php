@@ -1,8 +1,8 @@
 <?php
-$Queries['BEGIN_TRAN'] = "BEGIN";
-
 $Queries['SetCollation'] = "ALTER DATABASE {$_POST['Database']}
 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci";
+
+$Queries['BEGIN_TRAN'] = "BEGIN";
 
 $Queries['createBranches'] = "CREATE  TABLE Branches 
 (
@@ -84,7 +84,7 @@ PRIMARY KEY(ID),
 BranchID int NOT NULL,
 FOREIGN KEY (BranchID) REFERENCES Branches(ID),
 Name VARCHAR(50) NOT NULL,
-StartDate DATE DEFAULT CURRENT_TIMESTAMP,
+StartDate DATE,
 Status int NOT NULL DEFAULT 1,
 Description MEDIUMTEXT,
 INDEX(Name)
@@ -123,7 +123,7 @@ ProjectID int NOT NULL,
 FOREIGN KEY (ProjectID) REFERENCES Projects(ID),
 UserID int NOT NULL,
 FOREIGN KEY (UserID) REFERENCES Users(ID),
-PRIMARY KEY(ProjectID,UserID)
+PRIMARY KEY(ProjectID,UserID),
 IsLeader BOOLEAN,
 IsOwner BOOLEAN
 )ENGINE = InnoDB";
@@ -281,8 +281,9 @@ foreach ($Queries as $query)
 {
   if(!$dbHandler->ExecuteQuery($query))
   {
-      $dbHandler->ExecuteQuery("ROLLBACK");
+      echo "Greshka";
       echo mysql_error();
+      $dbHandler->ExecuteQuery("ROLLBACK");
       break;
   }
 }
