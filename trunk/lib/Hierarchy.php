@@ -110,15 +110,6 @@ class Hierarchy
         $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}'";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
-            $dbHandler->dbDisconnect();
-            unset($dbHandler);
-            return false;
-        }
-
-        $query="SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees WHERE UserID='{$toManager}'";
-        if(!$dbHandler->ExecuteQuery($query))
-        {
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
@@ -159,7 +150,14 @@ class Hierarchy
             return false;
         }
 
-        $query="SELECT @myNewStartRight := rgt FROM Employees WHERE UserID='{$toManager}'";
+        if($toManager == "none")
+        {
+            $query="SELECT @myNewStartRight := MAX(rgt) FROM Employees";
+        }
+        else
+        {
+            $query="SELECT @myNewStartRight := rgt FROM Employees WHERE UserID={$toManager}";
+        }
         if(!$dbHandler->ExecuteQuery($query))
         {
             $dbHandler->ExecuteQuery("ROLLBACK");
@@ -167,6 +165,7 @@ class Hierarchy
             unset($dbHandler);
             return false;
         }
+
         $query="SELECT @Step := @myNewStartRight-@myLeft;";
         if(!$dbHandler->ExecuteQuery($query))
         {
