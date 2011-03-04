@@ -136,4 +136,5 @@ define("HIGH_PRIORITY_TEXT","high priority");
 define("NORMAL_PRIORITY_TEXT","normal priority");
 define("LOW_PRIORITY_TEXT","low prioriry");
 define("LOWEST_PRIORITY_TEXT","lowest priority");
+define("ASSIGN_TO_TEXT","Asign to:");
 ?>
