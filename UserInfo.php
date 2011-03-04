@@ -6,7 +6,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
     $dbHandler->dbConnect();
     $id=mysql_real_escape_string($_GET['id']);
     $query="SELECT Users.ID, Titles.Title, Users.FirstName,Users.SecondName, Users.LastName,Users.Telephone,
-                Users.Email, Users.Address, Branches.Name AS Branch, Positions.Position
+                Users.Email, Users.Address, Branches.Name AS Branch, Positions.Position, Users.EmployeeOrClient
                 FROM Users
                 LEFT JOIN Employees
                 ON Users.ID = Employees.UserID
@@ -16,6 +16,15 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
                 WHERE Users.ID ={$id}";
     $result = $dbHandler->ExecuteQuery($query);
     $User=mysql_fetch_array($result);
+    if($User['EmployeeOrClient']=='e')
+    {
+        $Position=$User['Position'];
+    }
+    else
+    {
+        $Position=CLIENT_TEXT;
+    }
+
     $Salaries="";
     $query="SELECT * FROM Salaries WHERE UserID ={$id}";
     $result = $dbHandler->ExecuteQuery($query);
@@ -73,8 +82,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
         }
         $i++;
 
-        $Projects.="<tr {$class}><td>".
-                    "<a href=\"index.php?page=MembersOfProject&id={$project['ID']}\">{$project['Name']}</a></td>\n".
+        $Projects.="<tr {$class} onClick=\"PopUpBox('./Project.php?id={$project['ID']}')\">".
+                    "<td>{$project['Name']}</td>\n".
                     "<td>{$project['StartDate']}</td>\n".
                     "<td>{$status}</td>\n".
                     "</tr>";
@@ -96,7 +105,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
         <h2 id="name">
             <?php echo $User['Title']." ".$User['FirstName']." ".$User['SecondName']." ".$User['LastName']; ?>
         </h2>
-        <span><b><?php echo $User['Position'];?></b> <?php echo AT_TEXT." ".COMPANY_NAME." ".$User['Branch'];?></span>
+        <span><b><?php echo $Position;?></b> <?php echo AT_TEXT." ".COMPANY_NAME." ".$User['Branch'];?></span>
         <div id="contacts">
             <?php 
             if($User['Telephone']!=null)
@@ -145,26 +154,6 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
                 </tbody>
             </table>
         <?php } ?>
-
-        <h3>Payments</h3>
-        <table class="cooltable">
-            <thead>
-                <tr>
-                    <td>Sum</td>
-                    <td>Date</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="odd">
-                    <td>100</td>
-                    <td>24.01.2011</td>
-                </tr>
-                <tr class="even">
-                    <td>250</td>
-                    <td>15.02.2011</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 <?php
 }

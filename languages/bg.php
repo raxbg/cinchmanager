@@ -105,4 +105,11 @@ define("VALID_MAIL_TEXT","Адресът е валиден!");
 define("WELCOME1_TEXT", "Здравейте!");
 define("WELCOME_TEXT", "Здравейте,");
 define("YES_TEXT","Да");
+define("IN_PROGRESS_TEXT","активен");
+define("HALT_TEXT","спрян");
+define("FINNISHED_TEXT","завършен");
+define("CANCELED_TEXT","отказан");
+define("MEMBERS_TEXT","Членове:");
+define("EDIT_PROJECT_TEXT","Редакция на проекта");
+define("PROJECT_UPDATED_TEXT","Данните за проекта са променени.");
 ?>
