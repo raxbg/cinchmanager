@@ -1,6 +1,9 @@
 <?php
 $Queries['BEGIN_TRAN'] = "BEGIN";
 
+$Queries['SetCollation'] = "ALTER DATABASE '{$_POST['Database']}'
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci";
+
 $Queries['createBranches'] = "CREATE  TABLE Branches 
 (
 ID int NOT NULL AUTO_INCREMENT,
@@ -245,9 +248,6 @@ FOREIGN KEY (TaskID) REFERENCES Tasks(ID),
 Cost DECIMAL(15,2) NOT NULL,
 Payed BOOL
 )ENGINE=InnoDB";
-
-$Queries['SetCollation'] = "ALTER DATABASE `{$_POST['Database']}`
-DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci";
 
 $Queries['insertBranch'] = "INSERT INTO Branches (Address, Name) 
 VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
