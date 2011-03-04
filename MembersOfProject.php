@@ -72,8 +72,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             $MembersList="";
             while($member = mysql_fetch_array($members))
             {
-                $MembersList.="<img src=\"img/remove.gif\"  onClick=\"Remove({$member['ID']})\" />".
-                "<span onClick=\"PopUpBox('UserInfo.php?id={$member['ID']}')\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
+                $MembersList.="<img src=\"img/remove.gif\"  onClick=\"Remove({$member['ID']})\" class=\"ActiveField\"/>".
+                "<span onClick=\"PopUpBox('UserInfo.php?id={$member['ID']}')\" class=\"ActiveField\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
                 if($member['IsOwner'])
                 {
                     $MembersList.=" (".PROJECT_OWNER_TEXT.")";

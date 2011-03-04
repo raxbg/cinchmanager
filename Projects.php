@@ -40,11 +40,11 @@ if(isset($_SESSION['LoggedIn']))
         }
         if ($i%2==0)
         {
-            $class="class=\"odd\"";
+            $class="class=\"odd ActiveField\"";
         }
         else
         {
-            $class="class=\"even\"";
+            $class="class=\"even ActiveField\"";
         }
         $i++;
 

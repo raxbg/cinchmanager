@@ -30,8 +30,9 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
         $name=mysql_real_escape_string($_POST['ProjectName']);
         $description=mysql_real_escape_string($_POST['Description']);
         $id=mysql_real_escape_string($_POST['ID']);
+        $status=mysql_real_escape_string($_POST['Status']);
         $query="UPDATE Projects SET BranchID='{$branch}',
-            Name='{$name}', Description='{$description}'
+            Name='{$name}', Description='{$description}', Status='{$status}'
             WHERE Projects.ID='{$id}'";
         $dbHandler->ExecuteQuery($query);
         echo mysql_error();
@@ -90,6 +91,12 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
         <?php echo DESCRIPTION_TEXT; ?><br />
         <textarea name="Description" ><?php echo $description;?></textarea><br />
         <?php if(isset($_GET['id'])&&$_GET['id']!=""){ ?>
+        <select name="Status">
+            <option value="1"><?php echo IN_PROGRESS_TEXT; ?></option>
+            <option value="2"><?php echo HALT_TEXT; ?></option>
+            <option value="3"><?php echo FINNISHED_TEXT; ?></option>
+            <option value="4"><?php echo CANCELED_TEXT; ?></option>
+        </select>
         <input type="hidden" name="ID" value="<?php echo $_GET['id']; ?>" />
         <input type="submit" name="Edit" value="<?php echo EDIT_TEXT; ?>" />
         <?php }else{ ?>
