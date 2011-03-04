@@ -26,13 +26,10 @@ class Hierarchy
             $myLeftResult = $dbHandler->ExecuteQuery("SELECT MAX(rgt) FROM Employees");
             $myLeft=mysql_fetch_row($myLeftResult);
             $myLeft = $myLeft[0];
-            echo $myLeft."\n\n\n";
             if ($myLeft==NULL)
             {
-                echo "null e\n";
                 $myLeft=0;
             }
-            echo $myLeft."\n\n\n";
         }
         $query="INSERT INTO Salaries (UserID, FromDate, Amount)
                 Values ('{$userID}','{$assignmentDay}','{$salary}')";
@@ -61,7 +58,7 @@ class Hierarchy
         }
 
         $query="INSERT INTO Employees(UserID, PositionID, CanCreateAccounts,IsAdmin, AssignmentDay, lft, rgt)
-            VALUES('{$userID}', '{$position}','{$canCreateAccounts}', '{$isAdmin}','{$assignmentDay}', '{$myLeft} + 1', '{$myLeft} + 2')";
+            VALUES('{$userID}', '{$position}','{$canCreateAccounts}', '{$isAdmin}','{$assignmentDay}', {$myLeft} + 1, {$myLeft} + 2)";
         if (!$dbHandler->ExecuteQuery($query))
         {
             $dbHandler->ExecuteQuery("ROLLBACK");
