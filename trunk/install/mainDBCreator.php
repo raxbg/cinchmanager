@@ -281,7 +281,6 @@ foreach ($Queries as $query)
 {
   if(!$dbHandler->ExecuteQuery($query))
   {
-      echo "Greshka";
       echo mysql_error();
       $dbHandler->ExecuteQuery("ROLLBACK");
       break;
