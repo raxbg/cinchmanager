@@ -88,7 +88,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             $dbHandler->dbDisconnect();
             unset($dbHandler);
 
-            echo "<h1>".MEMBERS_OF_TEXT." ".$ProjectName."</h1>";
+            echo "<h1>".MEMBERS_OF_TEXT." <i>".$ProjectName."</i></h1>";
             echo $message;
             if ($MembersList=="")
             {

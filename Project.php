@@ -7,7 +7,9 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
         $id=mysql_real_escape_string($_GET['id']);
-        $query = "SELECT * FROM Projects WHERE ID={$id}";
+        $query = "SELECT Projects.*, Branches.Name AS Branch FROM Projects
+                    LEFT JOIN Branches ON Projects.BranchID = Branches.ID
+                    WHERE Projects.ID={$id}";
         $result = $dbHandler->ExecuteQuery($query);
         if(mysql_num_rows($result)>0)
         {
@@ -52,7 +54,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
             $dbHandler->dbDisconnect();
             unset($dbHandler);
 ?>
-            <h1><?php echo $Project['Name']." (".$status.")";?></h1>
+            <h1 class="NoMargin"><?php echo $Project['Name']." (".$status.")";?></h1>
+            <h3 class="NoMargin"><?php echo BRANCH_TEXT." ".$Project['Branch']; ?></h3>
             <div id="ProjectDescription"><?php echo $Project['Description'];?></div>
             <hr />
 <?php       if($MembersList!="")
