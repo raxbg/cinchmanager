@@ -249,7 +249,7 @@ Cost DECIMAL(15,2) NOT NULL,
 Payed BOOL
 )ENGINE=InnoDB";
 
-$Queries['insertBranch'] = "INSERT INTO Branches (Address, Name) 
+$Queries['insertBranch'] = "INSERT INTO Branches (Name, Address)
 VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
 
 $Queries['insertTitle0'] = "INSERT INTO Titles (Title)
