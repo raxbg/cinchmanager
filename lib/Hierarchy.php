@@ -6,6 +6,7 @@ class Hierarchy
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
+        $dbHandler->ExecuteQuery("BEGIN");
 
         $managerID=mysql_real_escape_string($managerID);
         $userID=mysql_real_escape_string($userID);
@@ -28,20 +29,29 @@ class Hierarchy
         }
         $query="INSERT INTO Salaries (UserID, FromDate, Amount)
                 Values ('{$userID}','{$assignmentDay}','{$salary}')";
-        $dbHandler->ExecuteQuery($query);
+        if (!$dbHandler->ExecuteQuery($query))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+
         $dbHandler->ExecuteQuery("UPDATE Employees SET rgt = rgt + 2 WHERE rgt > {$myLeft}");
         $dbHandler->ExecuteQuery("UPDATE Employees SET lft = lft + 2 WHERE lft > {$myLeft}");
         $query="INSERT INTO Employees(UserID, PositionID, CanCreateAccounts,IsAdmin, AssignmentDay, lft, rgt)
             VALUES('{$userID}', '{$position}','{$canCreateAccounts}', '{$isAdmin}','{$assignmentDay}', {$myLeft} + 1, {$myLeft} + 2)";
-        if ($dbHandler->ExecuteQuery($query))
+        if (!$dbHandler->ExecuteQuery($query))
         {
-            return true;
-        }
-        else
-        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
             return false;
         }
+        $dbHandler("COMMIT");
         $dbHandler->dbDisconnect();
+        unset($dbHandler);
+        return true;
     }
 
     public function IsXManagerOfY($Employee,$Manager)
