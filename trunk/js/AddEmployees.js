@@ -23,7 +23,7 @@ function checkEmail()
     }
     else
     {
-        document.getElementById("AddBtn").setAttribute("disabled","true");
+        document.getElementById("AddBtn").setAttribute("disabled","disabled");
         document.getElementById("InvalidMail").style.display="inline";
         document.getElementById("ValidMail").style.display="none"
     }
