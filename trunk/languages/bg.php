@@ -119,4 +119,9 @@ define("CANCELED_TEXT","отказан");
 define("MEMBERS_TEXT","Членове:");
 define("EDIT_PROJECT_TEXT","Редакция на проекта");
 define("PROJECT_UPDATED_TEXT","Данните за проекта са променени.");
+define("EDIT_POSITIONS_TEXT","Редакция на позициите");
+define("POSITIONS_TEXT","Длъжности:");
+define("POSITION_ADDED_TEXT","Новата длъжност е добавена.");
+define("POSITION_UPDATED_TEXT","Името на длъжността е променео.");
+define("ACCOUNT_NOT_FOUND_TEXT","Потребителят не е намерен.");
 ?>

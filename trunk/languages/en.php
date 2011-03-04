@@ -118,4 +118,9 @@ define("CANCELED_TEXT","canceled");
 define("MEMBERS_TEXT","Members:");
 define("EDIT_PROJECT_TEXT","Edit Project");
 define("PROJECT_UPDATED_TEXT","Project updated.");
+define("EDIT_POSITIONS_TEXT","Edit positions");
+define("POSITIONS_TEXT","Positions:");
+define("POSITION_ADDED_TEXT","Position added.");
+define("POSITION_UPDATED_TEXT","Position updated.");
+define("ACCOUNT_NOT_FOUND_TEXT","Account not found.");
 ?>
