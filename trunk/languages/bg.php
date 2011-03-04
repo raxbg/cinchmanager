@@ -137,4 +137,5 @@ define("HIGH_PRIORITY_TEXT","много важна");
 define("NORMAL_PRIORITY_TEXT","нормална");
 define("LOW_PRIORITY_TEXT","маловажна");
 define("LOWEST_PRIORITY_TEXT","най-маловажна");
+define("ASSIGN_TO_TEXT","Възложи на:");
 ?>
