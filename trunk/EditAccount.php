@@ -54,7 +54,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
                 $message.= EMPLOYEE_SUCCESSFULLY_UPDATED_TEXT;
                 $message.= "</span>";
                 $AvatarIsUpdated = Environment::SaveAvatar($userID);
-                if(!is_null($_FILES['Avatar']['name']) || $_FILES['Avatar']['name'] != "" && !$AvatarIsUpdated)
+                if(!is_null($_FILES['Avatar']['name']) && $_FILES['Avatar']['name'] != "" && !$AvatarIsUpdated)
                 {
                     $message.= "<span class=\"NegativeMessage\">";
                     $message.= FAILED_TO_SAVE_AVATAR_TEXT;
@@ -73,7 +73,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             else
             {
                 $message.= "<span class=\"NegativeMessage\">";
-                $message.= FAILED_TO_SET_MANAGER_TEXT;
+                $message.= FAILED_TO_UPDATE_EMPLOYEE_TEXT;
                 $message.= "</span>";
             }
                 
@@ -82,10 +82,10 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         {
             $dbHandler->dbDisconnect();
             $message.= "<span class=\"PositiveMessage\">";
-            $message.= USER_SUCCESSFULLY_CREATED_TEXT;
+            $message.= USER_SUCCESSFULLY_UPDATED_TEXT;
             $message.= "</span>";
             $AvatarIsUpdated = Environment::SaveAvatar($userID);
-            if(!is_null($_FILES['Avatar']['name']) || $_FILES['Avatar']['name'] != "" && !$AvatarIsUpdated)
+            if(!is_null($_FILES['Avatar']['name']) && $_FILES['Avatar']['name'] != "" && !$AvatarIsUpdated)
             {
                 $message.= "<span class=\"NegativeMessage\">";
                 $message.= FAILED_TO_SAVE_AVATAR_TEXT;
@@ -96,7 +96,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         {
             $dbHandler->dbDisconnect();
             $message.= "<span class=\"NegativeMessage\">";
-            $message.= FAILED_TO_CREATE_USER_TEXT;
+            $message.= FAILED_TO_UPDATE_USER_TEXT;
             $message.= "</span>";
         }
         echo $message;
@@ -203,7 +203,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         <option value="bg" <?php if($userinfo['Language'] == "bg") echo "selected=\"selected\""?>>BG</option>
         <option value="en" <?php if($userinfo['Language'] == "en") echo "selected=\"selected\""?>>EN</option>
     </select><br />
-    <input type="submit" value="<?php echo CREATE_TEXT;?>" id="AddBtn" disabled="true"/><br />
+    <input type="submit" value="<?php echo EDIT_TEXT;?>" id="AddBtn" disabled="true"/><br />
     <script type="text/javascript">Init();</script>
 </form>
 <?php
