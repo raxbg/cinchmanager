@@ -35,7 +35,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             $message = "<span class=\"NegativeMessage\">".INVALID_VALUE_TEXT."</span>";
         }
     }
-    $query="SELECT Title FROM Titles";
+    $query="SELECT Title FROM Titles WHERE ID>1";
     $result = $dbHandler->ExecuteQuery($query);
     $titlesCount = mysql_num_rows($result);
     $i = 1;
