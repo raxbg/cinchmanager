@@ -85,7 +85,7 @@ define("PROJECT_NAME1_TEXT","Име на проекта");
 define("PROJECT_NOT_FOUND_TEXT","Проектът не е намерен.");
 define("PROJECT_OWNER_TEXT","собственик на проекта");
 define("PROJECT_LEADER_TEXT","лидер на проекта");
-define("PROJECTS_TEXT","Projects");
+define("PROJECTS_TEXT","Проекти");
 define("REMEMBER_TEXT", "Запомни ме");
 define("REMOVE_FROM_PROJECT_TEXT", "Изклъчване на избраните хора от проекта");
 define("SALARY_TEXT","Заплата:");
