@@ -7,16 +7,18 @@
     if(isset($_POST['Email']))
     {
         $null = "NULL";
+        $today = date("Y-m-d");
         $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['Title'],$_POST['FirstName'],$null,
                 $_POST['LastName'],$null,$null,$null,1,1,
                 "e",$_POST['DefaultLanguage']);
-        if($UserIsCreated)
+        $EmployeeIsCreated = Hierarchy::AddToHierarchy("none",1,1,"a",1,$today,"0");
+        if($UserIsCreated && $EmployeeIsCreated)
         {
-            echo "Administrator account was successfuly created";
+            echo ADMINISTRATOR_SUCCESSFULLY_CREATED_TEXT;
         }
         else
         {
-            echo "Failed to create administrator account";
+            echo FAILED_TO_CREATE_ADMINISTRATOR;
         }
     }
 ?>

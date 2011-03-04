@@ -249,11 +249,11 @@ Cost DECIMAL(15,2) NOT NULL,
 Payed BOOL
 )ENGINE=InnoDB";
 
-$Queries['insertTitle0'] = "INSERT INTO Titles (Title)
-VALUES ('')";
-
 $Queries['insertBranch'] = "INSERT INTO Branches (Address, Name) 
 VALUES ('{$_POST['BranchName']}','{$_POST['BranchAddress']}')";
+
+$Queries['insertTitle0'] = "INSERT INTO Titles (Title)
+VALUES ('')";
 
 $Queries['insertTitle1'] = "INSERT INTO Titles (Title) 
 VALUES ('Mr.')";
@@ -269,6 +269,9 @@ VALUES ('Dr.')";
 
 $Queries['insertTitle5'] = "INSERT INTO Titles (Title) 
 VALUES ('Pr.')";
+
+$Queries['insertPosition'] = "INSERT INTO Positions (Position)
+VALUES ('Administrator')";
 
 $Queries['COMMIT'] = "COMMIT";
 
