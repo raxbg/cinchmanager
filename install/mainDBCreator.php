@@ -279,7 +279,13 @@ $dbHandler = new dbHandler();
 $dbHandler->dbConnect();
 foreach ($Queries as $query)
 {
-  $dbHandler->ExecuteQuery($query);
+  if(!$dbHandler->ExecuteQuery($query))
+  {
+      $dbHandler->ExecuteQuery("ROLLBACK");
+      echo mysql_error();
+      break;
+  }
 }
 $dbHandler->dbDisconnect();
+unset($dbHandler);
 ?>
