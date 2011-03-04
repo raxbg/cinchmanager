@@ -2,7 +2,7 @@
 require_once("lib/LoadSystem.php");
 if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == "e")
 {
-    if(isset($_GET['id']))
+    if(isset($_GET['id'])&&$_GET['id']!="")
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
@@ -88,10 +88,10 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
 }
 elseif(isset($_SESSION['LoggedIn']))
 {
-    echo NOT_ALLOWED_TO_EDIT_PROJECTS_TEXT;
+    echo "<span class=\"NegativeMessage\">".NOT_ALLOWED_TO_EDIT_PROJECTS_TEXT."</span>";
 }
 else
 {
-    echo PLEASE_LOGIN_TEXT;
+    echo "<span class=\"NegativeMessage\">".PLEASE_LOGIN_TEXT."</span>";
 }
 ?>
