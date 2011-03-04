@@ -42,7 +42,7 @@ define("EMPLOYEE_TEXT","Служител");
 define("EMPLOYEE_SUCCESSFULLY_CREATED_TEXT","Служителят беше създаден успешно.");
 define("EMPLOYEE_SUCCESSFULLY_UPDATED_TEXT","Информацията за служителя беше обновена успешно.");
 define("EVERYTHING_TEXT","всички");
-define("FAILED_TO_CREATE_ADMINISTRATOR","Администраторският акаунт не може да бъде създаден. Моля изтрийте базата и повторете инсталацията.");
+define("FAILED_TO_CREATE_ADMINISTRATOR","Администраторският акаунт не може да бъде създаден. Моля повторете инсталацията.");
 define("FAILED_TO_CREATE_USER_TEXT","Възникна грешка повреме на създаването на новия потребител.");
 define("FAILED_TO_CREATE_EMPLOYEE_TEXT","Възникна грешка повреме на създаването на новия служител.");
 define("FAILED_TO_SAVE_AVATAR_TEXT","Снимката не може да бъде записана.");

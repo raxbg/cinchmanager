@@ -42,7 +42,7 @@ define("EMPLOYEE_TEXT","Employee");
 define("EMPLOYEE_SUCCESSFULLY_CREATED_TEXT","Employee successfully created.");
 define("EMPLOYEE_SUCCESSFULLY_UPDATED_TEXT","Employee successfully updated.");
 define("EVERYTHING_TEXT","everything");
-define("FAILED_TO_CREATE_ADMINISTRATOR","Failed to create administrator account. Please delete the database and repeat the instalation.");
+define("FAILED_TO_CREATE_ADMINISTRATOR","Failed to create administrator account. Please repeat the instalation.");
 define("FAILED_TO_CREATE_USER_TEXT","Failed to create user.");
 define("FAILED_TO_CREATE_EMPLOYEE_TEXT","Failed to create employee.");
 define("FAILED_TO_SAVE_AVATAR_TEXT","Failed to save user photograph.");
