@@ -22,6 +22,7 @@ define("BRANCH_UPDATED_TEXT","Редакцията на клона е завър
 define("BUTTON_LOGIN_TEXT", "Вход");
 define("BUTTON_LOGOUT_TEXT", "Изход");
 define("CANCEL_TEXT","Отказ");
+define("CANNOT_CHANGE_OTHERS_PASSOWRDS_TEXT","Не можете да променяте паролите на другите.");
 define("CLIENT_TEXT","Клиент");
 define("CLIENTS_TEXT","Клиенти");
 define("CREATE_ACCOUNT_TEXT","Регистрация на нов акаунт");
@@ -69,6 +70,7 @@ define("MANAGER_TEXT","Ръководител:");
 define("MEMBER_ADDED_TEXT","Новият член е добавен.");
 define("MEMBER_REMOVED_TEXT","Членът е изключен от проекта.");
 define("MEMBERS_OF_TEXT","Челенове на");
+define("MISSING_PARAMETER","Недостатъчно параметри.");
 define("NAME_TEXT","Име");
 define("NO_TEXT","Не");
 define("NO_MEMBERS_TEXT","Този проект няма членове");
@@ -107,6 +109,7 @@ define("TITLE_ADDED_TEXT","Обръщението е добавено");
 define("TITLE_TEXT","Обръщение:");
 define("TITLE_UPDATED_TEXT","Обръщението е променено");
 define("TO_DATE_TEXT","До дата");
+define("TRYING_TO_CHEAT_TEXT","Опитваш се да мамиш.");
 define("TYPE_TEXT","Вид:");
 define("USER_SUCCESSFULLY_CREATED_TEXT","Успешно създадохте нов потребител. Паролата задно с "
         ."допълнителни инструкции бяха изпратени на посоченият e-mail адрес.");

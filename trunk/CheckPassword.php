@@ -24,7 +24,7 @@ if(isset($_SESSION['LoggedIn']) && isset($_GET['id']) && ($_SESSION['userinfo'][
 }
 elseif(isset($_SESSION['LoggedIn']) && isset($_GET['id']) && ($_SESSION['userinfo']['ID'] != $_GET['id']))
 {
-    echo "Ne mojesh da proverqvash chujdi paroli.";
+    echo CANNOT_CHANGE_OTHERS_PASSOWRDS_TEXT;
 }
 elseif(!isset($_SESSION['LoggedIn']))
 {
@@ -32,7 +32,7 @@ elseif(!isset($_SESSION['LoggedIn']))
 }
 elseif(!isset($_GET['id']) || !isset($_GET['pass']))
 {
-    echo "Missing Parameter.";
+    echo MISSING_PARAMETER;
 }
 
 ?>
