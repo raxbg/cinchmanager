@@ -37,10 +37,24 @@ class Hierarchy
             return false;
         }
 
-        $dbHandler->ExecuteQuery("UPDATE Employees SET rgt = rgt + 2 WHERE rgt > {$myLeft}");
-        $dbHandler->ExecuteQuery("UPDATE Employees SET lft = lft + 2 WHERE lft > {$myLeft}");
+        if (!$dbHandler->ExecuteQuery("UPDATE Employees SET rgt = rgt + 2 WHERE rgt > {$myLeft}"))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+
+        if (!$dbHandler->ExecuteQuery("UPDATE Employees SET lft = lft + 2 WHERE lft > {$myLeft}"))
+        {
+            $dbHandler("ROLLBACK");
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+            return false;
+        }
+
         $query="INSERT INTO Employees(UserID, PositionID, CanCreateAccounts,IsAdmin, AssignmentDay, lft, rgt)
-            VALUES('{$userID}', '{$position}','{$canCreateAccounts}', '{$isAdmin}','{$assignmentDay}', {$myLeft} + 1, {$myLeft} + 2)";
+            VALUES('{$userID}', '{$position}','{$canCreateAccounts}', '{$isAdmin}','{$assignmentDay}', '{$myLeft} + 1', '{$myLeft} + 2')";
         if (!$dbHandler->ExecuteQuery($query))
         {
             $dbHandler("ROLLBACK");
