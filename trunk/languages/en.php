@@ -104,4 +104,11 @@ define("VALID_MAIL_TEXT","Email is valid!");
 define("WELCOME1_TEXT", "Welcome!");
 define("WELCOME_TEXT", "Welcome");
 define("YES_TEXT","Yes");
+define("IN_PROGRESS_TEXT","in progres");
+define("HALT_TEXT","halt");
+define("FINNISHED_TEXT","finnished");
+define("CANCELED_TEXT","canceled");
+define("MEMBERS_TEXT","Members:");
+define("EDIT_PROJECT_TEXT","Edit Project");
+define("PROJECT_UPDATED_TEXT","Project updated.");
 ?>

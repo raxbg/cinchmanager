@@ -11,13 +11,12 @@ if(isset($_SESSION['LoggedIn']))
     }
     $dbHandler=new dbHandler();
     $dbHandler->dbConnect();
-    $query="SELECT Users.ID, Users.FirstName, Users.LastName, Branches.Name AS Branch, Positions.Position, Users.Email, Users.Telephone
-            FROM Employees
-            LEFT JOIN Users ON Users.ID = Employees.UserID
-            LEFT JOIN Positions ON Employees.PositionID = Positions.ID
+    $query="SELECT Users.ID, Users.FirstName, Users.LastName, Branches.Name AS Branch, Users.Email, Users.Telephone
+            FROM Users
             LEFT JOIN Branches ON Users.BranchID = Branches.ID
+            WHERE Users.EmployeeOrClient='c'
             ORDER BY Branch ASC, FirstName ASC, LastName ASC";
-    $Employees="";
+    $Clients="";
     $result = $dbHandler->ExecuteQuery($query);
     $i=0;
     while($employee = mysql_fetch_array($result))
@@ -32,16 +31,15 @@ if(isset($_SESSION['LoggedIn']))
         }
         $i++;
 
-        $Employees.="<tr {$class} onClick=\"PopUpBox('./UserInfo.php?id={$employee['ID']}')\" >\n<td>{$employee['FirstName']} {$employee['LastName']}</td>\n".
-        "<td>{$employee['Position']}</td>\n".
+        $Clients.="<tr {$class} onClick=\"PopUpBox('./UserInfo.php?id={$employee['ID']}')\" >\n<td>{$employee['FirstName']} {$employee['LastName']}</td>\n".
         "<td>{$employee['Branch']}</td>\n".
         "<td>{$employee['Email']}</td>\n".
         "<td>{$employee['Telephone']}</td>\n";
         if($CanCreateAndEditAccounts)
         {
-            $Employees.="<td class=\"editBtn\"><a href=\"index.php?page=EditAccount&id={$employee['ID']}\"><img src=\"img/edit.gif\"></a></td>\n";
+            $Clients.="<td class=\"editBtn\"><a href=\"index.php?page=EditAccount&id={$employee['ID']}\"><img src=\"img/edit.gif\"></a></td>\n";
         }
-        $Employees.="</tr>\n";
+        $Clients.="</tr>\n";
     }
     $dbHandler->dbDisconnect();
 ?>
@@ -50,7 +48,6 @@ if(isset($_SESSION['LoggedIn']))
         <thead>
             <tr>
                 <td><?php echo NAME_TEXT ?></td>
-                <td><?php echo POSITION1_TEXT ?></td>
                 <td><?php echo BRANCH1_TEXT ?></td>
                 <td><?php echo EMAIL1_TEXT ?></td>
                 <td><?php echo TELEPHONE1_TEXT ?></td>
@@ -63,7 +60,7 @@ if(isset($_SESSION['LoggedIn']))
             </tr>
         </thead>
         <tbody>
-            <?php echo $Employees ?>
+            <?php echo $Clients ?>
         </tbody>
     </table>
 
@@ -78,3 +75,4 @@ else
     echo PLEASE_LOGIN_TEXT;
 }
 ?>
+

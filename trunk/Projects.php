@@ -29,7 +29,7 @@ if(isset($_SESSION['LoggedIn']))
                 $status=HALT_TEXT;
                 break;
             case 3:
-                $status=FINISHED_TEXT;
+                $status=FINNISHED_TEXT;
                 break;
             case 4:
                 $status=CANCELED_TEXT;
@@ -48,11 +48,15 @@ if(isset($_SESSION['LoggedIn']))
         }
         $i++;
 
-        $Projects.="<tr {$class}><td>".
-                    "<a href=\"index.php?page=MembersOfProject&id={$project['ID']}\">{$project['Name']}</a></td>\n".
+        $Projects.="<tr {$class} onClick=\"PopUpBox('./Project.php?id={$project['ID']}')\">".
+                    "<td>{$project['Name']}</td>\n".
                     "<td>{$project['StartDate']}</td>\n".
-                    "<td>{$status}</td>\n".
-                    "</tr>";
+                    "<td>{$status}</td>\n";
+        if($_SESSION['userinfo']['IsAdmin'])
+        {
+            $Projects .= "<td class=\"editBtn\"><a href=\"index.php?page=EditProject&id={$project['ID']}\"><img src=\"img/edit.gif\"></a></td>\n";
+        }
+        $Projects .= "</tr>";
     }
     $dbHandler->dbDisconnect();
     unset($dbHandler);
@@ -65,6 +69,12 @@ if(isset($_SESSION['LoggedIn']))
             <td><?php echo PROJECT_NAME1_TEXT; ?></td>
             <td><?php echo START_DATE_TEXT; ?></td>
             <td><?php echo STATUS_TEXT; ?></td>
+<?php
+            if($_SESSION['userinfo']['IsAdmin'])
+            {
+                echo "<td>".EDIT_TEXT."</td>";
+            }
+?>
         </tr>
     </thead>
     <tbody>

@@ -50,7 +50,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
         unset($dbHandler);
     }
 
-    if(isset($_GET['id']))
+    if(isset($_GET['id'])&&$_GET['id']!="")
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
