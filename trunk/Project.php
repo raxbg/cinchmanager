@@ -40,7 +40,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
             $MembersList="";
             while($member = mysql_fetch_array($members))
             {
-                $MembersList.="<li onClick=\"PopUpBox('./UserInfo.php?id={$member['ID']}')\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
+                $MembersList.="<li onClick=\"PopUpBox('./UserInfo.php?id={$member['ID']}')\" class=\"ActiveField\"><b>{$member['FirstName']} {$member['LastName']}</b>";
                 if($member['IsOwner'])
                 {
                     $MembersList.=" (".PROJECT_OWNER_TEXT.")";
