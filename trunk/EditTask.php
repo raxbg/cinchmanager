@@ -2,58 +2,42 @@
 require_once("lib/LoadSystem.php");
 if(isset($_SESSION['LoggedIn']))
 {
-    if(isset($_GET['ProjectId'])&&$_GET['ProjectId']!="")
-    {
-        $dbHandler = new dbHandler();
-        $dbHandler->dbConnect();
-        $ProjectId=mysql_real_escape_string($_GET['ProjectId']);
-        $query = "SELECT * FROM Projects WHERE Projects.ID='{$ProjectId}'";
-        $result = $dbHandler->ExecuteQuery($query);
-        if(mysql_num_rows($result)>0)
-        {
-            $Project=mysql_fetch_array($result);
-            $query = "SELECT ProjectsAndMembers.UserID, Employees.lft, Employees.rgt
-                        FROM ProjectsAndMembers
-                        LEFT JOIN Employees ON Employees.UserID = ProjectsAndMembers.UserID
-                        WHERE ProjectsAndMembers.ProjectID ='{$ProjectId}'";
-            $result = $dbHandler->ExecuteQuery($query);
-            $isMember=false;
-            while($member=  mysql_fetch_array($result))
-            {
-                if(($member['UserID']==$_SESSION['userinfo']['ID'])||(($member['lft']>$_SESSION['userinfo']['lft'])&&($member['rgt']<$_SESSION['userinfo']['rgt'])))
-                {
-                    $isMember=true;
-                }
-            }
-            if($isMember)
-            {
-                //tuk trqbva da se sloji i uslovieto za TaskId
-                echo "Там си";
-                $dbHandler->dbDisconnect();
-                unset($dbHandler);
+    
+            
 ?>
+<form method="post">
+    <input type="hidden" name="ProjectID" value="<?php echo $_GET['ProjectId']; ?>" />
+    <?php echo PRIORITY_TEXT; ?><br />
+    <select name="Prioriry">
+        <option value="1" <?php if($Priority == "1"){ echo "selected=\"selected\"";} echo "/>".URGENT_TEXT; ?></option>
+        <option value="2" <?php if($Priority == "2"){ echo "selected=\"selected\"";} echo "/>".HIGH_PRIORITY_TEXT; ?></option>
+        <option value="3" <?php if($Priority == "3"){ echo "selected=\"selected\"";} echo "/>".NORMAL_PRIORITY_TEXT; ?></option>
+        <option value="4" <?php if($Priority == "4"){ echo "selected=\"selected\"";} echo "/>".LOW_PRIORITY_TEXT; ?></option>
+        <option value="5" <?php if($Priority == "5"){ echo "selected=\"selected\"";} echo "/>".LOWEST_PRIORITY_TEXT; ?></option>
+    </select><br />
+    <?php echo PROJECT_TEXT; ?><br />
+    <select name="Project">
+        <?php echo $Projects; ?>
+    </select>
+    <?php echo SHORT_DESCRIPTION_TEXT; ?><br />
+    <input type="text" name="ShortDescription" value="<?php echo $ShortDescription; ?>" /><br />
+    <?php echo DESCRIPTION_TEXT; ?><br />
+    <textarea name="Description"><?php echo $Description; ?></textarea><br />
+    <?php echo VISIBILITY_TEXT; ?><br />
+    <input type="radio" name="Visibility" value="1" <?php if($Visibility == "1"){ echo "checked=\"checked\"";} echo "/>".PRIVATE_TEXT; ?>
+    <input type="radio" name="Visibility" value="2" <?php if($Visibility == "2"){ echo "checked=\"checked\"";} echo "/>".INTERNAL_TEXT; ?>
+    <input type="radio" name="Visibility" value="3" <?php if($Visibility == "3"){ echo "checked=\"checked\"";} echo "/>".EVERYONE_TEXT; ?><br />
+    <?php echo DEADLINE_TEXT; ?><br />
+    <input type="text" name="Deadline" value="<?php echo $Deadline; ?>" /><br />
+    <input type="submit" name="Add" value="<?php echo ADD_TEXT ?>" />
+    <input type="hidden" name="TaskID" value="<?php echo $TaskId; ?>" />
+    <input type="hidden" name="Status" value="<?php echo $Status; ?>" />
+    <input type="submit" name="Edit" value="<?php echo EDIT_TEXT ?>" />
 
+</form>
 
-<?php
-            }
-            else
-            {
-                echo "<span class=\"NegativeMessage\">".NOT_MEMBER_TEXT."</span>";
-                $dbHandler->dbDisconnect();
-                unset($dbHandler);
-            }
-        }
-        else
-        {
-            $dbHandler->dbDisconnect();
-            unset($dbHandler);
-            echo "<span class=\"NegativeMessage\">".PROJECT_NOT_FOUND_TEXT."</span>";
-        }
-    }
-    else
-    {
-        echo "<span class=\"NegativeMessage\">".PROJECT_NOT_FOUND_TEXT."</span>";
-    }
+<?php           
+    
 }
 else
 {

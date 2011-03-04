@@ -124,5 +124,4 @@ define("POSITIONS_TEXT","Длъжности:");
 define("POSITION_ADDED_TEXT","Новата длъжност е добавена.");
 define("POSITION_UPDATED_TEXT","Името на длъжността е променео.");
 define("ACCOUNT_NOT_FOUND_TEXT","Потребителят не е намерен.");
-define("NOT_MEMBER_TEXT","Не сте член на този проект.");
 ?>
