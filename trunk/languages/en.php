@@ -123,4 +123,17 @@ define("POSITIONS_TEXT","Positions:");
 define("POSITION_ADDED_TEXT","Position added.");
 define("POSITION_UPDATED_TEXT","Position updated.");
 define("ACCOUNT_NOT_FOUND_TEXT","Account not found.");
+define("PRIORITY_TEXT","Priority:");
+define("PROJECT_TEXT","Project:");
+define("SHORT_DESCRIPTION_TEXT","Short description:");
+define("VISIBILITY_TEXT","Visibility");
+define("DEADLINE_TEXT","Deadline:");
+define("PRIVATE_TEXT","private");
+define("INTERNAL_TEXT","internal");
+define("EVERYONE_TEXT","everyone");
+define("URGENT_TEXT","urgent");
+define("HIGH_PRIORITY_TEXT","high priority");
+define("NORMAL_PRIORITY_TEXT","normal priority");
+define("LOW_PRIORITY_TEXT","low prioriry");
+define("LOWEST_PRIORITY_TEXT","lowest priority");
 ?>

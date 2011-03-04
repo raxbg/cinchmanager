@@ -1,8 +1,7 @@
 <?php
 require_once("lib/LoadSystem.php");
 if(isset($_SESSION['LoggedIn']))
-{
-    
+{   
             
 ?>
 <form method="post">
@@ -18,7 +17,7 @@ if(isset($_SESSION['LoggedIn']))
     <?php echo PROJECT_TEXT; ?><br />
     <select name="Project">
         <?php echo $Projects; ?>
-    </select>
+    </select><br />
     <?php echo SHORT_DESCRIPTION_TEXT; ?><br />
     <input type="text" name="ShortDescription" value="<?php echo $ShortDescription; ?>" /><br />
     <?php echo DESCRIPTION_TEXT; ?><br />
@@ -33,7 +32,6 @@ if(isset($_SESSION['LoggedIn']))
     <input type="hidden" name="TaskID" value="<?php echo $TaskId; ?>" />
     <input type="hidden" name="Status" value="<?php echo $Status; ?>" />
     <input type="submit" name="Edit" value="<?php echo EDIT_TEXT ?>" />
-
 </form>
 
 <?php           
