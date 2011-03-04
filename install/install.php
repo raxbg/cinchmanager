@@ -8,9 +8,6 @@
     {
         $null = "NULL";
         $today = date("Y-m-d");
-        $DbHandler = new dbHandler();
-        $DbHandler->dbConnect();
-        $DbHandler->ExecuteQuery("BEGIN");
 
         $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['Title'],$_POST['FirstName'],$null,
                 $_POST['LastName'],$null,$null,$null,1,1,
@@ -18,17 +15,15 @@
         $EmployeeIsCreated = Hierarchy::AddToHierarchy("none",1,1,"a",1,$today,"0");
         if($UserIsCreated && $EmployeeIsCreated)
         {
-            $DbHandler->ExecuteQuery("COMMIT");
-            $DbHandler->dbDisconnect();
-            unset($DbHandler);
-            echo ADMINISTRATOR_SUCCESSFULLY_CREATED_TEXT;
+            $message = "<span class=\"PositiveMessage\">";
+            $message.= "Administrator account was successfully created.";
+            $message.= "</span>";
         }
         else
         {
-            $DbHandler->ExecuteQuery("ROLLBACK");
-            $DbHandler->dbDisconnect();
-            unset($DbHandler);
-            echo FAILED_TO_CREATE_ADMINISTRATOR;
+            $message = "<span class=\"NegativeMessage\">";
+            $message.= "Failed to create administrator account. Please empty the database and repeat the instalation.";
+            $message.= "</span>";
         }
     }
 ?>
