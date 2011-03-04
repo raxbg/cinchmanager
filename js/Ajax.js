@@ -1,5 +1,6 @@
 var opened = false;
-var checkPassed = false;
+var checkOldPassed = false;
+var checkNewPassed = false;
 var oldPass;
 var newPwd;
 
@@ -59,25 +60,26 @@ function CheckOldPassword(id)
         {
             if(xmlhttp.responseText== "true")
             {
-                if(checkPassed)
+                if(checkOldPassed && checkNewPassed)
                 {
                     document.getElementById("EditBtn").removeAttribute("disabled");
                 }
                 document.getElementById("Match").style.display="inline";
                 document.getElementById("NotMatch").style.display="none";
+                checkOldPassed = true;
             }
             else
             {
                 document.getElementById("EditBtn").setAttribute("disabled","disabled");
                 document.getElementById("NotMatch").style.display="inline";
                 document.getElementById("Match").style.display="none";
-                checkPassed = false;
+                checkOldPassed = false;
             }
         }
       }
     xmlhttp.open("GET","CheckPassword.php?id="+id+"&pass="+password,true);
     xmlhttp.send();
-    oldPass = setTimeout("CheckPassword("+id+")",500);
+    oldPass = setTimeout("CheckOldPassword("+id+")",500);
 }
 
 function CheckNewPassword()
@@ -86,19 +88,20 @@ function CheckNewPassword()
     var newPassCheck = document.getElementById("NewPasswordCheck");
     if(newPass.value == newPassCheck.value)
     {
-        if(checkPassed)
+        if(checkOldPassed && checkNewPassed)
         {
             document.getElementById("EditBtn").removeAttribute("disabled");
         }
         document.getElementById("NewPassNotMatch").style.display="none";
         document.getElementById("NewPassMatch").style.display="inline";
+        checkNewPassed = true;
     }
     else
     {
         document.getElementById("EditBtn").setAttribute("disabled","disabled");
         document.getElementById("NewPassMatch").style.display="none";
         document.getElementById("NewPassNotMatch").style.display="inline";
-        checkPassed = false;
+        checkNewPassed = false;
     }
     newPwd = setTimeout("CheckNewPassword()",500);
 }
