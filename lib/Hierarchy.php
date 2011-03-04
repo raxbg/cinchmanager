@@ -162,7 +162,7 @@ class Hierarchy
 
         if($toManager == "none")
         {
-            $query="SELECT @myNewStartRight := MAX(rgt)+2 FROM Employees";
+            $query="SELECT @myNewStartRight := MAX(rgt)+1 FROM Employees";
         }
         else
         {
