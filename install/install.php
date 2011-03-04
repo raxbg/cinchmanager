@@ -25,5 +25,6 @@
             $message.= "Failed to create administrator account. Please empty the database and repeat the instalation.";
             $message.= "</span>";
         }
+        echo $message;
     }
 ?>
