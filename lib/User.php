@@ -125,7 +125,7 @@ class User
         $employeeOrClient = mysql_real_escape_string($employeeOrClient);
         $language = mysql_real_escape_string($language);
 
-        $createAccount = "INSERT INTO Users (Email, Password,TitleID, FirstName, SecondName, LastName, Gender,
+        $createAccount = "INSERT INTO User (Email, Password,TitleID, FirstName, SecondName, LastName, Gender,
         Address, Telephone, BranchID, RegistrationDate, CreatorID, EmployeeOrClient, Language)
         VALUES ('{$email}','{$encriptedPassword}','{$title}','{$firstName}','{$secondName}','{$lastName}','{$gender}',
         '{$address}','{$telephone}','{$branchID}','{$date}','{$creatorID}','{$employeeOrClient}','{$language}')";
