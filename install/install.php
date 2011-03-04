@@ -6,7 +6,7 @@
     require_once("mainDBCreator.php");
     if(isset($_POST['Email']))
     {
-        $null = "NULL";
+        $null = "";
         $today = date("Y-m-d");
 
         $UserIsCreated = User::CreateAccount($_POST['Email'],$_POST['Title'],$_POST['FirstName'],$null,
