@@ -1,7 +1,7 @@
 <?php
 $Queries['BEGIN_TRAN'] = "BEGIN";
 
-$Queries['SetCollation'] = "ALTER DATABASE '{$_POST['Database']}'
+$Queries['SetCollation'] = "ALTER DATABASE {$_POST['Database']}
 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci";
 
 $Queries['createBranches'] = "CREATE  TABLE Branches 
