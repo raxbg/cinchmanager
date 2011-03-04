@@ -123,4 +123,5 @@ define("POSITIONS_TEXT","Positions:");
 define("POSITION_ADDED_TEXT","Position added.");
 define("POSITION_UPDATED_TEXT","Position updated.");
 define("ACCOUNT_NOT_FOUND_TEXT","Account not found.");
+define("NOT_MEMBER_TEXT","You are not member of this project.");
 ?>
