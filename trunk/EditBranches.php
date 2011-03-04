@@ -61,6 +61,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
         $telephone = "";
     }
     
+    $dbHandler->dbDisconnect();
+    unset($dbHandler);
     echo $message;
 ?>
     <form method="post" action="index.php?page=EditBranches">
