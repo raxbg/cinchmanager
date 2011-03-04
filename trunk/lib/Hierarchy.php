@@ -31,7 +31,7 @@ class Hierarchy
                 Values ('{$userID}','{$assignmentDay}','{$salary}')";
         if (!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -39,7 +39,7 @@ class Hierarchy
 
         if (!$dbHandler->ExecuteQuery("UPDATE Employees SET rgt = rgt + 2 WHERE rgt > {$myLeft}"))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -47,7 +47,7 @@ class Hierarchy
 
         if (!$dbHandler->ExecuteQuery("UPDATE Employees SET lft = lft + 2 WHERE lft > {$myLeft}"))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -57,12 +57,12 @@ class Hierarchy
             VALUES('{$userID}', '{$position}','{$canCreateAccounts}', '{$isAdmin}','{$assignmentDay}', '{$myLeft} + 1', '{$myLeft} + 2')";
         if (!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
         }
-        $dbHandler("COMMIT");
+        $dbHandler->ExecuteQuery("COMMIT");
         $dbHandler->dbDisconnect();
         unset($dbHandler);
         return true;
@@ -86,10 +86,12 @@ class Hierarchy
             if($manager[0]==$Manager)
             {
                 $dbHandler->dbDisconnect();
+                unset($dbHandler);
                 return true;
             }
         }
         $dbHandler->dbDisconnect();
+        unset($dbHandler);
         return false;
     }
 
@@ -113,7 +115,7 @@ class Hierarchy
         $query="SELECT @myNewLeft := lft, @myNewRight := rgt FROM Employees WHERE UserID='{$toManager}'";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -122,7 +124,7 @@ class Hierarchy
         $query="UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -130,7 +132,7 @@ class Hierarchy
         $query="UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -139,7 +141,7 @@ class Hierarchy
         $query="UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -147,7 +149,7 @@ class Hierarchy
         $query="UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -156,7 +158,7 @@ class Hierarchy
         $query="SELECT @myNewStartRight := rgt FROM Employees WHERE UserID='{$toManager}'";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -164,7 +166,7 @@ class Hierarchy
         $query="SELECT @Step := @myNewStartRight-@myLeft;";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -173,7 +175,7 @@ class Hierarchy
         $query="UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -181,7 +183,7 @@ class Hierarchy
         $query="UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -190,7 +192,7 @@ class Hierarchy
         $query="UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
@@ -198,7 +200,7 @@ class Hierarchy
         $query="UPDATE Employees SET lft = -lft + @Step WHERE lft <0";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $dbHandler("ROLLBACK");
+            $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
