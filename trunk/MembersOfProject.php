@@ -73,7 +73,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             while($member = mysql_fetch_array($members))
             {
                 $MembersList.="<img src=\"img/remove.gif\"  onClick=\"Remove({$member['ID']})\" />".
-                "<span onClick=\"PopUpBox('./UserInfo.php?id={$member['ID']}')\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
+                "<span onClick=\"PopUpBox('UserInfo.php?id={$member['ID']}')\" ><b>{$member['FirstName']} {$member['LastName']}</b>";
                 if($member['IsOwner'])
                 {
                     $MembersList.=" (".PROJECT_OWNER_TEXT.")";

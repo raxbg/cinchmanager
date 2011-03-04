@@ -3,6 +3,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
 {
     if(isset($_POST['Edit']) && $_POST['Email'] != "" && $_POST['Email'] != NULL)
     {
+        $message = "";
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
 
@@ -26,7 +27,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
             WHERE ID='{$userID}'";
         $accountIsUpdated = $dbHandler->ExecuteQuery($updateAccount);
 
-        if($_POST['EmployeeOrClient'] == "e" && $accountIsUpdated != false)
+        if($_POST['EmployeeOrClient'] == "e" && $accountIsUpdated)
         {
             $positionID = mysql_real_escape_string($_POST['PositionID']);
             $canCreateAccounts = mysql_real_escape_string($_POST['CanCreateAccounts']);
@@ -39,50 +40,66 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
                 IsAdmin='{$isAdmin}', AssignmentDay='{$assignmentDay}' 
                 WHERE UserID='{$userID}'";
             $EmployeeIsUpdated = $dbHandler->ExecuteQuery($updateEmployee);
-            $query = "SELECT ManagerID FROM Employees WHERE UserID='{$userID}'";
-            $result = $dbHandler->ExecuteQuery($query);
-            $currentManagerID = mysql_fetch_row($result);
-            $currentManagerID = $currentManagerID[0];
-            if($managerID != $currentManagerID && $EmployeeIsUpdated)
+            $ManagerIsSet = false;
+            if($EmployeeIsUpdated)
             {
                 $dbHandler->dbDisconnect();
-                Hierarchy::MoveInHierarchy($userID, $managerID);
+                $ManagerIsSet = Hierarchy::MoveInHierarchy($userID, $managerID);
                 $dbHandler->dbConnect();
             }
 
-            if($EmployeeIsUpdated)
+            if($EmployeeIsUpdated && $ManagerIsSet)
             {
-                if (Environment::SaveAvatar($userID))
+                $message.= "<span class=\"PositiveMessage\">";
+                $message.= EMPLOYEE_SUCCESSFULLY_UPDATED_TEXT;
+                $message.= "</span>";
+                $AvatarIsUpdated = Environment::SaveAvatar($userID);
+                if(!is_null($_FILES['Avatar']['name']) || $_FILES['Avatar']['name'] != "" && !$AvatarIsUpdated)
                 {
-                    $dbHandler->dbDisconnect();
-                    echo USER_SUCCESSFULLY_CREATED_TEXT;
+                    $message.= "<span class=\"NegativeMessage\">";
+                    $message.= FAILED_TO_SAVE_AVATAR_TEXT;
+                    $message.= "</span>";
                 }
-                else
-                {
-                    $dbHandler->dbDisconnect();
-                    echo FAILED_TO_SAVE_AVATAR_TEXT;
-                }
-                echo USER_SUCCESSFULLY_CREATED_TEXT;
             }
-        }
-        elseif($accountIsUpdated)
-        {
-            if (Environment::SaveAvatar($userID))
+            elseif($EmployeeIsUpdated && !$ManagerIsSet)
             {
-                $dbHandler->dbDisconnect();
-                echo USER_SUCCESSFULLY_CREATED_TEXT;
+                $message.= "<span class=\"PositiveMessage\">";
+                $message.= EMPLOYEE_SUCCESSFULLY_UPDATED_TEXT;
+                $message.= "</span>";
+                $message.= "<span class=\"NegativeMessage\">";
+                $message.= FAILED_TO_SET_MANAGER_TEXT;
+                $message.= "</span>";
             }
             else
             {
-                $dbHandler->dbDisconnect();
-                echo FAILED_TO_SAVE_AVATAR_TEXT;
+                $message.= "<span class=\"NegativeMessage\">";
+                $message.= FAILED_TO_SET_MANAGER_TEXT;
+                $message.= "</span>";
+            }
+                
+        }
+        elseif($accountIsUpdated)
+        {
+            $dbHandler->dbDisconnect();
+            $message.= "<span class=\"PositiveMessage\">";
+            $message.= USER_SUCCESSFULLY_CREATED_TEXT;
+            $message.= "</span>";
+            $AvatarIsUpdated = Environment::SaveAvatar($userID);
+            if(!is_null($_FILES['Avatar']['name']) || $_FILES['Avatar']['name'] != "" && !$AvatarIsUpdated)
+            {
+                $message.= "<span class=\"NegativeMessage\">";
+                $message.= FAILED_TO_SAVE_AVATAR_TEXT;
+                $message.= "</span>";
             }
         }
         else
         {
             $dbHandler->dbDisconnect();
-            echo FAILED_TO_CREATE_USER_TEXT;
+            $message.= "<span class=\"NegativeMessage\">";
+            $message.= FAILED_TO_CREATE_USER_TEXT;
+            $message.= "</span>";
         }
+        echo $message;
     }
     else
     {

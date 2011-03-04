@@ -5,7 +5,7 @@ function PopUpBox(url)
     var popUpBox = document.createElement("div");
     popUpBox.id = "DialogBox";
     popUpBox.setAttribute("class","PopUpBox");
-    popUpBox.innerHTML = "<img src=\"./img/close.png\" onClick=\"ClosePopUp()\" title=\"close\" alt=\"close\" class=\"close\"/></br>";
+    popUpBox.innerHTML = "<img src=\"img/close.png\" onClick=\"ClosePopUp()\" title=\"close\" alt=\"close\" class=\"close\"/></br>";
     var xmlhttp;
     if (window.XMLHttpRequest)
       {// code for IE7+, Firefox, Chrome, Opera, Safari
