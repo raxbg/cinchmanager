@@ -100,7 +100,7 @@ if(isset($_SESSION['LoggedIn']))
             }
             else
             {
-                $message.="<span class=\"NegativeMessage\">".TASK_NOT_FOUND_TEXT."</span>";
+                echo "<span class=\"NegativeMessage\">".TASK_NOT_FOUND_TEXT."</span>";
             }
        
         $dbHandler->dbDisconnect();
@@ -109,8 +109,6 @@ if(isset($_SESSION['LoggedIn']))
     else
     {
         echo "<span class=\"NegativeMessage\">".TASK_NOT_FOUND_TEXT."</span>";
-        $dbHandler->dbDisconnect();
-        unset($dbHandler);
     }
 }
 else
