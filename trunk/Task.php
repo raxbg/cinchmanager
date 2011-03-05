@@ -95,7 +95,7 @@ if(isset($_SESSION['LoggedIn']))
 <?php } ?>
 <?php
                 echo STATUS1_TEXT." {$Task['Status']}%";
-                echo "<a href=\"index.php?page=EditTask&id={$Task['ID']}\" class=\"right\" >".EDIT_TEXT."</a>";
+                echo "<span onClick=\"PopUpBox('./EditTask.php?id={$Task['ID']}')\" class=\"right ActiveField\" >".EDIT_TEXT."</span>";
                 ?><div class="clearer"></div><?php
             }
             else
