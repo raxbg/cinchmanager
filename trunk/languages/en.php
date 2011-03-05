@@ -147,4 +147,12 @@ define("NORMAL_PRIORITY_TEXT","normal priority");
 define("LOW_PRIORITY_TEXT","low prioriry");
 define("LOWEST_PRIORITY_TEXT","lowest priority");
 define("ASSIGN_TO_TEXT","Asign to:");
+define("COULD_NOT_CREATE_TASK_TEXT","Could not create task.");
+define("COULD_NOT_UPDATE_TASK_TEXT","Could not update task.");
+define("TASK_NOT_FOUND_TEXT","Task not found");
+define("NOT_MEMBER_OF_ANY_PROJECT_TEXT","You are not a member of any project");
+define("","");
+define("","");
+define("","");
+
 ?>
