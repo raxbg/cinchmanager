@@ -177,6 +177,9 @@ if(isset($_SESSION['LoggedIn']))
     <select name="AssignedTo" id="ProjectMembers">
         <option value="noone"> </option>
     </select><br />
+    <script type="text/javascript">
+        FillMembers();
+    </script>
     <?php }else{ ?>
     <input type="hidden" name="Visibility" value="3" />
     <input type="hidden"name="AssignedTo" value="noone" />
@@ -189,9 +192,6 @@ if(isset($_SESSION['LoggedIn']))
     <input type="submit" name="EditTask" value="<?php echo EDIT_TEXT ?>" />
     <?php }else{ ?>
     <input type="submit" name="AddTask" value="<?php echo ADD_TEXT ?>" />
-    <script type="text/javascript">
-        FillMembers();
-    </script>
     <?php } ?>
 </form>
 
