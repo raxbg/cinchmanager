@@ -158,4 +158,6 @@ define("SHORT_DESCRIPTION1_TEXT","Кратко описание");
 define("DEADLINE1_TEXT","Краен срок");
 define("STATUS_TEXT","Състояние");
 define("ADD_TASK_TEXT","Добавяне на нова задача");
+define("TASK_ADDED_TEXT","Успешно създадохте нова задача.");
+define("TASK_UPDATED_TEXT","Успешно обновихте задачата.");
 ?>

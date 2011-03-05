@@ -81,6 +81,8 @@ if(isset($_SESSION['LoggedIn']))
         <?php echo $Projects; ?>
     </tbody>
 </table>
+<a href="index.php?page=EditProject"><?php echo CREATE_PROJECT_TEXT; ?></a>
+
 <?php
 }
 else

@@ -157,4 +157,6 @@ define("SHORT_DESCRIPTION1_TEXT","Short description");
 define("DEADLINE1_TEXT","Deadline");
 define("STATUS_TEXT","Status");
 define("ADD_TASK_TEXT","Add new task");
+define("TASK_ADDED_TEXT","Add added.");
+define("TASK_UPDATED_TEXT","Task updated.");
 ?>

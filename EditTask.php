@@ -38,9 +38,9 @@ if(isset($_SESSION['LoggedIn']))
             $message.="<span class=\"NegativeMessage\">".COULD_NOT_CREATE_TASK_TEXT."</span>";
         }
 
-
         $dbHandler->dbDisconnect();
         unset($dbHandler);
+        echo "<span class=\"PositiveMesage\">".TASK_ADDED_TEXT."</span>";
 
     }
     elseif(isset($_POST['Edit']))
@@ -83,6 +83,7 @@ if(isset($_SESSION['LoggedIn']))
 
         $dbHandler->dbDisconnect();
         unset($dbHandler);
+        echo "<span class=\"PositiveMesage\">".TASK_UPDATED_TEXT."</span>";
 
     }
     else
