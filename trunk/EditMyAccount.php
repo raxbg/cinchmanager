@@ -31,7 +31,7 @@ if(isset($_SESSION['LoggedIn']))
             $message = "<span class=\"PositiveMessage\">";
             $message.= ACCOUNT_SUCCESSFULLY_UPDATED_TEXT;
             $message.= "</span>";
-            $AvatarIsUpdated = Environment::SaveAvatar($_POST['userinfo']['ID']);
+            $AvatarIsUpdated = Environment::SaveAvatar($_SESSION['userinfo']['ID']);
             if(!is_null($_FILES['Avatar']['name']) && $_FILES['Avatar']['name'] != "" && !$AvatarIsUpdated)
             {
                 $message.= "<span class=\"NegativeMessage\">";
