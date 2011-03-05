@@ -5,9 +5,97 @@ if(isset($_SESSION['LoggedIn']))
     $dbHandler=new dbHandler();
     $dbHandler->dbConnect();
 
+    if(isset($_POST['EditTaskStatus']))
+    {
+        $taskId = mysql_real_escape_string($_POST['TaskID']);
+        $status = mysql_real_escape_string($_POST['NewStatus']);
+        $query="UPDATE Tasks SET Status=[$status] WHERE ID={$status}";
+        if($dbHandler->ExecuteQuery($query))
+        {
+            $message.="<span class=\"PositiveMessage\">".TASK_UPDATED_TEXT."</span>";
+        }
+        else
+        {
+            $message.="<span class=\"NegativeMessage\">".COULD_NOT_UPDATE_TASK_TEXT."</span>";
+        }
+    }
+    elseif(isset($_POST['AddTask']))
+    {
+        $ProjectID=mysql_real_escape_string($_POST['ProjectID']);
+        $Prioriry=mysql_real_escape_string($_POST['Prioriry']);
+        $ShortDescription=mysql_real_escape_string($_POST['ShortDescription']);
+        $Description=mysql_real_escape_string($_POST['Description']);
+        $Visibility=mysql_real_escape_string($_POST['Visibility']);
+        if ($_POST['Deadline']!='0000-00-00 00:00:00')
+        {
+            $Deadline="'".mysql_real_escape_string($_POST['Deadline'])."'";
+        }
+        else
+        {
+            $Deadline="NULL";
+        }
+
+        if($_POST['AssignedTo']!='noone')
+        {
+            $AssignedTo=mysql_real_escape_string($_POST['AssignedTo']);
+        }
+        else
+        {
+            $AssignedTo="NULL";
+        }
+        $query="INSERT INTO Tasks (ProjectID,UserID,ShortDescription,Description,Deadline,Priority,Visibility)
+            VALUES({$ProjectID},{$AssignedTo},'{$ShortDescription}','{$Description}',$Deadline,$Prioriry,$Visibility)";
+
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $message.="<span class=\"NegativeMessage\">".COULD_NOT_CREATE_TASK_TEXT."</span>";
+        }
+
+        echo "<span class=\"PositiveMessage\">".TASK_ADDED_TEXT."</span>";
+
+    }
+    elseif(isset($_POST['EditTask']))
+    {
+        $TaskID=mysql_real_escape_string($_POST['TaskID']);
+        $ProjectID=mysql_real_escape_string($_POST['ProjectID']);
+        $Prioriry=mysql_real_escape_string($_POST['Prioriry']);
+        $ShortDescription=mysql_real_escape_string($_POST['ShortDescription']);
+        $Description=mysql_real_escape_string($_POST['Description']);
+        $Visibility=mysql_real_escape_string($_POST['Visibility']);
+        if ($_POST['Deadline']!='0000-00-00 00:00:00')
+        {
+            $Deadline="'".mysql_real_escape_string($_POST['Deadline'])."'";
+        }
+        else
+        {
+            $Deadline="NULL";
+        }
+
+        if($_POST['AssignedTo']!='noone')
+        {
+            $AssignedTo=mysql_real_escape_string($_POST['AssignedTo']);
+        }
+        else
+        {
+            $AssignedTo="NULL";
+        }
+
+        $query="UPDATE Tasks SET ProjectID={$ProjectID},UserID={$AssignedTo},ShortDescription='{$ShortDescription}',Description='{$Description}',
+        Deadline=$Deadline,Priority=$Prioriry,Visibility=$Visibility
+        WHERE ID = {$TaskID}";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $message.="<span class=\"NegativeMessage\">".COULD_NOT_UPDATE_TASK_TEXT."</span>";
+        }
+        else
+        {
+            $message.= "<span class=\"PositiveMessage\">".TASK_UPDATED_TEXT."</span>";
+        }
+
+    }
+
     $Tasks="";
     $UserID = mysql_real_escape_string($_SESSION['userinfo']['ID']);
-    //liderite na proekta trqbva da vijdat vsi4ko za nego
     //zavyr6enite zada4i ne trqbva da se pokazvat
     $query="SELECT Tasks.ID, Tasks.Priority, Projects.Name AS Project, Tasks.ShortDescription, Tasks.Deadline,
             Tasks.Status, Tasks.UserID, Tasks.Visibility, ProjectsAndMembers.IsLeader AS UserIsLeader
@@ -44,6 +132,7 @@ if(isset($_SESSION['LoggedIn']))
     }
     $dbHandler->dbDisconnect();
     unset($dbHandler);
+    echo $message;
 ?>
 <h1><?php echo TASKS_TEXT; ?></h1>
 <table class="cooltable">
@@ -59,7 +148,7 @@ if(isset($_SESSION['LoggedIn']))
         <?php echo $Tasks; ?>
     </tbody>
 </table>
-<a href="index.php?page=EditTask"><?php echo ADD_TASK_TEXT; ?></a>
+<span class="ActiveField" onClick="PopUpBox('./EditTask.php')"><?php echo ADD_TASK_TEXT; ?></span>
 <?php
 }
 else

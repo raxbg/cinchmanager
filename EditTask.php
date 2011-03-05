@@ -3,7 +3,7 @@ require_once("lib/LoadSystem.php");
 if(isset($_SESSION['LoggedIn']))
 {
     $message="";
-    if(isset($_POST['Add']))
+    if(isset($_POST['AddTask']))
     {
         $dbHandler=new dbHandler();
         $dbHandler->dbConnect();
@@ -43,7 +43,7 @@ if(isset($_SESSION['LoggedIn']))
         echo "<span class=\"PositiveMessage\">".TASK_ADDED_TEXT."</span>";
 
     }
-    elseif(isset($_POST['Edit']))
+    elseif(isset($_POST['EditTask']))
     {
         $dbHandler=new dbHandler();
         $dbHandler->dbConnect();
@@ -79,11 +79,13 @@ if(isset($_SESSION['LoggedIn']))
         {
             $message.="<span class=\"NegativeMessage\">".COULD_NOT_UPDATE_TASK_TEXT."</span>";
         }
-
+        else
+        {
+            $message.= "<span class=\"PositiveMessage\">".TASK_UPDATED_TEXT."</span>";
+        }
 
         $dbHandler->dbDisconnect();
         unset($dbHandler);
-        echo "<span class=\"PositiveMessage\">".TASK_UPDATED_TEXT."</span>";
 
     }
     else
@@ -184,9 +186,9 @@ if(isset($_SESSION['LoggedIn']))
     <input type="text" name="Deadline" value="<?php echo $Deadline; ?>" /><br />
     <?php if($Task){ ?>
     <input type="hidden"name="TaskID" value="<?php echo $TaskID; ?>" />
-    <input type="submit" name="Edit" value="<?php echo EDIT_TEXT ?>" />
+    <input type="submit" name="EditTask" value="<?php echo EDIT_TEXT ?>" />
     <?php }else{ ?>
-    <input type="submit" name="Add" value="<?php echo ADD_TEXT ?>" />
+    <input type="submit" name="AddTask" value="<?php echo ADD_TEXT ?>" />
     <script type="text/javascript">
         FillMembers();
     </script>
