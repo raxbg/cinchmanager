@@ -100,7 +100,6 @@ if(isset($_SESSION['LoggedIn']))
         $ProjectsQuery="SELECT Projects.ID, Projects.Name From ProjectsAndMembers
                 LEFT JOIN Projects ON ProjectsAndMembers.ProjectID = Projects.ID
                 WHERE ProjectsAndMembers.UserID={$_SESSION['userinfo']['ID']}";
-        $MembersQuery="SELECT ID, FirstName, LastName FROM Users";
         if(isset($_GET['id'])&&$_GET['id']!="")
         {
             $TaskID=mysql_real_escape_string($_GET['id']);
@@ -116,7 +115,6 @@ if(isset($_SESSION['LoggedIn']))
                 $ProjectID=mysql_real_escape_string($Task['ProjectID']);
                 $UserID = mysql_real_escape_string($Task['UserID']);
                 $Projects = $dbHandler->MakeSelectOptions($ProjectsQuery, "ID", array("Name"), $ProjectID);
-                $Members = $dbHandler->MakeSelectOptions($MembersQuery, "ID", array("FirstName","LastName"), $UserID);
                 if($Task['Deadline'])
                 {
                     $Deadline=$Task['Deadline'];
@@ -130,13 +128,11 @@ if(isset($_SESSION['LoggedIn']))
             {
                 $message.="<span class=\"NegativeMessage\">".TASK_NOT_FOUND_TEXT."</span>";
                 $Projects = $dbHandler->MakeSelectOptions($ProjectsQuery, "ID", array("Name"));
-                $Members = $dbHandler->MakeSelectOptions($MembersQuery, "ID", array("FirstName","LastName"));
             }
         }
         else
         {
             $Projects = $dbHandler->MakeSelectOptions($ProjectsQuery, "ID", array("Name"));
-            $Members = $dbHandler->MakeSelectOptions($MembersQuery, "ID", array("FirstName","LastName"));
         }
 
         if($Projects == "")
@@ -151,6 +147,7 @@ if(isset($_SESSION['LoggedIn']))
             unset($dbHandler);
             echo $message;
 ?>
+<script type="text/javascript" src="js/Ajax.js"></script>
 <form method="post">
     <?php echo PRIORITY_TEXT; ?><br />
     <select name="Prioriry">
@@ -161,7 +158,7 @@ if(isset($_SESSION['LoggedIn']))
         <option value="5" <?php if($Priority == "5"){ echo "selected=\"selected\"";} echo "/>".LOWEST_PRIORITY_TEXT; ?></option>
     </select><br />
     <?php echo PROJECT_TEXT; ?><br />
-    <select name="ProjectID">
+    <select name="ProjectID" id="ProjectID" onchange="FillMembers()">
         <?php echo $Projects; ?>
     </select><br />
     <?php echo SHORT_DESCRIPTION_TEXT; ?><br />
@@ -175,9 +172,8 @@ if(isset($_SESSION['LoggedIn']))
     <input type="radio" name="Visibility" value="2" <?php if($Visibility == "2"){ echo "checked=\"checked\"";} echo "/>".INTERNAL_TEXT; ?>
     <input type="radio" name="Visibility" value="3" <?php if($Visibility == "3"){ echo "checked=\"checked\"";} echo "/>".EVERYONE_TEXT; ?><br />
     <?php echo ASSIGN_TO_TEXT; ?><br />
-    <select name="AssignedTo">
+    <select name="AssignedTo" id="ProjectMembers">
         <option value="noone"> </option>
-        <?php echo $Members; ?>
     </select><br />
     <?php }else{ ?>
     <input type="hidden" name="Visibility" value="3" />
@@ -191,6 +187,9 @@ if(isset($_SESSION['LoggedIn']))
     <input type="submit" name="Edit" value="<?php echo EDIT_TEXT ?>" />
     <?php }else{ ?>
     <input type="submit" name="Add" value="<?php echo ADD_TEXT ?>" />
+    <script type="text/javascript">
+        FillMembers();
+    </script>
     <?php } ?>
 </form>
 

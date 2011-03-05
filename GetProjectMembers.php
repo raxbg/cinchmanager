@@ -4,14 +4,14 @@ if(isset($_SESSION['LoggedIn']) && isset($_GET['id']) && $_GET['id'] != "")
 {
     $dbHandler = new dbHandler();
     $dbHandler->dbConnect();
-    $options="\n";
+    $options="<option value=\"noone\"> </option>";
     $projectId = mysql_real_escape_string($_GET['id']);
     $query = "SELECT Users.ID,Users.FirstName,Users.LastName
         FROM ProjectsAndMembers
         LEFT JOIN Users
         ON ProjectsAndMembers.UserID = Users.ID
         WHERE ProjectsAndMembers.ProjectID={$projectId}";
-    $options = $dbHandler->MakeSelectOptions($query, "ID", array("FirstName","LastName"));
+    $options .= $dbHandler->MakeSelectOptions($query, "ID", array("FirstName","LastName"));
     $dbHandler->dbDisconnect();
     unset($dbHandler);
     echo $options;
