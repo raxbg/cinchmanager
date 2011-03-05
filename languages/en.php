@@ -73,7 +73,7 @@ define("MANAGER_TEXT","Manager:");
 define("MEMBER_ADDED_TEXT","Member added.");
 define("MEMBER_REMOVED_TEXT","Member removed.");
 define("MEMBERS_OF_TEXT","Members of");
-define("MISSING_PARAMETER","Missing parameter.");
+define("MISSING_PARAMETER_TEXT","Missing parameter.");
 define("NAME_TEXT","Name");
 define("NEW_PASSWORD_SENT_TEXT","Your new password has been sent to the given email.");
 define("NO_TEXT","No");
