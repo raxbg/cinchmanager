@@ -133,7 +133,8 @@ class User
         $IsQuerySuccessful = $dbHandler->ExecuteQuery($createAccount);
         if ($IsQuerySuccessful)
         {
-            $mailSent = Email::SendEmail($email,$message);
+            $subject = "Welcome to ".COMPANY_NAME;
+            $mailSent = Email::SendEmail($email,$message,$subject);
             if($mailSent)
             {
                 $query = "SELECT ID FROM Users WHERE Email='{$email}'";

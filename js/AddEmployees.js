@@ -46,3 +46,12 @@ function Init()
     document.getElementById("InvalidMail").style.display="none";
     document.getElementById("Email").focus();
 }
+
+function InitForgottenPassword()
+{
+    document.getElementById("ValidMail").style.width="100%";
+    document.getElementById("InvalidMail").style.width="100%";
+    document.getElementById("ValidMail").style.display="none";
+    document.getElementById("InvalidMail").style.display="none";
+    document.getElementById("Email").focus();
+}

@@ -51,7 +51,9 @@ define("FAILED_TO_CREATE_ADMINISTRATOR","Failed to create administrator account.
 define("FAILED_TO_CREATE_USER_TEXT","Failed to create user.");
 define("FAILED_TO_CREATE_EMPLOYEE_TEXT","Failed to create employee.");
 define("FAILED_TO_SAVE_AVATAR_TEXT","Failed to save user photograph.");
+define("FAILED_TO_SEND_EMAIL_TEXT","Failed to email the new password.");
 define("FAILED_TO_SET_MANAGER_TEXT","Failed to set manager.");
+define("FAILED_TO_SET_NEW_PASSWORD_TEXT","Failed to set new password. Please try again.");
 define("FAILED_TO_REMOVE_MEMBER_TEXT","Failed to remove user.");
 define("FAILED_TO_UPDATE_EMPLOYEE_TEXT","Failed to update employee.");
 define("FAILED_TO_UPDATE_USER_TEXT","Failed to update user.");
@@ -73,6 +75,7 @@ define("MEMBER_REMOVED_TEXT","Member removed.");
 define("MEMBERS_OF_TEXT","Members of");
 define("MISSING_PARAMETER","Missing parameter.");
 define("NAME_TEXT","Name");
+define("NEW_PASSWORD_SENT_TEXT","Your new password has been sent to the given email.");
 define("NO_TEXT","No");
 define("NO_MEMBERS_TEXT","There are no members in this project.");
 define("NOBODY_TEXT","nobody");

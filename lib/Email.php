@@ -3,10 +3,9 @@ require_once("Autoload.php");
 
 class Email
 {
-    public static function SendEmail($email,$message)
+    public static function SendEmail($email,$message,$subject)
     {
         require_once("Globals.php");
-        $subject="Welcome to ".COMPANY_NAME;
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers .= "From: <".SYSTEM_EMAIL_ADDRESS.">" . "\r\n";
@@ -42,6 +41,23 @@ class Email
                   Powered by CinchManager
 	              </body> 
 	            </html>";
+    }
+
+    public static function ForgottenPasswordEmail($email,$password)
+    {
+    	return "<html>
+                 <body>
+                  A new password has been generated for you, at <a href='http://{$_SERVER['SERVER_NAME']}'>".COMPANY_NAME."</a><br />
+                  <br />
+                  <h2>Your account new login details:</h2>
+                    E-mail: {$email}<br/>
+                    Password: {$password}<br/>
+                    <br/>
+                    Your password has been automatically generated, you can easily change it from your account settings.<br/>
+                    <br/>
+                   Powered by CinchManager
+                  </body>
+                </html>";
     }
 }
 ?>
