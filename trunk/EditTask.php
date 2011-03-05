@@ -43,7 +43,7 @@ if(isset($_SESSION['LoggedIn']))
         unset($dbHandler);
 
     }
-    if(isset($_POST['Edit']))
+    elseif(isset($_POST['Edit']))
     {
         $dbHandler=new dbHandler();
         $dbHandler->dbConnect();
