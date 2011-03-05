@@ -46,6 +46,7 @@ define("EMPLOYEE_TEXT","Employee");
 define("EMPLOYEE_SUCCESSFULLY_CREATED_TEXT","Employee successfully created.");
 define("EMPLOYEE_SUCCESSFULLY_UPDATED_TEXT","Employee successfully updated.");
 define("EVERYTHING_TEXT","everything");
+define("FAILED_TO_CHANGE_PASSWORD_TEXT","Failed to change passowrd.");
 define("FAILED_TO_CREATE_ADMINISTRATOR","Failed to create administrator account. Please repeat the instalation.");
 define("FAILED_TO_CREATE_USER_TEXT","Failed to create user.");
 define("FAILED_TO_CREATE_EMPLOYEE_TEXT","Failed to create employee.");
@@ -84,6 +85,7 @@ define("NOT_ALLOWED_TO_EDIT_PROJECTS_TEXT","You are not allowed to edit projects
 define("ONLY_CLIENTS_TEXT","only clients");
 define("PAGE_NOT_FOUND_TEXT","Page not found!");
 define("PASSWORD_TEXT", "Password:");
+define("PASSWORD_SUCCESSFULLY_CHANGED_TEXT","Password successfully changed.");
 define("PLEASE_LOGIN_TEXT","Please login first!");
 define("POSITION1_TEXT","Position");
 define("POSITION_TEXT","Position:");

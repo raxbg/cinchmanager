@@ -3,6 +3,7 @@ if(isset($_GET['id']) && isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['
 {
     if(isset($_POST['NewPassword']) && $_POST['NewPassword'] != NULL && $_POST['NewPassword'] != "")
     {
+        $message = "";
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
         $id = mysql_real_escape_string($_GET['id']);
@@ -17,20 +18,36 @@ if(isset($_GET['id']) && isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['
             {
                 $newPass = mysql_real_escape_string($_POST['NewPassword']);
                 $newPass = $dbHandler->EncryptPwd($newPass);
-                $dbHandler->ExecuteQuery("UPDATE Users SET Password={$newPass} WHERE ID={$id}");
+                if(!$dbHandler->ExecuteQuery("UPDATE Users SET Password='{$newPass}' WHERE ID={$id}"))
+                {
+                    $message.= "<span class=\"NegativeMessage\">";
+                    $message.= FAILED_TO_CHANGE_PASSWORD_TEXT;
+                    $message.= "</span>";
+                }
+                else
+                {
+                    $message.= "<span class=\"PositiveMessage\">";
+                    $message.= PASSWORD_SUCCESSFULLY_CHANGED_TEXT;
+                    $message.= "</span>";
+                }
+
             }
             else
             {
-                echo TRYING_TO_CHEAT_TEXT;
+                $message.= "<span class=\"NegativeMessage\">";
+                $message.= TRYING_TO_CHEAT_TEXT;
+                $message.= "</span>";
             }
         }
-
         else
         {
-            echo TRYING_TO_CHEAT_TEXT;
+            $message.= "<span class=\"NegativeMessage\">";
+            $message.= TRYING_TO_CHEAT_TEXT;
+            $message.= "</span>";
         }
         $dbHandler->dbDisconnect();
         unset($dbHandler);
+        echo $message;
     }
     else
     {
@@ -59,14 +76,20 @@ if(isset($_GET['id']) && isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['
 }
 elseif(isset($_GET['id']) && isset($_SESSION['LoggedIn']) && !$_SESSION['userinfo']['ID'] != $_GET['id'])
 {
+    echo "<span class=\"NegativeMessage\">";
     echo CANNOT_CHANGE_OTHERS_PASSOWRDS_TEXT;
+    echo "</span>";
 }
 elseif(!isset($_SESSION['LoggedIn']))
 {
+    echo "<span class=\"NegativeMessage\">";
     echo PLEASE_LOGIN_TEXT;
+    echo "</span>";
 }
 elseif(!isset($_GET['id']))
 {
+    echo "<span class=\"NegativeMessage\">";
     echo MISSING_PARAMETER;
+    echo "</span>";
 }
 ?>
