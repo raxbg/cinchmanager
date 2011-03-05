@@ -40,7 +40,7 @@ if(isset($_SESSION['LoggedIn']))
 
         $dbHandler->dbDisconnect();
         unset($dbHandler);
-        echo "<span class=\"PositiveMesage\">".TASK_ADDED_TEXT."</span>";
+        echo "<span class=\"PositiveMessage\">".TASK_ADDED_TEXT."</span>";
 
     }
     elseif(isset($_POST['Edit']))
@@ -83,7 +83,7 @@ if(isset($_SESSION['LoggedIn']))
 
         $dbHandler->dbDisconnect();
         unset($dbHandler);
-        echo "<span class=\"PositiveMesage\">".TASK_UPDATED_TEXT."</span>";
+        echo "<span class=\"PositiveMessage\">".TASK_UPDATED_TEXT."</span>";
 
     }
     else
@@ -149,6 +149,7 @@ if(isset($_SESSION['LoggedIn']))
         {
             $dbHandler->dbDisconnect();
             unset($dbHandler);
+            echo $message;
 ?>
 <form method="post">
     <?php echo PRIORITY_TEXT; ?><br />
