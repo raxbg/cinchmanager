@@ -21,11 +21,13 @@ if(isset($_SESSION['LoggedIn']))
     {
         document.TaskStatus.src="img/"+amount+"percent.png";
         document.getElementById("PercentText").innerHTML = amount;
+        document.getElementById("NewStatus").value = amount;
     }
     function revertStatus()
     {
         document.TaskStatus.src="<?php echo $CurrentStatusImg; ?>";
         document.getElementById("PercentText").innerHTML = "<?php echo $CurrentStatus;?>";
+        document.getElementById("NewStatus").value = "<?php echo $CurrentStatus;?>";
     }
     function setStatus()
     {
@@ -34,8 +36,8 @@ if(isset($_SESSION['LoggedIn']))
 </script>
 <form method="post" name="SetStatus" action="index.php?page=Tasks">
     <input type="hidden" name="EditTaskStatus" value="true">
-    <input type="hidden" name="NewStatus" value="<?php echo $CurrentStatus;?>">
-    <input type="hidden" name="TaskID" value="<?php echo $TaskID;?>">
+    <input type="hidden" name="NewStatus" id="NewStatus" value="<?php echo $CurrentStatus;?>">
+    <input type="hidden" name="TaskID" id="TaskID" value="<?php echo $TaskID;?>">
 </form>
 <span class="LitleText"><?php echo STATUS1_TEXT; ?></span>
 <map name="status">
