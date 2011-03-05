@@ -237,6 +237,12 @@ if(isset($_GET['id']) && $_GET['id']!="")
     {
         echo "<span class=\"NegativeMessage\">".NOT_ALLOWED_TO_CREATE_ACCOUNTS_TEXT."</span>";
     }
+    elseif($_SESSION['userinfo']['CanCreateAccounts'] == "c" && $empOrClient != "c")
+    {
+        echo "<span class=\"NegativeMessage\">";
+        echo NOT_ALLOWED_TO_EDIT_THIS_ACCOUNT_TEXT;
+        echo "</span>";
+    }
     else
     {
         echo "<span class=\"NegativeMessage\">".PLEASE_LOGIN_TEXT."</span>";
