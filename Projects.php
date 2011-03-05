@@ -64,7 +64,7 @@ if(isset($_SESSION['LoggedIn']))
 ?>
 <h1><?php echo PROJECTS_TEXT; ?></h1>
 <table class="cooltable">
-    <thead>
+    <thead class="cooltable">
         <tr>
             <td><?php echo PROJECT_NAME1_TEXT; ?></td>
             <td><?php echo START_DATE_TEXT; ?></td>

@@ -88,6 +88,9 @@ background-color: #E0E0E0;
 font-weight: bold;
 text-align: center;
 }
+thead.cooltable td{
+padding-left:0 !important;
+}
 table.cooltable tr.even{
 background-color:#F0F0F0;
 }
