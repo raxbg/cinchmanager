@@ -82,6 +82,7 @@ class dbHandler
     public function MakeSelectOptions($query, $key, $fields,$mustSelect = NULL)
     {
         $result = $this->ExecuteQuery($query);
+        echo mysql_error();
         while($option = mysql_fetch_array($result))
         {
             if($mustSelect != NULL)

@@ -13,8 +13,15 @@ if(isset($_SESSION['LoggedIn']))
         $ShortDescription=mysql_real_escape_string($_POST['ShortDescription']);
         $Description=mysql_real_escape_string($_POST['Description']);
         $Visibility=mysql_real_escape_string($_POST['Visibility']);
-        $Deadline=mysql_real_escape_string($_POST['Deadline']);
-        $ProjectID=mysql_real_escape_string($_POST['ProjectID']);
+        if ($_POST['Deadline']!='0000-00-00 00:00:00')
+        {
+            $Deadline="'".mysql_real_escape_string($_POST['Deadline'])."'";
+        }
+        else
+        {
+            $Deadline="NULL";
+        }
+        
         if($_POST['AssignedTo']!='noone')
         {
             $AssignedTo=mysql_real_escape_string($_POST['AssignedTo']);
@@ -30,6 +37,50 @@ if(isset($_SESSION['LoggedIn']))
         {
             $message.="<span class=\"NegativeMessage\">".COULDNOT_CREATE_TASK_TEXT."</span>";
         }
+
+
+        $dbHandler->dbDisconnect();
+        unset($dbHandler);
+
+    }
+    if(isset($_POST['Edit']))
+    {
+        $dbHandler=new dbHandler();
+        $dbHandler->dbConnect();
+
+        $TaskID=mysql_real_escape_string($_POST['TaskID']);
+        $ProjectID=mysql_real_escape_string($_POST['ProjectID']);
+        $Prioriry=mysql_real_escape_string($_POST['Prioriry']);
+        $ShortDescription=mysql_real_escape_string($_POST['ShortDescription']);
+        $Description=mysql_real_escape_string($_POST['Description']);
+        $Visibility=mysql_real_escape_string($_POST['Visibility']);
+        if ($_POST['Deadline']!='0000-00-00 00:00:00')
+        {
+            $Deadline="'".mysql_real_escape_string($_POST['Deadline'])."'";
+        }
+        else
+        {
+            $Deadline="NULL";
+        }
+
+        if($_POST['AssignedTo']!='noone')
+        {
+            $AssignedTo=mysql_real_escape_string($_POST['AssignedTo']);
+        }
+        else
+        {
+            $AssignedTo="NULL";
+        }
+
+        $query="UPDATE Tasks SET ProjectID={$ProjectID},UserID={$AssignedTo},ShortDescription='{$ShortDescription}',Description='{$Description}',
+        Deadline=$Deadline,Priority=$Prioriry,Visibility=$Visibility
+        WHERE ID = {$TaskID}";
+        if(!$dbHandler->ExecuteQuery($query))
+        {
+            $message.="<span class=\"NegativeMessage\">".COULDNOT_UPDATE_TASK_TEXT."</span>";
+        }
+
+
         $dbHandler->dbDisconnect();
         unset($dbHandler);
 
@@ -57,7 +108,6 @@ if(isset($_SESSION['LoggedIn']))
             $Task=mysql_fetch_array($TaskResult);
             if($Task)
             {
-                echo "zada4a";
                 $Priority=$Task['Priority'];
                 $ShortDescription=$Task['ShortDescription'];
                 $Description=$Task['Description'];
@@ -116,7 +166,7 @@ if(isset($_SESSION['LoggedIn']))
     <input type="text" name="ShortDescription" value="<?php echo $ShortDescription; ?>" /><br />
     <?php echo DESCRIPTION_TEXT; ?><br />
     <textarea name="Description"><?php echo $Description; ?></textarea><br />
-    <?php if($_SESSION['userinfo']['ID']='e') { ?>
+    <?php if($_SESSION['userinfo']['EmployeeOrClient']=='e') { ?>
     <?php echo VISIBILITY_TEXT; ?>
     <br />
     <input type="radio" name="Visibility" value="1" <?php if($Visibility == "1"){ echo "checked=\"checked\"";} echo "/>".PRIVATE_TEXT; ?>
@@ -124,6 +174,7 @@ if(isset($_SESSION['LoggedIn']))
     <input type="radio" name="Visibility" value="3" <?php if($Visibility == "3"){ echo "checked=\"checked\"";} echo "/>".EVERYONE_TEXT; ?><br />
     <?php echo ASSIGN_TO_TEXT; ?><br />
     <select name="AssignedTo">
+        <option value="noone"> </option>
         <?php echo $Members; ?>
     </select><br />
     <?php }else{ ?>
@@ -134,8 +185,7 @@ if(isset($_SESSION['LoggedIn']))
     <br />
     <input type="text" name="Deadline" value="<?php echo $Deadline; ?>" /><br />
     <?php if($Task){ ?>
-    <input type="hidden" name="TaskID" value="<?php echo $TaskId; ?>" />
-    <input type="hidden" name="Status" value="<?php echo $Status; ?>" />
+    <input type="hidden"name="TaskID" value="<?php echo $TaskID; ?>" />
     <input type="submit" name="Edit" value="<?php echo EDIT_TEXT ?>" />
     <?php }else{ ?>
     <input type="submit" name="Add" value="<?php echo ADD_TEXT ?>" />
