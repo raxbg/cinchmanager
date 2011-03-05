@@ -82,6 +82,7 @@ define("NOT_ALLOWED_TO_CREATE_BRANCHES_TEXT","You are not allowed to create new 
 define("NOT_ALLOWED_TO_CREATE_PROJECTS_TEXT","You are not allowed to create new projects.");
 define("NOT_ALLOWED_TO_EDIT_ACCOUNTS_TEXT","You are not allowed to edit user accounts.");
 define("NOT_ALLOWED_TO_EDIT_PROJECTS_TEXT","You are not allowed to edit projects.");
+define("NOT_ALLOWED_TO_EDIT_THIS_ACCOUNT_TEXT","You are not allowed to edit this account.");
 define("ONLY_CLIENTS_TEXT","only clients");
 define("PAGE_NOT_FOUND_TEXT","Page not found!");
 define("PASSWORD_TEXT", "Password:");
