@@ -140,10 +140,9 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
         <?php echo ACC_CAN_CREATE_TITLES_TEXT;?><br />
         <?php if($_SESSION['userinfo']['IsAdmin'] == 1)
         {
-            <input type="radio" name="IsAdmin" value="1"><?php echo YES_TEXT;
+            echo "<input type=\"radio\" name=\"IsAdmin\" value=\"1\">".YES_TEXT;
         }
         ?>
-
         <input type="radio" name="IsAdmin" value="0" checked="checked"><?php echo NO_TEXT;?><br />
         <?php echo ASSIGNMENT_DAY_TEXT;?><br />
         <input type="text" name="AssignmentDay" value="<?php echo $today;?>"/><br />
