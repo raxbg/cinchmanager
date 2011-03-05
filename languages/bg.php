@@ -106,6 +106,7 @@ define("SALARY_TEXT","Заплата:");
 define("SALARY1_TEXT","Заплата");
 define("SALARY_UPDATED_TEXT","Заплатата е променена");
 define("SECOND_NAME_TEXT","Бащино име:");
+define("SEND_NEW_PASSWORD_TEXT","Изпрати нова парола");
 define("START_DATE_TEXT","Започнат на");
 define("STATUS_TEXT","Състояние");
 define("TELEPHONE1_TEXT","Телефон");

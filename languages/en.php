@@ -106,6 +106,7 @@ define("SALARY_TEXT","Salary:");
 define("SALARY1_TEXT","Salary");
 define("SALARY_UPDATED_TEXT","Salary is updated");
 define("SECOND_NAME_TEXT","Second name:");
+define("SEND_NEW_PASSWORD_TEXT","Send new password");
 define("START_DATE_TEXT","Start date");
 define("STATUS_TEXT","Status");
 define("TELEPHONE1_TEXT","Telephone");
