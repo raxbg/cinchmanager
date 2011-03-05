@@ -114,11 +114,13 @@ color: #ccc;
 width:900px;
 }
 #menu a{
+color: #CCCCCC;
+display: block;
 margin: 0;
-padding:0;
-color: #ccc;
-text-align: center;
+padding: 0;
+text-align: left;
 text-decoration: none;
+width: 100%;
 }
 li.last{
 border:none !important;
@@ -228,6 +230,8 @@ clear:left;
 }
 div.UserInfo #address{
 margin:10px 0;
+float:right;
+clear:right;
 }
 div.UserInfo #contacts{
 margin:10px 0;
