@@ -28,8 +28,9 @@ if(isset($_SESSION['LoggedIn']))
             $class="class=\"even ActiveField\"";
         }
         $i++;
+
         if((($Task['Visibility']==1)&&($Task['UserID']==$_SESSION['userinfo']['ID']))||
-                (($Task['Visibility']==2)&&($_SESSION['userinfo'][EmployeOrClient]=='e'))||
+                (($Task['Visibility']==2)&&($_SESSION['userinfo']['EmployeeOrClient']=='e'))||
                 ($Task['Visibility']==3)||
                 ($Task['UserIsLeader']))
         {
@@ -58,7 +59,7 @@ if(isset($_SESSION['LoggedIn']))
         <?php echo $Tasks; ?>
     </tbody>
 </table>
-
+<span class="ActiveField" onClick="PopUpBox('./EditTask.php');"><?php echo ADD_TASK_TEXT; ?></span>
 <?php
 }
 else
