@@ -43,7 +43,7 @@ else
     <span class="PositiveMessage" id="ValidMail"><?php echo VALID_MAIL_TEXT; ?></span>
     <span class="NegativeMessage" id="InvalidMail"><?php echo INVALID_MAIL_TEXT; ?></span>
     <br />
-    <input type="submit" name="AddBtn" disabled="disabled" id="AddBtn"/>
+    <input type="submit" name="AddBtn" disabled="disabled" id="AddBtn" value="<?php echo SEND_NEW_PASSWORD_TEXT;?>"/>
 </form>
 <script type="text/javascript">
     InitForgottenPassword();
