@@ -153,7 +153,8 @@ define("COULD_NOT_CREATE_TASK_TEXT","Задачата не може да бъд�
 define("COULD_NOT_UPDATE_TASK_TEXT","Задачата не може да бъде обновена.");
 define("TASK_NOT_FOUND_TEXT","Задачата не е намерена");
 define("NOT_MEMBER_OF_ANY_PROJECT_TEXT","Не сте член на нито един проект");
-define("","");
-define("","");
-define("","");
+define("TASKS_TEXT","Задачи");
+define("SHORT_DESCRIPTION1_TEXT","Кратко описание");
+define("DEADLINE1_TEXT","Краен срок");
+define("STATUS_TEXT","Състояние");
 ?>

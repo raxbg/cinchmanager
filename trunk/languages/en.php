@@ -152,8 +152,9 @@ define("COULD_NOT_CREATE_TASK_TEXT","Could not create task.");
 define("COULD_NOT_UPDATE_TASK_TEXT","Could not update task.");
 define("TASK_NOT_FOUND_TEXT","Task not found");
 define("NOT_MEMBER_OF_ANY_PROJECT_TEXT","You are not a member of any project");
-define("","");
-define("","");
-define("","");
+define("TASKS_TEXT","Tasks");
+define("SHORT_DESCRIPTION1_TEXT","Short description");
+define("DEADLINE1_TEXT","Deadline");
+define("STATUS_TEXT","Status");
 
 ?>
