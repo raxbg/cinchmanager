@@ -148,4 +148,11 @@ define("NORMAL_PRIORITY_TEXT","нормална");
 define("LOW_PRIORITY_TEXT","маловажна");
 define("LOWEST_PRIORITY_TEXT","най-маловажна");
 define("ASSIGN_TO_TEXT","Възложи на:");
+define("COULD_NOT_CREATE_TASK_TEXT","Задачата не може да бъде създадена.");
+define("COULD_NOT_UPDATE_TASK_TEXT","Задачата не може да бъде обновена.");
+define("TASK_NOT_FOUND_TEXT","Задачата не е намерена");
+define("NOT_MEMBER_OF_ANY_PROJECT_TEXT","Не сте член на нито един проект");
+define("","");
+define("","");
+define("","");
 ?>

@@ -35,7 +35,7 @@ if(isset($_SESSION['LoggedIn']))
         
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $message.="<span class=\"NegativeMessage\">".COULDNOT_CREATE_TASK_TEXT."</span>";
+            $message.="<span class=\"NegativeMessage\">".COULD_NOT_CREATE_TASK_TEXT."</span>";
         }
 
 
@@ -77,7 +77,7 @@ if(isset($_SESSION['LoggedIn']))
         WHERE ID = {$TaskID}";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            $message.="<span class=\"NegativeMessage\">".COULDNOT_UPDATE_TASK_TEXT."</span>";
+            $message.="<span class=\"NegativeMessage\">".COULD_NOT_UPDATE_TASK_TEXT."</span>";
         }
 
 
