@@ -1,6 +1,6 @@
 <?php
 require_once("lib/LoadSystem.php");
-if(isset($_SESSION['LoggedIn']) && isset($_GET['id']) && ($_SESSION['userinfo']['ID'] == $_GET['id']))
+if(isset($_SESSION['LoggedIn']) && isset($_GET['id']) && isset($_GET['pass']) && ($_SESSION['userinfo']['ID'] == $_GET['id']))
 {
     $dbHandler = new dbHandler();
     $dbHandler->dbConnect();
@@ -22,7 +22,7 @@ if(isset($_SESSION['LoggedIn']) && isset($_GET['id']) && ($_SESSION['userinfo'][
     }
 
 }
-elseif(isset($_SESSION['LoggedIn']) && isset($_GET['id']) && ($_SESSION['userinfo']['ID'] != $_GET['id']))
+elseif(isset($_SESSION['LoggedIn']) && isset($_GET['id']) && isset($_GET['pass']) && ($_SESSION['userinfo']['ID'] != $_GET['id']))
 {
     echo "<span class=\"NegativeMessage\">";
     echo CANNOT_CHANGE_OTHERS_PASSOWRDS_TEXT;
@@ -40,5 +40,4 @@ elseif(!isset($_GET['id']) || !isset($_GET['pass']))
     echo MISSING_PARAMETER;
     echo "</span>";
 }
-
 ?>
