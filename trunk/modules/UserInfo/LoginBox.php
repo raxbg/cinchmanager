@@ -18,7 +18,7 @@
 	    <tr>
 	        <td colspan=3>
                     <input type="checkbox" name="RememberMe" value="RememberMe" style="margin:0;border:0"/> <?php echo REMEMBER_TEXT; ?>
-                    <span id="forgotten"><a href=#><?php echo FORGOTTEN_PASSWORD_TEXT; ?></a></span>
+                    <span id="forgotten"><a href="index.php?page=ForgottenPassword"><?php echo FORGOTTEN_PASSWORD_TEXT; ?></a></span>
 	        </td>
 	    </tr>
 	</table>
