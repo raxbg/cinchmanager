@@ -9,7 +9,7 @@ if(isset($_SESSION['LoggedIn']))
     {
         $taskId = mysql_real_escape_string($_POST['TaskID']);
         $status = mysql_real_escape_string($_POST['NewStatus']);
-        $query="UPDATE Tasks SET Status=[$status] WHERE ID={$status}";
+        $query="UPDATE Tasks SET Status={$status} WHERE ID={$taskId}";
         if($dbHandler->ExecuteQuery($query))
         {
             $message.="<span class=\"PositiveMessage\">".TASK_UPDATED_TEXT."</span>";
