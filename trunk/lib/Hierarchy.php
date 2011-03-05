@@ -110,7 +110,6 @@ class Hierarchy
         $query="SELECT @myRight := rgt,@myLeft := lft ,@myWidth:=rgt-lft+1 FROM Employees WHERE UserID='{$user}'";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "1";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -121,7 +120,6 @@ class Hierarchy
         $query="UPDATE Employees SET rgt = -rgt WHERE rgt > @myLeft AND rgt <= @myRight";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "2";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -131,7 +129,6 @@ class Hierarchy
         $query="UPDATE Employees SET lft = -lft WHERE lft >= @myLeft AND lft < @myRight";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "3";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -142,7 +139,6 @@ class Hierarchy
         $query="UPDATE Employees SET rgt = rgt - @myWidth WHERE rgt > @myLeft";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "4";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -152,7 +148,6 @@ class Hierarchy
         $query="UPDATE Employees SET lft = lft - @myWidth WHERE lft > @myLeft";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "5";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -170,7 +165,6 @@ class Hierarchy
         }
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "6";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -181,7 +175,6 @@ class Hierarchy
         $query="SELECT @Step := @myNewStartRight-@myLeft;";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "7";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -192,7 +185,6 @@ class Hierarchy
         $query="UPDATE Employees SET rgt = rgt + @myWidth WHERE rgt >= @myNewStartRight";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "8";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -202,7 +194,6 @@ class Hierarchy
         $query="UPDATE Employees SET lft = lft + @myWidth WHERE lft >= @myNewStartRight";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "9";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -213,7 +204,6 @@ class Hierarchy
         $query="UPDATE Employees SET rgt = -rgt + @Step WHERE rgt <0";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "10";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
@@ -223,14 +213,12 @@ class Hierarchy
         $query="UPDATE Employees SET lft = -lft + @Step WHERE lft <0";
         if(!$dbHandler->ExecuteQuery($query))
         {
-            echo "11";
             echo mysql_error();
             $dbHandler->ExecuteQuery("ROLLBACK");
             $dbHandler->dbDisconnect();
             unset($dbHandler);
             return false;
         }
-        echo "svyr6ih";
         $dbHandler->ExecuteQuery("COMMIT");
         $dbHandler->dbDisconnect();
         unset($dbHandler);
