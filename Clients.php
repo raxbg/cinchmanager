@@ -43,7 +43,7 @@ if(isset($_SESSION['LoggedIn']))
     }
     $dbHandler->dbDisconnect();
 ?>
-    <h1><?php echo EMPLOYEES_TEXT ?></h1>
+    <h1><?php echo CLIENTS_TEXT ?></h1>
     <table class="cooltable">
         <thead>
             <tr>
