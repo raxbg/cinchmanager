@@ -1,5 +1,6 @@
 <?php
 define("ACCOUNT_INFORMATION_TEXT","Account information");
+define("ACCOUNT_SUCCESSFULLY_UPDATED_TEXT","Account successfully updated.");
 define("ACC_CAN_CREATE_TEXT","Employee can create:");
 define("ACC_CAN_CREATE_TITLES_TEXT","Employee can create/edit titles,positions and branches?");
 define("ADDRESS1_TEXT","Address");
@@ -55,6 +56,7 @@ define("FAILED_TO_SEND_EMAIL_TEXT","Failed to email the new password.");
 define("FAILED_TO_SET_MANAGER_TEXT","Failed to set manager.");
 define("FAILED_TO_SET_NEW_PASSWORD_TEXT","Failed to set new password. Please try again.");
 define("FAILED_TO_REMOVE_MEMBER_TEXT","Failed to remove user.");
+define("FAILED_TO_UPDATE_ACCOUNT_TEXT","Failed to update account");
 define("FAILED_TO_UPDATE_EMPLOYEE_TEXT","Failed to update employee.");
 define("FAILED_TO_UPDATE_USER_TEXT","Failed to update user.");
 define("FEMALE_TEXT","Female");

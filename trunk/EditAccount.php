@@ -172,6 +172,8 @@ if(isset($_GET['id']) && $_GET['id']!="")
             <input type="file" name="Avatar"><br />
             <?php echo TELEPHONE_TEXT;?><br />
             <input type="text" value="<?php echo $userinfo['Telephone'];?>" name="Telephone" /><br />
+            <?php echo ADDRESS_TEXT;?><br />
+            <input type="text" value="<?php echo $userinfo['Address'];?>" name="Address" /><br />
             <?php echo BRANCH_TEXT;?><br />
             <select name="BranchID">
                 <?php echo $branches;?>
