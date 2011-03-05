@@ -80,7 +80,6 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
 
 ?>
     <form method="post">
-        <h1><?php echo CREATE_PROJECT_TEXT; ?></h1>
         <?php echo $message ?>
         <?php echo BRANCH_TEXT;?><br />
         <select name="BranchID">
@@ -96,7 +95,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
             <option value="2"><?php echo HALT_TEXT; ?></option>
             <option value="3"><?php echo FINNISHED_TEXT; ?></option>
             <option value="4"><?php echo CANCELED_TEXT; ?></option>
-        </select>
+        </select><br />
         <input type="hidden" name="ID" value="<?php echo $_GET['id']; ?>" />
         <input type="submit" name="Edit" value="<?php echo EDIT_TEXT; ?>" />
         <?php }else{ ?>

@@ -59,7 +59,7 @@ if(isset($_SESSION['LoggedIn']))
         <?php echo $Tasks; ?>
     </tbody>
 </table>
-<span class="ActiveField" onClick="PopUpBox('./EditTask.php');"><?php echo ADD_TASK_TEXT; ?></span>
+<a href="index.php?page=EditTask"><?php echo ADD_TASK_TEXT; ?></a>
 <?php
 }
 else
