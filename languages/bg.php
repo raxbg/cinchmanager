@@ -164,4 +164,9 @@ define("STATUS_TEXT","Състояние");
 define("ADD_TASK_TEXT","Добавяне на нова задача");
 define("TASK_ADDED_TEXT","Успешно създадохте нова задача.");
 define("TASK_UPDATED_TEXT","Успешно обновихте задачата.");
+define("ASIGNED_AT_TEXT","Възложена на:");
+define("FINISHED_AT_TEXT","Завършена на:");
+define("ASSIGNED_TO_TEXT","Възложена на:");
+define("DESCRIPTION1_TEXT","Описание");
+define("STATUS1_TEXT","Състояние:");
 ?>

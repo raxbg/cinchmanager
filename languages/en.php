@@ -163,4 +163,9 @@ define("STATUS_TEXT","Status");
 define("ADD_TASK_TEXT","Add new task");
 define("TASK_ADDED_TEXT","Add added.");
 define("TASK_UPDATED_TEXT","Task updated.");
+define("ASIGNED_AT_TEXT","Asigned at:");
+define("FINISHED_AT_TEXT","Finished at:");
+define("ASSIGNED_TO_TEXT","Asigned to:");
+define("DESCRIPTION1_TEXT","Description");
+define("STATUS1_TEXT","Status:");
 ?>
