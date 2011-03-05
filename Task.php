@@ -23,19 +23,19 @@ if(isset($_SESSION['LoggedIn']))
                         $Priority = URGENT_TEXT;
                         break;
                     case 2:
-                        $Prioriry = HIGH_PRIORITY_TEXT;
+                        $Priority = HIGH_PRIORITY_TEXT;
                         break;
                     case 3:
-                        $Prioriry = NORMAL_PRIORITY_TEXT;
+                        $Priority = NORMAL_PRIORITY_TEXT;
                         break;
                     case 4:
-                        $Prioriry = LOW_PRIORITY_TEXT;
+                        $Priority = LOW_PRIORITY_TEXT;
                         break;
                     case 5:
-                        $Prioriry = LOWEST_PRIORITY_TEXT;
+                        $Priority = LOWEST_PRIORITY_TEXT;
                         break;
                     default:
-                        $Prioriry = NORMAL_PRIORITY_TEXT;
+                        $Priority = NORMAL_PRIORITY_TEXT;
                 }
                 switch ($Task['Visibility'])
                 {
@@ -61,7 +61,7 @@ if(isset($_SESSION['LoggedIn']))
     <?php }?>
     <div>
         <span class="LittleText"><?php echo PRIORITY_TEXT; ?></span><br />
-        <span><?php echo $Prioriry; ?></span>
+        <span><?php echo $Priority; ?></span>
     </div>
     <div>
         <span class="LittleText"><?php echo ASIGNED_AT_TEXT; ?></span><br />

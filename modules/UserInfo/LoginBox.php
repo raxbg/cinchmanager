@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" action="index.php?page=Tasks">
 	<table>
 	    <tr>
                 <td><?php echo EMAIL_TEXT; ?></td>
