@@ -109,6 +109,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
     <input type="file" name="Avatar"><br />
     <?php echo TELEPHONE_TEXT;?><br />
     <input type="text" name="Telephone" /><br />
+    <?php echo ADDRESS_TEXT;?><br />
+    <input type="text" name="Address" /><br />
     <?php echo BRANCH_TEXT;?><br />
     <select name="BranchID">
         <?php echo $branches;?>
