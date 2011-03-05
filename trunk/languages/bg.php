@@ -169,4 +169,11 @@ define("FINISHED_AT_TEXT","Завършена на:");
 define("ASSIGNED_TO_TEXT","Възложена на:");
 define("DESCRIPTION1_TEXT","Описание");
 define("STATUS1_TEXT","Състояние:");
+define("USERS_TEXT","Потребители");
+define("VIEW_ALL_TEXT","Всички");
+define("MANAGE_TEXT","Управление");
+define("TITLES1_TEXT","Обръщения");
+define("POSITIONS1_TEXT","Позиции");
+define("ACCOUNT_TEXT","Акаунт");
+define("CHANGE_PASSWORG_TEXT","Промяна на паролата");
 ?>

@@ -168,4 +168,16 @@ define("FINISHED_AT_TEXT","Finished at:");
 define("ASSIGNED_TO_TEXT","Asigned to:");
 define("DESCRIPTION1_TEXT","Description");
 define("STATUS1_TEXT","Status:");
+define("USERS_TEXT","Users");
+define("VIEW_ALL_TEXT","View all");
+define("MANAGE_TEXT","Manage");
+define("TITLES1_TEXT","Titles");
+define("POSITIONS1_TEXT","Positions");
+define("ACCOUNT_TEXT","Account");
+define("CHANGE_PASSWORG_TEXT","Change password");
+define("","");
+define("","");
+define("","");
+
+
 ?>
