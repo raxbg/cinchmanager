@@ -73,7 +73,7 @@ define("MANAGER_TEXT","Ръководител:");
 define("MEMBER_ADDED_TEXT","Новият член е добавен.");
 define("MEMBER_REMOVED_TEXT","Членът е изключен от проекта.");
 define("MEMBERS_OF_TEXT","Челенове на");
-define("MISSING_PARAMETER","Недостатъчно параметри.");
+define("MISSING_PARAMETER_TEXT","Недостатъчно параметри.");
 define("NAME_TEXT","Име");
 define("NEW_PASSWORD_SENT_TEXT","Новата ви парола беше изпратена на посоченият от вас E-mail адрес.");
 define("NO_TEXT","Не");
