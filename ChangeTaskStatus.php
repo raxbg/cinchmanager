@@ -16,17 +16,38 @@ if(isset($_SESSION['LoggedIn']))
                 $CurrentStatus=$Task['Status'];
                 $CurrentStatusImg="img/{$CurrentStatus}percent.png";
 ?>
-
+<script type="text/javascript">
+    function changeStatus(amount)
+    {
+        document.TaskStatus.src="img/"+amount+"percent.png";
+        document.getElementById("PercentText").innerHTML = amount;
+    }
+    function revertStatus()
+    {
+        document.TaskStatus.src="<?php echo $CurrentStatusImg; ?>";
+        document.getElementById("PercentText").innerHTML = "<?php echo $CurrentStatus;?>";
+    }
+    function setStatus()
+    {
+        document.SetStatus.submit();
+    }
+</script>
+<form method="post" name="SetStatus" action="index.php?page=Tasks">
+    <input type="hidden" name="EditTaskStatus" value="true">
+    <input type="hidden" name="NewStatus" value="<?php echo $CurrentStatus;?>">
+    <input type="hidden" name="TaskID" value="<?php echo $TaskID;?>">
+</form>
 <span class="LitleText"><?php echo STATUS1_TEXT; ?></span>
 <map name="status">
-    <area alt="0%"  shape="rect" coords="0, 0, 20, 30" onmouseover="document.TaskStatus.src='img/0percent.png';" onmouseout="document.TaskStatus.src='<?php echo $CurrentStatusImg; ?>'" />
-    <area alt="20%" shape="rect" coords="20, 0, 40, 30" onmouseover="document.TaskStatus.src='img/20percent.png';" onmouseout="document.TaskStatus.src='<?php echo $CurrentStatusImg; ?>'" />
-    <area alt="40%" shape="rect" coords="40, 0, 60, 30" onmouseover="document.TaskStatus.src='img/40percent.png';" onmouseout="document.TaskStatus.src='<?php echo $CurrentStatusImg; ?>'" />
-    <area alt="60%" shape="rect" coords="60, 0, 80, 30" onmouseover="document.TaskStatus.src='img/60percent.png';" onmouseout="document.TaskStatus.src='<?php echo $CurrentStatusImg; ?>'" />
-    <area alt="80%" shape="rect" coords="80, 0, 100, 30" onmouseover="document.TaskStatus.src='img/80percent.png';" onmouseout="document.TaskStatus.src='<?php echo $CurrentStatusImg; ?>'" />
-    <area alt="100%" shape="rect" coords="100, 0, 120, 30" onmouseover="document.TaskStatus.src='img/100percent.png';" onmouseout="document.TaskStatus.src='<?php echo $CurrentStatusImg; ?>'" />
+    <area alt="0%"  shape="rect" coords="0, 0, 20, 30" onmouseover="changeStatus(0)" onmouseout="revertStatus()" onclick="setStatus()"/>
+    <area alt="20%" shape="rect" coords="20, 0, 40, 30" onmouseover="changeStatus(20)" onmouseout="revertStatus()" onclick="setStatus()"/>
+    <area alt="40%" shape="rect" coords="40, 0, 60, 30" onmouseover="changeStatus(40)" onmouseout="revertStatus()" onclick="setStatus()"/>
+    <area alt="60%" shape="rect" coords="60, 0, 80, 30" onmouseover="changeStatus(60)" onmouseout="revertStatus()" onclick="setStatus()"/>
+    <area alt="80%" shape="rect" coords="80, 0, 100, 30" onmouseover="changeStatus(80)" onmouseout="revertStatus()" onclick="setStatus()"/>
+    <area alt="100%" shape="rect" coords="100, 0, 120, 30" onmouseover="changeStatus(100)" onmouseout="revertStatus()" onclick="setStatus()"/>
 </map>
 <img alt="Status"  src="<?php echo $CurrentStatusImg; ?>" usemap="#status" name="TaskStatus" width="120" height="30"/>
+<span class="LitleText" id="PercentText"><?php echo $CurrentStatus;?></span>%
 
 <?php
             }
