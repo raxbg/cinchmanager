@@ -182,4 +182,7 @@ define("TITLES1_TEXT","Обръщения");
 define("POSITIONS1_TEXT","Позиции");
 define("ACCOUNT_TEXT","Акаунт");
 define("CHANGE_PASSWORG_TEXT","Промяна на паролата");
+define("DISMISS_TEXT","Dismiss");
+define("DISMISSED_TEXT","Employee dismissed successfully.");
+define("COULD_NOT_DISSMISS_TEXT","Could nout dissmiss user.");
 ?>
