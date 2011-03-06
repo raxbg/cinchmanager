@@ -255,5 +255,28 @@ class Hierarchy
             return false;
         }
     }
+    public static function FindManager($Employee)
+    {
+        $dbHandler = new dbHandler();
+        $dbHandler->dbConnect();
+        $UserId = mysql_real_escape_string($Employee);
+        $query="SELECT parent.UserID
+            FROM Employees AS node,
+            Employees AS parent
+            WHERE node.lft BETWEEN parent.lft AND parent.rgt
+            AND node.UserID = {$UserId}
+            ORDER BY parent.lft DESC";
+        $result = $dbHandler->ExecuteQuery($query);
+        mysql_fetch_row($result);
+        $manager = mysql_fetch_row($result);
+        if($manager)
+        {
+            return $manager[0];
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
 ?>

@@ -161,7 +161,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
         if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
         {
 
-            echo "<a href=\"index.php?page=EditAccount&id={$_GET['id']}\"><img src=\"img/edit.gif\"></a>";
+            echo "<a href=\"index.php?page=EditAccount&id={$_GET['id']}\" class=\"right\"><img src=\"img/edit.gif\"></a>";
         }
         if(Hierarchy::IsXManagerOfY($_GET['id'], $_SESSION['userinfo']['ID']))
         {
