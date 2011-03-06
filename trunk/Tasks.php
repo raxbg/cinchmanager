@@ -113,7 +113,7 @@ if(isset($_SESSION['LoggedIn']))
     {
         $ProjectID = mysql_real_escape_string($_GET['Project']);
         $Projects=$dbHandler->MakeSelectOptions($query, "ID", array("Name"),$ProjectID);
-        $query="SELECT Tasks.ID, Tasks.Priority, Projects.ID, Projects.Name AS Project, Tasks.ShortDescription, Tasks.Deadline,
+        $query="SELECT Tasks.ID, Tasks.Priority, Projects.Name AS Project, Tasks.ShortDescription, Tasks.Deadline,
             Tasks.Status, Tasks.UserID, Tasks.Visibility, ProjectsAndMembers.IsLeader AS UserIsLeader
             FROM ProjectsAndMembers
             LEFT JOIN Projects ON Projects.ID = ProjectsAndMembers.ProjectID
