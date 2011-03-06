@@ -23,14 +23,14 @@ if(isset($_SESSION['LoggedIn']))
 <span class="LitleText"><?php echo STATUS1_TEXT; ?></span>
 <span class="LitleText" id="PercentText"><?php echo $CurrentStatus;?></span>%<br />
 <map name="status">
-    <area alt="0%"  shape="rect" coords="0, 0, 20, 30" onmouseover="changeStatus(0)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
-    <area alt="20%" shape="rect" coords="20, 0, 40, 30" onmouseover="changeStatus(20)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
-    <area alt="40%" shape="rect" coords="40, 0, 60, 30" onmouseover="changeStatus(40)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
-    <area alt="60%" shape="rect" coords="60, 0, 80, 30" onmouseover="changeStatus(60)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
-    <area alt="80%" shape="rect" coords="80, 0, 100, 30" onmouseover="changeStatus(80)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
-    <area alt="100%" shape="rect" coords="100, 0, 120, 30" onmouseover="changeStatus(100)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
+    <area alt="0%"  shape="rect" coords="0, 0, 20, 15" onmouseover="changeStatus(0)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
+    <area alt="20%" shape="rect" coords="20, 0, 40, 15" onmouseover="changeStatus(20)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
+    <area alt="40%" shape="rect" coords="40, 0, 60, 15" onmouseover="changeStatus(40)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
+    <area alt="60%" shape="rect" coords="60, 0, 80, 15" onmouseover="changeStatus(60)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
+    <area alt="80%" shape="rect" coords="80, 0, 100, 15" onmouseover="changeStatus(80)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
+    <area alt="100%" shape="rect" coords="100, 0, 120, 15" onmouseover="changeStatus(100)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus(<?php echo $TaskID;?>)"/>
 </map>
-<img alt="Status"  src="<?php echo $CurrentStatusImg; ?>" usemap="#status" name="TaskStatus" width="120" height="30"/>
+<img alt="Status"  src="<?php echo $CurrentStatusImg; ?>" usemap="#status" name="TaskStatus" width="120" height="15"/>
 
 <?php
             }
