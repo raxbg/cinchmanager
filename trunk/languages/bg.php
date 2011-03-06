@@ -3,6 +3,8 @@ define("ACCOUNT_INFORMATION_TEXT","Данни за акаунта");
 define("ACCOUNT_SUCCESSFULLY_UPDATED_TEXT","Профилът беше обновен успешно.");
 define("ACC_CAN_CREATE_TEXT","Чиновникът може да регистрира:");
 define("ACC_CAN_CREATE_TITLES_TEXT","Администраторски права:");
+define("ADD_NEW_ATTACHMENT_TEXT","Прикачване на нов файл");
+define("ATTACH_TEXT","Прикачване");
 define("ADDRESS1_TEXT","Адрес");
 define("ADDRESS_TEXT","Адрес:");
 define("ADD_MEMBERS_TEXT","Добавяне на членове на проекта");
@@ -13,6 +15,7 @@ define("ADMINISTRATOR_SUCCESSFULLY_CREATED_TEXT","Администраторск
 define("ASSIGNMENT_DAY_TEXT","Дата на назначаване:");
 define("AT_TEXT","в");
 define("ALL_TEXT","Всички");
+define("ALL_FILES_UPLOADED_TEXT","Всички файлове бяха качени успешно.");
 define("AVATAR_TEXT","Снимка:");
 define("AVATAR_SUCCESSFULLY_SAVED_TEXT","Снимката е качена успешно.");
 define("BRANCH1_TEXT","Клон");
@@ -59,6 +62,7 @@ define("FAILED_TO_REMOVE_MEMBER_TEXT","Членът не може да бъде 
 define("FAILED_TO_UPDATE_ACCOUNT_TEXT","Възникна грешка при обновяването на профила.");
 define("FAILED_TO_UPDATE_EMPLOYEE_TEXT","Възникна грешка при обновяването на служителя.");
 define("FAILED_TO_UPDATE_USER_TEXT","Възникна грешка при обновяването на потребителя.");
+define("FAILED_TO_UPLOAD_SOME_FILES_TEXT","Някои от файловете не можаха да бъдат качени.");
 define("FEMALE_TEXT","Жена");
 define("FIRST_NAME_TEXT","Първо име:");
 define("FORGOTTEN_PASSWORD_TEXT", "Забравена парола");
