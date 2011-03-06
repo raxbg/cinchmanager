@@ -32,7 +32,7 @@ if(isset($_SESSION['LoggedIn']))
         {
             $Comments.="<span class=\"LittleText\">{$comment['User']}</span>".
             "<span class=\"LittleText right\">{$comment['Time']}</span>".
-            "<hr /><span class=\"comment\">{$comment['Comment']}</span>";
+            "<span class=\"comment\">{$comment['Comment']}</span><hr />";
 
         }
         $dbHandler->dbDisconnect();
