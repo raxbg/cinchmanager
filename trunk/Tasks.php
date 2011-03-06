@@ -134,6 +134,18 @@ if(isset($_SESSION['LoggedIn']))
     unset($dbHandler);
     echo $message;
 ?>
+<script type="text/javascript">
+    var files = 1;
+    function UploadMore()
+    {
+        var elementName = "Attachment"+(files+1);
+        files++;
+        var newFile = document.createElement("input");
+        newFile.setAttribute("type","file");
+        newFile.setAttribute("name",elementName);
+        document.getElementById("NewAttachments").appendChild(newFile);
+    }
+</script>
 <h1><?php echo TASKS_TEXT; ?></h1>
 <table class="cooltable">
     <thead class="cooltable">
