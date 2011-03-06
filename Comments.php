@@ -43,11 +43,9 @@ if(isset($_SESSION['LoggedIn']))
         <?php echo $Comments; ?>
     </div>
 </div>
-<form method="post">
-    <input type="hidden" name="TaskId" value="<?php echo $_GET['TaskId'];?>" />
-    <textarea name="Comment" class="comment"></textarea><br />
-    <input type="submit" name="SubmitComment" value="<?php echo COMMENT_TEXT; ?>"/>
-</form>
+<input type="hidden" name="TaskId" value="<?php echo $_GET['TaskId'];?>" />
+<textarea name="Comment" class="comment" id="Comment"></textarea><br />
+<button onclick="Comment(<?php echo $_GET['TaskId'];?>)"><?php echo COMMENT_TEXT; ?></button>
 
 <?php
     }

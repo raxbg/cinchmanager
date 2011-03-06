@@ -97,8 +97,9 @@ if(isset($_SESSION['LoggedIn']))
                 echo "<span onClick=\"PopUpBox('./EditTask.php?id={$Task['ID']}')\" class=\"right ActiveField\" >".EDIT_TEXT."</span>";
                 ?>
                 <span onclick="LoadStatus(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo STATUS_TEXT;?></span>/
-                <span onclick="LoadAttachments(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo ATTACHMENTS_TEXT;?></span>
-                <div id="StatusOrAttachments"></div>
+                <span onclick="LoadAttachments(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo ATTACHMENTS_TEXT;?></span>/
+                <span onclick="LoadComments(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo COMMENTS_TEXT;?></span>
+                <div id="TaskFooter"></div>
                 <div class="clearer"></div><?php
             }
             else
