@@ -1,6 +1,7 @@
 var opened = false;
 var checkOldPassed = false;
 var checkNewPassed = false;
+var files = 1;
 var oldPass;
 var newPwd;
 
@@ -152,5 +153,63 @@ function FillMembers()
         }
       }
     xmlhttp.open("GET","GetProjectMembers.php?id="+id,true);
+    xmlhttp.send();
+}
+
+function UploadMore()
+{
+    var elementName = "Attachment"+(files+1);
+    files++;
+    var newFile = document.createElement("input");
+    newFile.setAttribute("type","file");
+    newFile.setAttribute("name",elementName);
+    document.getElementById("NewAttachments").appendChild(newFile);
+}
+
+function changeStatus(amount)
+{
+    document.TaskStatus.src="img/"+amount+"percent.png";
+    document.getElementById("PercentText").innerHTML = amount;
+    document.getElementById("NewStatus").value = amount;
+}
+
+function revertStatus(img,status)
+{
+    document.TaskStatus.src=img;
+    document.getElementById("PercentText").innerHTML = status;
+    document.getElementById("NewStatus").value = status;
+}
+
+function setStatus()
+{
+    document.SetStatus.submit();
+}
+
+function LoadStatus(id)
+{
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            if(document.getElementById("TaskStatus") != null)
+            {
+                document.getElementById("TaskStatus").innerHTML = xmlhttp.responseText;
+            }
+            else
+            {
+                setTimeout("LoadStatus()",500);
+            }
+        }
+      }
+    xmlhttp.open("GET","ChangeTaskStatus.php?id="+id,true);
     xmlhttp.send();
 }
