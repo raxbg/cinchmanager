@@ -181,9 +181,7 @@ define("TITLES1_TEXT","Titles");
 define("POSITIONS1_TEXT","Positions");
 define("ACCOUNT_TEXT","Account");
 define("CHANGE_PASSWORG_TEXT","Change password");
-define("","");
-define("","");
-define("","");
-
-
+define("DISMISS_TEXT","Dismiss");
+define("DISMISSED_TEXT","Employee dismissed successfully.");
+define("COULD_NOT_DISSMISS_TEXT","Could nout dissmiss user.");
 ?>

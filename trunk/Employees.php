@@ -14,11 +14,11 @@ if(isset($_SESSION['LoggedIn']))
     {
         if(Hierarchy::Dismiss($_POST['UserID']))
         {
-        echo "kicked out";
+            echo "<span class=\"PositiveMessage\">".DISMISSED_TEXT."</span>";
         }
         else
         {
-            echo "couldnt kick that shit out";
+            echo "<span class=\"NegativeMessage\">".COULD_NOT_DISSMISS_TEXT."</span>";
         }
     }
 

@@ -168,7 +168,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
 ?>
             <form method="post" action="index.php?page=Employees">
                 <input type="hidden" name="UserID" value="<?php echo $_GET['id']; ?>" />
-                <input type="submit" name="Dismiss" value="Kick out" />
+                <input type="submit" name="Dismiss" value="<?php echo DISMISS_TEXT; ?>" />
             </form>
 <?php   }
 }
