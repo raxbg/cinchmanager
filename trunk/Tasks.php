@@ -119,7 +119,7 @@ if(isset($_SESSION['LoggedIn']))
             LEFT JOIN Projects ON Projects.ID = ProjectsAndMembers.ProjectID
             LEFT JOIN Tasks ON Tasks.ProjectID = ProjectsAndMembers.ProjectID
             WHERE ProjectsAndMembers.UserID = {$UserID} AND Projects.ID={$ProjectID}
-            ORDER BY Tasks.Deadline DESC, Tasks.Priority ASC, Project ASC, Tasks.ShortDescription ASC";
+            ORDER BY Tasks.Deadline DESC, Tasks.Priority ASC, Project ASC, Tasks.AssignmentTime ASC";
     }
     else
     {
@@ -130,7 +130,7 @@ if(isset($_SESSION['LoggedIn']))
             LEFT JOIN Projects ON Projects.ID = ProjectsAndMembers.ProjectID
             LEFT JOIN Tasks ON Tasks.ProjectID = ProjectsAndMembers.ProjectID
             WHERE ProjectsAndMembers.UserID = {$UserID} AND Tasks.Status<100
-            ORDER BY Tasks.Deadline DESC, Tasks.Priority ASC, Project ASC, Tasks.ShortDescription ASC";
+            ORDER BY Tasks.Deadline DESC, Tasks.Priority ASC, Project ASC, Tasks.AssignmentTime ASC";
     }
 
     $result = $dbHandler->ExecuteQuery($query);
