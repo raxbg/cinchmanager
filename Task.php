@@ -89,9 +89,9 @@ if(isset($_SESSION['LoggedIn']))
     </div>
 </div>
 <div class="clearer"></div>
-<h2><?php echo $Task['ShortDescription']; ?></h2>
+<h2><?php echo stripslashes($Task['ShortDescription']); ?></h2>
 <?php if($Task['Description']){ echo DESCRIPTION1_TEXT; ?>
-<div class="Description"><?php echo $Task['Description']; ?></div>
+<div class="Description"><?php echo stripslashes($Task['Description']); ?></div>
 <?php } ?>
 <?php
                 echo "<span onClick=\"PopUpBox('./EditTask.php?id={$Task['ID']}')\" class=\"right ActiveField\" >".EDIT_TEXT."</span>";

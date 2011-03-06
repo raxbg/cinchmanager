@@ -22,7 +22,7 @@ if(isset($_SESSION['LoggedIn']))
     <input type="hidden" name="TaskID" id="TaskID" value="<?php echo $TaskID;?>">
 </form>
 <span class="LitleText"><?php echo STATUS1_TEXT; ?></span>
-<span class="LitleText" id="PercentText"><?php echo $CurrentStatus;?></span>%
+<span class="LitleText" id="PercentText"><?php echo $CurrentStatus;?></span>%<br />
 <map name="status">
     <area alt="0%"  shape="rect" coords="0, 0, 20, 30" onmouseover="changeStatus(0)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus()"/>
     <area alt="20%" shape="rect" coords="20, 0, 40, 30" onmouseover="changeStatus(20)" onmouseout="revertStatus('<?php echo $CurrentStatusImg; ?>',<?php echo $CurrentStatus;?>)" onclick="setStatus()"/>

@@ -64,8 +64,8 @@ CanCreateAccounts CHAR(1),
 IsAdmin BOOLEAN,
 AssignmentDay DATE NOT NULL,
 EndDate DATE,
-lft int NOT NULL,
-rgt int NOT NULL
+lft int,
+rgt int
 ) ENGINE=InnoDB";
 
 $Queries['createLogins'] = "CREATE TABLE Logins
