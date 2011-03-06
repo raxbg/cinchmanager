@@ -94,16 +94,45 @@ if(isset($_SESSION['LoggedIn']))
 
     }
 
+    if($_SESSION['userinfo']['IsAdmin'] == true)
+    {
+        $query="SELECT ID, Name FROM Projects";
+
+    }
+    else
+    {
+        $id=mysql_real_escape_string($_SESSION['userinfo']['ID']);
+        $query="SELECT Projects.ID, Projects.Name FROM ProjectsAndMembers
+                LEFT JOIN Projects ON Projects.ID = ProjectsAndMembers.ProjectID
+                Where UserID={$id}";
+    }
+
     $Tasks="";
     $UserID = mysql_real_escape_string($_SESSION['userinfo']['ID']);
-    //zavyr6enite zada4i ne trqbva da se pokazvat
-    $query="SELECT Tasks.ID, Tasks.Priority, Projects.Name AS Project, Tasks.ShortDescription, Tasks.Deadline,
+    if(isset($_GET['Project'])&&$_GET['Project']!=""&&$_GET['Project']!="all")
+    {
+        $ProjectID = mysql_real_escape_string($_GET['Project']);
+        $Projects=$dbHandler->MakeSelectOptions($query, "ID", array("Name"),$ProjectID);
+        $query="SELECT Tasks.ID, Tasks.Priority, Projects.ID, Projects.Name AS Project, Tasks.ShortDescription, Tasks.Deadline,
             Tasks.Status, Tasks.UserID, Tasks.Visibility, ProjectsAndMembers.IsLeader AS UserIsLeader
             FROM ProjectsAndMembers
             LEFT JOIN Projects ON Projects.ID = ProjectsAndMembers.ProjectID
             LEFT JOIN Tasks ON Tasks.ProjectID = ProjectsAndMembers.ProjectID
-            WHERE ProjectsAndMembers.UserID = {$UserID}
+            WHERE ProjectsAndMembers.UserID = {$UserID} AND Projects.ID={$ProjectID}
             ORDER BY Tasks.Deadline DESC, Tasks.Priority ASC, Project ASC, Tasks.ShortDescription ASC";
+    }
+    else
+    {
+        $Projects=$dbHandler->MakeSelectOptions($query, "ID", array("Name"));
+        $query="SELECT Tasks.ID, Tasks.Priority, Projects.Name AS Project, Tasks.ShortDescription, Tasks.Deadline,
+            Tasks.Status, Tasks.UserID, Tasks.Visibility, ProjectsAndMembers.IsLeader AS UserIsLeader
+            FROM ProjectsAndMembers
+            LEFT JOIN Projects ON Projects.ID = ProjectsAndMembers.ProjectID
+            LEFT JOIN Tasks ON Tasks.ProjectID = ProjectsAndMembers.ProjectID
+            WHERE ProjectsAndMembers.UserID = {$UserID} AND Tasks.Status<100
+            ORDER BY Tasks.Deadline DESC, Tasks.Priority ASC, Project ASC, Tasks.ShortDescription ASC";
+    }
+
     $result = $dbHandler->ExecuteQuery($query);
     while($Task = mysql_fetch_array($result))
     {
@@ -134,6 +163,7 @@ if(isset($_SESSION['LoggedIn']))
     unset($dbHandler);
     echo $message;
 ?>
+
 <script type="text/javascript">
     var files = 1;
     function UploadMore()
@@ -162,7 +192,16 @@ if(isset($_SESSION['LoggedIn']))
         document.SetStatus.submit();
     }
 </script>
+
 <h1><?php echo TASKS_TEXT; ?></h1>
+<form method="get" id="SelectProject">
+    <?php echo PROJECT_TEXT;?>
+    <input type="hidden" name="page" value="Tasks" />
+    <select name="Project" onchange="document.getElementById('SelectProject').submit()">
+        <option value="all"><?php echo ALL_TEXT;?></option>
+        <?php echo $Projects; ?>
+    </select>
+</form>
 <table class="cooltable">
     <thead class="cooltable">
         <tr>
