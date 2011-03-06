@@ -220,9 +220,9 @@ function LoadStatus(id)
       {
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-            if(document.getElementById("StatusOrAttachments") != null)
+            if(document.getElementById("TaskFooter") != null)
             {
-                document.getElementById("StatusOrAttachments").innerHTML = xmlhttp.responseText;
+                document.getElementById("TaskFooter").innerHTML = xmlhttp.responseText;
             }
             else
             {
@@ -249,9 +249,9 @@ function LoadAttachments(id)
       {
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-            if(document.getElementById("StatusOrAttachments") != null)
+            if(document.getElementById("TaskFooter") != null)
             {
-                document.getElementById("StatusOrAttachments").innerHTML = xmlhttp.responseText;
+                document.getElementById("TaskFooter").innerHTML = xmlhttp.responseText;
             }
             else
             {
@@ -261,4 +261,57 @@ function LoadAttachments(id)
       }
     xmlhttp.open("GET","Attachments.php?id="+id,true);
     xmlhttp.send();
+}
+
+function LoadComments(id)
+{
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            if(document.getElementById("TaskFooter") != null)
+            {
+                document.getElementById("TaskFooter").innerHTML = xmlhttp.responseText;
+            }
+            else
+            {
+                setTimeout("LoadComments(id)",500);
+            }
+        }
+      }
+    xmlhttp.open("GET","Comments.php?TaskId="+id,true);
+    xmlhttp.send();
+}
+
+function Comment(id)
+{
+    var Comment = document.getElementById("Comment").value;
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            LoadComments(id);
+        }
+      }
+    xmlhttp.open("POST","Comments.php?TaskId="+id,true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("SubmitComment=true&TaskId="+id+"&Comment="+Comment);
 }

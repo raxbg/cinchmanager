@@ -105,9 +105,9 @@ if(isset($_SESSION['LoggedIn']))
         <?php echo $Projects; ?>
     </select><br />
     <?php echo SHORT_DESCRIPTION_TEXT; ?><br />
-    <input type="text" name="ShortDescription" value="<?php echo $ShortDescription; ?>" /><br />
+    <input type="text" name="ShortDescription" value="<?php echo stripslashes($ShortDescription); ?>" /><br />
     <?php echo DESCRIPTION_TEXT; ?><br />
-    <textarea name="Description"><?php echo $Description; ?></textarea><br />
+    <textarea name="Description"><?php echo stripslashes($Description); ?></textarea><br />
     <?php if($_SESSION['userinfo']['EmployeeOrClient']=='e') { ?>
     <?php echo VISIBILITY_TEXT; ?>
     <br />

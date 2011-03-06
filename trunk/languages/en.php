@@ -191,4 +191,5 @@ define("DISMISSED_TEXT","Employee dismissed successfully.");
 define("COULD_NOT_DISSMISS_TEXT","Could nout dissmiss user.");
 define("COMMENT_TEXT","Comment");
 define("ATTACHMENTS_TEXT","Attachments");
+define("COMMENTS_TEXT","Comments");
 ?>
