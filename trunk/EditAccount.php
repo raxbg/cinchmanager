@@ -188,22 +188,18 @@ if(isset($_GET['id']) && $_GET['id']!="")
             <select name="BranchID">
                 <?php echo $branches;?>
             </select><br />
-            <?php if($userinfo['EmployeeOrClient']!="e") { ?>
-                <?php echo TYPE_TEXT;?><br />
-                <select name="EmployeeOrClient" onchange="CheckAccount()" id="EmployeeOrClient">
-                    <?php
-                        if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
-                        {
-                            echo "<option value=\"e\"";
-                            if($userinfo['EmployeeOrClient'] == "e") echo " selected=\"selected\"";
-                            echo ">".EMPLOYEE_TEXT."</option>";
-                        }
-                    ?>
-                    <option value="c" <?php if($userinfo['EmployeeOrClient'] == "c") echo "selected=\"selected\""?>><?php echo CLIENT_TEXT;?></option>
-                </select><br />
-            <?php }else{ ?>
-                <input type="hidden" name="EmployeeOrClient" value="e">
-            <?php }?>
+            <?php echo TYPE_TEXT;?><br />
+            <select name="EmployeeOrClient" onchange="CheckAccount()" id="EmployeeOrClient">
+                <?php
+                    if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
+                    {
+                        echo "<option value=\"e\"";
+                        if($userinfo['EmployeeOrClient'] == "e") echo " selected=\"selected\"";
+                        echo ">".EMPLOYEE_TEXT."</option>";
+                    }
+                ?>
+                <option value="c" <?php if($userinfo['EmployeeOrClient'] == "c") echo "selected=\"selected\""?>><?php echo CLIENT_TEXT;?></option>
+            </select><br />
             <div id="EmployeeInfo">
                 <?php echo POSITION_TEXT;?> <br />
                 <select name="PositionID">
