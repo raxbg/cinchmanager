@@ -94,7 +94,8 @@ if(isset($_SESSION['LoggedIn']))
 <div class="Description"><?php echo $Task['Description']; ?></div>
 <?php } ?>
 <?php
-                echo STATUS1_TEXT." {$Task['Status']}%";
+                //echo STATUS1_TEXT." {$Task['Status']}%";
+                require_once("ChangeTaskStatus.php");
                 echo "<span onClick=\"PopUpBox('./EditTask.php?id={$Task['ID']}')\" class=\"right ActiveField\" >".EDIT_TEXT."</span>";
                 ?><div class="clearer"></div><?php
             }
