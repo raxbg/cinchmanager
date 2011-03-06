@@ -154,7 +154,7 @@ if(isset($_SESSION['LoggedIn']))
                     ($Task['Visibility']==3)||
                     ($Task['UserIsLeader']))
             {
-            $Tasks.="<tr {$class} onClick=\"PopUpBox('./Task.php?id={$Task['ID']}')\">".
+            $Tasks.="<tr {$class} onClick=\"PopUpBox('./Task.php?id={$Task['ID']}');LoadStatus({$Task['ID']})\">".
                         "<td>{$Task['Project']}</td>\n".
                         "<td>{$Task['ShortDescription']}</td>\n".
                         "<td>{$Task['Deadline']}</td>\n".
@@ -171,36 +171,7 @@ if(isset($_SESSION['LoggedIn']))
     unset($dbHandler);
     echo $message;
 ?>
-
-<script type="text/javascript">
-    var files = 1;
-    function UploadMore()
-    {
-        var elementName = "Attachment"+(files+1);
-        files++;
-        var newFile = document.createElement("input");
-        newFile.setAttribute("type","file");
-        newFile.setAttribute("name",elementName);
-        document.getElementById("NewAttachments").appendChild(newFile);
-    }
-    function changeStatus(amount)
-    {
-        document.TaskStatus.src="img/"+amount+"percent.png";
-        document.getElementById("PercentText").innerHTML = amount;
-        document.getElementById("NewStatus").value = amount;
-    }
-    function revertStatus(img,status)
-    {
-        document.TaskStatus.src=img;
-        document.getElementById("PercentText").innerHTML = status;
-        document.getElementById("NewStatus").value = status;
-    }
-    function setStatus()
-    {
-        document.SetStatus.submit();
-    }
-</script>
-
+<script type="text/javascript" src="js/Ajax.js"></script>
 <h1><?php echo TASKS_TEXT; ?></h1>
 <form method="get" id="SelectProject">
     <?php echo PROJECT_TEXT;?>
