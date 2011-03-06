@@ -262,7 +262,7 @@ if(isset($_GET['id']) && $_GET['id']!="")
 else
 {
     echo "<span class=\"NegativeMessage\">";
-    echo MISSING_PARAMETER;
+    echo MISSING_PARAMETER_TEXT;
     echo "</span>";
 }
 ?>
