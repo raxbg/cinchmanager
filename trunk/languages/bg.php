@@ -66,6 +66,7 @@ define("FAILED_TO_UPDATE_USER_TEXT","Възникна грешка при обн
 define("FAILED_TO_UPLOAD_SOME_FILES_TEXT","Някои от файловете не можаха да бъдат качени.");
 define("FEMALE_TEXT","Жена");
 define("FIRST_NAME_TEXT","Първо име:");
+define("FILENAME_TEXT","Име на файл");
 define("FORGOTTEN_PASSWORD_TEXT", "Забравена парола");
 define("FROM_DATE_TEXT","От дата:");
 define("FROM_DATE1_TEXT","От дата");
@@ -188,4 +189,6 @@ define("DISMISS_TEXT","Dismiss");
 define("DISMISSED_TEXT","Employee dismissed successfully.");
 define("COULD_NOT_DISSMISS_TEXT","Could nout dissmiss user.");
 define("COMMENT_TEXT","Коментирай");
+define("UPLOADED_ON_TEXT","Качено на");
+define("UPLOADED_BY_TEXT","Качено от");
 ?>
