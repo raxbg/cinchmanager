@@ -145,6 +145,22 @@ if(isset($_SESSION['LoggedIn']))
         newFile.setAttribute("name",elementName);
         document.getElementById("NewAttachments").appendChild(newFile);
     }
+    function changeStatus(amount)
+    {
+        document.TaskStatus.src="img/"+amount+"percent.png";
+        document.getElementById("PercentText").innerHTML = amount;
+        document.getElementById("NewStatus").value = amount;
+    }
+    function revertStatus(img,status)
+    {
+        document.TaskStatus.src=img;
+        document.getElementById("PercentText").innerHTML = status;
+        document.getElementById("NewStatus").value = status;
+    }
+    function setStatus()
+    {
+        document.SetStatus.submit();
+    }
 </script>
 <h1><?php echo TASKS_TEXT; ?></h1>
 <table class="cooltable">
