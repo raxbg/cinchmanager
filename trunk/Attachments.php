@@ -122,8 +122,8 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
                 <h2><?php echo ADD_NEW_ATTACHMENT_TEXT;?></h2><br />
                 <input type="file" name="Attachment" /><br />
                 <div id="NewAttachments"></div>
-                <button onclick="UploadMore()">MORE_FILES_TEXT</button>
-                <input type="submit" value="<?php echo ATTACH_TEXT;?>" name="Attach" />
+                <button onclick="UploadMore()"><?php echo MORE_FILES_TEXT ;?></button>
+                <input type="submit" value="<?php echo ATTACH_TEXT ;?>" name="Attach" />
             </form>
         <?php
         }
