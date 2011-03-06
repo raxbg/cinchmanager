@@ -43,19 +43,28 @@ if(isset($_GET['id']) && $_GET['id']!="")
                 $assignmentDay = mysql_real_escape_string($_POST['AssignmentDay']);
                 $managerID = mysql_real_escape_string($_POST['ManagerID']);
 
-                $updateEmployee = "UPDATE Employees
-                    SET PositionID='{$positionID}', CanCreateAccounts='{$canCreateAccounts}',
-                    IsAdmin='{$isAdmin}', AssignmentDay='{$assignmentDay}'
-                    WHERE UserID='{$userID}'";
-                $EmployeeIsUpdated = $dbHandler->ExecuteQuery($updateEmployee);
-                $ManagerIsSet = false;
-                if($EmployeeIsUpdated)
+                $checkEmployeeQuery="SELECT * FROM Employees WHERE UserID = $userID";
+                $checkEmployee = $dbHandler->ExecuteQuery($checkEmployeeQuery);
+                if(mysql_num_rows($checkEmployee)>0)
                 {
-                    $dbHandler->dbDisconnect();
-                    $ManagerIsSet = Hierarchy::MoveInHierarchy($userID, $managerID);
-                    $dbHandler->dbConnect();
+                    $updateEmployee = "UPDATE Employees
+                        SET PositionID='{$positionID}', CanCreateAccounts='{$canCreateAccounts}',
+                        IsAdmin='{$isAdmin}', AssignmentDay='{$assignmentDay}'
+                        WHERE UserID='{$userID}'";
+                    $EmployeeIsUpdated = $dbHandler->ExecuteQuery($updateEmployee);
+                    $ManagerIsSet = false;
+                    if($EmployeeIsUpdated)
+                    {
+                        $dbHandler->dbDisconnect();
+                        $ManagerIsSet = Hierarchy::MoveInHierarchy($userID, $managerID);
+                        $dbHandler->dbConnect();
+                    }
                 }
-
+                else
+                {
+                    $EmployeeIsUpdated = Hierarchy::AddToHierarchy($managerID,$userID,$positionID,$canCreateAccounts,$isAdmin,$assignmentDay,$_POST['Salary']);
+                    $ManagerIsSet=true;
+                }
                 if($EmployeeIsUpdated && $ManagerIsSet)
                 {
                     $message.= "<span class=\"PositiveMessage\">";
@@ -173,7 +182,7 @@ if(isset($_GET['id']) && $_GET['id']!="")
             <?php echo TELEPHONE_TEXT;?><br />
             <input type="text" value="<?php echo $userinfo['Telephone'];?>" name="Telephone" /><br />
             <?php echo ADDRESS_TEXT;?><br />
-            <input type="text" value="<?php echo $userinfo['Address'];?>" name="Address" /><br />
+            <textarea name="Address" ><?php echo $userinfo['Address'];?></textarea><br />
             <?php echo BRANCH_TEXT;?><br />
             <select name="BranchID">
                 <?php echo $branches;?>

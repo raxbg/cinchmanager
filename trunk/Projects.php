@@ -29,7 +29,7 @@ if(isset($_SESSION['LoggedIn']))
                 $status=HALT_TEXT;
                 break;
             case 3:
-                $status=FINNISHED_TEXT;
+                $status=FINISHED_TEXT;
                 break;
             case 4:
                 $status=CANCELED_TEXT;

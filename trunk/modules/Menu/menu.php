@@ -9,6 +9,17 @@
         if($_SESSION['userinfo']['EmployeeOrClient']=='e')
         { ?>
             <li class="level_1">
+                <a href="index.php?page=Projects" onmouseover="openLevel_3('projects')" onmouseout="closeLevel_3AfterTime()"><?php echo PROJECTS_TEXT; ?></a>
+                <ul class="level_2" id="projects" onmouseover="cancelLevel_3Timeout()" onmouseout="closeLevel_3AfterTime()">
+                    <li class="level_2">
+                        <a href="index.php?page=EditProject"><?php echo ADD_TEXT; ?></a>
+                    </li>
+                    <li class="level_2 last">
+                        <a href="index.php?page=Projects"><?php echo VIEW_ALL_TEXT; ?></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="level_1">
                 <a href=# onmouseover="openLevel_2('users_submenu')" onmouseout="closeLevel_2AfterTime()"><?php echo USERS_TEXT; ?></a>
                 <ul class="level_2" id="users_submenu" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()">
                     <li class="level_2">
@@ -45,21 +56,10 @@
                         <li class="level_2">
                             <a href="index.php?page=EditTitles"><?php echo TITLES1_TEXT; ?></a>
                         </li>
-                        <li class="level_2">
+                        <li class="level_2 last">
                             <a href="index.php?page=EditPositions"><?php echo POSITIONS1_TEXT; ?></a>
                         </li>
                     <?php }?>
-                    <li class="level_2 last">
-                        <a href="index.php?page=Projects" onmouseover="openLevel_3('projects')" onmouseout="closeLevel_3AfterTime()"><?php echo PROJECTS_TEXT; ?></a>
-                        <ul class="level_3" id="projects" onmouseover="cancelLevel_3Timeout()" onmouseout="closeLevel_3AfterTime()">
-                            <li class="level_3">
-                                <a href="index.php?page=EditProject"><?php echo ADD_TEXT; ?></a>
-                            </li>
-                            <li class="level_3 last">
-                                <a href="index.php?page=Projects"><?php echo VIEW_ALL_TEXT; ?></a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
             </li>
         <?php }?>
