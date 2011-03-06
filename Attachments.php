@@ -7,18 +7,27 @@ if(isset($_GET['id']) && $_GET['id'] != "")
         $dbHandler->dbConnect();
         $taskId = mysql_real_escape_string($_GET['id']);
         $userId = mysql_real_escape_string($_SESSION['userinfo']['ID']);
-        $today = date("Y-m-d");
         foreach($_FILES as $file)
         {
             $destination = HOME_FOLDER."attachments/";
-            $destinationFile = $destination.$taskId."_".$file["name"];
-            $query = ""
+            $filename = $file["name"];
+            $destinationFile = $destination.$taskId."_".$filename;
+            $query = "INSERT INTO Attachments (TaskID,UserID,Filename) VALUES ('{$taskId}','{$userId}','{$filename}')";
             if(move_uploaded_file($file["tmp_name"], $destinationFile))
             {
-                if($dbHandler->ExecuteQuery($query))
-                $message = "<span class=\"PositiveMessage\">";
-                $message.= ALL_FILES_UPLOADED_TEXT;
-                $message.= "</span>";
+                if(!$dbHandler->ExecuteQuery($query))
+                {
+                    $message = "<span class=\"NegativeMessage\">blah";
+                    $message.= FAILED_TO_UPLOAD_SOME_FILES_TEXT;
+                    $message.= "</span>";
+                    break;
+                }
+                else
+                {
+                    $message = "<span class=\"PositiveMessage\">";
+                    $message.= ALL_FILES_UPLOADED_TEXT;
+                    $message.= "</span>";
+                }
             }
             else
             {
@@ -28,7 +37,8 @@ if(isset($_GET['id']) && $_GET['id'] != "")
             }
         }
         echo $message;
-
+        $dbHandler->dbDisconnect();
+        unset($dbHandler);
     }
     else
     {
@@ -61,7 +71,7 @@ if(isset($_GET['id']) && $_GET['id'] != "")
                     $class="class=\"even\"";
                 }
                 $i++;
-                $table.= "<tr {$class}><td><a href=\"".HOME_FOLDER."attachments/{$row['Filename']}\">{$row['Filename']}</a></td>";
+                $table.= "<tr {$class}><td><a href=\"".HOME_FOLDER."attachments/{$_GET['id']}_{$row['Filename']}\">{$row['Filename']}</a></td>";
                 $table.= "<td>{$row['Date']}</td>";
                 $table.= "<td>{$row['UserID']}</td>";
             }
