@@ -142,11 +142,12 @@ if(isset($_GET['id']) && $_GET['id']!="")
             $userinfo = $dbHandler->ExecuteQuery($userinfoQuery);
             if(mysql_num_rows($userinfo))
             {
+                $ManagerId = Hierarchy::FindManager($id);
                 $userinfo = mysql_fetch_array($userinfo);
                 $titles = $dbHandler->MakeSelectOptions($titlesQuery, "ID", array("Title"),$userinfo['TitleID']);
                 $branches = $dbHandler->MakeSelectOptions($branchesQuery, "ID", array("Name"),$userinfo['BranchID']);
                 $positions = $dbHandler->MakeSelectOptions($positionsQuery, "ID", array("Position"),$userinfo['PositionID']);
-                $managers = $dbHandler->MakeSelectOptions($managersQuery, "ID", array("FirstName","LastName"),$userinfo['ManagerID']);
+                $managers = $dbHandler->MakeSelectOptions($managersQuery, "ID", array("FirstName","LastName"),$ManagerId);
                 $dbHandler->dbDisconnect();
                 unset($dbHandler);
                 $today = date("Y-m-d");
@@ -187,28 +188,33 @@ if(isset($_GET['id']) && $_GET['id']!="")
             <select name="BranchID">
                 <?php echo $branches;?>
             </select><br />
-            <?php echo TYPE_TEXT;?><br />
-            <select name="EmployeeOrClient" onchange="CheckAccount()" id="EmployeeOrClient">
-                <?php
-                    if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
-                    {
-                        echo "<option value=\"e\"";
-                        if($userinfo['EmployeeOrClient'] == "e") echo " selected=\"selected\"";
-                        echo ">".EMPLOYEE_TEXT."</option>";
-                    }
-                ?>
-                <option value="c" <?php if($userinfo['EmployeeOrClient'] == "c") echo "selected=\"selected\""?>><?php echo CLIENT_TEXT;?></option>
-            </select><br />
+            <?php if($userinfo['EmployeeOrClient']!="e") { ?>
+                <?php echo TYPE_TEXT;?><br />
+                <select name="EmployeeOrClient" onchange="CheckAccount()" id="EmployeeOrClient">
+                    <?php
+                        if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
+                        {
+                            echo "<option value=\"e\"";
+                            if($userinfo['EmployeeOrClient'] == "e") echo " selected=\"selected\"";
+                            echo ">".EMPLOYEE_TEXT."</option>";
+                        }
+                    ?>
+                    <option value="c" <?php if($userinfo['EmployeeOrClient'] == "c") echo "selected=\"selected\""?>><?php echo CLIENT_TEXT;?></option>
+                </select><br />
+            <?php }else{ ?>
+                <input type="hidden" name="EmployeeOrClient" value="e">
+            <?php }?>
             <div id="EmployeeInfo">
                 <?php echo POSITION_TEXT;?> <br />
                 <select name="PositionID">
                     <?php echo $positions; ?>
                 </select><br />
                 <?php echo MANAGER_TEXT;?><br />
-                <select name="ManagerID">
-                    <option value="none" selected="selected"><?php echo NOBODY_TEXT;?></option>
-                    <?php echo $managers; ?>
-                </select><br />
+                    <select name="ManagerID">
+                        <option value="none" selected="selected"><?php echo NOBODY_TEXT;?></option>
+                        <?php echo $managers; ?>
+                    </select><br />
+
                 <?php echo ACC_CAN_CREATE_TEXT; ?><br />
                 <input type="radio" name="CanCreateAccounts" value="n" <?php if($userinfo['CanCreateAccounts'] == "n") echo "checked=\"checked\""?>><?php echo NOBODY_TEXT;?>
                 <input type="radio" name="CanCreateAccounts" value="c" <?php if($userinfo['CanCreateAccounts'] == "c") echo "checked=\"checked\""?>><?php echo CLIENTS_TEXT;?>
