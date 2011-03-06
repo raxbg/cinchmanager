@@ -220,13 +220,13 @@ function LoadStatus(id)
       {
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-            if(document.getElementById("TaskStatus") != null)
+            if(document.getElementById("StatusOrAttachments") != null)
             {
-                document.getElementById("TaskStatus").innerHTML = xmlhttp.responseText;
+                document.getElementById("StatusOrAttachments").innerHTML = xmlhttp.responseText;
             }
             else
             {
-                setTimeout("LoadStatus()",500);
+                setTimeout("LoadStatus(id)",500);
             }
         }
       }
