@@ -96,7 +96,7 @@ if(isset($_SESSION['LoggedIn']))
 <?php
                 echo "<span onClick=\"PopUpBox('./EditTask.php?id={$Task['ID']}')\" class=\"right ActiveField\" >".EDIT_TEXT."</span>";
                 ?>
-                <div id="TaskStatus"></div>
+                <div id="StatusOrAttachments"></div>
                 <div class="clearer"></div><?php
             }
             else
