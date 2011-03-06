@@ -109,7 +109,7 @@ if(isset($_SESSION['LoggedIn']))
 
     $Tasks="";
     $UserID = mysql_real_escape_string($_SESSION['userinfo']['ID']);
-    if(isset($_GET['Project'])&&$_GET['Project']!=""&&$_GET['Project']!="all")
+    if(isset($_GET['Project']) && $_GET['Project']!="" && $_GET['Project']!="all" && is_numeric($_GET['Project']))
     {
         $ProjectID = mysql_real_escape_string($_GET['Project']);
         $Projects=$dbHandler->MakeSelectOptions($query, "ID", array("Name"),$ProjectID);
@@ -134,30 +134,38 @@ if(isset($_SESSION['LoggedIn']))
     }
 
     $result = $dbHandler->ExecuteQuery($query);
-    while($Task = mysql_fetch_array($result))
+    if(mysql_num_rows($result)>0)
     {
-        if ($i%2==0)
+        $isTableEmpty = false;
+        while($Task = mysql_fetch_array($result))
         {
-            $class="class=\"odd ActiveField\"";
-        }
-        else
-        {
-            $class="class=\"even ActiveField\"";
-        }
-        $i++;
+            if ($i%2==0)
+            {
+                $class="class=\"odd ActiveField\"";
+            }
+            else
+            {
+                $class="class=\"even ActiveField\"";
+            }
+            $i++;
 
-        if((($Task['Visibility']==1)&&($Task['UserID']==$_SESSION['userinfo']['ID']))||
-                (($Task['Visibility']==2)&&($_SESSION['userinfo']['EmployeeOrClient']=='e'))||
-                ($Task['Visibility']==3)||
-                ($Task['UserIsLeader']))
-        {
-        $Tasks.="<tr {$class} onClick=\"PopUpBox('./Task.php?id={$Task['ID']}')\">".
-                    "<td>{$Task['Project']}</td>\n".
-                    "<td>{$Task['ShortDescription']}</td>\n".
-                    "<td>{$Task['Deadline']}</td>\n".
-                    "<td>{$Task['Status']}%</td>\n".
-                    "</tr>";
+            if((($Task['Visibility']==1)&&($Task['UserID']==$_SESSION['userinfo']['ID']))||
+                    (($Task['Visibility']==2)&&($_SESSION['userinfo']['EmployeeOrClient']=='e'))||
+                    ($Task['Visibility']==3)||
+                    ($Task['UserIsLeader']))
+            {
+            $Tasks.="<tr {$class} onClick=\"PopUpBox('./Task.php?id={$Task['ID']}')\">".
+                        "<td>{$Task['Project']}</td>\n".
+                        "<td>{$Task['ShortDescription']}</td>\n".
+                        "<td>{$Task['Deadline']}</td>\n".
+                        "<td>{$Task['Status']}%</td>\n".
+                        "</tr>";
+            }
         }
+    }
+    else
+    {
+        $isTableEmpty = true;
     }
     $dbHandler->dbDisconnect();
     unset($dbHandler);
@@ -202,6 +210,8 @@ if(isset($_SESSION['LoggedIn']))
         <?php echo $Projects; ?>
     </select>
 </form>
+<?php if(!$isTableEmpty)
+{?>
 <table class="cooltable">
     <thead class="cooltable">
         <tr>
@@ -215,6 +225,7 @@ if(isset($_SESSION['LoggedIn']))
         <?php echo $Tasks; ?>
     </tbody>
 </table>
+<?php }?>
 <span class="ActiveField" onClick="PopUpBox('./EditTask.php')"><?php echo ADD_TASK_TEXT; ?></span>
 <?php
 }
