@@ -271,3 +271,27 @@ clear:both;
 .right{
 float:right;
 }
+/* TaskComments */
+div.Comments{
+width:480px;
+height:130px;
+overflow:auto;
+background-color: #F5F5F5;
+border: 1px solid #CCCCCC;
+
+}
+div.ComentsInner{
+width:450px;
+margin:0 auto;
+}
+span.comment{
+width:450px;
+float:left;
+clear:both;
+margin: 0 5px 5px 5px;
+}
+textarea.comment{
+width:476px;
+height:60px;
+}
+/* !TaskComments */
