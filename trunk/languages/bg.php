@@ -191,4 +191,5 @@ define("COULD_NOT_DISSMISS_TEXT","Could nout dissmiss user.");
 define("COMMENT_TEXT","Коментирай");
 define("UPLOADED_ON_TEXT","Качено на");
 define("UPLOADED_BY_TEXT","Качено от");
+define("ATTACHMENTS_TEXT","Прикачени файлове");
 ?>
