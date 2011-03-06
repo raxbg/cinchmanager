@@ -205,31 +205,6 @@ function setStatus(id)
     xmlhttp.send("EditTaskStatus=true&NewStatus="+newStatus+"&TaskID="+taskID);
 }
 
-function AttachFiles(id)
-{
-    var newStatus = document.getElementById("NewStatus").value;
-    var taskID = document.getElementById("TaskID").value;
-    var xmlhttp;
-    if (window.XMLHttpRequest)
-      {// code for IE7+, Firefox, Chrome, Opera, Safari
-      xmlhttp=new XMLHttpRequest();
-      }
-    else
-      {// code for IE6, IE5
-      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-      }
-    xmlhttp.onreadystatechange=function()
-      {
-      if (xmlhttp.readyState==4 && xmlhttp.status==200)
-        {
-            LoadAttachments(id);
-        }
-      }
-    xmlhttp.open("POST","Attachments.php?id="+id,true);
-    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xmlhttp.send("Attach=true&NewStatus="+newStatus+"&TaskID="+taskID);
-}
-
 function LoadStatus(id)
 {
     var xmlhttp;
