@@ -180,9 +180,29 @@ function revertStatus(img,status)
     document.getElementById("NewStatus").value = status;
 }
 
-function setStatus()
+function setStatus(id)
 {
-    document.SetStatus.submit();
+    var newStatus = document.getElementById("NewStatus").value;
+    var taskID = document.getElementById("TaskID").value;
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            LoadStatus(id);
+        }
+      }
+    xmlhttp.open("POST","index.php?page=Tasks",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("EditTaskStatus=true&NewStatus="+newStatus+"&TaskID="+taskID);
 }
 
 function LoadStatus(id)
