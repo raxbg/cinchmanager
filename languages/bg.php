@@ -55,6 +55,7 @@ define("FAILED_TO_CREATE_ADMINISTRATOR","Администраторският а
 define("FAILED_TO_CREATE_USER_TEXT","Възникна грешка повреме на създаването на новия потребител.");
 define("FAILED_TO_CREATE_EMPLOYEE_TEXT","Възникна грешка повреме на създаването на новия служител.");
 define("FAILED_TO_SAVE_AVATAR_TEXT","Снимката не може да бъде записана.");
+define("FAILED_TO_SAVE_IN_DATABASE_TEXT","Възникна грешка при записването на информацията за файла в базата данни.");
 define("FAILED_TO_SEND_EMAIL_TEXT","Възникна грешка при изпращането на новата парола по пощата.");
 define("FAILED_TO_SET_MANAGER_TEXT","Възникна грешка при задаването на нов ръководител.");
 define("FAILED_TO_SET_NEW_PASSWORD_TEXT","Възникна грешка при задаването на новата парола. Моля опитайте пак.");
@@ -80,6 +81,7 @@ define("MEMBER_ADDED_TEXT","Новият член е добавен.");
 define("MEMBER_REMOVED_TEXT","Членът е изключен от проекта.");
 define("MEMBERS_OF_TEXT","Челенове на");
 define("MISSING_PARAMETER_TEXT","Недостатъчно параметри.");
+define("MORE_FILES_TEXT","Повече файлове");
 define("NAME_TEXT","Име");
 define("NEW_PASSWORD_SENT_TEXT","Новата ви парола беше изпратена на посоченият от вас E-mail адрес.");
 define("NO_TEXT","Не");

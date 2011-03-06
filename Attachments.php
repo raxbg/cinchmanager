@@ -1,4 +1,5 @@
 <?php
+require_once("lib/LoadSystem.php");
 if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
 {
     if(isset($_POST["Attach"]))
@@ -74,7 +75,7 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
                     $class="class=\"even\"";
                 }
                 $i++;
-                $table.= "<tr {$class}><td><a href=\"".HOME_FOLDER."attachments/{$_GET['id']}_{$row['Filename']}\">{$row['Filename']}</a></td>";
+                $table.= "<tr {$class}><td><a href=\"attachments/{$_GET['id']}_{$row['Filename']}\">{$row['Filename']}</a></td>";
                 $table.= "<td>{$row['Date']}</td>";
                 $table.= "<td>{$row['UserID']}</td>";
             }
@@ -87,18 +88,6 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
         $table.= "</table>\n";
         $dbHandler->dbDisconnect();
         unset($dbHandler);?>
-        <script type="text/javascript">
-            var files = 1;
-            function UploadMore()
-            {
-                var elementName = "Attachment"+(files+1);
-                files++;
-                var newFile = document.createElement("input");
-                newFile.setAttribute("type","file");
-                newFile.setAttribute("name",elementName);
-                document.getElementById("NewAttachments").appendChild(newFile);
-            }
-        </script>
         <?php
         if(!$IsTableEmpty)
         {
@@ -111,7 +100,7 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
                 <div id="NewAttachments"></div>
                 <input type="submit" value="<?php echo ATTACH_TEXT;?>" name="Attach" />
             </form>
-            <button onclick="UploadMore()">More files</button>
+            <button onclick="UploadMore()"><?php echo MORE_FILES;?></button>
         <?php
         }
         else
