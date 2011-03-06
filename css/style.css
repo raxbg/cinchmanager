@@ -286,11 +286,15 @@ span.comment{
 width:450px;
 float:left;
 clear:both;
-margin: 0 5px 5px 5px;
+margin: 5px 5px 10px 5px;
 }
 textarea.comment{
 width:476px;
 height:60px;
+}
+hr{
+clear:both;
+margin: 0;
 }
 /* !TaskComments */
 #ProjectDescription{
