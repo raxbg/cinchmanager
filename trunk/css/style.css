@@ -122,6 +122,16 @@ text-align: left;
 text-decoration: none;
 width: 100%;
 }
+#menu span{
+color: #CCCCCC;
+display: block;
+margin: 0;
+padding: 0;
+text-align: left;
+text-decoration: none;
+width: 100%;
+cursor: default;
+}
 li.last{
 border:none !important;
 }
@@ -259,18 +269,6 @@ padding: 10px;
 width: 480px;
 }
 /* !Task */
-#ProjectDescription{
-margin: 15px 0;
-}
-.ActiveField{
-cursor: pointer;
-}
-.clearer{
-clear:both;
-}
-.right{
-float:right;
-}
 /* TaskComments */
 div.Comments{
 width:480px;
@@ -295,3 +293,15 @@ width:476px;
 height:60px;
 }
 /* !TaskComments */
+#ProjectDescription{
+margin: 15px 0;
+}
+.ActiveField{
+cursor: pointer;
+}
+.clearer{
+clear:both;
+}
+.right{
+float:right;
+}

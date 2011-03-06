@@ -9,8 +9,8 @@
         if($_SESSION['userinfo']['EmployeeOrClient']=='e')
         { ?>
             <li class="level_1">
-                <a href="index.php?page=Projects" onmouseover="openLevel_3('projects')" onmouseout="closeLevel_3AfterTime()"><?php echo PROJECTS_TEXT; ?></a>
-                <ul class="level_2" id="projects" onmouseover="cancelLevel_3Timeout()" onmouseout="closeLevel_3AfterTime()">
+                <a href="index.php?page=Projects" onmouseover="openLevel_2('projects')" onmouseout="closeLevel_2AfterTime()"><?php echo PROJECTS_TEXT; ?></a>
+                <ul class="level_2" id="projects" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()">
                     <li class="level_2">
                         <a href="index.php?page=EditProject"><?php echo ADD_TEXT; ?></a>
                     </li>
@@ -20,10 +20,10 @@
                 </ul>
             </li>
             <li class="level_1">
-                <a href=# onmouseover="openLevel_2('users_submenu')" onmouseout="closeLevel_2AfterTime()"><?php echo USERS_TEXT; ?></a>
+                <span onmouseover="openLevel_2('users_submenu')" onmouseout="closeLevel_2AfterTime()"><?php echo USERS_TEXT; ?></span>
                 <ul class="level_2" id="users_submenu" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()">
                     <li class="level_2">
-                        <a href=# onmouseover="openLevel_3('all_users')" onmouseout="closeLevel_3AfterTime()"><?php echo VIEW_ALL_TEXT; ?></a>
+                        <span onmouseover="openLevel_3('all_users')" onmouseout="closeLevel_3AfterTime()"><?php echo VIEW_ALL_TEXT; ?></span>
                         <ul class="level_3" id="all_users" onmouseover="cancelLevel_3Timeout()" onmouseout="closeLevel_3AfterTime()">
                             <li class="level_3"><a href="index.php?page=Employees"><?php echo EMPLOYEES_TEXT; ?></a></li>
                             <li class="level_3 last"><a href="index.php?page=Clients"><?php echo CLIENTS_TEXT; ?></a></li>
@@ -38,7 +38,7 @@
                 </ul>
             </li>
             <li class="level_1">
-                <a href=# onmouseover="openLevel_2('manage_submenu')" onmouseout="closeLevel_2AfterTime()"><?php echo MANAGE_TEXT; ?></a>
+                <span onmouseover="openLevel_2('manage_submenu')" onmouseout="closeLevel_2AfterTime()"><?php echo MANAGE_TEXT; ?></span>
                 <ul class="level_2" id="manage_submenu" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()">
                 <?php if($_SESSION['userinfo']['IsAdmin'])
                     { ?>
@@ -64,7 +64,7 @@
             </li>
         <?php }?>
         <li class="level_1">
-            <a href=# onmouseover="openLevel_2('account_submenu')" onmouseout="closeLevel_2AfterTime()"><?php echo ACCOUNT_TEXT; ?></a>
+            <span onmouseover="openLevel_2('account_submenu')" onmouseout="closeLevel_2AfterTime()"><?php echo ACCOUNT_TEXT; ?></span>
             <ul class="level_2" id="account_submenu" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()">
                 <li class="level_2">
                     <a href="index.php?page=ChangePassword"><?php echo CHANGE_PASSWORG_TEXT; ?></a>
