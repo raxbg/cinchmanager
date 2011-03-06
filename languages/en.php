@@ -128,7 +128,7 @@ define("WELCOME_TEXT", "Welcome");
 define("YES_TEXT","Yes");
 define("IN_PROGRESS_TEXT","in progres");
 define("HALT_TEXT","halt");
-define("FINNISHED_TEXT","finnished");
+define("FINISHED_TEXT","finished");
 define("CANCELED_TEXT","canceled");
 define("MEMBERS_TEXT","Members:");
 define("EDIT_PROJECT_TEXT","Edit Project");

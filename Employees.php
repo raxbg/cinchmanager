@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION['LoggedIn']))
 {
-    if($_SESSION['userinfo']['CanCreateAccounts'] != "n")
+    if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
     {
         $CanCreateAndEditAccounts=true;
     }
@@ -9,9 +9,22 @@ if(isset($_SESSION['LoggedIn']))
     {
         $CanCreateAndEditAccounts=false;
     }
+
+    if(isset($_POST['Dismiss']))
+    {
+        if(Hierarchy::Dismiss($_POST['UserID']))
+        {
+        echo "kicked out";
+        }
+        else
+        {
+            echo "couldnt kick that shit out";
+        }
+    }
+
     $dbHandler=new dbHandler();
     $dbHandler->dbConnect();
-    $query="SELECT Users.ID, Users.FirstName, Users.LastName, Branches.Name AS Branch, Positions.Position, Users.Email, Users.Telephone
+    $query="SELECT Users.ID, Users.FirstName, Users.LastName, Branches.Name AS Branch, Positions.Position, Users.Email, Users.Telephone, Employees.EndDate
             FROM Employees
             LEFT JOIN Users ON Users.ID = Employees.UserID
             LEFT JOIN Positions ON Employees.PositionID = Positions.ID
@@ -22,28 +35,32 @@ if(isset($_SESSION['LoggedIn']))
     $i=0;
     while($employee = mysql_fetch_array($result))
     {
-        if ($i%2==0)
+        if(!$employee['EndDate'])
         {
-            $class="class=\"odd ActiveField\"";
-        }
-        else
-        {
-            $class="class=\"even ActiveField\"";
-        }
-        $i++;
+            if ($i%2==0)
+            {
+                $class="class=\"odd ActiveField\"";
+            }
+            else
+            {
+                $class="class=\"even ActiveField\"";
+            }
+            $i++;
 
-        $Employees.="<tr {$class} onClick=\"PopUpBox('./UserInfo.php?id={$employee['ID']}')\" >\n<td>{$employee['FirstName']} {$employee['LastName']}</td>\n".
-        "<td>{$employee['Position']}</td>\n".
-        "<td>{$employee['Branch']}</td>\n".
-        "<td>{$employee['Email']}</td>\n".
-        "<td>{$employee['Telephone']}</td>\n";
-        if($CanCreateAndEditAccounts)
-        {
-            $Employees.="<td class=\"editBtn\"><a href=\"index.php?page=EditAccount&id={$employee['ID']}\"><img src=\"img/edit.gif\"></a></td>\n";
+            $Employees.="<tr {$class} onClick=\"PopUpBox('./UserInfo.php?id={$employee['ID']}')\" >\n<td>{$employee['FirstName']} {$employee['LastName']}</td>\n".
+            "<td>{$employee['Position']}</td>\n".
+            "<td>{$employee['Branch']}</td>\n".
+            "<td>{$employee['Email']}</td>\n".
+            "<td>{$employee['Telephone']}</td>\n";
+            if($CanCreateAndEditAccounts)
+            {
+                $Employees.="<td class=\"editBtn\"><a href=\"index.php?page=EditAccount&id={$employee['ID']}\"><img src=\"img/edit.gif\"></a></td>\n";
+            }
+            $Employees.="</tr>\n";
         }
-        $Employees.="</tr>\n";
     }
     $dbHandler->dbDisconnect();
+    unset($dbHandler);
 ?>
     <h1><?php echo EMPLOYEES_TEXT ?></h1>
     <table class="cooltable">

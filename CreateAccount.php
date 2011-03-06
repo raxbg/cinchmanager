@@ -110,7 +110,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['CanCreateAccounts'] !=
     <?php echo TELEPHONE_TEXT;?><br />
     <input type="text" name="Telephone" /><br />
     <?php echo ADDRESS_TEXT;?><br />
-    <input type="text" name="Address" /><br />
+    <textarea name="Address"></textarea><br />
     <?php echo BRANCH_TEXT;?><br />
     <select name="BranchID">
         <?php echo $branches;?>

@@ -2,7 +2,7 @@
 
 class Hierarchy
 {
-    public function AddToHierarchy($managerID,$userID,$position,$canCreateAccounts,$isAdmin,$assignmentDay,$salary)
+    public static function AddToHierarchy($managerID,$userID,$position,$canCreateAccounts,$isAdmin,$assignmentDay,$salary)
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
@@ -72,8 +72,13 @@ class Hierarchy
         return true;
     }
 
-    public function IsXManagerOfY($Employee,$Manager)
+    public static function IsXManagerOfY($Employee,$Manager)
     {
+        if($Employee==$Manager)
+        {
+            return false;
+        }
+        
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
         $employee=mysql_real_escape_string($Employee);
@@ -99,7 +104,7 @@ class Hierarchy
         return false;
     }
 
-    public static function MoveInHierarchy($user,$toManager)
+    public static static function MoveInHierarchy($user,$toManager)
     {
         $dbHandler = new dbHandler();
         $dbHandler->dbConnect();
@@ -223,6 +228,32 @@ class Hierarchy
         $dbHandler->dbDisconnect();
         unset($dbHandler);
         return true;
+    }
+    public static function Dismiss($Employee)
+    {
+        if(self::MoveInHierarchy($Employee, "none"))
+        {
+            $dbHandler=new dbHandler();
+            $dbHandler->dbConnect();
+            $UserID=mysql_real_escape_string($Employee);
+            $query="UPDATE Employees
+            SET lft=NULL, rgt=NULL,EndDate='".date("Y-m-d")."'
+            WHERE UserID={$UserID}";
+            if($dbHandler->ExecuteQuery($query))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            $dbHandler->dbDisconnect();
+            unset($dbHandler);
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 ?>

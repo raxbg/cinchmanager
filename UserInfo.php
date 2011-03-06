@@ -125,21 +125,23 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
         </div>
         <?php } ?>
         <?php if((($_SESSION['userinfo']['EmployeeOrClient']=='e')||($_GET['id']==$_SESSION['userinfo']['ID']))&&($Projects!="")){?>
-        <h3 class="NoMargin"><?php echo PROJECTS_TEXT; ?></h3>
-        <table class="cooltable">
-            <thead>
-                <tr>
-                    <td><?php echo PROJECT_NAME1_TEXT; ?></td>
-                    <td><?php echo START_DATE_TEXT; ?></td>
-                    <td><?php echo STATUS_TEXT; ?></td>
-                </tr>
-            </thead>
-            <tbody>
-                <?php echo $Projects; ?>
-            </tbody>
-        </table>
+            <h3 class="NoMargin"><?php echo PROJECTS_TEXT; ?></h3>
+            <table class="cooltable">
+                <thead>
+                    <tr>
+                        <td><?php echo PROJECT_NAME1_TEXT; ?></td>
+                        <td><?php echo START_DATE_TEXT; ?></td>
+                        <td><?php echo STATUS_TEXT; ?></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php echo $Projects; ?>
+                </tbody>
+            </table>
         <?php } ?>
-        <?php if((Hierarchy::IsXManagerOfY($_GET['id'],$_SESSION['userinfo']['ID'])||$_GET['id']==$_SESSION['userinfo']['ID'])&&($Salaries!="")){?>
+<?php 
+        if((Hierarchy::IsXManagerOfY($_GET['id'],$_SESSION['userinfo']['ID'])||$_GET['id']==$_SESSION['userinfo']['ID'])&&($Salaries!=""))
+        {?>
             <h3 class="NoMargin"><?php echo SALARY1_TEXT; ?></h3>
             <table class="cooltable">
                 <thead>
@@ -153,9 +155,22 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
                     <?php echo $Salaries; ?>
                 </tbody>
             </table>
-        <?php } ?>
+<?php   } ?>
     </div>
 <?php
+        if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
+        {
+
+            echo "<a href=\"index.php?page=EditAccount&id={$_GET['id']}\"><img src=\"img/edit.gif\"></a>";
+        }
+        if(Hierarchy::IsXManagerOfY($_GET['id'], $_SESSION['userinfo']['ID']))
+        {
+?>
+            <form method="post" action="index.php?page=Employees">
+                <input type="hidden" name="UserID" value="<?php echo $_GET['id']; ?>" />
+                <input type="submit" name="Dismiss" value="Kick out" />
+            </form>
+<?php   }
 }
 elseif(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == "c")
 {
