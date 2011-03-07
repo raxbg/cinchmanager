@@ -108,17 +108,6 @@ Status int NOT NULL,
 Visibility int NOT NULL
 ) ENGINE = InnoDB";
 
-$Queries['createTasksAndEmployees'] = "CREATE TABLE TasksAndEmployees
-(
-TaskID int NOT NULL,
-FOREIGN KEY (TaskID) REFERENCES Tasks(ID),
-ToUserID int NOT NULL,
-FOREIGN KEY (ToUserID) REFERENCES Users(ID),
-FromUserID int NOT NULL,
-FOREIGN KEY (FromUserID) REFERENCES Users(ID),
-PRIMARY KEY(TaskID,ToUserID)
-)ENGINE = InnoDB";
-
 $Queries['cerateProjectsAndMembers'] = "CREATE TABLE ProjectsAndMembers
 (
 ProjectID int NOT NULL,
