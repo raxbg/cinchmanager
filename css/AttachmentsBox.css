@@ -1,0 +1,52 @@
+body {
+margin:0px;
+font-family:arial, sans-serif, helvetica;
+font-size: 12px;
+color:#444;
+background: #fff;
+}
+a{
+color:#444;
+text-decoration: none;
+}
+table.cooltable{
+border: 1px solid #CCCCCC;
+width: 100%;
+border-spacing: 2px;
+margin:5px 0;
+background: #fff;
+}
+table.cooltable thead{
+background-color: #E0E0E0;
+font-weight: bold;
+text-align: center;
+}
+thead.cooltable td{
+padding-left:0 !important;
+}
+table.cooltable tr.even{
+background-color:#F0F0F0;
+}
+table.cooltable tr.odd{
+background-color:#F9F9F9;
+}
+table.cooltable td{
+margin:0;
+padding-left: 10px;
+}
+.PositiveMessage{
+background-color: #CCFFCC;
+border: 1px solid #66FF66;
+color: #006600;
+display: block;
+margin: 10px 0;
+padding: 2px 20px;
+}
+.NegativeMessage{
+background-color: #FFCCCC;
+border: 1px solid #FF6666;
+color: #660000;
+display: block;
+margin: 10px 0;
+padding: 2px 20px;
+}
