@@ -133,8 +133,7 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
 ?>
             <form method="post" enctype="multipart/form-data" id="Attachments" action="Attachments.php?id=<?php echo $_GET['id'];?>" class="attachments">
                 <h2><?php echo ADD_NEW_ATTACHMENT_TEXT;?></h2><br />
-                <input type="file" name="Attachment" />
-                <div id="NewAttachments"></div>
+                <div id="NewAttachments"><input type="file" name="Attachment" /></div>
                 <input type="submit" value="<?php echo ATTACH_TEXT;?>" name="Attach" />
             </form>
             <button onclick="UploadMore()"><?php echo MORE_FILES_TEXT;?></button>
