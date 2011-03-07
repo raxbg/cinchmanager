@@ -4,12 +4,6 @@ if(is_dir("install") && !file_exists("lib/Globals.php"))
 {
     header('Location: install/index.php');
 }
-elseif(is_dir("install") && file_exists("lib/Globals.php"))
-{
-    echo REMOVE_INSTALL_TEXT;
-}
-elseif(!is_dir("install") && file_exists("lib/Globals.php"))
-{
 ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -36,6 +30,12 @@ elseif(!is_dir("install") && file_exists("lib/Globals.php"))
         ?>
         <div id="page">
             <?php
+            if(is_dir("install") && file_exists("lib/Globals.php"))
+            {
+                echo REMOVE_INSTALL_TEXT;
+            }
+            elseif(!is_dir("install") && file_exists("lib/Globals.php"))
+            {
               if(isset($_POST['submit']) && !isset($_SESSION['LoggedIn']))
               {
                 echo INCORRECT_USER_TEXT."<br />";
@@ -45,10 +45,8 @@ elseif(!is_dir("install") && file_exists("lib/Globals.php"))
                   echo GOODBYE_TEXT;
               }
               Page::LoadContent();
+            }
             ?>
         </div>
     </body>
 </html>
-<?php
-}
-?>
