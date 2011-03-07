@@ -95,7 +95,8 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
     $table.= "    </tr>\n";
     $table.= "</thead>\n";
     $table.= "<tbody>\n";
-    $query.= "SELECT * FROM Attachments WHERE TaskID={$id}";
+
+    $query = "SELECT * FROM Attachments WHERE TaskID={$id}";
     $result = $dbHandler->ExecuteQuery($query);
     if(mysql_num_rows($result)>0)
     {
@@ -142,9 +143,9 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
             CheckHeight();
         </script>
 <?php
-        }
-        else
-        {
+    }
+    else
+    {
 ?>
         <form method="post" enctype="multipart/form-data" id="Attachments" action="Attachments.php?&id=<?php echo $_GET['id'];?>" class="attachments">
             <h2><?php echo ADD_NEW_ATTACHMENT_TEXT;?></h2>
@@ -158,7 +159,7 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
             CheckHeight();
         </script>
 <?php
-        }
+    }
 ?>
     </body>
 </html>
