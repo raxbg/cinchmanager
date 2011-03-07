@@ -94,7 +94,6 @@ if(isset($_SESSION['LoggedIn']))
 <div class="Description"><?php echo stripslashes($Task['Description']); ?></div>
 <?php } ?>
 <?php
-                echo "<span onClick=\"PopUpBox('./EditTask.php?id={$Task['ID']}')\" class=\"right ActiveField\" >".EDIT_TEXT."</span>";
                 ?>
                 <span onclick="LoadStatus(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo STATUS_TEXT;?></span>/
                 <span onclick="LoadAttachments(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo ATTACHMENTS_TEXT;?></span>/
@@ -109,6 +108,7 @@ if(isset($_SESSION['LoggedIn']))
        
         $dbHandler->dbDisconnect();
         unset($dbHandler);
+        echo "<span onClick=\"PopUpBox('./EditTask.php?id={$Task['ID']}')\" class=\"right ActiveField\" >".EDIT_TEXT."</span>";
     }
     else
     {

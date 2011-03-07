@@ -88,6 +88,7 @@ if(isset($_SESSION['LoggedIn']))
     if($CanCreateAndEditAccounts)
     {
         echo "<a href=\"index.php?page=CreateAccount\">".CREATE_ACCOUNT_TEXT."</a>";
+        echo "<a href=\"index.php?page=DismissedEmployees\" class=\"right\">".DISMISSED_EMPLOYEES_TEXT."</a>";
     }
 }
 else
