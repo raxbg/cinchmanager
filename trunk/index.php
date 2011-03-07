@@ -1,10 +1,20 @@
 <?php
 require_once("lib/LoadSystem.php");
+if(is_dir("install") && !file_exists("lib/Globals.php"))
+{
+    header('Location: install/index.php');
+}
+elseif(is_dir("install") && file_exists("lib/Globals.php"))
+{
+    echo REMOVE_INSTALL_TEXT;
+}
+elseif(!is_dir("install") && file_exists("lib/Globals.php"))
+{
 ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <title><?php echo COMPANY_NAME;/*." ".$TEXT['Manager']*/?></title>
+        <title><?php echo COMPANY_NAME;?></title>
         <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" language="javascript" src="js/menu.js"></script>
@@ -39,3 +49,6 @@ require_once("lib/LoadSystem.php");
         </div>
     </body>
 </html>
+<?php
+}
+?>
