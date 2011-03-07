@@ -1,7 +1,7 @@
 <?php
 define("ACCOUNT_INFORMATION_TEXT","Данни за акаунта");
 define("ACCOUNT_SUCCESSFULLY_UPDATED_TEXT","Профилът беше обновен успешно.");
-define("ACC_CAN_CREATE_TEXT","Чиновникът може да регистрира:");
+define("ACC_CAN_CREATE_TEXT","Служителят може да регистрира:");
 define("ACC_CAN_CREATE_TITLES_TEXT","Администраторски права:");
 define("ADD_NEW_ATTACHMENT_TEXT","Прикачване на нов файл");
 define("ATTACH_TEXT","Прикачване");
