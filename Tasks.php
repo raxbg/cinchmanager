@@ -5,7 +5,7 @@ if(isset($_SESSION['LoggedIn']))
     $dbHandler=new dbHandler();
     $dbHandler->dbConnect();
 
-    if(isset($_POST['EditTaskStatus']))
+    if(isset($_POST['EditTaskStatus']) && $_POST['ShortDescription']!="")
     {
         $taskId = mysql_real_escape_string($_POST['TaskID']);
         $status = mysql_real_escape_string($_POST['NewStatus']);
@@ -19,7 +19,7 @@ if(isset($_SESSION['LoggedIn']))
             $message.="<span class=\"NegativeMessage\">".COULD_NOT_UPDATE_TASK_TEXT."</span>";
         }
     }
-    elseif(isset($_POST['AddTask']))
+    elseif(isset($_POST['AddTask']) && $_POST['ShortDescription']!="")
     {
         $ProjectID=mysql_real_escape_string($_POST['ProjectID']);
         $Prioriry=mysql_real_escape_string($_POST['Prioriry']);
@@ -62,7 +62,7 @@ if(isset($_SESSION['LoggedIn']))
         $ShortDescription=mysql_real_escape_string($_POST['ShortDescription']);
         $Description=mysql_real_escape_string($_POST['Description']);
         $Visibility=mysql_real_escape_string($_POST['Visibility']);
-        if ($_POST['Deadline']!='0000-00-00 00:00:00')
+        if ($_POST['Deadline']!='0000-00-00 00:00:00' && $_POST['Deadline']!="")
         {
             $Deadline="'".mysql_real_escape_string($_POST['Deadline'])."'";
         }
