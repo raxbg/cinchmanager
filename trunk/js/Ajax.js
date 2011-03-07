@@ -1,7 +1,6 @@
 var opened = false;
 var checkOldPassed = false;
 var checkNewPassed = false;
-var files = 1;
 var oldPass;
 var newPwd;
 
