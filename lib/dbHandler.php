@@ -83,26 +83,29 @@ class dbHandler
     {
         $options="";
         $result = $this->ExecuteQuery($query);
-        while($option = mysql_fetch_array($result))
+        if(mysql_num_rows($result)>0)
         {
-            if($mustSelect != NULL)
+            while($option = mysql_fetch_array($result))
             {
-                $options.="<option value=\"{$option[$key]}\"";
-                if ($option[$key] == $mustSelect)
+                if($mustSelect != NULL)
                 {
-                    $options .= " selected=\"selected\"";
+                    $options.="<option value=\"{$option[$key]}\"";
+                    if ($option[$key] == $mustSelect)
+                    {
+                        $options .= " selected=\"selected\"";
+                    }
+                    $options .= ">";
                 }
-                $options .= ">";
+                else
+                {
+                    $options.="<option value=\"{$option[$key]}\">";
+                }
+                foreach ($fields as $field)
+                {
+                    $options.=$option[$field]." ";
+                }
+                $options.="</option>\n";
             }
-            else
-            {
-                $options.="<option value=\"{$option[$key]}\">";
-            }
-            foreach ($fields as $field)
-            {
-                $options.=$option[$field]." ";
-            }
-            $options.="</option>\n";
         }
         return $options;
     }
