@@ -44,7 +44,7 @@
             { ?>
             <li class="level_1">
                 <span onmouseover="openLevel_2('manage_submenu')" onmouseout="closeLevel_2AfterTime()"><?php echo MANAGE_TEXT; ?></span>
-                <ul class="level_2" id="manage_submenu" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()"
+                <ul class="level_2" id="manage_submenu" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()">
                         <li class="level_2">
                             <a href="index.php?page=Branches" onmouseover="openLevel_3('branches')" onmouseout="closeLevel_3AfterTime()"><?php echo BRANCHES_TEXT; ?></a>
                             <ul class="level_3" id="branches" onmouseover="cancelLevel_3Timeout()" onmouseout="closeLevel_3AfterTime()">
