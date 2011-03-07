@@ -15,6 +15,7 @@ width: 100%;
 border-spacing: 2px;
 margin:5px 0;
 background: #fff;
+font-size:12px;
 }
 table.cooltable thead{
 background-color: #E0E0E0;
@@ -49,4 +50,7 @@ color: #660000;
 display: block;
 margin: 10px 0;
 padding: 2px 20px;
+}
+#Attachments{
+margin:0;
 }
