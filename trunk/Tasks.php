@@ -5,7 +5,7 @@ if(isset($_SESSION['LoggedIn']))
     $dbHandler=new dbHandler();
     $dbHandler->dbConnect();
 
-    if(isset($_POST['EditTaskStatus']) && $_POST['ShortDescription']!="")
+    if(isset($_POST['EditTaskStatus']))
     {
         $taskId = mysql_real_escape_string($_POST['TaskID']);
         $status = mysql_real_escape_string($_POST['NewStatus']);
@@ -54,7 +54,7 @@ if(isset($_SESSION['LoggedIn']))
         echo "<span class=\"PositiveMessage\">".TASK_ADDED_TEXT."</span>";
 
     }
-    elseif(isset($_POST['EditTask']))
+    elseif(isset($_POST['EditTask']) && $_POST['ShortDescription']!="")
     {
         $TaskID=mysql_real_escape_string($_POST['TaskID']);
         $ProjectID=mysql_real_escape_string($_POST['ProjectID']);
