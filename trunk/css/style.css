@@ -297,6 +297,9 @@ clear:both;
 margin: 0;
 }
 /* !TaskComments */
+form.attachments{
+display:inline;
+}
 #ProjectDescription{
 margin: 15px 0;
 }
