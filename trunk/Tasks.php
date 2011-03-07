@@ -26,7 +26,7 @@ if(isset($_SESSION['LoggedIn']))
         $ShortDescription=mysql_real_escape_string($_POST['ShortDescription']);
         $Description=mysql_real_escape_string($_POST['Description']);
         $Visibility=mysql_real_escape_string($_POST['Visibility']);
-        if ($_POST['Deadline']!='0000-00-00 00:00:00')
+        if ($_POST['Deadline']!="0000-00-00 00:00:00")
         {
             $Deadline="'".mysql_real_escape_string($_POST['Deadline'])."'";
         }
