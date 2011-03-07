@@ -112,7 +112,7 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
                 $class="class=\"even\"";
             }
             $i++;
-            $table.= "<tr {$class}><td><a href=\"attachments/{$_GET['id']}_{$row['Filename']}\">{$row['Filename']}</a></td>";
+            $table.= "<tr {$class}><td><a href=\"attachments/{$_GET['id']}_{$row['Filename']}\" target=\"_blank\">{$row['Filename']}</a></td>";
             $table.= "<td>{$row['Date']}</td>";
             $table.= "<td>{$row['UserID']}</td>";
         }
