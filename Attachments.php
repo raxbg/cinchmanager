@@ -88,43 +88,47 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
         $table.= "</table>\n";
         $dbHandler->dbDisconnect();
         unset($dbHandler);?>
-        <script type="text/javascript">
-            var files = 1;
-            function UploadMore()
-            {
-                var elementName = "Attachment"+(files+1);
-                files++;
-                var newFile = document.createElement("input");
-                newFile.setAttribute("type","file");
-                newFile.setAttribute("name",elementName);
-                document.getElementById("NewAttachments").appendChild(newFile);
-            }
-        </script>
         <?php
         if(!$IsTableEmpty)
         {
             echo $table;
             echo "<br />";
         ?>
-            <form method="post" enctype="multipart/form-data" id="Attachments" action="index.php?page=Attachments&id=<?php echo $_GET['id'];?>">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+        <div id="main">
+            <form method="post" enctype="multipart/form-data" id="Attachments" action="index.php?page=Attachments&id=<?php echo $_GET['id'];?>" class="attachments">
                 <h2><?php echo ADD_NEW_ATTACHMENT_TEXT;?></h2><br />
                 <input type="file" name="Attachment" /><br />
                 <div id="NewAttachments"></div>
                 <input type="submit" value="<?php echo ATTACH_TEXT;?>" name="Attach" />
             </form>
-            <button onclick="UploadMore()"><?php echo MORE_FILES_TEXT;?></button>
+            <button onclick="parent.UploadMore()"><?php echo MORE_FILES_TEXT;?></button>
+        </div>
+        <script type="text/javascript">
+            var height = document.getElementById("main").offsetHeight;
+            parent.SetAttachmentsHeight(height);
+        </script>
         <?php
         }
         else
         {
         ?>
-            <form method="post" enctype="multipart/form-data" id="Attachments" action="index.php?page=Attachments&id=<?php echo $_GET['id'];?>">
+
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+        <div id="main">
+            <form method="post" enctype="multipart/form-data" id="Attachments" action="index.php?page=Attachments&id=<?php echo $_GET['id'];?>" class="attachments">
                 <h2><?php echo ADD_NEW_ATTACHMENT_TEXT;?></h2><br />
-                <input type="file" name="Attachment" /><br />
-                <div id="NewAttachments"></div>
-                <button onclick="UploadMore()"><?php echo MORE_FILES_TEXT ;?></button>
-                <input type="submit" value="<?php echo ATTACH_TEXT ;?>" name="Attach" />
+                <div id="NewAttachments">
+                    <input type="file" name="Attachment" /><br />
+                </div>
+                <input type="submit" value="<?php echo ATTACH_TEXT;?>" name="Attach" />
             </form>
+            <button onclick="parent.UploadMore()"><?php echo MORE_FILES_TEXT;?></button>
+        </div>
+        <script type="text/javascript">
+            var height = document.getElementById("main").offsetHeight;
+            parent.SetAttachmentsHeight(height);
+        </script>
         <?php
         }
     }

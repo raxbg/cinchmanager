@@ -164,6 +164,7 @@ function UploadMore()
     newFile.setAttribute("type","file");
     newFile.setAttribute("name",elementName);
     document.getElementById("NewAttachments").appendChild(newFile);
+    SetAttachmentsHeight();
 }
 
 function changeStatus(amount)
@@ -226,7 +227,7 @@ function LoadStatus(id)
             }
             else
             {
-                setTimeout("LoadStatus(id)",500);
+                setTimeout("LoadStatus("+id+")",500);
             }
         }
       }
@@ -236,31 +237,12 @@ function LoadStatus(id)
 
 function LoadAttachments(id)
 {
-    var xmlhttp;
-    if (window.XMLHttpRequest)
-      {// code for IE7+, Firefox, Chrome, Opera, Safari
-      xmlhttp=new XMLHttpRequest();
-      }
-    else
-      {// code for IE6, IE5
-      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-      }
-    xmlhttp.onreadystatechange=function()
-      {
-      if (xmlhttp.readyState==4 && xmlhttp.status==200)
-        {
-            if(document.getElementById("TaskFooter") != null)
-            {
-                document.getElementById("TaskFooter").innerHTML = xmlhttp.responseText;
-            }
-            else
-            {
-                setTimeout("LoadAttachments(id)",500);
-            }
-        }
-      }
-    xmlhttp.open("GET","Attachments.php?id="+id,true);
-    xmlhttp.send();
+    var attachmentIframe = document.createElement("iframe");
+    attachmentIframe.id="AttchmentIframe";
+    attachmentIframe.name="AttachmentIframe";
+    attachmentIframe.scrolling="no";
+    document.getElementById("TaskFooter").appendChild(attachmentIframe);
+    document.getElementById("AttchmentIframe").src = "Attachments.php?id="+id;
 }
 
 function LoadComments(id)
@@ -284,7 +266,7 @@ function LoadComments(id)
             }
             else
             {
-                setTimeout("LoadComments(id)",500);
+                setTimeout("LoadComments("+id+")",500);
             }
         }
       }
@@ -314,4 +296,9 @@ function Comment(id)
     xmlhttp.open("POST","Comments.php?TaskId="+id,true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("SubmitComment=true&TaskId="+id+"&Comment="+Comment);
+}
+
+function SetAttachmentsHeight(height)
+{
+    document.getElementById("AttchmentIframe").style.height = height+"px";
 }
