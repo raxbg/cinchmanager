@@ -193,4 +193,6 @@ define("COMMENT_TEXT","Comment");
 define("ATTACHMENTS_TEXT","Attachments");
 define("COMMENTS_TEXT","Comments");
 define("DISMISSED_EMPLOYEES_TEXT","Dissmissed employees");
+define("REMOVE_INSTALL_TEXT","An installation has been made. If everything went alright, and you are sure that you
+    have typed in the right information, please delete the <i>install</i> directory. Otherwise you can repeat the installation.");
 ?>
