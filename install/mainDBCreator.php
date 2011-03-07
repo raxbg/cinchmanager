@@ -130,16 +130,6 @@ IsLeader BOOLEAN,
 IsOwner BOOLEAN
 )ENGINE = InnoDB";
 
-$Queries['createExpenses'] = "CREATE TABLE Expenses
-(
-ID int NOT NULL AUTO_INCREMENT,
-PRIMARY KEY(ID),
-ShortDescription VARCHAR(150) NOT NULL,
-Description MEDIUMTEXT,
-Date Date NOT NULL,
-Amount DECIMAL(15,2) NOT NULL
-)ENGINE=InnoDB";
-
 $Queries['createSalaries'] = "CREATE TABLE Salaries
 (
 UserID int NOT NULL,
