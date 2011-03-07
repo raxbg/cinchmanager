@@ -193,4 +193,5 @@ define("UPLOADED_ON_TEXT","Качено на");
 define("UPLOADED_BY_TEXT","Качено от");
 define("ATTACHMENTS_TEXT","Прикачени файлове");
 define("COMMENTS_TEXT","Коментари");
+define("DISMISSED_EMPLOYEES_TEXT","Бивши служители");
 ?>

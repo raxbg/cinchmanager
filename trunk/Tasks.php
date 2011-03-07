@@ -156,7 +156,7 @@ if(isset($_SESSION['LoggedIn']))
             {
             $Tasks.="<tr {$class} onClick=\"PopUpBox('./Task.php?id={$Task['ID']}');LoadStatus({$Task['ID']})\">".
                         "<td>{$Task['Project']}</td>\n".
-                        "<td>{$Task['ShortDescription']}</td>\n".
+                        "<td>".stripslashes($Task['ShortDescription'])."</td>\n".
                         "<td>{$Task['Deadline']}</td>\n".
                         "<td>{$Task['Status']}%</td>\n".
                         "</tr>";

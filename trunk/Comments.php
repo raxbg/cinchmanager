@@ -38,11 +38,13 @@ if(isset($_SESSION['LoggedIn']))
         $dbHandler->dbDisconnect();
         unset($dbHandler);
 ?>
+<?php if($Comments!=""){ ?>
 <div class="Comments">
     <div class="ComentsInner">
         <?php echo $Comments; ?>
     </div>
 </div>
+<?php } ?>
 <input type="hidden" name="TaskId" value="<?php echo $_GET['TaskId'];?>" />
 <textarea name="Comment" class="comment" id="Comment"></textarea><br />
 <button onclick="Comment(<?php echo $_GET['TaskId'];?>)"><?php echo COMMENT_TEXT; ?></button>
