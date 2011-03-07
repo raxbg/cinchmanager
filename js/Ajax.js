@@ -156,17 +156,6 @@ function FillMembers()
     xmlhttp.send();
 }
 
-function UploadMore()
-{
-    var elementName = "Attachment"+(files+1);
-    files++;
-    var newFile = document.createElement("input");
-    newFile.setAttribute("type","file");
-    newFile.setAttribute("name",elementName);
-    document.getElementById("NewAttachments").appendChild(newFile);
-    SetAttachmentsHeight();
-}
-
 function changeStatus(amount)
 {
     document.TaskStatus.src="img/"+amount+"percent.png";
@@ -237,9 +226,11 @@ function LoadStatus(id)
 
 function LoadAttachments(id)
 {
+    document.getElementById("TaskFooter").innerHTML = "";
     var attachmentIframe = document.createElement("iframe");
     attachmentIframe.id="AttchmentIframe";
     attachmentIframe.name="AttachmentIframe";
+    attachmentIframe.style.width="100%";
     attachmentIframe.scrolling="no";
     document.getElementById("TaskFooter").appendChild(attachmentIframe);
     document.getElementById("AttchmentIframe").src = "Attachments.php?id="+id;
