@@ -34,6 +34,7 @@ min-height: 500px;
 width: 900px;
 padding:25px;
 }
+/* IserInfo */
 #userinfo
 {
 color: #CCCCCC;
@@ -62,6 +63,7 @@ text-decoration:none;
 color:#eee;
 text-decoration:none;
 }
+/* !IserInfo */
 #languages{
 float:left;
 list-style: none outside none;
@@ -250,7 +252,7 @@ clear:both;
 /* !UserInfo */
 /* Task */
 div.TaskHeader{
-width:480px
+width:485px
 }
 div.TaskHeader div{
 float:left;
@@ -266,12 +268,12 @@ background-color: #F5F5F5;
 border: 1px solid #CCCCCC;
 margin: 5px 0;
 padding: 10px;
-width: 480px;
+width: 478px;
 }
 /* !Task */
 /* TaskComments */
 div.Comments{
-width:480px;
+width:498px;
 height:130px;
 overflow:auto;
 background-color: #F5F5F5;
@@ -283,13 +285,13 @@ width:450px;
 margin:0 auto;
 }
 span.comment{
-width:450px;
+width:440px;
 float:left;
 clear:both;
 margin: 5px 5px 10px 5px;
 }
 textarea.comment{
-width:476px;
+width:494px;
 height:60px;
 }
 hr{
@@ -297,6 +299,10 @@ clear:both;
 margin: 0;
 }
 /* !TaskComments */
+#AttchmentIframe{
+width:498px;
+border:none;
+}
 form.attachments{
 display:inline;
 }

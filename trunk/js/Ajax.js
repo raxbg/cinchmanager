@@ -230,7 +230,6 @@ function LoadAttachments(id)
     var attachmentIframe = document.createElement("iframe");
     attachmentIframe.id="AttchmentIframe";
     attachmentIframe.name="AttachmentIframe";
-    attachmentIframe.style.width="100%";
     attachmentIframe.scrolling="no";
     document.getElementById("TaskFooter").appendChild(attachmentIframe);
     document.getElementById("AttchmentIframe").src = "Attachments.php?id="+id;

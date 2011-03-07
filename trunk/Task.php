@@ -95,9 +95,9 @@ if(isset($_SESSION['LoggedIn']))
 <?php } ?>
 <?php
                 ?>
-                <span onclick="LoadStatus(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo STATUS_TEXT;?></span>/
-                <span onclick="LoadAttachments(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo ATTACHMENTS_TEXT;?></span>/
-                <span onclick="LoadComments(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo COMMENTS_TEXT;?></span>
+                <span onclick="LoadStatus(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo STATUS_TEXT;?> | </span>
+                <span onclick="LoadAttachments(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo ATTACHMENTS_TEXT;?> | </span>
+                <span onclick="LoadComments(<?php echo $_GET['id'];?>)" class="LittleText ActiveField"><?php echo COMMENTS_TEXT;?> </span>
                 <div id="TaskFooter"></div>
                 <div class="clearer"></div><?php
             }
