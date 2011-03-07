@@ -83,7 +83,7 @@ class dbHandler
     {
         $options="";
         $result = $this->ExecuteQuery($query);
-        if(mysql_num_rows($result)>0)
+        if($result && mysql_num_rows($result)>0)
         {
             while($option = mysql_fetch_array($result))
             {
