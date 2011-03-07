@@ -129,37 +129,19 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
     if(!$IsTableEmpty)
     {
         echo $table;
-        echo "<br />";
+    }
 ?>
-            <form method="post" enctype="multipart/form-data" id="Attachments" action="Attachments.php?id=<?php echo $_GET['id'];?>" class="attachments">
-                <h2><?php echo ADD_NEW_ATTACHMENT_TEXT;?></h2><br />
+             <h2><?php echo ADD_NEW_ATTACHMENT_TEXT;?></h2>
+             <form method="post" enctype="multipart/form-data" id="Attachments" action="Attachments.php?id=<?php echo $_GET['id'];?>" class="attachments">
                 <div id="NewAttachments"><input type="file" name="Attachment" /></div>
                 <input type="submit" value="<?php echo ATTACH_TEXT;?>" name="Attach" />
             </form>
             <button onclick="UploadMore()"><?php echo MORE_FILES_TEXT;?></button>
         </div>
+        <div class="clearer"></div>
         <script type="text/javascript">
             CheckHeight();
         </script>
-<?php
-    }
-    else
-    {
-?>
-        <form method="post" enctype="multipart/form-data" id="Attachments" action="Attachments.php?&id=<?php echo $_GET['id'];?>" class="attachments">
-            <h2><?php echo ADD_NEW_ATTACHMENT_TEXT;?></h2>
-            <div id="NewAttachments">
-                <input type="file" name="Attachment" />
-            </div>
-            <input type="submit" value="<?php echo ATTACH_TEXT;?>" name="Attach" />
-        </form>
-        <button onclick="UploadMore()"><?php echo MORE_FILES_TEXT;?></button>
-        <script type="text/javascript">
-            CheckHeight();
-        </script>
-<?php
-    }
-?>
     </body>
 </html>
 <?php
