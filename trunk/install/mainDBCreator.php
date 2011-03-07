@@ -140,16 +140,6 @@ Date Date NOT NULL,
 Amount DECIMAL(15,2) NOT NULL
 )ENGINE=InnoDB";
 
-$Queries['createIncomes'] = "CREATE TABLE Incomes
-(
-ID int NOT NULL AUTO_INCREMENT,
-PRIMARY KEY(ID),
-ShortDescription VARCHAR(150) NOT NULL,
-Description MEDIUMTEXT,
-Date Date NOT NULL,
-Amount DECIMAL(15,2) NOT NULL
-)ENGINE=InnoDB";
-
 $Queries['createSalaries'] = "CREATE TABLE Salaries
 (
 UserID int NOT NULL,
@@ -158,51 +148,6 @@ FromDate DATE NOT NULL,
 PRIMARY KEY(UserID,FromDate),
 ToDate DATE,
 Amount DECIMAL(15,2) NOT NULL
-)ENGINE=InnoDB";
-
-$Queries['createPayments'] = "CREATE TABLE Payments
-(
-TaskID int NOT NULL,
-UserID int NOT NULL,
-FOREIGN KEY (UserID) REFERENCES Users(ID),
-Amount DECIMAL(15,2) NOT NULL,
-PRIMARY KEY(TaskID,UserID),
-Date DATE NOT NULL
-)ENGINE=InnoDB";
-
-$Queries['createBonuses'] = "CREATE TABLE Bonuses
-(
-ID INT NOT NULL AUTO_INCREMENT,
-PRIMARY KEY(ID),
-UserID int NOT NULL,
-FOREIGN KEY (UserID) REFERENCES Users(ID),
-Date DATE NOT NULL,
-Amount DECIMAL(15,2) NOT NULL,
-Description VARCHAR(200)
-)ENGINE=InnoDB";
-
-$Queries['createProjectsMaitenance'] ="CREATE TABLE ProjectsMaintenance
-(
-ID int NOT NULL AUTO_INCREMENT,
-PRIMARY KEY(ID),
-ProjectID int NOT NULL,
-Description MEDIUMTEXT,
-FomDate DATE NOT NULL,
-ToDate DATE NOT NULL,
-Cost DECIMAL(15,2) NOT NULL,
-Type VARCHAR(20) NOT NULL
-)ENGINE=InnoDB";
-
-$Queries['createPeriodicalPayments'] ="CREATE TABLE PeriodicalPayments
-(
-ID int NOT NULL AUTO_INCREMENT,
-PRIMARY KEY(ID),
-ProjectID int,
-Description MEDIUMTEXT,
-FomDate DATE NOT NULL,
-ToDate DATE NOT NULL,
-Cost DECIMAL(15,2) NOT NULL,
-Type VARCHAR(20) NOT NULL
 )ENGINE=InnoDB";
 
 $Queries['createComments'] ="CREATE TABLE Comments
@@ -227,28 +172,6 @@ UserID INT NOT NULL,
 FOREIGN KEY (UserID) REFERENCES Users(ID),
 Date TIMESTAMP DEFAULT NOW(),
 Filename VARCHAR(50) NOT NULL
-)ENGINE=InnoDB";
-
-$Queries['createProjectHistory'] = "CREATE TABLE ProjectHistory
-(
-ID INT NOT NULL AUTO_INCREMENT,
-PRIMARY KEY(ID),
-ProjectID INT NOT NULL,
-FOREIGN KEY (ProjectID) REFERENCES Projects(ID),
-UserID INT NOT NULL,
-FOREIGN KEY (UserID) REFERENCES Users(ID),
-Timestamp TIMESTAMP DEFAULT NOW(),
-Event VARCHAR(150) NOT NULL
-)ENGINE=InnoDB";
-
-$Queries['createCostOfTasks'] = "CREATE TABLE CostOfTasks
-(
-ID INT NOT NULL AUTO_INCREMENT,
-PRIMARY KEY(ID),
-TaskID INT NOT NULL,
-FOREIGN KEY (TaskID) REFERENCES Tasks(ID),
-Cost DECIMAL(15,2) NOT NULL,
-Payed BOOL
 )ENGINE=InnoDB";
 
 $Queries['insertBranch'] = "INSERT INTO Branches (Name, Address)
