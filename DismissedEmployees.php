@@ -35,7 +35,7 @@ if(isset($_SESSION['LoggedIn']))
     $i=0;
     while($employee = mysql_fetch_array($result))
     {
-        if(!$employee['EndDate'])
+        if($employee['EndDate'])
         {
             if ($i%2==0)
             {
@@ -52,10 +52,6 @@ if(isset($_SESSION['LoggedIn']))
             "<td>{$employee['Branch']}</td>\n".
             "<td>{$employee['Email']}</td>\n".
             "<td>{$employee['Telephone']}</td>\n";
-            if($CanCreateAndEditAccounts)
-            {
-                $Employees.="<td class=\"editBtn\"><a href=\"index.php?page=EditAccount&id={$employee['ID']}\"><img src=\"img/edit.gif\"></a></td>\n";
-            }
             $Employees.="</tr>\n";
         }
     }
@@ -71,12 +67,6 @@ if(isset($_SESSION['LoggedIn']))
                 <td><?php echo BRANCH1_TEXT ?></td>
                 <td><?php echo EMAIL1_TEXT ?></td>
                 <td><?php echo TELEPHONE1_TEXT ?></td>
-                <?php
-                    if($CanCreateAndEditAccounts)
-                    {
-                        echo "<td>".EDIT_TEXT."</td>";
-                    }
-                ?>
             </tr>
         </thead>
         <tbody>

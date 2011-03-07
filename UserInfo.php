@@ -6,7 +6,8 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
     $dbHandler->dbConnect();
     $id=mysql_real_escape_string($_GET['id']);
     $query="SELECT Users.ID, Titles.Title, Users.FirstName,Users.SecondName, Users.LastName,Users.Telephone,
-                Users.Email, Users.Address, Branches.Name AS Branch, Positions.Position, Users.EmployeeOrClient
+                Users.Email, Users.Address, Branches.Name AS Branch, Positions.Position, Users.EmployeeOrClient,
+                Employees.EndDate
                 FROM Users
                 LEFT JOIN Employees
                 ON Users.ID = Employees.UserID
@@ -158,7 +159,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
 <?php   } ?>
     </div>
 <?php
-        if($_SESSION['userinfo']['CanCreateAccounts'] == "a")
+        if($_SESSION['userinfo']['CanCreateAccounts'] == "a"&&!$User['EndDate'])
         {
 
             echo "<a href=\"index.php?page=EditAccount&id={$_GET['id']}\" class=\"right\"><img src=\"img/edit.gif\"></a>";
