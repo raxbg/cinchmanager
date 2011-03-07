@@ -11,9 +11,12 @@
             <li class="level_1">
                 <a href="index.php?page=Projects" onmouseover="openLevel_2('projects')" onmouseout="closeLevel_2AfterTime()"><?php echo PROJECTS_TEXT; ?></a>
                 <ul class="level_2" id="projects" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()">
+                    <?php if($_SESSION['userinfo']['IsAdmin'])
+                    { ?>
                     <li class="level_2">
                         <a href="index.php?page=EditProject"><?php echo ADD_TEXT; ?></a>
                     </li>
+                    <?php }?>
                     <li class="level_2 last">
                         <a href="index.php?page=Projects"><?php echo VIEW_ALL_TEXT; ?></a>
                     </li>
@@ -37,11 +40,11 @@
                     <?php }?>
                 </ul>
             </li>
+            <?php if($_SESSION['userinfo']['IsAdmin'])
+            { ?>
             <li class="level_1">
                 <span onmouseover="openLevel_2('manage_submenu')" onmouseout="closeLevel_2AfterTime()"><?php echo MANAGE_TEXT; ?></span>
-                <ul class="level_2" id="manage_submenu" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()">
-                <?php if($_SESSION['userinfo']['IsAdmin'])
-                    { ?>
+                <ul class="level_2" id="manage_submenu" onmouseover="cancelLevel_2Timeout()" onmouseout="closeLevel_2AfterTime()"
                         <li class="level_2">
                             <a href="index.php?page=Branches" onmouseover="openLevel_3('branches')" onmouseout="closeLevel_3AfterTime()"><?php echo BRANCHES_TEXT; ?></a>
                             <ul class="level_3" id="branches" onmouseover="cancelLevel_3Timeout()" onmouseout="closeLevel_3AfterTime()">
@@ -59,8 +62,8 @@
                         <li class="level_2 last">
                             <a href="index.php?page=EditPositions"><?php echo POSITIONS1_TEXT; ?></a>
                         </li>
-                    <?php }?>
                 </ul>
+            <?php }?>
             </li>
         <?php }?>
         <li class="level_1">
