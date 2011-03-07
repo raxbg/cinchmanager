@@ -96,7 +96,10 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
     $table.= "</thead>\n";
     $table.= "<tbody>\n";
 
-    $query = "SELECT * FROM Attachments WHERE TaskID={$id}";
+    $query = "SELECT Attachments.*,CONCAT(Users.FirstName,' ',Users.LastName) AS Name FROM Attachments
+    LEFT JOIN Users 
+    ON Attachments.UserID = Users.ID 
+    WHERE TaskID={$id}";
     $result = $dbHandler->ExecuteQuery($query);
     if(mysql_num_rows($result)>0)
     {
@@ -114,7 +117,7 @@ if(isset($_GET['id']) && $_GET['id'] != "" && isset($_SESSION['LoggedIn']))
             $i++;
             $table.= "<tr {$class}><td><a href=\"attachments/{$_GET['id']}_{$row['Filename']}\" target=\"_blank\">{$row['Filename']}</a></td>";
             $table.= "<td>{$row['Date']}</td>";
-            $table.= "<td>{$row['UserID']}</td>";
+            $table.= "<td>{$row['Name']}</td>";
         }
     }
     else
