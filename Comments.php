@@ -2,7 +2,7 @@
 require_once("lib/LoadSystem.php");
 if(isset($_SESSION['LoggedIn']))
 {
-    if(isset($_POST['SubmitComment']))
+    if(isset($_POST['SubmitComment'])&&$_POST['Comment']!="")
     {
         $dbHandler=new dbHandler();
         $dbHandler->dbConnect();
