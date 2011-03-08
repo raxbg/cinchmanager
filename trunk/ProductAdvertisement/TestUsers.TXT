@@ -1,0 +1,5 @@
+ivailo@cinchmanager.demo, ivo123 - администраторски акаунт с права за регистрация на нови потребители
+baichev@cinchmanager.demo, qwerty - администраторски акаунт с права да регистрира само клиенти на компанията
+betty@cinchmanager.demo, 123456 - служител с права да регистрира акаунти
+krasio@cinchmanager.demo, abcde - служител с ограничени права
+tsenka@cinchmanager.demo, cvete - клиент
