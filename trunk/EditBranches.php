@@ -49,7 +49,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)
         $result = $dbHandler->ExecuteQuery($query);
         $branch = mysql_fetch_array($result);
         $branchName = $branch['Name'];
-        $address = $branch['Address'];
+        $address = stripslashes($branch['Address']);
         $telephone = $branch['Telephone'];
     }
     else

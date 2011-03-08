@@ -183,7 +183,7 @@ if(isset($_GET['id']) && $_GET['id']!="")
             <?php echo TELEPHONE_TEXT;?><br />
             <input type="text" value="<?php echo $userinfo['Telephone'];?>" name="Telephone" /><br />
             <?php echo ADDRESS_TEXT;?><br />
-            <textarea name="Address" ><?php echo $userinfo['Address'];?></textarea><br />
+            <textarea name="Address" ><?php echo stripslashes($userinfo['Address']);?></textarea><br />
             <?php echo BRANCH_TEXT;?><br />
             <select name="BranchID">
                 <?php echo $branches;?>
