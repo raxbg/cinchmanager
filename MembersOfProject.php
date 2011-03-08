@@ -62,7 +62,10 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['IsAdmin'] == true)//tu
             $ProjectName=mysql_fetch_row($project);
             $ProjectName = $ProjectName[0];
         
-            $usersQuery = "SELECT ID, FirstName, LastName From Users ORDER BY FirstName, LastName";
+            $usersQuery = "SELECT Users.ID, Users.FirstName, Users.LastName From Users
+                LEFT JOIN Employees ON Users.ID=Employees.UserID
+                WHERE Employees.lft IS NOT NULL
+                ORDER BY FirstName, LastName";
             $users = $dbHandler->MakeSelectOptions($usersQuery, "ID", array("FirstName","LastName"));
 
             $query="SELECT Users.ID, Users.FirstName, Users.LastName, ProjectsAndMembers.IsLeader,ProjectsAndMembers.IsOwner FROM ProjectsAndMembers
