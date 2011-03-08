@@ -83,7 +83,7 @@ if(isset($_SESSION['LoggedIn']))
             <?php echo TELEPHONE_TEXT;?><br />
             <input type="text" value="<?php echo $userinfo['Telephone'];?>" name="Telephone" /><br />
             <?php echo ADDRESS_TEXT;?><br />
-            <input type="text" value="<?php echo $userinfo['Address'];?>" name="Address" /><br />
+            <input type="text" value="<?php echo stripslashes($userinfo['Address']);?>" name="Address" /><br />
             <?php echo DEFAULT_LANGUAGE_TEXT;?><br />
             <select name="DefaultLanguage">
                 <option value="bg" <?php if($userinfo['Language'] == "bg") echo "selected=\"selected\""?>>BG</option>

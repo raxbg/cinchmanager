@@ -20,7 +20,7 @@ if(isset($_SESSION['LoggedIn']))
         $i++;
 
         $Branches.="<tr {$class}><td>{$branch['Name']}</td>\n".
-        "<td>{$branch['Address']}</td>\n".
+        "<td>".stripslashes($branch['Address'])."</td>\n".
         "<td>{$branch['Telephone']}</td>\n";
         if($_SESSION['userinfo']['IsAdmin'])
         {

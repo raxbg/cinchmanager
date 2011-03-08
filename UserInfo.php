@@ -122,7 +122,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
         <?php if($User['Address']!=null){ ?>
         <div id="address">
             <h4><?php echo ADDRESS_TEXT; ?></h4>
-            <?php echo $User['Address']; ?>
+            <?php echo stripslashes($User['Address']); ?>
         </div>
         <?php } ?>
         <?php if((($_SESSION['userinfo']['EmployeeOrClient']=='e')||($_GET['id']==$_SESSION['userinfo']['ID']))&&($Projects!="")){?>
