@@ -16,7 +16,7 @@ class Page
         }
         else
         {
-            echo "Home page";
+            require_once HOME_FOLDER."HomePage.php";
         }
     }
 }
