@@ -69,7 +69,7 @@ if(isset($_SESSION['LoggedIn']) && $_SESSION['userinfo']['EmployeeOrClient'] == 
             }
             if($_SESSION['userinfo']['IsAdmin'])
             {
-                echo "<a href=\"index.php?page=MembersOfProject&id={$Project['ID']}\">".ADD_MEMBERS_TEXT."</a><br />\n".
+                echo "<a href=\"index.php?page=MembersOfProject&id={$Project['ID']}\">".ADD_REMOVE_MEMBERS_TEXT."</a><br />\n".
                     "<a href=\"index.php?page=EditProject&id={$Project['ID']}\">".EDIT_PROJECT_TEXT."</a>";
             }
 
