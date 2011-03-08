@@ -7,7 +7,7 @@ define("ADD_NEW_ATTACHMENT_TEXT","Прикачване на нов файл");
 define("ATTACH_TEXT","Прикачване");
 define("ADDRESS1_TEXT","Адрес");
 define("ADDRESS_TEXT","Адрес:");
-define("ADD_MEMBERS_TEXT","Добавяне на членове на проекта");
+define("ADD_REMOVE_MEMBERS_TEXT","Добавяне/Премахване на членове на проекта");
 define("ADD_NEW_BRANCH_TEXT","Добавяне на клон");
 define("ADD_NEW_MEMBER_TEXT","Добавяне на член");
 define("ADD_TEXT","Добавяне");
