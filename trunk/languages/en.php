@@ -7,7 +7,7 @@ define("ADD_NEW_ATTACHMENT_TEXT","Add new attachment");
 define("ATTACH_TEXT","Attach");
 define("ADDRESS1_TEXT","Address");
 define("ADDRESS_TEXT","Address:");
-define("ADD_MEMBERS_TEXT","Аdd members");
+define("ADD_REMOVE_MEMBERS_TEXT","Аdd/Remove members");
 define("ADD_NEW_BRANCH_TEXT","Add new branch");
 define("ADD_NEW_MEMBER_TEXT","Add new member");
 define("ADD_TEXT","Add");
