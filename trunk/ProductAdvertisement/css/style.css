@@ -321,3 +321,23 @@ clear:both;
 .right{
 float:right;
 }
+
+/* Presentation */
+div.slide h1
+{
+font-size:45px;
+}
+div.slide ul
+{
+font-size:30px;
+font-weight:bold;
+}
+div.slide li
+{
+margin-bottom:20px;
+}
+#btn_livedemo
+{
+margin-top:160px;
+font-size:60px;
+}
